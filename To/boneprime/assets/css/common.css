@@ -57,8 +57,8 @@ header .nav{
   font-weight: 600;
 }
 
-.nav .subNav-list{
-  /* height: 0; */
+.nav .subNav-list__wrap{
+  height: 0;
   overflow: hidden;
   position: absolute;
   left: 150px;
@@ -66,18 +66,12 @@ header .nav{
   width: 200px;
 }
 
-/* .nav .subNav-list.active{
-  height: auto;
-} */
-
 .subNav-list .suvNav-item a{
   color: #fff;
   display: block;
-  font-size: var(--font-size-s);
-}
-
-.subNav-list .suvNav-item:not(:last-child) a{
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  line-height: 33px;
+  text-shadow: 2px 2px 7px rgb(0 0 0 / 40%);
 }
 
 header .nav-login{
@@ -144,7 +138,7 @@ header .nav-login{
 
 .footer-info address{
   font-style: normal;
-  margin-top: 25px;
+  padding-top: 25px;
 }
 
 .footer-info address span{

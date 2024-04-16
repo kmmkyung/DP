@@ -1,7 +1,6 @@
 /* header */
 .header{
   border-top: 3px solid #108ccf;
-  height: 135px;
 }
 
 .header-wrap{
@@ -11,6 +10,7 @@
   display: flex;
   align-items: flex-end;
   position: relative;
+  height: 100px;
 }
 
 header .logo h1{
@@ -28,10 +28,9 @@ header .logo{
 .header-login{
   height: 30px;
   width: 100%;
-  padding-top: 2px;
   display: flex;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2px auto 0;
   align-items: center;
   justify-content: flex-end;
 }
@@ -40,7 +39,7 @@ header .logo{
   font-size: 12px;
   padding: 0 10px;
   height: 100%;
-  line-height: 24px;
+  line-height: 2.9rem;
 }
 
 .nav{
@@ -48,6 +47,7 @@ header .logo{
   margin-left: -250px;
   position: absolute;
   z-index: 999;
+  top: 30px;
 }
 
 .nav-list{
@@ -59,27 +59,40 @@ header .logo{
   text-align: center;
   min-height: 47px;
   font-size: 1.25em;
-  line-height: 2.938em !important;
+  line-height: 4.4rem;
 }
 
 .nav-list .list-item h6{
   width: 150px;
-}
-
-.nav-list .list-item h6{
   font-size: var(--font-size-s);
+  height: 47px;
+
 }
 
 .subNav-list{
   position: absolute;
-  height: 0;
+  /* height: 0; */
   overflow: hidden;
+  width: 150px;
+  padding-top: 10px;
 }
 
 .subList-item a{
-  font-size: var(--font-size-navItem);
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: block;
+  color: #2d2d2d;
+  font-size: 1.4rem;
 }
 
+.nav-bg{
+  width: 100%;
+  height: 210px;
+  position: absolute;
+  z-index: 1;
+  background: #ccafaf;
+}
 
 /* footer */
 .footer{
