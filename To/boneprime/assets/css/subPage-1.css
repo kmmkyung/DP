@@ -1,0 +1,170 @@
+.section1{
+  position: relative;
+  background-image: url(../images/subPagenNav-shadow.png);
+  height: 200px;
+}
+
+.section1-wrap{
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.section1-text{
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.section1-text h3{
+  font-size: 31px;
+}
+
+.section1-text p{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.section2{
+  width: 100%;
+  margin-top: -10px;
+}
+
+.section2-wrap{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.subGnd{
+  width: 280px;
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+.subGnb-title{
+  padding: 120px 30px 30px;
+  font-size: 25px;
+  background: #003f76;
+  color: #fff;
+  font-weight: bold;
+}
+
+.subGnd-list{
+  margin-top: 10px;
+}
+
+.suvGnbList-item a{
+  text-indent: 10px;
+  line-height: 50px;
+  font-size: 15px;
+  border-bottom: 1px solid #EDEDED;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.section2-container{
+  width: 890px;
+}
+
+.PageNavigation{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #666;
+  height: 49px;
+  margin-top: 15px;
+}
+
+.PageNavigation h6{
+  font-size: 18px;
+  color: #0b2d47;
+  padding-top: 15px;
+}
+
+.PageNavigation-text{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+
+.content{
+  width: 890px;
+  min-height: 500px;
+}
+
+.content-title{
+  font-size: 36px;
+  letter-spacing: -0.05em;
+  color: #26282c;
+  text-align: center;
+  line-height: 1;
+  position: relative;
+  padding-bottom: 20px;
+  padding-top: 15px;
+}
+
+.content-title::after{
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  bottom: 0;
+  background-color: #2e7dd2;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.content-boxWrap{
+  margin-top: 60px;
+}
+
+.box{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  height: 155px;
+  background: #f8f8f8;
+  border: 1px solid #d7d7d7;
+  padding: 15px 15px 15px 30px ;
+}
+
+.box:not(:last-child){
+  margin-bottom: 20px;
+}
+
+.box-number{
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 45px;
+  font-weight: 500;
+  border-radius: 50%;
+  background: #1c67b6;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.box-title{
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #26282c;
+}
+
+.box-text{
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: #6c6d6f;
+}
+
+.box4{
+  margin-bottom: 80px;
+}

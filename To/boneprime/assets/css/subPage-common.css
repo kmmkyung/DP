@@ -1,0 +1,142 @@
+/* header */
+.header{
+  border-top: 3px solid #108ccf;
+  height: 135px;
+}
+
+.header-wrap{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+header .logo h1{
+  height: 0;
+  overflow: hidden;
+}
+
+header .logo{
+  width: 250px;
+  height: 100px;
+  background-image: url(../images/logo.png);
+  background-repeat: no-repeat;
+}
+
+.header-login{
+  height: 30px;
+  width: 100%;
+  padding-top: 2px;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-login p{
+  font-size: 12px;
+  padding: 0 10px;
+  height: 100%;
+  line-height: 24px;
+}
+
+.nav{
+  left: 50%;
+  margin-left: -250px;
+  position: absolute;
+  z-index: 999;
+}
+
+.nav-list{
+  display: flex;
+}
+
+.nav-list .list-item{
+  width: 150px;
+  text-align: center;
+  min-height: 47px;
+  font-size: 1.25em;
+  line-height: 2.938em !important;
+}
+
+.nav-list .list-item h6{
+  width: 150px;
+}
+
+.nav-list .list-item h6{
+  font-size: var(--font-size-s);
+}
+
+.subNav-list{
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+}
+
+.subList-item a{
+  font-size: var(--font-size-navItem);
+}
+
+
+/* footer */
+.footer{
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #4d4a48;
+}
+
+.footer-1{
+  width: 100%;
+  background-color: #414141;
+}
+
+.footer-wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer1-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-list{
+  display: flex;
+  color: #fff;
+}
+
+.footer-list .list-item a{
+  font-size: var(--font-size-footer);
+  padding: 10px;
+  color: #fff;
+  display: block;
+}
+
+.footer-top a{
+  color: #fff;
+  font-size: var(--font-size-footer);
+  padding: 1.2rem;
+  display: block;
+}
+
+.footer-2{
+  height: 110px;
+}
+
+.footer-info address{
+  font-style: normal;
+}
+
+.footer-info address span{
+  line-height: 150%;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  color: #bbb;
+}
+
+
