@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded',function(){
+
   // const banner2 = document.querySelector('.banner2')
-  // if(window.innerWidth>=768){
+  // if(window.innerWidth>768){
   //   let opa = 0
   //   setInterval(function(){
   //     if( opa < 1 ){
