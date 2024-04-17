@@ -12,10 +12,9 @@
 }
 
 .section1 .vid-wrap{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-
+  height: 300%;
+  top: -100%;
+  position: relative;
 }
 
 .vid-wrap::after{
@@ -28,13 +27,12 @@
 }
 
 .section1 iframe{
-  aspect-ratio: 16/9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  width: 300%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  pointer-events: none;
 }
 
 /* section2 */
@@ -288,10 +286,16 @@
   display: none;
 }
 
-@media screen and (max-width : 600px) {
+@media screen and (max-width : 768px) {
+
+  .section1 .vid-wrap{
+    width: 110%;
+    left: -7%;
+}
+
   .section1 iframe{
     height: 100%;
-    width: auto;
+    width: 100%;
   }
 
   .section2{
@@ -394,4 +398,12 @@
   }
 
 
+}
+
+@media (max-aspect-ratio: 16 / 9){
+.section1 .vid-wrap {
+    width: 300%;
+    left: -100%;
+    position: relative;
+  }
 }

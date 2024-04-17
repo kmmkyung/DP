@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded',function(){
       searchTap.classList.remove('-hidden')      
     })
     seClose.addEventListener('click',function(){
-      searchTap.classList.add('-hidden')      
+      searchTap.classList.add('-hidden')
     })
 
     const bars = document.querySelector('.icon-bars')
