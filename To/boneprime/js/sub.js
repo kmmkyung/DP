@@ -3,18 +3,18 @@ window.addEventListener('DOMContentLoaded',function(){
   // setInterval(function(){
   //   banner2.classList.toggle('fade')
   // },5000)
-  if(this.window.innerWidth>768){
-    let opa = 0
-    setInterval(function(){
-      if( opa < 1 ){
-        opa++;
-      }
-      else{
-        opa--;
-      }
-      banner2.style.opacity = opa
-    },5000)
-  }
+  // if(this.window.innerWidth>768){
+  //   let opa = 0
+  //   setInterval(function(){
+  //     if( opa < 1 ){
+  //       opa++;
+  //     }
+  //     else{
+  //       opa--;
+  //     }
+  //     banner2.style.opacity = opa
+  //   },5000)
+  // }
 
   const navList = document.querySelector('.nav-list')
   const navItem = document.querySelectorAll('.subNav-list')
@@ -26,6 +26,7 @@ window.addEventListener('DOMContentLoaded',function(){
     })
     navBg.style.height= 210+'px'
   })
+  
   navBg.addEventListener('mouseleave',function(){
     navItem.forEach((ele)=>{
       ele.style.height= '0'

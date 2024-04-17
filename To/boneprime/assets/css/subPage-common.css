@@ -60,12 +60,17 @@ header .logo {
   min-height: 47px;
   font-size: 1.25em;
   line-height: 4.4rem;
+  cursor: pointer;
 }
 
 .nav-list .list-item h6 {
   width: 150px;
   font-size: var(--font-size-s);
   height: 47px;
+}
+
+.nav-list .list-item h6:hover{
+  color: #108ccf;
 }
 
 .subNav-list {
@@ -204,6 +209,10 @@ header .logo {
   .mobile-logo img {
     width: 50%;
   }
+
+  .mobile-header {
+  display: block;
+}
 
   .icon-search {
     position: absolute;

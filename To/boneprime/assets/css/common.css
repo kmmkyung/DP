@@ -57,6 +57,12 @@ header .nav{
   line-height: 47px;
   font-weight: 600;
   text-shadow: 2px 2px 7px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.nav .nav-item h6:hover,
+.subNav-list .suvNav-item a:hover{
+  color: #108ccf;
 }
 
 .nav .subNav-list__wrap{
@@ -78,6 +84,7 @@ header .nav{
   background-color: transparent;
   border-left: 1px solid white;
   padding-left: 20px;
+  font-weight: bold;
 }
 
 header .nav-login{

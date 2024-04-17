@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded',function(){
       let subNavListHeight = subNavList[idx].clientHeight;
       
       ele.addEventListener('mouseenter',function(){
-        console.log(subNavListHeight);
         subNavListWrap[idx].style.height = subNavListHeight+'px'
       })
       ele.addEventListener('mouseleave',function(){
