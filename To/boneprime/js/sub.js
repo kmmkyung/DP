@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded',function(){
-  const banner2 = document.querySelector('.section1 .banner .banner2')
-  // setInterval(function(){
-  //   banner2.classList.toggle('fade')
-  // },5000)
-  // if(this.window.innerWidth>768){
+  // const banner2 = document.querySelector('.banner2')
+  // if(window.innerWidth>=768){
   //   let opa = 0
   //   setInterval(function(){
   //     if( opa < 1 ){
