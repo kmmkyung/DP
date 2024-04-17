@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded',function(){
       ele.style.height= '0'
       ele.style.transition = 'all 0.1s'
     })
-    navBg.style.height= 0+'px'
+    navBg.style.height= 0
   })
 
 
