@@ -8,63 +8,80 @@
   <link rel="stylesheet" href="../assets/css/reset.css">
   <link rel="stylesheet" href="../assets/css/subPage-common.css">
   <link rel="stylesheet" href="../assets/css/subPage-1.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="../js/sub.js"></script>
 </head>
 <body>
-  <header class="header">
-    <aside class="header-login">
-      <p>회원가입</p>
-      <p>로그인</p>
-    </aside>
-    <div class="header-wrap">
-      <div class="logo">
-        <h1>삼성 본프라임 정형외과</h1>
+  <header id="header" class="header">
+    <div class="pc-header">
+      <aside class="header-login">
+        <p>회원가입</p>
+        <p>로그인</p>
+      </aside>
+      <div class="header-wrap">
+        <div class="logo">
+          <h1>삼성 본프라임 정형외과</h1>
+        </div>
+        <nav class="nav pc-nav">
+          <ul class="nav-list">
+            <li class="list-item">
+              <h6>삼성 본프라임</h6>
+              <ol class="subNav-list">
+                <li class="subList-item"><a href="#">삼성 본프라임 소개</a></li>
+                <li class="subList-item"><a href="#">의료진 소개</a></li>
+                <li class="subList-item"><a href="#">둘러보기</a></li>
+                <li class="subList-item"><a href="#">진료시간</a></li>
+                <li class="subList-item"><a href="#">비급여수가</a></li>
+                <li class="subList-item"><a href="#">찾아오시는길</a></li>
+              </ol>
+            </li>
+            <li class="list-item">
+              <h6>관절 클리닉</h6>
+              <ol class="subNav-list">
+                <li class="subList-item"><a href="#">관절 클리닉이란?</a></li>
+                <li class="subList-item"><a href="#">진료질환</a></li>
+              </ol>
+            </li>
+            <li class="list-item">
+              <h6>척추 클리닉</h6>
+              <ol class="subNav-list">
+                <li class="subList-item"><a href="#">척추 클리닉이란?</a></li>
+                <li class="subList-item"><a href="#">3D 체형 분석기</a></li>
+                <li class="subList-item"><a href="#">진료질환</a></li>
+              </ol>
+            </li>
+            <li class="list-item">
+              <h6>성장 클리닉</h6>
+              <ol class="subNav-list">
+                <li class="subList-item"><a href="#">성장 클리닉이란?</a></li>
+              </ol>
+            </li>
+            <li class="list-item">
+              <h6>특수장비</h6>
+              <ol class="subNav-list">
+                <li class="subList-item"><a href="#">3D 체형분석기</a></li>
+                <li class="subList-item"><a href="#">개인 맞춤 인솔</a></li>
+                <li class="subList-item"><a href="#">프리미엄 열도수 치료기</a></li>
+              </ol>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li class="list-item">
-            <h6>삼성 본프라임</h6>
-            <ol class="subNav-list">
-              <li class="subList-item"><a href="#">삼성 본프라임 소개</a></li>
-              <li class="subList-item"><a href="#">의료진 소개</a></li>
-              <li class="subList-item"><a href="#">둘러보기</a></li>
-              <li class="subList-item"><a href="#">진료시간</a></li>
-              <li class="subList-item"><a href="#">비급여수가</a></li>
-              <li class="subList-item"><a href="#">찾아오시는길</a></li>
-            </ol>
-          </li>
-          <li class="list-item">
-            <h6>관절 클리닉</h6>
-            <ol class="subNav-list">
-              <li class="subList-item"><a href="#">관절 클리닉이란?</a></li>
-              <li class="subList-item"><a href="#">진료질환</a></li>
-            </ol>
-          </li>
-          <li class="list-item">
-            <h6>척추 클리닉</h6>
-            <ol class="subNav-list">
-              <li class="subList-item"><a href="#">척추 클리닉이란?</a></li>
-              <li class="subList-item"><a href="#">3D 체형 분석기</a></li>
-              <li class="subList-item"><a href="#">진료질환</a></li>
-            </ol>
-          </li>
-          <li class="list-item">
-            <h6>성장 클리닉</h6>
-            <ol class="subNav-list">
-              <li class="subList-item"><a href="#">성장 클리닉이란?</a></li>
-            </ol>
-          </li>
-          <li class="list-item">
-            <h6>특수장비</h6>
-            <ol class="subNav-list">
-              <li class="subList-item"><a href="#">3D 체형분석기</a></li>
-              <li class="subList-item"><a href="#">개인 맞춤 인솔</a></li>
-              <li class="subList-item"><a href="#">프리미엄 열도수 치료기</a></li>
-            </ol>
-          </li>
-        </ul>
-      </nav>
+      <div class="nav-bg"></div>
     </div>
-    <div class="nav-bg"></div>
+    <div class="mobile-header">
+      <div class="mobile-nav">
+        <div class="icon-search">
+          <i class="fa fa-search"></i>
+        </div>
+        <div class="mobile-logo">
+          <img src="../assets/images/logo.png" alt="">
+        </div>
+        <div class="icon-bars">
+          <i class="fa fa-bars"></i>
+        </div>
+      </div>
+    </div>
   </header>
   <section id="section1" class="section1">
     <div class="section1-wrap">
@@ -148,7 +165,11 @@
     <div class="footer-2">
       <div class="footer-wrap">
         <div class="footer-info">
-          <address>
+          <div class="mobile-footerIcon">
+            <i class="fa fa-phone m_tel"></i>
+            <i class="fa fa-envelope m_sms"></i>
+          </div>
+          <address class="pc-address">
             <span>업체명 : 삼성 본프라임 정형외과</span>
             <span>대표자 : 김큰별, 김정봉</span>
             <span>사업자번호 : 280-98-01204</span>
@@ -156,6 +177,19 @@
             <span>주소 : 인천광역시 연수구 송도동 21-32,33 에스원타워 5F (5층 전체)</span><br>
             <span>All Page contents cannot be copied without permission.</span>
           </address>
+          <address class="mobile-address">
+            <p>
+              <b>삼성 본프라임 정형외과</b><br>
+              대표 : 김큰별, 김정봉<br>
+              주소 : 인천광역시 연수구 송도동 21-32,33 에스원타워 5F (5층 전체)<br>
+              Tel. : 032-833-1236<br>
+              E-mail : heroofchoson@naver.com<br>
+              Copyright © <b>삼성 본프라임 정형외과.</b> All rights reserved.
+            </p>
+          </address>
+          <div class="mobile-footerAdmin">
+            <a class="footerAdmin-btn" href="#">Admin</a>
+          </div>
         </div>
       </div>
     </div>

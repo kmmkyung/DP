@@ -32,11 +32,11 @@
 }
 
 .section1-text h3{
-  font-size: 31px;
+  font-size: 3.1rem;
 }
 
 .section1-text p{
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -146,4 +146,44 @@
     padding: 15px 0;
     margin: 0 auto;
     font-weight: 300;
+}
+
+@media screen and (max-width: 600px) {
+
+  .section1{
+    display: none;
+  }
+  
+  .subGnd{
+    display: none;
+  }
+  
+  .PageNavigation{
+    display: none;
+  }
+
+  .section2 {
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .content {
+    width: auto; 
+    margin-top: 60px;
+  }
+
+  .content-title{
+    font-size: 2.8rem;
+    padding-top: 0;
+  }  
+
+  .content img{
+    width: 100%;
+  }
+  
+  .content-text{
+    font-size: 1.6rem;
+    letter-spacing: -0.15rem;
+  }
+
 }

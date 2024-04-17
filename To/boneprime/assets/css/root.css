@@ -23,3 +23,7 @@ html{
 body{
   font-family: 'Noto Sans KR", sans-serif';
 }
+
+.-hidden{
+  display: none !important
+}

@@ -16,4 +16,24 @@ window.addEventListener('DOMContentLoaded',function(){
         subNavListWrap[idx].style.height = 0+'px'
       })
     })
+
+    const search = document.querySelector('.icon-search')
+    const searchTap = document.querySelector('.mobile-searchBar')
+    const seClose = document.querySelector('.mobile-searchBar .close-btn')
+    search.addEventListener('click',function(){
+      searchTap.classList.remove('-hidden')      
+    })
+    seClose.addEventListener('click',function(){
+      searchTap.classList.add('-hidden')      
+    })
+
+    const bars = document.querySelector('.icon-bars')
+    const mobileNav = document.querySelector('.mobile-navMenu')
+    const navClose = document.querySelector('.mobile-navBtn')
+    bars.addEventListener('click',function(){
+      mobileNav.classList.remove('-hidden')      
+    })
+    navClose.addEventListener('click',function(){
+      mobileNav.classList.add('-hidden')      
+    })
 })

@@ -8,16 +8,17 @@
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/common.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="./js/index.js"></script>
 </head>
 <body>
   <div class="top-line"></div>
   <header id="header">
-    <div class="logo">
+    <div class="logo pc-logo">
       <h1>삼성 본프라임 정형외과</h1>
       <img src="./assets/images/logo.png" alt="logo">
     </div>
-    <nav class="nav">
+    <nav class="nav pc-nav">
       <ul class="nav-list">
         <li class="nav-item">
           <h6>삼성 본프라임</h6>
@@ -71,14 +72,117 @@
         </li>
       </ul>
     </nav>
-    <ul class="nav-login">
+    <div class="mobile-nav">
+      <div class="icon-search">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="mobile-logo">
+        <img src="./assets/images/logo.png" alt="">
+      </div>
+      <div class="icon-bars">
+        <i class="fa fa-bars"></i>
+      </div>
+    </div>
+    <ul class="nav-login pc-login">
       <li>회원가입</li>
       <li>로그인</li>
     </ul>
   </header>
+  <form class="mobile-searchBar -hidden">
+    <div class="input-wrap">
+      <input class="textInput" type="text" placeholder="검색어(필수)">
+      <input class="submitInput" type="submit" value="검색">
+    </div>
+    <div class="close-btn">닫기</div>
+  </form>
+  <div class="mobile-navMenu -hidden">
+    <ul class="mobile-navList">
+      <li class="mobile-navList__item">
+        <h6>삼성 본프라임</h6>
+        <div class="sub-navListWrap">
+          <ol class="sub-navList">
+            <li class="sub-navList-item">
+              <a href="#">삼성 본프라임 소개</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">의료진소개</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">둘러보기</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">진료시간</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">비급여수가</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">찾아오시는길</a>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="mobile-navList__item">
+        <h6>관절 클리닉</h6>
+        <div class="sub-navListWrap">
+          <ol class="sub-navList">
+            <li class="sub-navList-item">
+              <a href="#">관절클리닉이란?</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">진료질환</a>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="mobile-navList__item">
+        <h6>척추 클리닉</h6>
+        <div class="sub-navListWrap">
+          <ol class="sub-navList">
+            <li class="sub-navList-item">
+              <a href="#">척추클리닉이란?</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">3D 체형분석기</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">진료 질환</a>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="mobile-navList__item">
+        <h6>성장 클리닉</h6>
+        <div class="sub-navListWrap">
+          <ol class="sub-navList">
+            <li class="sub-navList-item">
+              <a href="#">성장클리닉이란?</a>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="mobile-navList__item">
+        <h6>특수장비</h6>
+        <div class="sub-navListWrap">
+          <ol class="sub-navList">
+            <li class="sub-navList-item">
+              <a href="#">3D 체형분석기</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">개인 맞춤 인솔</a>
+            </li>
+            <li class="sub-navList-item">
+              <a href="#">프리미엄 열도수 치료기</a>
+            </li>
+          </ol>
+        </div>
+      </li>
+    </ul>
+    <div class="mobile-navBtn">닫기</div>
+  </div>
   <section id="section1" class="section1">
     <div class="vid-wrap">
-      <!-- <iframe src="https://www.youtube.com/embed/HtAe-h2KLSQ?rel=0&autoplay=1&mute=1&loop=1;playlist=HtAe-h2KLSQ" frameborder="0"></iframe> -->
+      <iframe src="https://www.youtube.com/embed/HtAe-h2KLSQ?rel=0&autoplay=1&mute=1&loop=1;playlist=HtAe-h2KLSQ" frameborder="0" autoplay;></iframe>
     </div>
   </section>
   <section id="section2" class="section2">
@@ -132,9 +236,9 @@
               <img src="./assets/images/main_ban_2.jpg" alt="프리미엄 도수치료">
               <div class="item-text">
                 <h6>프리미엄 도수치료</h6>
-                <p>3D 체형분석을 통해 정확하게 진단하고<br>
-                  첨단 열도수 치료기를 이용한 프리미엄<br>
-                  도수치료를 통해 체형교정과 만성통증에<br>
+                <p>3D 체형분석을 통해 정확하게 진단하고
+                  첨단 열도수 치료기를 이용한 프리미엄
+                  도수치료를 통해 체형교정과 만성통증에
                   탁월한 효과를 자랑합니다.
                 </p>
               </div>
@@ -146,9 +250,9 @@
               <div class="item-text">
                 <h6>다양한 비수술 치료</h6>
                 <p>
-                  척추 전문의가 시행하는 다양한 척추<br>
-                  시술, 통증주사치료 인증 전문의가<br>
-                  시행하는 다양한 주사치료로 비수술<br>
+                  척추 전문의가 시행하는 다양한 척추
+                  시술, 통증주사치료 인증 전문의가
+                  시행하는 다양한 주사치료로 비수술
                   치료가 가능합니다.
                 </p>
               </div>
@@ -160,8 +264,8 @@
               <div class="item-text">
                 <h6>AI 성장예측 프로그램</h6>
                 <p>
-                  성장치료의 경험과 AI 성장예측 프로그램을<br>
-                  이용하여 정확한 성장판 검사가 가능하여<br>
+                  성장치료의 경험과 AI 성장예측 프로그램을
+                  이용하여 정확한 성장판 검사가 가능하여
                   아이의 성장 예측과 교정이 가능합니다.
                 </p>
               </div>
@@ -174,6 +278,10 @@
   <section id="section4" class="section4">
     <div class="section4-wrap">
       <h5 class="section4-title">문의하기</h5>
+      <div class="mobile-qs">
+        <h6>질문게시판</h6>
+        <p>게시물이 없습니다.</p>
+      </div>
       <div class="section4-container">
         <h6 class="container-subTitle">진료안내</h6>
         <div class="section4-content">
@@ -224,14 +332,32 @@
     <div class="footer-2">
       <div class="footer-wrap">
         <div class="footer-info">
-          <address>
+          <div class="mobile-footerIcon">
+            <i class="fa fa-phone m_tel"></i>
+            <i class="fa fa-envelope m_sms"></i>
+          </div>
+          <address class="pc-address">
             <span>업체명 : 삼성 본프라임 정형외과</span>
             <span>대표자 : 김큰별, 김정봉</span>
             <span>사업자번호 : 280-98-01204</span>
             <span>Tel : 032-833-1236</span><br>
             <span>주소 : 인천광역시 연수구 송도동 21-32,33 에스원타워 5F (5층 전체)</span><br>
             <span>All Page contents cannot be copied without permission.</span>
+            <b><a href="#">Admin</a></b>
           </address>
+          <address class="mobile-address">
+            <p>
+              <b>삼성 본프라임 정형외과</b><br>
+              대표 : 김큰별, 김정봉<br>
+              주소 : 인천광역시 연수구 송도동 21-32,33 에스원타워 5F (5층 전체)<br>
+              Tel. : 032-833-1236<br>
+              E-mail : heroofchoson@naver.com<br>
+              Copyright © <b>삼성 본프라임 정형외과.</b> All rights reserved.
+            </p>
+          </address>
+          <div class="mobile-footerAdmin">
+            <a class="footerAdmin-btn" href="#">Admin</a>
+          </div>
         </div>
       </div>
     </div>

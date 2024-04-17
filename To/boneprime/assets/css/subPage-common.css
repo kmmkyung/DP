@@ -71,7 +71,7 @@ header .logo{
 
 .subNav-list{
   position: absolute;
-  /* height: 0; */
+  height: 0;
   overflow: hidden;
   width: 150px;
   padding-top: 10px;
@@ -88,10 +88,11 @@ header .logo{
 
 .nav-bg{
   width: 100%;
-  height: 210px;
+  /* height: 210px; */
+  height: 0;
   position: absolute;
   z-index: 1;
-  background: #ccafaf;
+  background: #fff;
 }
 
 /* footer */
@@ -153,4 +154,221 @@ header .logo{
   color: #bbb;
 }
 
+
+.mobil-footerIcon{
+  display: none;
+}
+
+.mobile-address{
+  display: none;
+}
+
+/* search */
+.mobile-searchBar{
+  display: none;
+}
+
+.mobile-footerIcon{
+  display: none;
+}
+@media screen and (max-width: 600px) {
+
+  #header {
+    padding: 3% 1% 3% 0;
+    height: 100%;
+}
+
+.header{
+  border: none;
+}
+
+  .pc-header{
+    display: none;
+  }
+
+  .mobile-nav{
+    display: block;
+  }
+
+  .mobile-logo{
+    text-align: center;
+  }
+  
+  .mobile-logo img{
+    width: 50%;
+  }
+
+  .icon-search{
+    position: absolute;
+    top: 10px;
+    left: 2%;
+    padding: 2%;
+    cursor: pointer;
+  }
+
+  .icon-bars{
+    position: absolute;
+    top: 10px;
+    right: 2%;
+    padding: 2%;
+    cursor: pointer;
+  }
+
+  .icon-search .fa-search,
+  .icon-bars .fa-bars{
+    font-size: 20px;
+    color: #000;
+  }
+
+  .footer {
+    background-color: #222;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+  .footer-1{
+    display: none;
+  }
+
+  .footer-2{
+    height: auto;
+  }
+
+  .footer-info address{
+    font-style: normal;
+    padding-top: 0;
+  }
+
+  .mobile-footerIcon{
+    display: block;
+    text-align: center;;
+    padding: 18px 0 14px;
+  }
+
+  .mobile-footerIcon i{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    border-radius: 100px;
+    background: #555;
+    margin-right: 10px;
+  }
+
+  address span{
+    display: block;
+    text-align: center;
+  }
+
+  .pc-address{
+    display: none;
+  }
+
+  .mobile-address{
+    display: block;
+  }
+
+  .mobile-address p{
+    color: #ccc;
+    line-height: 150%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .mobile-footerAdmin{
+    width: 100%;
+    text-align: center;
+}
+
+  .footerAdmin-btn{
+    display: inline-block;
+    color: #888;
+    border-radius: 4px;
+    background: #333;
+    padding: 1px 5px 2px;
+    margin: 12px 4px 6px;
+  }
+
+  .mobile-searchBar{
+    display: block;
+    border-top: 1px solid #181818;
+    background: #282828;
+    text-align: center;
+    color: #000;
+  }
+
+  .mobile-searchBar .input-wrap{
+    padding: 30px 0;
+  }
+
+  .textInput{
+    height: 30px;
+    border: 1px solid #181818;
+    background: #323232 !important;
+    line-height: 2.5em;
+    vertical-align: middle;
+  }
+
+  .submitInput{
+    margin: 0;
+    padding: 0 10px;
+    height: 32px;
+    border: 0;
+    background: #000;
+    color: #fff;
+    vertical-align: middle;
+  }
+
+  .mobile-searchBar .close-btn{
+    padding: 10px 0;
+    width: 100%;
+    background: #000;
+    color: #fff;
+  }
+
+  .mobile-navList__item h6{
+    padding: 10px;
+    border-top: 1px solid #191919;
+    background: #ebf0f5;
+    font-size: 1.2rem;
+  }
+
+  .sub-navList-item{
+    border-top: 1px solid #c7c7c7;
+  }
+  
+  .sub-navList-item a{
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .sub-navList-item a::before{
+    display: inline-block;
+    margin: 0 10px 0 0;
+    color: #666;
+    content: '▶';
+  }
+
+  .mobile-navBtn{
+    padding: 10px 0;
+    width: 100%;
+    border: 0;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    tab-size: 1.2rem;
+  }
+
+  .footer-info address{
+    font-style: normal;
+    margin-top: 0;
+  }
+}
 
