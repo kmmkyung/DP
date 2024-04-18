@@ -182,6 +182,12 @@ body{
   opacity: 1;
   width: 100%;
   min-width: 225px;
+  cursor: pointer;
+}
+
+.logo:hover .logo-on{
+  transform: translate(20px, 0px);
+  opacity: 0;
 }
 
 .logo-off{
@@ -191,6 +197,12 @@ body{
   position: absolute;
   top: 0px;
   left: 0px;
+  /* z-index: -1; */
+}
+
+.logo:hover .logo-off{
+  transform: translate(0px, 0px);
+  opacity: 1;
 }
 
 .nav-pcMenu{
@@ -231,16 +243,14 @@ body{
   line-height: 80px;
 }
 
-.pcMenu-list .subMenu-list{
+.pcMenu-list .subMenu-list__wrap{
+  height: 0;
+  overflow: hidden;
   position: absolute;
   z-index: 98;
   width: 100%;
-  display: none;
   transform: translateY(-1px);
-}
-
-.pcMenu-list .subMenu-list.active{
-  display: block;
+  transition: all 0.5s;
 }
 
 .subMenu-list .list-item{

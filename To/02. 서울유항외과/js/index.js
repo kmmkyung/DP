@@ -28,13 +28,16 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // PC - GNB 서브메뉴 보이기
   const pcMenuItem = document.querySelectorAll('.pcMenu-list>.list-item:not(:last-child)')
+  const pcSubMenuListWrap = document.querySelectorAll('.pcMenu-list .subMenu-list__wrap')
   const pcSubMenuList = document.querySelectorAll('.pcMenu-list .subMenu-list')
-  pcMenuItem.forEach(function(menu,idx){
+  pcMenuItem.forEach(function(menu,idx){    
+    let vh = pcSubMenuList[idx].clientHeight;
+    
     menu.addEventListener('mouseenter',function(){
-      pcSubMenuList[idx].classList.add('active')
+      pcSubMenuListWrap[idx].style.height = vh+'px'
     })
     menu.addEventListener('mouseleave',function(){
-      pcSubMenuList[idx].classList.remove('active')
+      pcSubMenuListWrap[idx].style.height = 0
     })
   })
 
@@ -66,6 +69,7 @@ window.addEventListener('DOMContentLoaded',function(){
       mobileMenu.style.height = 0
     }
   })
+
 
   const swiper = new Swiper('.section1-swiper', {
     direction: 'horizontal',
