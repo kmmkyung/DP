@@ -20,15 +20,14 @@ window.addEventListener('DOMContentLoaded',function(){
   const menuMap = document.querySelector('.menuMap')
   window.addEventListener('scroll',function(){
     if(window.scrollY>40){
-      // nav.classList.add('navActive')
-      // header.classList.add('active')
-      // menuMap.classList.add('active')
-      
+      nav.classList.add('navActive')
+      header.classList.add('active')
+      menuMap.classList.add('active')
     }
     else{
-    //   nav.classList.remove('navActive')
-    //   header.classList.remove('active')
-    //   menuMap.classList.remove('active')
+      nav.classList.remove('navActive')
+      header.classList.remove('active')
+      menuMap.classList.remove('active')
     }
   })
 
