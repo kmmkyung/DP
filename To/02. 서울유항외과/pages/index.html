@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- JS -->
-  <script src="../js/index.js"></script>
+  <script src="../js/index.js" type="module"></script>
 </head>
 <body>
   <aside class="side-menu">
@@ -43,7 +43,7 @@
       </div>
     </div>
   </aside>
-  <header>
+  <header class="header">
     <div class="top-nav">
       <div class="top-nav__wrap">
         <ul>
@@ -270,11 +270,136 @@
         </li>
       </ol>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev">
+        <i class="bi bi-caret-left-fill"></i>
+      </div>
+      <div class="swiper-button-next">
+        <i class="bi bi-caret-right-fill"></i>
+      </div>
     </div>
   </section>
   <section class="section2">
+
+    <div class="section2-row1">
+      <div class="row-wrap">
+        <div class="row1-content1">
+          <h2>서울유항외과 진료과목</h2>
+          <ol class="row1-content1__list">
+            <li class="list-item">
+              <a href="#">
+                <img src="../assets/images/content-01.jpg" alt="치질센터">치질센터</a>
+              </li>
+            <li class="list-item">
+              <a href="#">
+                <img src="../assets/images/content-02.jpg" alt="유방센터">유방센터</a>
+              </li>
+            <li class="list-item">
+              <a href="#">
+                <img src="../assets/images/content-03.jpg" alt="대장내시경">대장내시경</a>
+              </li>
+            <li class="list-item">
+              <a href="#">
+                <img src="../assets/images/content-04.jpg" alt="탈장센터">탈장센터</a>
+              </li>
+          </ol>
+        </div>
+        <div class="row1-content2">
+          <div class="tap-menu">
+            <ul class="tap-menu__list">
+              <li class="list-item active">공지사항</li>
+              <li class="list-item">언론보도</li>
+              <li class="list-item">FAQ</li>
+            </ul>
+            <span>more</span>
+          </div>
+          <div class="tap-content">
+            <table>
+              <tr>
+                <td class="tap-content__title">설연휴 안내문</td>
+                <td class="tap-content__write">seouluhang123</td>
+              </tr>
+              <tr>
+                <td class="tap-content__title">설연휴 안내문</td>
+                <td class="tap-content__write">seouluhang123</td>
+              </tr>
+              <tr>
+                <td class="tap-content__title">설연휴 안내문</td>
+                <td class="tap-content__write">seouluhang123</td>
+              </tr>
+              <tr>
+                <td class="tap-content__title">설연휴 안내문</td>
+                <td class="tap-content__write">seouluhang123</td>
+              </tr>
+              <tr>
+                <td class="tap-content__title">설연휴 안내문</td>
+                <td class="tap-content__write">seouluhang123</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section2-row2">
+      <div class="row-wrap">
+        <div class="content1">
+          <div class="content1-title">
+            <h6>진료안내</h6>
+            <span>more</span>
+          </div>
+          <div class="content1-cell">
+            <span>
+              <i class="bi bi-telephone-fill"></i>
+            </span>
+            <p>문의전화 031-439-7571</p>
+          </div>
+          <div class="content1-text">
+            <p>
+              - 월 ~ 금 : AM 09 : 00 ~ PM 06 : 00<br>
+              - 토 요일 : AM 09 :00 ~ PM 3 :30<br>(매월 2, 4째주 토요일 휴무)<br>
+              - 수 요일 : AM 09 :00 ~ PM 1 :00<br>(오후진료휴진)<br>
+              - 점심시간 : PM 1 :00 ~ PM 2 :00<br>(토요일포함)<br>
+              - 일, 공휴일은 휴무 입니다.<br>
+              - E-mail : seouluhang @ naver.com<br>
+              - 진료 시간 외에는 온라인상담으로 문의 바랍니다.
+            </p>
+          </div>
+        </div>
+        <div class="content2">
+          <div class="content2-online">
+            <div class="content2-title">
+              <h6>온라인상담</h6>
+              <span>more</span>
+            </div>
+            <table class="content2-table">
+              <tr>
+                <td class="content2-table__title">항문내 염증 수술에 관해서</td>
+                <td class="content2-table__write">최**</td>
+              </tr>
+              <tr>
+                <td class="content2-table__title">진료문의</td>
+                <td class="content2-table__write">김**</td>
+              </tr>
+              <tr>
+                <td class="content2-table__title">진료문의</td>
+                <td class="content2-table__write">박**</td>
+              </tr>
+              <tr>
+                <td class="content2-table__title">검강검진</td>
+                <td class="content2-table__write">최**</td>
+              </tr>
+              <tr>
+                <td class="content2-table__title">내시경 문의 드립니다.</td>
+                <td class="content2-table__write">이**</td>
+              </tr>
+            </table>
+          </div>
+          <div class="content2-youtube">
+            <iframe src="https://www.youtube.com/embed/3xUvufKNKJs?si=4ByFjxPCb2pzeVV3"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <footer>
     <div class="footer1">

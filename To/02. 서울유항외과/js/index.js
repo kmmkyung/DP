@@ -1,3 +1,5 @@
+import tapData from "../assets/data/tabdata.js"
+
 window.addEventListener('DOMContentLoaded',function(){
   // top-nav hover시 아이콘 바꾸기
   let icon = document.querySelectorAll('.icon')
@@ -13,16 +15,20 @@ window.addEventListener('DOMContentLoaded',function(){
   })
 
   // scroll이 내려가면 GND 고정
+  const header = document.querySelector('.header');
   const nav = document.querySelector('.nav');
   const menuMap = document.querySelector('.menuMap')
   window.addEventListener('scroll',function(){
     if(window.scrollY>40){
-      nav.classList.add('navActive')
-      menuMap.classList.add('active')
+      // nav.classList.add('navActive')
+      // header.classList.add('active')
+      // menuMap.classList.add('active')
+      
     }
     else{
-      nav.classList.remove('navActive')
-      menuMap.classList.remove('active')
+    //   nav.classList.remove('navActive')
+    //   header.classList.remove('active')
+    //   menuMap.classList.remove('active')
     }
   })
 
@@ -70,7 +76,7 @@ window.addEventListener('DOMContentLoaded',function(){
     }
   })
 
-
+// swiper
   const swiper = new Swiper('.section1-swiper', {
     direction: 'horizontal',
     loop: true,
@@ -84,4 +90,35 @@ window.addEventListener('DOMContentLoaded',function(){
       prevEl: '.swiper-button-prev',
     }
   });
+
+// tapMenu data
+const table = document.querySelector('.tap-content table')
+const tabTitle = document.querySelectorAll('.tap-menu__list .list-item')
+
+tabTitle.forEach(function(ele,idx){
+  ele.addEventListener('click',function(event){
+    let tableCode = ''
+    let tabTitleOn = document.querySelector('.tap-menu__list .list-item.active')
+    for(let i = 0; i <5; i++){
+      tableCode += `
+      <tr>
+        <td class="tap-content__title">${tapData[idx][`title-${i}`]}</td>
+        <td class="tap-content__write">${tapData[idx][`write-${i}`]}</td>
+      </tr>
+      `
+    }
+    event.target.classList.add('active')
+    if(event.target == tabTitleOn ){
+      event.target.classList.add('active')
+    }
+    else{
+      tabTitleOn.classList.remove('active')
+    }
+    table.innerHTML = tableCode
+    
+  })
+})
+
+
+
 })
