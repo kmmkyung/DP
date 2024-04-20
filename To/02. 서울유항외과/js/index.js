@@ -19,15 +19,17 @@ window.addEventListener('DOMContentLoaded',function(){
   const nav = document.querySelector('.nav');
   const menuMap = document.querySelector('.menuMap')
   window.addEventListener('scroll',function(){
-    if(window.scrollY>40){
+    if(window.scrollY>=40){
       nav.classList.add('navActive')
       header.classList.add('active')
       menuMap.classList.add('active')
+      header.style.transition = 'none'
     }
     else{
       nav.classList.remove('navActive')
       header.classList.remove('active')
       menuMap.classList.remove('active')
+      header.style.transition = 'all 1s'
     }
   })
 
