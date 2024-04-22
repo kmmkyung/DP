@@ -165,6 +165,14 @@
   margin: 100px auto;
   padding: 0 15px;
   max-width: 1000px;
+  display: none;
+}
+
+.content1-main.active,
+.content2-main.active,
+.content3-main.active,
+.content4-main.active{
+  display: block;
 }
 
 .main-title{
@@ -361,7 +369,6 @@
 .content3-main .main-content2 .text{
   border: none;
   background-color: #eee;
-  text-align: left;
   text-decoration: none;
 }
 
@@ -373,6 +380,47 @@
 .content3-main .main-content2 .text span{
   text-decoration: underline;
   font-weight: bold;
+}
+
+.content4-main .main-content1__wrap{
+  display: flex;
+  gap: 25px;
+}
+
+.content4-main .main-content1__wrap:not(:first-child){
+  margin-top: 50px;
+}
+
+.content4-main .text h6{
+  font-size: min(3.5vw, var(--font-size-main));
+  color: navy;
+  text-align: left;
+}
+
+.content4-main .text h6>span{
+  font-size: var(--font-size-xs);
+  margin-left: 10px;
+}
+
+.content4-main .main-content1 .text {
+  margin: 0;
+}
+
+.content4-main .text p{
+  font-size: min(3.5vw, var(--font-size-main));
+  text-align: left;
+  margin-top: 20px;
+}
+
+.content4-main .main-content1 .text p span {
+  text-decoration: underline;
+  color: #000;
+  font-weight: bold;
+}
+
+.content4-main .main-content1__wrap img{
+  width: 50%;
+  height: 100%;
 }
 
 @media screen and (max-width:768px) {
@@ -416,5 +464,23 @@
 
   .main-content3 .content3-item img {
     width: 100%;
+  }
+
+  .content3-main .main-content2 .text p{
+    text-align: center;
+}
+
+  .content4-main .main-content1__wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .content4-main .main-content1__wrap:not(:first-child) {
+    margin-top: 25px;
+  }
+
+  .content4-main .text p {
+    margin-top: 0;
   }
 }
