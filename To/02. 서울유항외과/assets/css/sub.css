@@ -158,9 +158,13 @@
   word-break: keep-all;
 }
 
-.content1-main{
-  margin: 100px 0;
+.content1-main,
+.content2-main,
+.content3-main,
+.content4-main{
+  margin: 100px auto;
   padding: 0 15px;
+  max-width: 1000px;
 }
 
 .main-title{
@@ -190,7 +194,8 @@
 .main-content3{
   width: 100%;
   text-align: center;
-  margin: 50px 0;
+  max-width: 800px;
+  margin: 50px auto;
 }
 
 .main-content1 img{
@@ -199,7 +204,9 @@
 }
 
 .main-content1 .text{
-  margin-top: 25px;
+  line-height: 2;
+  max-width: 800px;
+  margin: 20px auto 0;
 }
 
 .main-content1 .text p{
@@ -318,12 +325,60 @@
   width: 100%;
 }
 
+.main-content1__wrap:last-child{
+  margin-top: 20px;
+}
+
+.content3-main .main-content1 img{
+  max-width: 100%;
+}
+
+.content3-main .main-content1 .text {
+  margin-top: 25px;
+  font-size: min(3.5vw, var(--font-size-main));
+  border: 5px solid #eee;
+  padding: 20px;
+  text-decoration: underline;
+}
+
+.content3-main .main-content2 table{
+  width: 100%;
+  font-size: min(3.5vw,var(--font-size-main));
+  border-collapse: collapse;
+  border: 2px solid #aaa;
+}
+
+.content3-main .main-content2 table thead{
+  background-color: #ddd;
+}
+
+.content3-main .main-content2 table th,
+.content3-main .main-content2 table td {
+  border: 1px solid #aaa;
+  padding: 8px 10px;
+}
+
+.content3-main .main-content2 .text{
+  border: none;
+  background-color: #eee;
+  text-align: left;
+  text-decoration: none;
+}
+
+.content3-main .main-content2 .text p{
+  text-align: left;
+  text-decoration: none;
+}
+
+.content3-main .main-content2 .text span{
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 @media screen and (max-width:768px) {
   .container-menu{
     display: none;
   }
-
-
 }
 
 @media screen and (max-width:425px) {
