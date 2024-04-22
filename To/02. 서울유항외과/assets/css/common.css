@@ -403,6 +403,7 @@ body{
 
 .footer1 .footer-list{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .footer-list .list-item{
@@ -426,6 +427,7 @@ body{
   padding: 15px ;
   background-color: #eee;
 }
+
 
 .footer2-wrap{
   max-width: 1300px;
