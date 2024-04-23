@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("../../font/GmarketSansTTFMedium.ttf");
+}
+.-hidden {
+  display: none;
+}
+
+header {
+  padding: 30px;
+}
+header .header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .header-wrap .logo h1 {
+  height: 0;
+  overflow: hidden;
+}
+header .header-wrap .logo img {
+  max-width: 264px;
+  width: 40vw;
+  vertical-align: middle;
+}
+header .header-wrap .logo .logo-mobile {
+  display: none;
+}
+header .header-wrap .menu {
+  display: flex;
+  align-items: center;
+}
+header .header-wrap .menu .bi-list {
+  font-size: 1.5rem;
+}
+header .header-wrap .menu span {
+  font-family: GmarketSans;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.aside-bottom {
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+}
+.aside-bottom .aside-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aside-bottom .aside-wrap .aside-icons {
+  max-width: 700px;
+  width: 100%;
+  height: 100%;
+  background-color: #934098;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item {
+  height: 100%;
+  padding: 0 30px;
+  position: relative;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item a {
+  font-size: 1.5rem;
+  line-height: 64px;
+  display: block;
+  color: #fff;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item a img {
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 24px;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item a:hover {
+  color: #ffea00;
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item a:hover img {
+  filter: sepia() saturate(10000%);
+}
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item::after {
+  content: "";
+  width: 1px;
+  height: 50%;
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.aside-bottom .aside-wrap .aside-cell {
+  background-color: #232323;
+  width: 100%;
+  height: 100%;
+}
+.aside-bottom .aside-wrap .aside-cell p {
+  display: inline-block;
+  margin: 0 80px;
+  line-height: 64px;
+  font-size: 2.2rem;
+}
+.aside-bottom .aside-wrap .aside-cell span {
+  font-family: GmarketSans;
+  font-weight: bold;
+  line-height: 64px;
+  font-size: 4rem;
+  color: #dcc3f6;
+}/*# sourceMappingURL=common.css.map */
