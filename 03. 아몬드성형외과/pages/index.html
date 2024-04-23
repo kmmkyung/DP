@@ -36,7 +36,16 @@
   </header>
   <!-- 메뉴 -->
   <div class="menuAll">
-    <div class="menuAll-warp">
+    <div class="menuAll-wrap"> 
+      <!-- logo & close -->
+      <div class="menuAll-button">
+        <div class="menuAll-logo">
+          <a href="#"><img src="../assets/images/base/logo-pc-W.gif" alt="logo"></a>
+        </div>
+        <div class="menuAll-close">
+          <i class="bi bi-x-lg"></i>
+        </div>
+      </div>
       <!-- 메뉴리스트 -->
       <div class="menuAll-menu">
         <ul class="menu-list">
@@ -53,7 +62,7 @@
                 <li class="list-item"><a href="#">언론보도</a></li>
               </ol>
             </div>
-            <span>나에게 어울리는 자연스러움을 창조합니다.</span>
+            <span class="list-item__text">나에게 어울리는 자연스러움을 창조합니다.</span>
           </li>
           <li class="list-item">
             <h6>특화수술</h6>
@@ -66,7 +75,7 @@
                 <li class="list-item"><a href="#">눈재수술</a></li>
               </ol>
             </div>
-            <span>아몬드성형외과 만의 특화된 기술로 수술합니다.</span>
+            <span class="list-item__text">아몬드성형외과 만의 특화된 기술로 수술합니다.</span>
           </li>
           <li class="list-item">
             <h6>눈수술</h6>
@@ -81,7 +90,7 @@
                 <li class="list-item"><a href="#">눈밑지방재배치</a></li>
               </ol>
             </div>
-            <span>나에게 알맞은 눈성형으로 빛나는 눈매 완성</span>
+            <span class="list-item__text">나에게 알맞은 눈성형으로 빛나는 눈매 완성</span>
           </li>
           <li class="list-item">
             <h6>트임성형</h6>
@@ -92,7 +101,7 @@
                 <li class="list-item"><a href="#">트임복원</a></li>
               </ol>
             </div>
-            <span>답답한 눈매를 시원하고 또렷하게</span>
+            <span class="list-item__text">답답한 눈매를 시원하고 또렷하게</span>
           </li>
           <li class="list-item">
             <h6>중년눈성형</h6>
@@ -102,7 +111,7 @@
                 <li class="list-item"><a href="#">하안검</a></li>
                 <li class="list-item"><a href="#">눈썹하거상술</a></li>
               </ol>
-              <span>세월의 흔적을 아몬드에서 지울 수 있습니다.</span>
+              <span class="list-item__text">세월의 흔적을 아몬드에서 지울 수 있습니다.</span>
             </div>
           </li>
           <li class="list-item">
@@ -114,7 +123,7 @@
                 <li class="list-item"><a href="#">애플윤곽술</a></li>
                 <li class="list-item"><a href="#">VS랩주사</a></li>
               </ol>
-              <span>보다 균일하고 보다 매끄러운 라인을 위해</span>
+              <span class="list-item__text">보다 균일하고 보다 매끄러운 라인을 위해</span>
             </div>
           </li>
           <li class="list-item">
@@ -132,7 +141,7 @@
                 <li class="list-item"><a href="#">자주하는질문</a></li>
                 <li class="list-item"><a href="#">이벤트</a></li>
               </ol>
-              <span>모든 고객에게 최상의 서비스를 제공합니다.</span>
+              <span class="list-item__text">모든 고객에게 최상의 서비스를 제공합니다.</span>
             </div>
           </li>
         </ul>
@@ -141,21 +150,24 @@
       <div class="menuAll-icon">
         <ul class="icon-list">
           <li class="list-item"><i class="bi bi-lock-fill"></i></li>
-          <li class="list-item"><img src="../assets/images/icon/blog.png" alt="icon"></li>
-          <li class="list-item"><img src="../assets/images/icon/youtube.png" alt="icon"></li>
+          <li class="list-item">
+            <img class="item-blog__w" src="../assets/images/icon/blog.png" alt="icon">
+            <img class="item-blog__p" src="../assets/images/icon/blog-purple.png" alt="icon">
+          </li>
+          <li class="list-item"><i class="bi bi-youtube"></i></li>
           <li class="list-item"><i class="bi bi-instagram"></i></li>
           <li class="list-item"><i class="bi bi-facebook"></i></li>
         </ul>
       </div>
-      <!-- close -->
-      <div class="menuAll-close">
-        <i class="bi bi-x-lg"></i>
-      </div>
+
     </div>
   </div>
   <!-- 하단 고정바 -->
   <aside class="aside-bottom">
     <div class="aside-wrap">
+      <div class="aside-arrow">
+        <img src="../assets/images/icon/arrow.png" alt="arrow">
+      </div>
       <div class="aside-icons">
         <ul class="icons-list">
           <li class="list-item"><a href="#"><img src="../assets/images/icon/camera.png" alt="전후사진"><span>전후사진</span></a></li>

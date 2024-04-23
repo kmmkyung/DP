@@ -59,6 +59,7 @@ header .header-wrap .logo .logo-mobile {
   display: none;
 }
 header .header-wrap .menu {
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
@@ -84,6 +85,18 @@ header .header-wrap .menu span {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.aside-bottom .aside-wrap .aside-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%);
+  animation: asideArrow 1s alternate infinite;
+}
+@keyframes asideArrow {
+  100% {
+    transform: translate(-50%, 50%);
+  }
 }
 .aside-bottom .aside-wrap .aside-icons {
   max-width: 700px;
@@ -214,4 +227,92 @@ header .header-wrap .menu span {
 }
 .aside-right .right-list .list-item__pencil:hover {
   width: 200px;
+}
+
+.menuAll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(194, 161, 226, 0.9019607843);
+  z-index: 999;
+}
+.menuAll .menuAll-wrap {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  position: relative;
+}
+.menuAll .menuAll-wrap .menuAll-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.menuAll .menuAll-wrap .menuAll-button .menuAll-logo a {
+  display: block;
+}
+.menuAll .menuAll-wrap .menuAll-button .menuAll-logo a img {
+  max-width: 264px;
+  width: 40vw;
+  vertical-align: middle;
+}
+.menuAll .menuAll-wrap .menuAll-button .menuAll-close i {
+  display: block;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  font-size: 3rem;
+  text-align: center;
+}
+.menuAll .menuAll-wrap .menuAll-menu {
+  max-width: 1324px;
+  margin: 0 auto;
+}
+.menuAll .menuAll-wrap .menuAll-icon {
+  position: absolute;
+  right: 30px;
+  top: 150px;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.4s;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item i,
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item img {
+  transition: all 0.4s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  font-size: 25px;
+  color: #350565;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item .item-blog__w {
+  opacity: 0;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item:hover {
+  background-color: #350565;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item:hover i {
+  color: #fff;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item:hover .item-blog__w {
+  opacity: 1;
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item:hover .item-blog__p {
+  opacity: 0;
 }/*# sourceMappingURL=common.css.map */
