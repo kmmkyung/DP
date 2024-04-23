@@ -37,6 +37,9 @@ a {
 
 header {
   padding: 30px;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 }
 header .header-wrap {
   display: flex;

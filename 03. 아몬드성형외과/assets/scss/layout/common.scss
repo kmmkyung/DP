@@ -3,6 +3,9 @@
 
 header{
   padding: 30px;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
   .header-wrap{
     display: flex;
     align-items: center;
@@ -179,4 +182,20 @@ header{
       }
     }
   }
+}
+
+.menuAll{
+  .menuAll-wrap{
+    .menuAll-menu{}
+    .menuAll-icon{}
+    .menuAll-close{}
+  }
+}
+
+@media screen and (max-width:758px) {
+  
+}
+
+@media screen and (max-width:758px) {
+  
 }
