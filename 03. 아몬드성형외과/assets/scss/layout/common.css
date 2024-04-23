@@ -25,7 +25,7 @@ a {
 
 @font-face {
   font-family: "GmarketSans";
-  src: url("../../font/GmarketSansTTFMedium.ttf");
+  src: url("../../font/GmarketSansTTFBold.ttf");
 }
 .-hidden {
   display: none;
@@ -56,11 +56,11 @@ header .header-wrap .menu {
   align-items: center;
 }
 header .header-wrap .menu .bi-list {
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
 header .header-wrap .menu span {
   font-family: GmarketSans;
-  font-size: 2.2rem;
+  font-size: min(2vw, 3rem);
   font-weight: bold;
 }
 
@@ -80,9 +80,10 @@ header .header-wrap .menu span {
 }
 .aside-bottom .aside-wrap .aside-icons {
   max-width: 700px;
-  width: 100%;
+  width: 40%;
   height: 100%;
   background-color: #934098;
+  flex-grow: 1;
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list {
   display: flex;
@@ -92,19 +93,19 @@ header .header-wrap .menu span {
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item {
   height: 100%;
-  padding: 0 30px;
+  padding: 0 min(2vw, 30px);
   position: relative;
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 1vw, 1.5rem);
   line-height: 64px;
   display: block;
   color: #fff;
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a img {
-  margin-right: 10px;
+  margin-right: 0.5vw;
   vertical-align: middle;
-  width: 24px;
+  width: clamp(16px, 1.5vw, 24px);
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a:hover {
   color: #ffea00;
@@ -112,7 +113,7 @@ header .header-wrap .menu span {
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a:hover img {
   filter: sepia() saturate(10000%);
 }
-.aside-bottom .aside-wrap .aside-icons .icons-list .list-item::after {
+.aside-bottom .aside-wrap .aside-icons .icons-list .list-item:not(:first-child)::after {
   content: "";
   width: 1px;
   height: 50%;
@@ -125,19 +126,53 @@ header .header-wrap .menu span {
 }
 .aside-bottom .aside-wrap .aside-cell {
   background-color: #232323;
-  width: 100%;
+  width: 60%;
   height: 100%;
+  flex-grow: 2;
 }
 .aside-bottom .aside-wrap .aside-cell p {
   display: inline-block;
-  margin: 0 80px;
+  margin: 0 min(4vw, 80px);
   line-height: 64px;
-  font-size: 2.2rem;
+  font-size: min(1.5vw, 2.2rem);
 }
 .aside-bottom .aside-wrap .aside-cell span {
   font-family: GmarketSans;
   font-weight: bold;
   line-height: 64px;
-  font-size: 4rem;
+  font-size: min(2vw, 3rem);
   color: #dcc3f6;
+}
+
+.aseid-right {
+  position: fixed;
+  right: 30px;
+  bottom: 120px;
+  transition: all 0.4s linear;
+}
+.aseid-right .right-list .list-item {
+  width: 150px;
+  height: 50px;
+  background-color: #934098;
+  border-radius: 50px;
+}
+.aseid-right .right-list .list-item a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+.aseid-right .right-list .list-item a span {
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+.aseid-right .right-list .list-item a img {
+  max-width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.aseid-right .right-list .list-item__pencil {
+  margin-top: 10px;
 }/*# sourceMappingURL=common.css.map */

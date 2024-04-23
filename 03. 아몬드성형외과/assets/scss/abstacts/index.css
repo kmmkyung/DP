@@ -25,7 +25,7 @@ a {
 
 @font-face {
   font-family: "GmarketSans";
-  src: url("../../font/GmarketSansTTFMedium.ttf");
+  src: url("../../font/GmarketSansTTFBold.ttf");
 }
 .-hidden {
   display: none;
