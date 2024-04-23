@@ -243,24 +243,28 @@ header{
       max-width: 1324px;
       margin: 30px auto 0;
       position: relative;
+      display: flex;
+      width: 100%;
       .menu-list{
         position: relative;
+        width: 100%;
         .list-item{
           transition: all .5s ease-in-out;
           position: relative;
+          display: flex;
           h6{
+            flex: 1 0 0%;
             font-size: clamp(12px, 1.5vw, $font-size-l);
             color: #fff;
             margin: 10px 0;
           }
           .subMenu-wrap{
-            position: absolute;
-            width: 250px;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            flex: 1;
+            position: relative;
+            max-height: 1000px;
+            width: 50%;
+            // height: 50px;
             overflow: hidden;
-            height: 50px;
             .subMenu-list{
               .list-item{
                 a{
@@ -278,18 +282,10 @@ header{
             height: 1px;
             background-color: rgba(255, 255, 255, 0.5);
             position: absolute;
-            left: 25%;
-            top: 50%;
-            transform: translateY(-50%);
           }
         }
       }
       .text-list{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
         .list-item{
           .list-item__text{
             writing-mode: vertical-lr;
@@ -297,10 +293,7 @@ header{
             letter-spacing: 1px;
             white-space: nowrap;
             opacity: .4;
-            position: absolute;
             font-size: clamp(12px, 1.5vw, $font-size-l);
-            right: 0;
-            top: 0;
           }
         }
       }
