@@ -203,12 +203,13 @@ header{
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #c2a1e2e6;
-  // background-color: #350565e6;
+  // background-color: #c2a1e2e6;
+  background-color: #350565e6;
   z-index: 999;
   .menuAll-wrap{
     max-width: 1920px;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     padding: 30px;
     position: relative;
@@ -240,19 +241,66 @@ header{
     }
     .menuAll-menu{
       max-width: 1324px;
-      margin: 0 auto;
+      margin: 30px auto 0;
+      position: relative;
       .menu-list{
+        position: relative;
         .list-item{
-          h6{}
+          transition: all .5s ease-in-out;
+          position: relative;
+          h6{
+            font-size: clamp(12px, 1.5vw, $font-size-l);
+            color: #fff;
+            margin: 10px 0;
+          }
           .subMenu-wrap{
+            position: absolute;
+            width: 250px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            height: 50px;
             .subMenu-list{
               .list-item{
-                a{}
+                a{
+                  display: block;
+                  font-size: clamp(12px, 1.5vw, $font-size-l);
+                  color: #fff;
+                }
               }
             }
           }
+          &::after{
+            content: '';
+            display: block;
+            width: 15%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 25%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+      .text-list{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        .list-item{
           .list-item__text{
-
+            writing-mode: vertical-lr;
+            word-spacing: 20px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: .4;
+            position: absolute;
+            font-size: clamp(12px, 1.5vw, $font-size-l);
+            right: 0;
+            top: 0;
           }
         }
       }
