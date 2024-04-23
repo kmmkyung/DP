@@ -271,7 +271,7 @@ header{
               }
             }
           }
-          &::after{
+          &:not(:nth-child(7))::after{
             content: '';
             display: block;
             width: 15%;

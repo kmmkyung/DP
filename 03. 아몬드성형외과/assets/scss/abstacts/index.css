@@ -27,10 +27,6 @@ a {
   font-family: "GmarketSans";
   src: url("../../font/GmarketSansTTFBold.ttf");
 }
-* {
-  outline: 1px solid turquoise;
-}
-
 .-hidden {
   display: none;
 }/*# sourceMappingURL=index.css.map */

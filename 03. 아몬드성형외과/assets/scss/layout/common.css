@@ -27,10 +27,6 @@ a {
   font-family: "GmarketSans";
   src: url("../../font/GmarketSansTTFBold.ttf");
 }
-* {
-  outline: 1px solid turquoise;
-}
-
 .-hidden {
   display: none;
 }
@@ -299,7 +295,7 @@ header .header-wrap .menu span {
   font-size: clamp(12px, 1.5vw, 3rem);
   color: #fff;
 }
-.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item::after {
+.menuAll .menuAll-wrap .menuAll-menu .menu-list>.list-item:not(:nth-child(7))::after {
   content: "";
   display: block;
   width: 15%;
