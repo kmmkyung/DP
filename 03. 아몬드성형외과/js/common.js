@@ -22,28 +22,29 @@ window.addEventListener('DOMContentLoaded',function(){
   menuList.forEach(function(ele,idx){
     let subMenuHeight =  subMenuList[idx].clientHeight;
     ele.addEventListener('click',function(event){
+
       const menuListActive = document.querySelector('.menuAll-menu .menu-list .list-item h6.active');
       const menuTextActive = document.querySelector('.menuAll-menu .menu-list>.list-item.active');
       const menuItemActive = document.querySelector('.menuAll-menu .text-list .list-item.active');
       const subMenuListWrapActive = document.querySelector('.menuAll-menu .subMenu-wrap.active');
 
-      
-      if(event.target == ele || menuListActive == ele.target || menuListActive == null){
+
+      if(event.target == ele && menuListActive == event.target || menuListActive == null){
         console.log('같은거 누름');
-        menuList[idx].classList.add('active')
-        // menuItem[idx].classList.toggle('active')
-        // subMenuListWrap[idx].classList.toggle('active')
-        // menuText[idx].classList.toggle('active')
-        // if(menuItem[idx].classList.contains('active')){
-        //   subMenuListWrap[idx].style.height = subMenuHeight + 'px'
-        // }
-        // else{
-        //   subMenuListWrap[idx].style.height = 0 + 'px'
-        // }
+        menuList[idx].classList.toggle('active')
+        menuItem[idx].classList.toggle('active')
+        subMenuListWrap[idx].classList.toggle('active')
+        menuText[idx].classList.toggle('active')
+        if(menuList[idx].classList.contains('active') && subMenuListWrap[idx].style.height !== 0){ // 
+          subMenuListWrap[idx].style.height = subMenuHeight + 'px'
+        }
+        else{
+          subMenuListWrapActive.style.height = 0
+        }
       }
 
       // 켜져있는데 다른걸 누르면 다시 없어짐
-      else{
+      if(subMenuListWrap[idx].style.height !== 0 && menuListActive != event.target && menuListActive){
         console.log('다른거 누름');
 
         menuListActive.classList.remove('active')
