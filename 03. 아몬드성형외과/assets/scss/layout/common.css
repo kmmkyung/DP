@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +28,9 @@ a {
   font-family: "GmarketSans";
   src: url("../../font/GmarketSansTTFBold.ttf");
 }
+@font-face {
+  font-family: "Noto Serif KR", serif;
+}
 .-hidden {
   display: none;
 }
@@ -51,8 +55,18 @@ header .header-wrap .logo img {
   width: 40vw;
   vertical-align: middle;
 }
+@media screen and (max-width: 768px) {
+  header .header-wrap .logo .logo-pc {
+    display: none;
+  }
+}
 header .header-wrap .logo .logo-mobile {
   display: none;
+}
+@media screen and (max-width: 768px) {
+  header .header-wrap .logo .logo-mobile {
+    display: block;
+  }
 }
 header .header-wrap .menu {
   cursor: pointer;
@@ -66,6 +80,11 @@ header .header-wrap .menu span {
   font-family: GmarketSans;
   font-size: min(2vw, 3rem);
   font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  header .header-wrap .menu span {
+    display: none;
+  }
 }
 
 .aside-bottom {
@@ -101,6 +120,11 @@ header .header-wrap .menu span {
   background-color: #934098;
   flex-grow: 1;
 }
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-icons {
+    width: 60%;
+  }
+}
 .aside-bottom .aside-wrap .aside-icons .icons-list {
   display: flex;
   align-items: center;
@@ -111,6 +135,13 @@ header .header-wrap .menu span {
   height: 100%;
   padding: 0 min(2vw, 30px);
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-icons .icons-list .list-item {
+    width: 33.33%;
+    text-align: center;
+    padding: 0;
+  }
 }
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a {
   font-size: clamp(1rem, 1vw, 1.5rem);
@@ -129,6 +160,11 @@ header .header-wrap .menu span {
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a:hover img {
   filter: sepia() saturate(10000%);
 }
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-icons .icons-list .list-item a span {
+    display: none;
+  }
+}
 .aside-bottom .aside-wrap .aside-icons .icons-list .list-item:not(:first-child)::after {
   content: "";
   width: 1px;
@@ -146,11 +182,22 @@ header .header-wrap .menu span {
   height: 100%;
   flex-grow: 2;
 }
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-cell {
+    width: 40%;
+  }
+}
 .aside-bottom .aside-wrap .aside-cell p {
   display: inline-block;
   margin: 0 min(4vw, 80px);
   line-height: 64px;
   font-size: min(1.5vw, 2.2rem);
+  font-family: "Noto Serif KR", serif;
+}
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-cell p {
+    display: none;
+  }
 }
 .aside-bottom .aside-wrap .aside-cell span {
   font-family: GmarketSans;
@@ -158,6 +205,14 @@ header .header-wrap .menu span {
   line-height: 64px;
   font-size: min(2vw, 3rem);
   color: #dcc3f6;
+}
+@media screen and (max-width: 768px) {
+  .aside-bottom .aside-wrap .aside-cell span {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-size: 1.5rem;
+  }
 }
 
 .aside-right {
@@ -168,7 +223,11 @@ header .header-wrap .menu span {
 .aside-right .right-list {
   position: relative;
   height: 110px;
-  width: auto;
+}
+@media screen and (max-width: 768px) {
+  .aside-right .right-list {
+    height: 80px;
+  }
 }
 .aside-right .right-list .list-item {
   position: absolute;
@@ -178,6 +237,12 @@ header .header-wrap .menu span {
   background-color: #934098;
   border-radius: 50px;
   transition: all 0.4s linear;
+}
+@media screen and (max-width: 768px) {
+  .aside-right .right-list .list-item {
+    width: 35px;
+    height: 35px;
+  }
 }
 .aside-right .right-list .list-item a {
   width: 100%;
@@ -195,6 +260,11 @@ header .header-wrap .menu span {
   visibility: hidden;
   margin-left: 40px;
 }
+@media screen and (max-width: 768px) {
+  .aside-right .right-list .list-item a span {
+    line-height: 35px;
+  }
+}
 @keyframes asideRightSpan {
   100% {
     opacity: 1;
@@ -207,6 +277,11 @@ header .header-wrap .menu span {
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
+}
+@media screen and (max-width: 768px) {
+  .aside-right .right-list .list-item a img {
+    right: 7.5px;
+  }
 }
 .aside-right .right-list .list-item:hover span {
   visibility: visible;
@@ -232,7 +307,9 @@ header .header-wrap .menu span {
   width: 100%;
   height: 100vh;
   background-color: rgba(53, 5, 101, 0.9019607843);
-  z-index: 999;
+  z-index: 998;
+  transform: translateY(-50%);
+  opacity: 0;
 }
 .menuAll .menuAll-wrap {
   max-width: 1920px;
@@ -284,13 +361,42 @@ header .header-wrap .menu span {
   flex: 1 0 0%;
   font-size: clamp(12px, 1.5vw, 3rem);
   color: #fff;
-  margin: 10px 0;
+  position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 768px) {
+  .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item h6 {
+    flex-basis: 60%;
+  }
+}
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item:not(:nth-child(7)) h6::after {
+  visibility: hidden;
+  content: "";
+  display: block;
+  width: 40%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+}
+@media screen and (max-width: 768px) {
+  .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item:not(:nth-child(7)) h6::after {
+    width: 60%;
+  }
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap {
   flex: 1;
   position: relative;
   max-height: 1000px;
   width: 50%;
+  height: 0;
   overflow: hidden;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap .subMenu-list .list-item a {
@@ -298,32 +404,39 @@ header .header-wrap .menu span {
   font-size: clamp(12px, 1.5vw, 3rem);
   color: #fff;
 }
-.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item:not(:nth-child(7))::after {
-  content: "";
-  display: block;
-  width: 15%;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.5);
-  position: absolute;
+.menuAll .menuAll-wrap .menuAll-menu .text-list {
+  height: 0;
+  overflow: hidden;
 }
 .menuAll .menuAll-wrap .menuAll-menu .text-list .list-item .list-item__text {
   writing-mode: vertical-lr;
-  word-spacing: 20px;
+  word-spacing: 5px;
   letter-spacing: 1px;
   white-space: nowrap;
+  color: #fff;
   opacity: 0.4;
   font-size: clamp(12px, 1.5vw, 3rem);
-}
-.menuAll .menuAll-wrap .menuAll-icon {
-  position: absolute;
-  right: 30px;
-  top: 150px;
+  font-family: "Noto Serif KR", serif;
 }
 .menuAll .menuAll-wrap .menuAll-icon .icon-list {
+  right: 30px;
+  top: 150px;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .menuAll .menuAll-wrap .menuAll-icon .icon-list {
+    flex-direction: row;
+    justify-content: space-between;
+    top: auto;
+    bottom: 30px;
+    gap: 0;
+    left: 30px;
+    right: 30px;
+  }
 }
 .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item {
   width: 50px;
@@ -358,4 +471,10 @@ header .header-wrap .menu span {
 }
 .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item:hover .item-blog__p {
   opacity: 0;
+}
+
+.menuAll.active {
+  transform: translateY(0%);
+  opacity: 1;
+  z-index: 999;
 }/*# sourceMappingURL=common.css.map */

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +27,9 @@ a {
 @font-face {
   font-family: "GmarketSans";
   src: url("../../font/GmarketSansTTFBold.ttf");
+}
+@font-face {
+  font-family: "Noto Serif KR", serif;
 }
 .-hidden {
   display: none;
