@@ -350,7 +350,7 @@ header .header-wrap .menu span {
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list {
   position: relative;
-  width: 100%;
+  flex: 1;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item {
   transition: all 0.5s ease-in-out;
@@ -358,7 +358,7 @@ header .header-wrap .menu span {
   display: flex;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item h6 {
-  flex: 1 0 0%;
+  flex: 0.5 0%;
   font-size: clamp(12px, 1.5vw, 3rem);
   color: #fff;
   position: relative;
@@ -366,38 +366,22 @@ header .header-wrap .menu span {
   height: fit-content;
   cursor: pointer;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
-@media screen and (max-width: 768px) {
-  .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item h6 {
-    flex-basis: 60%;
-  }
-}
-.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item:not(:nth-child(7)) h6::after {
-  visibility: hidden;
-  content: "";
-  display: block;
-  width: 40%;
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .menu-line {
+  margin: 1vw;
+  flex: 1 0 0%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  top: 0;
-  right: 0;
-  top: 50%;
-  right: 10%;
-  transform: translateY(-50%);
-}
-@media screen and (max-width: 768px) {
-  .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item:not(:nth-child(7)) h6::after {
-    width: 60%;
-  }
+  background-color: rgba(255, 255, 255, 0.2);
+  visibility: hidden;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap {
-  flex: 1;
+  flex: 1 0 0%;
   position: relative;
   max-height: 1000px;
-  width: 50%;
   height: 0;
   overflow: hidden;
+  transition: all 0.4s;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap .subMenu-list .list-item a {
   display: block;
@@ -405,10 +389,19 @@ header .header-wrap .menu span {
   color: #fff;
 }
 .menuAll .menuAll-wrap .menuAll-menu .text-list {
-  height: 0;
-  overflow: hidden;
+  flex: 0.2 1 auto;
+}
+.menuAll .menuAll-wrap .menuAll-menu .text-list .list-item {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s;
 }
 .menuAll .menuAll-wrap .menuAll-menu .text-list .list-item .list-item__text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   writing-mode: vertical-lr;
   word-spacing: 5px;
   letter-spacing: 1px;
@@ -477,4 +470,13 @@ header .header-wrap .menu span {
   transform: translateY(0%);
   opacity: 1;
   z-index: 999;
+}
+
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap.active {
+  height: auto;
+}
+
+.menuAll .menuAll-wrap .menuAll-menu .text-list .list-item.active {
+  visibility: visible;
+  opacity: 1;
 }/*# sourceMappingURL=common.css.map */
