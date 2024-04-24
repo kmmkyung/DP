@@ -1,7 +1,7 @@
-// header
 @use '../abstacts' as *;
 @import '../_mixin.scss';
 
+// header
 header{
   padding: 30px;
   position: fixed;
@@ -59,6 +59,7 @@ header{
   position: fixed;
   bottom: 0;
   color: #fff;
+  z-index: 998;
   .aside-wrap{
     width: 100%;
     height: 100%;
@@ -175,6 +176,7 @@ header{
   position: fixed;
   right: 30px;
   bottom: 120px;
+  z-index: 998;
   .right-list{
     position: relative;
     height: 110px;
@@ -293,10 +295,14 @@ header{
     }
     .menuAll-menu{
       max-width: 1324px;
-      margin: 30px auto 0;
+      margin: 30px auto;
       position: relative;
       display: flex;
       width: 100%;
+      @include mobile{
+        height: 80%;
+        flex-direction: column;
+      }
       .menu-list{
         position: relative;
         flex: 1;
@@ -320,7 +326,7 @@ header{
             height: 1px;
             background-color: rgba(255, 255, 255, 0.2);
             visibility: hidden;
-            
+            opacity: 0;
           }
           .subMenu-wrap{
             flex: 1 0 0%;
@@ -343,7 +349,6 @@ header{
       }
       .text-list{
         flex: 0.2 1 auto;
-
         .list-item{
           position: relative;
           visibility: hidden;
@@ -362,6 +367,10 @@ header{
             opacity: .4;
             font-size: clamp(12px, 1.5vw, $font-size-l);
             font-family: "Noto Serif KR", serif;
+            @include mobile{
+              writing-mode: horizontal-tb;
+
+            }
           }
         }
       }
@@ -391,8 +400,11 @@ header{
           background-color: #fff;
           position: relative;
           transition: all .4s;
-          i,
-          img{
+          @include mobile{
+            width: 25px;
+            height: 25px;
+          }
+          i{
             transition: all .4s;
             position: absolute;
             top: 50%;
@@ -401,6 +413,24 @@ header{
             width: 25px;
             font-size: 25px;
             color: #350565;
+            @include mobile{
+              width: auto;
+              height: auto;
+              font-size: 15px;
+            }
+          }
+          img{
+            transition: all .4s;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 25px;
+            color: #350565;
+            @include mobile{
+              width: 15px;
+              height: 15px;
+            }
           }
           .item-blog__w{
             opacity: 0;
@@ -424,16 +454,18 @@ header{
 }
 
 // active
-.menuAll.active{
+.menuAll.active{ // 메뉴 위치 조정
   transform: translateY(0%);
   opacity: 1;
   z-index: 999;
 }
 
-.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap.active{
-  height: auto;
-}
-.menuAll .menuAll-wrap .menuAll-menu .text-list .list-item.active{
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item.active .menu-line, // 라인
+.menuAll .menuAll-wrap .menuAll-menu .text-list .list-item.active{ // 문구
   visibility: visible;
   opacity: 1;
+}
+
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item.active .subMenu-wrap{ // 서브메뉴 높이값
+  height: auto;
 }

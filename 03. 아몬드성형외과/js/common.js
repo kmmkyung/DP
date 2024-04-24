@@ -13,29 +13,50 @@ window.addEventListener('DOMContentLoaded',function(){
   })
 
   // 메뉴버튼 누르면 서브메뉴 보여짐
-  const menuList = document.querySelectorAll('.menuAll-menu .menu-list .list-item h6')
-  const menuListLine = document.querySelectorAll('.menuAll-menu .menu-list .list-item .menu-line')
-  const subMenuListWrap = document.querySelectorAll('.menuAll-menu .subMenu-wrap')
-  const subMenuList = document.querySelectorAll('.menuAll-menu .subMenu-list')
-  const textList = document.querySelectorAll('.menuAll-menu .text-list .list-item')
+  const menuItem = document.querySelectorAll('.menuAll-menu .menu-list>.list-item') // 메뉴리스트 
+  const menuList = document.querySelectorAll('.menuAll-menu .menu-list .list-item h6') // 타이틀
+  const subMenuList = document.querySelectorAll('.menuAll-menu .subMenu-wrap .subMenu-list') // 서브메뉴 리스트 WRAP
+  const subMenuListWrap = document.querySelectorAll('.menuAll-menu .subMenu-wrap') // 서브메뉴 리스트 WRAP
+  const menuText = document.querySelectorAll('.menuAll-menu .text-list .list-item')// 문구
+  
   menuList.forEach(function(ele,idx){
     let subMenuHeight =  subMenuList[idx].clientHeight;
-    ele.addEventListener('click',function(){
-      const menuListActive = document.querySelector('.menuAll-menu .menu-list .list-item h6.active')
-      const subMenuListWrapActive = document.querySelector('.menuAll-menu .subMenu-wrap.active')
-      const textListActive = document.querySelector('.menuAll-menu .text-list .list-item.active')
-      if(menuListActive){
-        menuListActive.classList.remove('active')
-        subMenuListWrapActive.classList.remove('active')
-        subMenuListWrapActive.style.height = 0 + 'px'
-        textListActive.classList.remove('active')
+    ele.addEventListener('click',function(event){
+      const menuListActive = document.querySelector('.menuAll-menu .menu-list .list-item h6.active');
+      const menuTextActive = document.querySelector('.menuAll-menu .menu-list>.list-item.active');
+      const menuItemActive = document.querySelector('.menuAll-menu .text-list .list-item.active');
+      const subMenuListWrapActive = document.querySelector('.menuAll-menu .subMenu-wrap.active');
+
+      
+      if(event.target == ele || menuListActive == ele.target || menuListActive == null){
+        console.log('같은거 누름');
+        menuList[idx].classList.add('active')
+        // menuItem[idx].classList.toggle('active')
+        // subMenuListWrap[idx].classList.toggle('active')
+        // menuText[idx].classList.toggle('active')
+        // if(menuItem[idx].classList.contains('active')){
+        //   subMenuListWrap[idx].style.height = subMenuHeight + 'px'
+        // }
+        // else{
+        //   subMenuListWrap[idx].style.height = 0 + 'px'
+        // }
       }
 
-      subMenuListWrap[idx].style.height = subMenuHeight + 'px'
-      menuList[idx].classList.add('active')
-      subMenuListWrap[idx].classList.add('active')
-      textList[idx].classList.add('active')
+      // 켜져있는데 다른걸 누르면 다시 없어짐
+      else{
+        console.log('다른거 누름');
+
+        menuListActive.classList.remove('active')
+        menuTextActive.classList.remove('active')
+        menuItemActive.classList.remove('active')
+        subMenuListWrapActive.style.height = 0
+      }
     })
   })
+
+
+
+
+
 })
 

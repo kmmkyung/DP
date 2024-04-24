@@ -93,6 +93,7 @@ header .header-wrap .menu span {
   position: fixed;
   bottom: 0;
   color: #fff;
+  z-index: 998;
 }
 .aside-bottom .aside-wrap {
   width: 100%;
@@ -219,6 +220,7 @@ header .header-wrap .menu span {
   position: fixed;
   right: 30px;
   bottom: 120px;
+  z-index: 998;
 }
 .aside-right .right-list {
   position: relative;
@@ -343,10 +345,16 @@ header .header-wrap .menu span {
 }
 .menuAll .menuAll-wrap .menuAll-menu {
   max-width: 1324px;
-  margin: 30px auto 0;
+  margin: 30px auto;
   position: relative;
   display: flex;
   width: 100%;
+}
+@media screen and (max-width: 420px) {
+  .menuAll .menuAll-wrap .menuAll-menu {
+    height: 80%;
+    flex-direction: column;
+  }
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list {
   position: relative;
@@ -374,6 +382,7 @@ header .header-wrap .menu span {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.2);
   visibility: hidden;
+  opacity: 0;
 }
 .menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap {
   flex: 1 0 0%;
@@ -411,6 +420,11 @@ header .header-wrap .menu span {
   font-size: clamp(12px, 1.5vw, 3rem);
   font-family: "Noto Serif KR", serif;
 }
+@media screen and (max-width: 420px) {
+  .menuAll .menuAll-wrap .menuAll-menu .text-list .list-item .list-item__text {
+    writing-mode: horizontal-tb;
+  }
+}
 .menuAll .menuAll-wrap .menuAll-icon .icon-list {
   right: 30px;
   top: 150px;
@@ -439,8 +453,13 @@ header .header-wrap .menu span {
   position: relative;
   transition: all 0.4s;
 }
-.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item i,
-.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item img {
+@media screen and (max-width: 420px) {
+  .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item {
+    width: 25px;
+    height: 25px;
+  }
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item i {
   transition: all 0.4s;
   position: absolute;
   top: 50%;
@@ -449,6 +468,28 @@ header .header-wrap .menu span {
   width: 25px;
   font-size: 25px;
   color: #350565;
+}
+@media screen and (max-width: 420px) {
+  .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item i {
+    width: auto;
+    height: auto;
+    font-size: 15px;
+  }
+}
+.menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item img {
+  transition: all 0.4s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  color: #350565;
+}
+@media screen and (max-width: 420px) {
+  .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item img {
+    width: 15px;
+    height: 15px;
+  }
 }
 .menuAll .menuAll-wrap .menuAll-icon .icon-list .list-item .item-blog__w {
   opacity: 0;
@@ -472,11 +513,12 @@ header .header-wrap .menu span {
   z-index: 999;
 }
 
-.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item .subMenu-wrap.active {
-  height: auto;
-}
-
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item.active .menu-line,
 .menuAll .menuAll-wrap .menuAll-menu .text-list .list-item.active {
   visibility: visible;
   opacity: 1;
+}
+
+.menuAll .menuAll-wrap .menuAll-menu .menu-list .list-item.active .subMenu-wrap {
+  height: auto;
 }/*# sourceMappingURL=common.css.map */
