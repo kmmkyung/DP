@@ -6,21 +6,15 @@
   src:url('../../font/GmarketSansTTFBold.ttf');
 }
 
+
 @font-face{
   font-family: "Noto Serif KR", serif;
 }
 
-// *{
-//   outline: 1px solid turquoise;
-// }
+*{
+  outline: 1px solid turquoise;
+}
 
 .-hidden{
   display: none;
 }
-
-$color-purple:#934098;
-$color-beige: #fff3cd;
-$font-size-s: 1.5rem;
-$font-size-m: 2.2rem;
-$font-size-l: 3rem;
-$menu-line-width: 0%

@@ -31,6 +31,10 @@ a {
 @font-face {
   font-family: "Noto Serif KR", serif;
 }
+* {
+  outline: 1px solid turquoise;
+}
+
 .-hidden {
   display: none;
 }
@@ -201,7 +205,7 @@ header .header-wrap .menu span {
   }
 }
 .aside-bottom .aside-wrap .aside-cell span {
-  font-family: GmarketSans;
+  font-family: "GmarketSans", "Noto Sans KR";
   font-weight: bold;
   line-height: 64px;
   font-size: min(2vw, 3rem);
@@ -310,7 +314,7 @@ header .header-wrap .menu span {
   height: 100vh;
   background-color: rgba(53, 5, 101, 0.9019607843);
   z-index: 998;
-  transform: translateY(-50%);
+  transform: translateY(-100%);
   opacity: 0;
 }
 .menuAll .menuAll-wrap {

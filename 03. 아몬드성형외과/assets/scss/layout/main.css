@@ -1,39 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 10px;
-}
-
-body {
-  overflow-x: hidden;
-  font-family: "Noto Sans KR", sans-serif;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-@font-face {
-  font-family: "GmarketSans";
-  src: url("../../font/GmarketSansTTFBold.ttf");
-}
-@font-face {
-  font-family: "Noto Serif KR", serif;
-}
-.-hidden {
-  display: none;
-}
 
 .section1 {
   width: 100%;
@@ -94,4 +60,96 @@ a {
     -o-object-fit: cover;
        object-fit: cover;
   }
+}
+
+.section3 {
+  width: 100%;
+  height: 100vh;
+}
+.section3 .section3-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.section3 .section3-wrap .doctor-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+.section3 .section3-wrap .doctor-list .list-item {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  flex-basis: 25%;
+  transition: all 1s;
+  cursor: pointer;
+}
+.section3 .section3-wrap .doctor-list .list-item:hover {
+  flex-basis: 50%;
+}
+.section3 .section3-wrap .doctor-list .list-item:hover img {
+  filter: grayscale(0%);
+}
+.section3 .section3-wrap .doctor-list .list-item:hover .doctor-name {
+  font-size: min(5vw, 6rem);
+  color: #000;
+}
+.section3 .section3-wrap .doctor-list .list-item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 1s;
+}
+.section3 .section3-wrap .doctor-list .list-item .doctor-name {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 3rem;
+  font-family: "GmarketSans", "Noto Sans KR";
+  color: #fff;
+  transition: all 1s;
+}
+.section3 .section3-wrap .doctor-list .mobile-doctor {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .section3 .section3-wrap .doctor-list .mobile-doctor {
+    display: block;
+  }
+}
+
+.section4 {
+  width: 100%;
+  height: 100vh;
+}
+.section4 .section4-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.section4 .section4-wrap .section4-content .content-title {
+  font-size: 14.7rem;
+  font-weight: normal;
+  font-family: "Noto Serif KR", serif;
+}
+.section4 .section4-wrap .section4-content .content-text {
+  font-size: 1.5rem;
+}
+.section4 .section4-wrap .section4-content .content-button {
+  font-family: "GmarketSans", "Noto Sans KR";
+  font-size: 1.1rem;
+  color: #fff;
+  padding: clamp(10px, 10vw, 50px) clamp(30px, 10vw, 50px);
+  background-color: #000;
+  display: block;
 }/*# sourceMappingURL=main.css.map */

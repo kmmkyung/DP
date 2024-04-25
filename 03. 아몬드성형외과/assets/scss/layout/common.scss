@@ -156,7 +156,7 @@ header{
         }
       }
       span{
-        font-family: GmarketSans;
+        font-family: 'GmarketSans','Noto Sans KR';
         font-weight: bold;
         line-height: 64px;
         font-size: min(2vw,$font-size-l);
@@ -258,7 +258,7 @@ header{
   height: 100vh;
   background-color: #350565e6;
   z-index: 998;
-  transform: translateY(-50%);
+  transform: translateY(-100%);
   opacity: 0;
   .menuAll-wrap{
     max-width: 1920px;

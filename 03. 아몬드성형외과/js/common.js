@@ -22,35 +22,33 @@ window.addEventListener('DOMContentLoaded',function(){
   menuList.forEach(function(ele,idx){
     let subMenuHeight =  subMenuList[idx].clientHeight;
     ele.addEventListener('click',function(event){
-
       const menuListActive = document.querySelector('.menuAll-menu .menu-list .list-item h6.active');
       const menuTextActive = document.querySelector('.menuAll-menu .menu-list>.list-item.active');
       const menuItemActive = document.querySelector('.menuAll-menu .text-list .list-item.active');
       const subMenuListWrapActive = document.querySelector('.menuAll-menu .subMenu-wrap.active');
 
-
-      if(event.target == ele && menuListActive == event.target || menuListActive == null){
-        console.log('같은거 누름');
-        menuList[idx].classList.toggle('active')
-        menuItem[idx].classList.toggle('active')
-        subMenuListWrap[idx].classList.toggle('active')
-        menuText[idx].classList.toggle('active')
-        if(menuList[idx].classList.contains('active') && subMenuListWrap[idx].style.height !== 0){ // 
-          subMenuListWrap[idx].style.height = subMenuHeight + 'px'
-        }
-        else{
-          subMenuListWrapActive.style.height = 0
+      if(event.target == ele && menuListActive == event.target || menuListActive == null || event.target !==  menuList[7]){
+        menuList[idx].classList.add('active')
+        menuItem[idx].classList.add('active')
+        subMenuListWrap[idx].classList.add('active')
+        subMenuListWrap[idx].style.height = subMenuHeight +'px'
+        menuText[idx].classList.add('active')
+        if(menuListActive == event.target){ // 두번누르면
+          menuList[idx].classList.remove('active')
+          menuItem[idx].classList.remove('active')
+          subMenuListWrap[idx].classList.remove('active')
+          subMenuListWrap[idx].style.height = 0 +'px'
+          menuText[idx].classList.remove('active')          
         }
       }
 
       // 켜져있는데 다른걸 누르면 다시 없어짐
-      if(subMenuListWrap[idx].style.height !== 0 && menuListActive != event.target && menuListActive){
-        console.log('다른거 누름');
-
+      if(menuListActive != event.target && menuListActive){
         menuListActive.classList.remove('active')
         menuTextActive.classList.remove('active')
         menuItemActive.classList.remove('active')
-        subMenuListWrapActive.style.height = 0
+        subMenuListWrapActive.classList.remove('active')
+        subMenuListWrapActive.style.height = 0 +'px'
       }
     })
   })
