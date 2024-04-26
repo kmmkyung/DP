@@ -12,17 +12,23 @@
     text-align: center;
     font-family: "Noto Serif KR", serif;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    .section1-title{
-      font-size: clamp(18px,3vw,60px)
-    }
-    .section1-text{
-      margin-top: 10px;
-      font-size: clamp(9px,.7vw,15px);
-      span{
-        @include tablet{
-          display: block;
+    .section1-content{
+      .section1-title{
+        font-size: clamp(18px,3vw,60px);
+        display: inline-block;
+      }
+      .typed-cursor{
+        font-size: clamp(18px,3vw,60px);
+      }
+      .section1-text{
+        margin-top: 10px;
+        font-size: clamp(9px,.7vw,15px);
+        span{
+          @include tablet{
+            display: block;
+          }
         }
       }
     }
@@ -313,6 +319,7 @@
       background-color: #fff;
       position: relative;
       p{
+        opacity: 0;
         pointer-events: none;
         position: absolute;
         width: 100%;
@@ -328,6 +335,7 @@
     }
     .section6-page2.active p{
       left: 50%;
+      opacity: 1;
     }
   }
 }
