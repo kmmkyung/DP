@@ -53,8 +53,16 @@ window.addEventListener('DOMContentLoaded',function(){
     })
   })
 
-
-
+  // 하단 arrow 버튼 클릭
+  const arrow = document.querySelector('.aside-arrow')
+  const asideBottom = document.querySelector('.aside-bottom')
+  const asideBottomClose = document.querySelector('.aside-bottom .aside-close')
+  arrow.addEventListener('click',function(){
+    asideBottom.classList.toggle('active')
+  })
+  asideBottomClose.addEventListener('click',function(){
+    asideBottom.classList.remove('active')
+  })
 
 
 })

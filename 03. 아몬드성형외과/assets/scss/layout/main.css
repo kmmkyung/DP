@@ -90,7 +90,7 @@
   cursor: pointer;
 }
 .section3 .section3-wrap .doctor-list .list-item:hover {
-  flex-basis: 50%;
+  flex-basis: 30%;
 }
 .section3 .section3-wrap .doctor-list .list-item:hover img {
   filter: grayscale(0%);
@@ -107,6 +107,11 @@
   filter: grayscale(100%);
   transition: all 1s;
 }
+@media screen and (max-width: 768px) {
+  .section3 .section3-wrap .doctor-list .list-item img {
+    filter: none;
+  }
+}
 .section3 .section3-wrap .doctor-list .list-item .doctor-name {
   position: absolute;
   width: 100%;
@@ -115,10 +120,24 @@
   transform: translateX(-50%);
   text-align: center;
   margin-bottom: 100px;
-  font-size: 3rem;
+  font-size: min(3vw, 3rem);
   font-family: "GmarketSans", "Noto Sans KR";
   color: #fff;
   transition: all 1s;
+}
+@media screen and (max-width: 768px) {
+  .section3 .section3-wrap .doctor-list .list-item .doctor-name {
+    font-size: min(5vw, 6rem);
+    color: #000;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section3 .section3-wrap .doctor-list .list-item {
+    flex-basis: auto;
+  }
+  .section3 .section3-wrap .doctor-list .list-item:hover {
+    flex-basis: auto;
+  }
 }
 .section3 .section3-wrap .doctor-list .mobile-doctor {
   display: none;
@@ -144,13 +163,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.4s;
 }
 .section4 .section4-wrap .section4-content .content-title {
+  transform: translateX(-10%);
   font-size: clamp(3rem, 10vw, 14.7rem);
   font-weight: normal;
   font-family: "Noto Serif KR", serif;
 }
+.section4 .section4-wrap .section4-content .content-title.active {
+  transform: translateX(0);
+}
 .section4 .section4-wrap .section4-content .content-text {
+  transform: translateX(-10%);
   font-size: clamp(1.2rem, 2vw, 3rem);
 }
 .section4 .section4-wrap .section4-content .content-button {

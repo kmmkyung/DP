@@ -11,3 +11,9 @@
     @content;
   }
 }
+
+@mixin laptopSmall {
+  @media screen and (max-width: $breakpoint-laptopSmall) {
+    @content;
+  }
+}

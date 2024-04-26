@@ -8,62 +8,78 @@ window.addEventListener('DOMContentLoaded',function(){
   })
 
   // section2
-    const section2 = document.querySelector('.section2')
-    const video = document.querySelector('.section2 .video')
-    video.pause()
-    
+  const section2 = document.querySelector('.section2')
+  const video = document.querySelectorAll('.section2 .video')
+  const videoPc = document.querySelector('.section2 .vid-pc')
+  const videoMobile = document.querySelector('.section2 .vid-mobile')
+
+
+
+  window.addEventListener('scroll',function(){
+    videoPc.pause()
+    videoMobile.pause()
+    if(videoPc !== undefined){
+      if(window.scrollY-section2.scrollHeight >=0){
+        videoPc.play()
+      }
+      if( window.scrollY-section2.scrollHeight < 0 || window.scrollY-section2.scrollHeight > section2.scrollHeight/2){
+        videoPc.pause()
+      }
+    }
+    if(videoMobile !== undefined ){
+      if(window.scrollY-section2.scrollHeight >= 0){
+        videoMobile.play()
+      }
+      if( window.scrollY-section2.scrollHeight < 0 || window.scrollY-section2.scrollHeight > section2.scrollHeight/2){
+        videoMobile.pause()
+      }
+    }
+  })
 
   // section3
-  const section3 = document.querySelector('.section3')
+  // const section3 = document.querySelector('.section3')
+  let swiperVal = undefined;
+  const section3Swiper = document.querySelector('.section3-swiper')
 
-  // window.addEventListener('resize',function(){
-  //   const section5Swiper = document.querySelector('.section5 .swiper')
-  //   if(window.innerWidth >900){
-  //     section5Swiper.destroy(true, true)
-  //   }
-  //   else{
-  //     const swiper = new Swiper('.swiper', {
-  //       // If we need pagination // 페이지 순서 원형 이미지
-  //       pagination: {
-  //         el: '.swiper-pagination', // 요소 정의
-  //         clickable: true // 클릭 가능 여부
-  //       },
-  //     });
-  //   }
+  window.addEventListener('resize',function(){
+    if(window.innerWidth > 900 && swiperVal != undefined){
+      swiperVal.destroy()
+      swiperVal = undefined;
+    }
     
-  // })
+    if(window.innerWidth <= 768 && swiperVal == undefined){
+      swiperVal = new Swiper('.section3-swiper', {
+      slidesPerView: 1,
+      simulateTouch: true,
+      // autoplay: {
+      //   delay: 500,
+      // },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true // 클릭 가능 여부
+        },
+      });
+    }
+  })
+
+  // section4
+  const section4 = document.querySelector('.section4')
+  const section4Title = document.querySelector('.section4 .content-title')
+  const section44Content = document.querySelector('.section4 .section4-content')
 
     // all
     let ioOptions = {
       // root:document.querySelector('main'),
-      rootMargin:'30%',
-      threshold: [1.0],
+      threshold: 1.0,
     }
     let io = new IntersectionObserver(function(entries){
-      entries.forEach((entry,idx)=>{
-          if(entry.target == section1){
-            console.log('시작1');
-            section1Typed.reset()      
-          }
-          if(entry.target == section2){
-            console.log('시작2');
-            video.play()
-          }
-          if(entry.target == section3){
-            console.log('시작3');
-          }
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          section1Typed.reset()
+        }
+        else{
+        }
       },ioOptions)
-      
-        // if(entries[1].isIntersecting){
-        //   if(!entries[1].isIntersecting){
-        //     console.log('종료2');
-        //     video.pause()
-        //   }
-        //   else{
-        //     console.log('관찰2');
-        //     video.play()
-        //   }
-        // }
     })
 
   const entry = document.querySelectorAll('.entry')

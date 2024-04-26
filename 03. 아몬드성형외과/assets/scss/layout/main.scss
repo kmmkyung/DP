@@ -85,8 +85,9 @@
         flex-basis: 25%;
         transition: all 1s;
         cursor: pointer;
+        // pc화면에서 hover
         &:hover{
-          flex-basis: 50%;
+          flex-basis: 30%;
         }
         &:hover img{
           filter: grayscale(0%);
@@ -101,6 +102,9 @@
           object-fit: cover;
           filter: grayscale(100%);
           transition: all 1s;
+          @include tablet{
+            filter: none;
+          }
         }
         .doctor-name{
           position: absolute;
@@ -110,10 +114,20 @@
           transform: translateX(-50%);
           text-align: center;
           margin-bottom: 100px;
-          font-size: $font-size-l;
+          font-size: min(3vw,$font-size-l);
           font-family:'GmarketSans','Noto Sans KR';
           color: #fff;
           transition: all 1s;
+          @include tablet{
+            font-size: min(5vw,6rem);
+            color: #000;
+          }
+        }
+        @include tablet{
+          flex-basis: auto;
+          &:hover{
+            flex-basis: auto;
+          }
         }
       }
       .mobile-doctor{
@@ -139,12 +153,18 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
+      transition: all .4s;
       .content-title{
+        transform: translateX(-10%);
         font-size: clamp($font-size-l,10vw,14.7rem);
         font-weight: normal;
         font-family: "Noto Serif KR", serif;
       }
+      .content-title.active{
+        transform: translateX(0);
+      }
       .content-text{
+        transform: translateX(-10%);
         font-size: clamp(1.2rem,2vw,$font-size-l );
       }
       .content-button{
