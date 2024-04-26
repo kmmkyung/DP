@@ -1,5 +1,5 @@
 @use '../abstacts' as *;
-@import '../_mixin.scss';
+@use '../_mixin.scss' as *;
 
 // header
 header{
@@ -43,7 +43,7 @@ header{
       }
       span{
         font-family: 'GmarketSans';
-        font-size: min(2vw,$font-size-l);
+        font-size: min(2vw, $font-size-l);
         font-weight: bold;
         @include tablet{
           display: none;
