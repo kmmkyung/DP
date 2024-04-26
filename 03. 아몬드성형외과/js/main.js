@@ -37,11 +37,8 @@ window.addEventListener('DOMContentLoaded',function(){
   })
 
   // section3
-  // const section3 = document.querySelector('.section3')
   let swiperVal = undefined;
-  const section3Swiper = document.querySelector('.section3-swiper')
-
-  window.addEventListener('resize',function(){
+  function section3Swiper(){
     if(window.innerWidth > 900 && swiperVal != undefined){
       swiperVal.destroy()
       swiperVal = undefined;
@@ -50,6 +47,37 @@ window.addEventListener('DOMContentLoaded',function(){
     if(window.innerWidth <= 768 && swiperVal == undefined){
       swiperVal = new Swiper('.section3-swiper', {
       slidesPerView: 1,
+      simulateTouch: true,
+      autoplay: {
+        delay: 1000,
+      },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true // 클릭 가능 여부
+        },
+      });
+    }
+  }
+
+  window.addEventListener('resize',section3Swiper)
+  window.addEventListener('load',section3Swiper)
+
+  // section4
+  const section4Title = document.querySelector('.section4 .content-title')
+  const section4Text = document.querySelector('.section4 .content-text')
+  const sectionButton = document.querySelector('.section4 .content-button')
+
+  // section5
+  let swipe5rVal = undefined;
+  function section5Swiper(){
+    if(window.innerWidth > 900 && swipe5rVal != undefined){
+      swipe5rVal.destroy()
+      swipe5rVal = undefined;
+    }
+    
+    if(window.innerWidth <= 768 && swipe5rVal == undefined){
+      swipe5rVal = new Swiper('.section5-swiper', {
+      slidesPerView: 2.5,
       simulateTouch: true,
       // autoplay: {
       //   delay: 500,
@@ -60,28 +88,31 @@ window.addEventListener('DOMContentLoaded',function(){
         },
       });
     }
-  })
-
-  // section4
-  const section4 = document.querySelector('.section4')
-  const section4Title = document.querySelector('.section4 .content-title')
-  const section44Content = document.querySelector('.section4 .section4-content')
+  }
+  
+  window.addEventListener('resize',section5Swiper)
+  window.addEventListener('load',section5Swiper)
 
     // all
     let ioOptions = {
-      // root:document.querySelector('main'),
       threshold: 1.0,
     }
     let io = new IntersectionObserver(function(entries){
       entries.forEach((entry)=>{
         if(entry.isIntersecting){
           section1Typed.reset()
+          section4Title.classList.add('active')
+          section4Text.classList.add('active')
+          sectionButton.classList.add('active')
         }
         else{
+          section4Title.classList.remove('active')
+          section4Text.classList.remove('active')
+          sectionButton.classList.remove('active')
         }
       },ioOptions)
     })
 
   const entry = document.querySelectorAll('.entry')
-  entry.forEach (ele=> io.observe(ele))  
+  entry.forEach (ele => io.observe(ele))  
 })

@@ -153,19 +153,27 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
-      transition: all .4s;
       .content-title{
-        transform: translateX(-10%);
+        transition: all .4s;
+        transform: translateX(-20%);
+        opacity: 0;
         font-size: clamp($font-size-l,10vw,14.7rem);
         font-weight: normal;
         font-family: "Noto Serif KR", serif;
       }
       .content-title.active{
         transform: translateX(0);
+        opacity: 1;
       }
       .content-text{
-        transform: translateX(-10%);
+        transition: all .4s;
+        transform: translateY(200%);
         font-size: clamp(1.2rem,2vw,$font-size-l );
+        opacity: 0;
+      }
+      .content-text.active{
+        opacity: 1;
+        transform: translateY(0);
       }
       .content-button{
         font-family:'GmarketSans','Noto Sans KR';
@@ -176,6 +184,13 @@
         display: inline-block;
         margin: 40px auto 0; 
         border-radius: 50px;
+        transition: all .4s;
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      .content-button.active{
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }
@@ -225,6 +240,7 @@
             position: relative;
             transition: all 1s;
             flex-basis: calc(100% / 7);
+            }
             &:hover{
               flex-basis: 30%;
               width: calc(100% / 7);
@@ -265,8 +281,12 @@
                 border-radius: 50px;
               }
             }
+            @include tablet{
+              flex: none;
+              width: 100%;
+              flex-basis: 100%;
           }
-        }
+          }
       }
     }
   }
