@@ -78,7 +78,7 @@ header .header-wrap .menu .bi-list {
   font-size: 3rem;
 }
 header .header-wrap .menu span {
-  font-family: GmarketSans;
+  font-family: 'GmarketSans';
   font-size: min(2vw, 3rem);
   font-weight: bold;
 }
@@ -178,18 +178,18 @@ header .header-wrap .menu span {
   left: 0;
   transform: translateY(-50%);
 }
-.aside-bottom .aside-wrap .aside-cell {
+.aside-bottom .aside-wrap .aside-callImg {
   background-color: #232323;
   width: 60%;
   height: 100%;
   flex-grow: 2;
 }
 @media screen and (max-width: 768px) {
-  .aside-bottom .aside-wrap .aside-cell {
+  .aside-bottom .aside-wrap .aside-call {
     width: 40%;
   }
 }
-.aside-bottom .aside-wrap .aside-cell p {
+.aside-bottom .aside-wrap .aside-call p {
   display: inline-block;
   margin: 0 min(4vw, 80px);
   line-height: 64px;
@@ -197,11 +197,11 @@ header .header-wrap .menu span {
   font-family: "Noto Serif KR", serif;
 }
 @media screen and (max-width: 768px) {
-  .aside-bottom .aside-wrap .aside-cell p {
+  .aside-bottom .aside-wrap .aside-call p {
     display: none;
   }
 }
-.aside-bottom .aside-wrap .aside-cell span {
+.aside-bottom .aside-wrap .aside-call span {
   font-family: "GmarketSans", "Noto Sans KR";
   font-weight: bold;
   line-height: 64px;
@@ -209,7 +209,7 @@ header .header-wrap .menu span {
   color: #dcc3f6;
 }
 @media screen and (max-width: 768px) {
-  .aside-bottom .aside-wrap .aside-cell span {
+  .aside-bottom .aside-wrap .aside-call span {
     text-align: center;
     width: 100%;
     display: inline-block;
