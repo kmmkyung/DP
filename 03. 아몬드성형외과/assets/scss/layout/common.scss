@@ -137,7 +137,7 @@ header{
         }
       }
     }
-    .aside-cell{
+    .aside-call{
       background-color: #232323;
       width: 60%;
       height: 100%;
@@ -145,29 +145,32 @@ header{
       @include tablet{
         width: 40%;
       }
-      p{
-        display: inline-block;
-        margin: 0 min(4vw,80px);
-        line-height: 64px;
-        font-size: min(1.5vw,$font-size-m);
-        font-family: "Noto Serif KR", serif;
-        @include tablet{
-          display: none;
-        }
-      }
-      span{
-        font-family: 'GmarketSans','Noto Sans KR';
-        font-weight: bold;
-        line-height: 64px;
-        font-size: min(2vw,$font-size-l);
-        color: #dcc3f6;
-        @include tablet{
-          text-align: center;
-          width: 100%;
+      .call-text{
+        p{
           display: inline-block;
-          font-size: $font-size-s;
+          margin: 0 min(4vw,80px);
+          line-height: 64px;
+          font-size: min(1.5vw,$font-size-m);
+          font-family: "Noto Serif KR", serif;
+          @include tablet{
+            display: none;
+          }
+        }
+        span{
+          font-family: 'GmarketSans','Noto Sans KR';
+          font-weight: bold;
+          line-height: 64px;
+          font-size: min(2vw,$font-size-l);
+          color: #dcc3f6;
+          @include tablet{
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            font-size: $font-size-s;
+          }
         }
       }
+      .call-img{}
     }
   }
 }
