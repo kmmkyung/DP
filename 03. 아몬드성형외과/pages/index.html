@@ -8,15 +8,21 @@
   <link rel="stylesheet" href="../assets/scss/layout/common.css">
   <link rel="stylesheet" href="../assets/scss/layout/main.css">
   <!-- js -->
-  <script src="../js/common.js"></script>
-  <script src="../js/main.js"></script>
+  <!-- <script src="../js/common.js"></script>
+  <script src="../js/main.js"></script> -->
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script> 
   <!-- bootstrap icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- swiper -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+  <!-- fullpage.js -->
+  <link rel="stylesheet" type="text/css" href="../plugin/css/jquery.fullPage.css">
+  <script type="text/javascript" src="../plugin/jquery.fullPage.js"></script>
   <!-- typed.js -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
 </head>
 <body>
   <!-- 헤더 -->
@@ -238,22 +244,22 @@
     </ul>
   </aside>
   <!-- 본문시작 -->
-  <main class="main">
-    <section class="section1 entry">
+  <main class="main" id="fullpage">
+    <section class="section section1 ">
       <div class="section1-wrap">
         <div class="section1-content">
-          <h2 class="section1-title"></h2>
+          <h2 class="section1-title entry"></h2>
           <p class="section1-text">사람은 서로를 바라볼 때 눈에서 진심을 느낍니다. <span>그래서 아몬드는 눈에 집중합니다.</span></p>
         </div>
       </div>
     </section>
-    <section class="section2 entry">
+    <section class="section section2">
       <div class="section2-wrap">
-        <video class="vid-pc video" autoplay loop muted src="../assets/vid/main-2-pc.mp4"></video>
-        <video class="vid-mobile video" autoplay loop muted src="../assets/vid/main-2-mobile.mp4"></video>
+        <video class="vid-pc video" loop muted src="../assets/vid/main-2-pc.mp4"></video>
+        <video class="vid-mobile video" loop muted src="../assets/vid/main-2-mobile.mp4"></video>
       </div>
     </section>
-    <section class="section3">
+    <section class="section section3">
       <div class="section3-wrap section3-swiper">
         <ul class="doctor-list swiper-wrapper">
           <li class="list-item mobile-doctor swiper-slide">
@@ -279,7 +285,7 @@
         <div class="swiper-pagination"></div>
       </div>
     </section>
-    <section class="section4 ">
+    <section class="section section4 ">
       <div class="section4-wrap">
         <div class="section4-content">
           <h3 class="content-title entry"><span>AMOND</span><br><span>SIGNATURE</span></h3>
@@ -288,14 +294,14 @@
         </div>
       </div>
     </section>
-    <section class="section5">
+    <section class="section section5">
       <div class="section5-wrap">
         <div class="section5-content">
           <div class="text-wrap">
             <h6 class="text-title entry">AMOND REAL MODEL</h6>
             <p class="text-text entry">아몬드 리얼모델 후기 보러가기</p>
           </div>
-          <div class="people-wrap swiper">
+          <div class="people-wrap section5-swiper">
             <ol class="people-list swiper-wrapper">
               <li class="list-item swiper-slide">
                 <img src="../assets/images/main/main-5-people1.jpg" alt="people">
@@ -355,7 +361,7 @@
         </div>
       </div>
     </section>
-    <section class="section6 entry">
+    <section class="section section6">
       <div class="section6-wrap">
         <div class="section6-page2">
           <p>AMOND REAL SELEIE</p>
@@ -369,7 +375,7 @@
         </div>
       </div>
     </section>
-    <section class="section7">
+    <section class="section section7">
       <div class="section7-wrap">
         <div class="section7-info">
           <div class="info-1">
