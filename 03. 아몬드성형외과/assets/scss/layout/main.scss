@@ -207,7 +207,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding: clamp(100px, 7vw, 150px);
+    padding: clamp(50px, 7vw, 100px);
     .section5-content{
       display: flex;
       flex-direction: column;
@@ -219,13 +219,29 @@
           font-family: "Noto Serif KR", serif;
           font-size: clamp($font-size-s,5vw,9rem);
           font-weight: normal;
+          opacity: 0;
+          transform: translateX(-50%);
+          transition: all 0.4s 0.8s;
+        }
+        .text-title.active{
+          opacity: 1;
+          transform: translateX(0);
         }
         .text-text{
+          opacity: 0;
           font-size: clamp($font-size-s,2vw,$font-size-l);
           margin-top: 10px;
+          transform: translateX(-50%);
+          transition: all 0.4s 1s;
+        }
+        .text-text.active{
+          opacity: 1;
+          transform: translateX(0);
         }
       }
       .people-wrap{
+        transform: translateY(50%);
+        opacity: 0;
         width: 100%;
         height: 100%;
         .people-list{
@@ -240,8 +256,10 @@
             width: 50%;
             position: relative;
             transition: all 1s;
+            overflow: hidden;
             &:hover{
               width: 100%;
+              overflow: none;
             }
             &:hover .list-item__text{
               opacity: 1;
@@ -251,10 +269,12 @@
             }
             img{
               filter: grayscale(100%);
-              width: 100%;
               height: 100%;
               object-fit: cover;
               transition: all 1s;
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
             }
           }
           .list-item__text{
@@ -281,7 +301,15 @@
           }
         }
       }
+      .people-wrap.active{
+        opacity: 1;
+        transition: all 0.4s;
+        transform: translate(0);
+      }
     }
+  @include laptop{
+    padding: clamp(50px, 7vw, 100px) 0;
+  }
   }
 }
 
@@ -303,7 +331,7 @@
         height: 100%;
         object-fit: cover;
         clip-path: circle(0%);
-        transition: all 2s cubic-bezier( 0.66, 0.01, 0, 1.01 ) .4s;
+        transition: all 1s cubic-bezier( 0.66, 0.01, 0, 1.01 ) 1s;
       }
       .page1-text{
         position: absolute;
@@ -312,7 +340,7 @@
         transform: translate(-50%,-50%);
         text-align: center;
         opacity: 0;
-        transition: opacity 2s 2.4s;
+        transition: opacity 1s 1s;
         p{
           width: 100%;
           white-space: nowrap;
@@ -352,6 +380,7 @@
       background-color: #fff;
       position: relative;
       p{
+        transition: all 0.5s;
         opacity: 0;
         pointer-events: none;
         position: absolute;
@@ -365,10 +394,10 @@
         transition: all 1s;
         font-family: "GmarketSans", "Noto Sans KR";
       }
-    }
-    .section6-page2.active p{
-      left: 50%;
-      opacity: 1;
+      p.active{
+        left: 50%;
+        opacity: 1;
+      }
     }
   }
 }

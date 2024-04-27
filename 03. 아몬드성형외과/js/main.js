@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded',function(){
         autoScrolling:true,
         fitToSection: true,
         observer: true,
-        fitToSectionDelay: 1000,
+        fitToSectionDelay: 100,
         keyboardScrolling: true,
         onLeave: function(anchorLink,index){
           console.log(index);
@@ -21,6 +21,13 @@ window.addEventListener('DOMContentLoaded',function(){
           }
           if(index == 2 && window.innerWidth <= 768){
             videoMobile.play()
+          }
+          if(index == 6){
+            section6Page1.classList.add('active')
+          }
+          else if(index != 6){
+            section6Page1.classList.remove('active')
+
           }
         }
       });
@@ -32,9 +39,6 @@ window.addEventListener('DOMContentLoaded',function(){
     let io = new IntersectionObserver(function(entries){
       entries.forEach((entry)=>{
         if(entry.isIntersecting){
-          console.log(entry.target);
-          console.log(entry.isIntersecting);
-
           section1Typed.reset()
           entry.target.classList.add('active')
         }
@@ -100,4 +104,17 @@ window.addEventListener('DOMContentLoaded',function(){
   }
   window.addEventListener('resize',section5Swiper)
   window.addEventListener('load',section5Swiper)
+  
+  
+  // section6
+  const section6Page1 = document.querySelector('.section6 .section6-page1');
+  const section6Page2 = document.querySelector('.section6 .section6-page2');
+
+
+
+
+
+
 })
+
+
