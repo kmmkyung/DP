@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded',function(){
   // section3
   let swiperVal = undefined;
   function section3Swiper(){
-    if(window.innerWidth > 900 && swiperVal != undefined){
+    if(window.innerWidth > 768 && swiperVal != undefined){
       swiperVal.destroy()
       swiperVal = undefined;
     }
@@ -86,7 +86,7 @@ window.addEventListener('DOMContentLoaded',function(){
   // section5
   let swipe5rVal = undefined;
   function section5Swiper(){
-    if(window.innerWidth > 900 && swipe5rVal != undefined){
+    if(window.innerWidth > 768 && swipe5rVal != undefined){
       swipe5rVal.destroy()
       swipe5rVal = undefined;
     }

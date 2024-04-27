@@ -271,6 +271,7 @@
   position: relative;
   transition: all 1s;
   overflow: hidden;
+  flex-shrink: 1;
 }
 .section5 .section5-wrap .section5-content .people-wrap .people-list .list-item:hover {
   width: 100%;

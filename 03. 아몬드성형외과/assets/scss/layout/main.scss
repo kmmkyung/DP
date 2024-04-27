@@ -257,6 +257,7 @@
             position: relative;
             transition: all 1s;
             overflow: hidden;
+            flex-shrink: 1;
             &:hover{
               width: 100%;
               overflow: none;
