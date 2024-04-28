@@ -565,4 +565,38 @@
 }
 .section7 .section7-wrap .section7-info .info-4 .info-4__address .address-row .address-row__last {
   width: 60%;
+}
+
+#fp-nav ul li {
+  width: 10px;
+  height: 10px;
+  margin: 20px;
+}
+#fp-nav ul li a span {
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  background-color: #eee;
+}
+#fp-nav ul li a.active span {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+#fp-nav ul li .fp-tooltip.left {
+  left: 30px;
+  color: #000;
+}
+#fp-nav ul li:hover a span {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+}
+#fp-nav ul li:hover a.active span {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
 }/*# sourceMappingURL=main.css.map */

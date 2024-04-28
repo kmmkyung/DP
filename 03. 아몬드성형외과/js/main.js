@@ -4,30 +4,33 @@ window.addEventListener('DOMContentLoaded',function(){
     $(document).ready(function() {
       $('#fullpage').fullpage({
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE', 
-        showActiveTooltip: true,
+        showActiveTooltip: false,
         navigation: true,  
         navigationPosition: 'left',
         navigationTooltips: ['아몬드', '병원전경','의료진소개','특화수술','리얼모델후기','리얼셀피','약도'],
         scrollHorizontally: true,
         autoScrolling:true,
         fitToSection: true,
+        fitToSectionDelay: 600,
         observer: true,
-        fitToSectionDelay: 100,
+        scrollingSpeed: 1500,
         keyboardScrolling: true,
         onLeave: function(anchorLink,index){
           console.log(index);
-          if(index == 2 && window.innerWidth > 768){
-            videoPc.play()
-          }
-          if(index == 2 && window.innerWidth <= 768){
-            videoMobile.play()
+
+          if(index == 2){
+            if(window.innerWidth > 768){
+              videoPc.play()
+            }
+            if(window.innerWidth <= 768){
+              videoMobile.play()
+            }
           }
           if(index == 6){
             section6Page1.classList.add('active')
           }
           else if(index != 6){
             section6Page1.classList.remove('active')
-
           }
         }
       });
@@ -108,11 +111,6 @@ window.addEventListener('DOMContentLoaded',function(){
   
   // section6
   const section6Page1 = document.querySelector('.section6 .section6-page1');
-  const section6Page2 = document.querySelector('.section6 .section6-page2');
-
-
-
-
 
 
 })
