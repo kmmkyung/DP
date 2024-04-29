@@ -38,15 +38,132 @@
   width: 100%;
   height: 100%;
   .section2-wrap{
-    min-height: 100vh;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: relative;
     display: flex;
     .content-1{
-      
+      flex: 1;
+      padding: 100px 80px;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      transition: all 0.4s;
+      .content-1__title{
+        font-family: "GmarketSans";
+        .title{
+          font-size: 5rem;
+          white-space: nowrap;
+        }
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
+        }
+      }
+      .content-1__text{
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 50%;
+        .text-1{
+          .text-1__title{
+            font-weight: bold;
+            font-size: clamp($font-size-s,2vw,$font-size-m);
+          }
+          .text-1__content{
+            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+          }
+        }
+      }
     }
-    .content-2
-    .content-3
+    .content-1.active{
+      width: auto;
+      justify-content: space-between;
+      flex: 0;
+      .content-1__title{
+        .title{
+          font-size: clamp(5rem,6vw,12rem);
+        }
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
+        }
+      }
+      .content-1__text{
+        display: flex;
+      }
+    }
+
+    .content-2{
+      flex: 1;
+      display: flex;
+      background-color: #000;
+      color: #fff;
+      padding: 100px 80px;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s;
+      .content-2__title{
+        font-family: "GmarketSans";
+        .title{
+          white-space: nowrap;
+          font-size: 5rem;
+        }
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
+        }
+      }
+      .content-2__text{
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 40%;
+        .text-2{
+          .text-2__title{
+            font-weight: bold;
+            font-size: clamp($font-size-s,2vw,$font-size-m);
+          }
+          .text-2__content{
+            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+          }
+        }
+      }
+    }
+    .content-3{
+      flex: 1;
+      background-color: rgb(101, 25, 177);
+      color: #fff;
+      display: flex;
+      padding: 100px 80px;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s;
+      .content-3__title{
+        font-family: "GmarketSans";
+        .title{
+          white-space: nowrap;
+          font-size: 5rem;
+        }
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
+        }
+      }
+    }
+    .content-3__text{
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      width: 50%;
+      .text-3{
+        .text-3__title{
+          font-weight: bold;
+          font-size: clamp($font-size-s,2vw,$font-size-m);
+        }
+        .text-3__content{
+          font-size: clamp($font-size-s,1.5vw,$font-size-m);
+        }
+      }
+    }
   }
 }
