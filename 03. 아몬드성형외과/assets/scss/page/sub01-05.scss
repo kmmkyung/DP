@@ -1,0 +1,52 @@
+@use "../abstacts/_variavles" as *;
+@import "../_mixin.scss";
+
+.section1{
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../images/sub/01/05/background-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  .section1-wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .section1-title__1{
+      font-family: "GmarketSans";
+      font-size: clamp($font-size-l,5.5vw,10rem);
+    }
+    .section1-title__2{
+      font-family: "GmarketSans";
+      font-size: clamp(5rem,6vw,12rem);
+    }
+    .section1-text{
+      p{
+        font-size: clamp($font-size-s,2vw,$font-size-m);
+      }
+    }
+  }
+}
+
+.section2{
+  width: 100%;
+  height: 100%;
+  .section2-wrap{
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    .content-1{
+      
+    }
+    .content-2
+    .content-3
+  }
+}
