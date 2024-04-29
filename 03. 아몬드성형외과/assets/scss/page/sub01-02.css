@@ -1,0 +1,329 @@
+.section {
+  width: 100%;
+  height: 100vh;
+}
+
+.section1 {
+  background-image: url(../../images/sub/01/02/pc-background-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media screen and (max-width: 768px) {
+  .section1 {
+    background-image: url(../../images/sub/01/02/mobile-background-1.jpg);
+  }
+}
+.section1 .section1-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px;
+  color: #fff;
+  font-family: "GmarketSans";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 768px) {
+  .section1 .section1-wrap {
+    justify-content: flex-start;
+    gap: 5vw;
+  }
+}
+.section1 .section1-wrap .section1-subTitle {
+  font-size: clamp(2.2rem, 3.5vw, 7rem);
+}
+.section1 .section1-wrap .section1-title {
+  font-size: clamp(3rem, 6.4vw, 13rem);
+}
+.section1 .section1-wrap .section1-text {
+  font-size: clamp(2.2rem, 3vw, 6rem);
+  word-break: keep-all;
+}
+
+.section .section2-wrap,
+.section .section3-wrap,
+.section .section4-wrap,
+.section .section5-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 0;
+}
+@media screen and (max-width: 768px) {
+  .section .section2-wrap,
+  .section .section3-wrap,
+  .section .section4-wrap,
+  .section .section5-wrap {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.section .section2-wrap img,
+.section .section3-wrap img,
+.section .section4-wrap img,
+.section .section5-wrap img {
+  flex: 0 0 auto;
+  width: 45%;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  .section .section2-wrap img,
+  .section .section3-wrap img,
+  .section .section4-wrap img,
+  .section .section5-wrap img {
+    width: 70%;
+  }
+}
+.section .section2-wrap .section2-text,
+.section .section2-wrap .section3-text,
+.section .section2-wrap .section4-text,
+.section .section2-wrap .section5-text,
+.section .section3-wrap .section2-text,
+.section .section3-wrap .section3-text,
+.section .section3-wrap .section4-text,
+.section .section3-wrap .section5-text,
+.section .section4-wrap .section2-text,
+.section .section4-wrap .section3-text,
+.section .section4-wrap .section4-text,
+.section .section4-wrap .section5-text,
+.section .section5-wrap .section2-text,
+.section .section5-wrap .section3-text,
+.section .section5-wrap .section4-text,
+.section .section5-wrap .section5-text {
+  padding: 0 5vw;
+}
+.section .section2-wrap .section2-text .text-subTitle,
+.section .section2-wrap .section3-text .text-subTitle,
+.section .section2-wrap .section4-text .text-subTitle,
+.section .section2-wrap .section5-text .text-subTitle,
+.section .section3-wrap .section2-text .text-subTitle,
+.section .section3-wrap .section3-text .text-subTitle,
+.section .section3-wrap .section4-text .text-subTitle,
+.section .section3-wrap .section5-text .text-subTitle,
+.section .section4-wrap .section2-text .text-subTitle,
+.section .section4-wrap .section3-text .text-subTitle,
+.section .section4-wrap .section4-text .text-subTitle,
+.section .section4-wrap .section5-text .text-subTitle,
+.section .section5-wrap .section2-text .text-subTitle,
+.section .section5-wrap .section3-text .text-subTitle,
+.section .section5-wrap .section4-text .text-subTitle,
+.section .section5-wrap .section5-text .text-subTitle {
+  color: #350565;
+  border-bottom: 4px solid #350565;
+  font-size: clamp(2.2rem, 2.5vw, 4.8rem);
+  font-family: "GmarketSans";
+  display: inline-block;
+  margin-top: 1vw;
+}
+.section .section2-wrap .section2-text .text-title,
+.section .section2-wrap .section3-text .text-title,
+.section .section2-wrap .section4-text .text-title,
+.section .section2-wrap .section5-text .text-title,
+.section .section3-wrap .section2-text .text-title,
+.section .section3-wrap .section3-text .text-title,
+.section .section3-wrap .section4-text .text-title,
+.section .section3-wrap .section5-text .text-title,
+.section .section4-wrap .section2-text .text-title,
+.section .section4-wrap .section3-text .text-title,
+.section .section4-wrap .section4-text .text-title,
+.section .section4-wrap .section5-text .text-title,
+.section .section5-wrap .section2-text .text-title,
+.section .section5-wrap .section3-text .text-title,
+.section .section5-wrap .section4-text .text-title,
+.section .section5-wrap .section5-text .text-title {
+  margin: 2vw 0;
+  font-size: clamp(2.2rem, 2vw, 3rem);
+  font-family: "GmarketSans";
+}
+.section .section2-wrap .section2-text .text-content,
+.section .section2-wrap .section3-text .text-content,
+.section .section2-wrap .section4-text .text-content,
+.section .section2-wrap .section5-text .text-content,
+.section .section3-wrap .section2-text .text-content,
+.section .section3-wrap .section3-text .text-content,
+.section .section3-wrap .section4-text .text-content,
+.section .section3-wrap .section5-text .text-content,
+.section .section4-wrap .section2-text .text-content,
+.section .section4-wrap .section3-text .text-content,
+.section .section4-wrap .section4-text .text-content,
+.section .section4-wrap .section5-text .text-content,
+.section .section5-wrap .section2-text .text-content,
+.section .section5-wrap .section3-text .text-content,
+.section .section5-wrap .section4-text .text-content,
+.section .section5-wrap .section5-text .text-content {
+  font-size: clamp(1.2rem, 1.2vw, 2.2rem);
+  display: inline-block;
+  position: relative;
+}
+.section .section2-wrap .section2-text .text-content .text-content__start,
+.section .section2-wrap .section2-text .text-content .text-content__end,
+.section .section2-wrap .section3-text .text-content .text-content__start,
+.section .section2-wrap .section3-text .text-content .text-content__end,
+.section .section2-wrap .section4-text .text-content .text-content__start,
+.section .section2-wrap .section4-text .text-content .text-content__end,
+.section .section2-wrap .section5-text .text-content .text-content__start,
+.section .section2-wrap .section5-text .text-content .text-content__end,
+.section .section3-wrap .section2-text .text-content .text-content__start,
+.section .section3-wrap .section2-text .text-content .text-content__end,
+.section .section3-wrap .section3-text .text-content .text-content__start,
+.section .section3-wrap .section3-text .text-content .text-content__end,
+.section .section3-wrap .section4-text .text-content .text-content__start,
+.section .section3-wrap .section4-text .text-content .text-content__end,
+.section .section3-wrap .section5-text .text-content .text-content__start,
+.section .section3-wrap .section5-text .text-content .text-content__end,
+.section .section4-wrap .section2-text .text-content .text-content__start,
+.section .section4-wrap .section2-text .text-content .text-content__end,
+.section .section4-wrap .section3-text .text-content .text-content__start,
+.section .section4-wrap .section3-text .text-content .text-content__end,
+.section .section4-wrap .section4-text .text-content .text-content__start,
+.section .section4-wrap .section4-text .text-content .text-content__end,
+.section .section4-wrap .section5-text .text-content .text-content__start,
+.section .section4-wrap .section5-text .text-content .text-content__end,
+.section .section5-wrap .section2-text .text-content .text-content__start,
+.section .section5-wrap .section2-text .text-content .text-content__end,
+.section .section5-wrap .section3-text .text-content .text-content__start,
+.section .section5-wrap .section3-text .text-content .text-content__end,
+.section .section5-wrap .section4-text .text-content .text-content__start,
+.section .section5-wrap .section4-text .text-content .text-content__end,
+.section .section5-wrap .section5-text .text-content .text-content__start,
+.section .section5-wrap .section5-text .text-content .text-content__end {
+  position: absolute;
+  color: #c7c7c7;
+  font-size: clamp(3rem, 8vw, 15rem);
+  font-family: "GmarketSans";
+  height: 30px;
+}
+.section .section2-wrap .section2-text .text-content .text-content__start,
+.section .section2-wrap .section3-text .text-content .text-content__start,
+.section .section2-wrap .section4-text .text-content .text-content__start,
+.section .section2-wrap .section5-text .text-content .text-content__start,
+.section .section3-wrap .section2-text .text-content .text-content__start,
+.section .section3-wrap .section3-text .text-content .text-content__start,
+.section .section3-wrap .section4-text .text-content .text-content__start,
+.section .section3-wrap .section5-text .text-content .text-content__start,
+.section .section4-wrap .section2-text .text-content .text-content__start,
+.section .section4-wrap .section3-text .text-content .text-content__start,
+.section .section4-wrap .section4-text .text-content .text-content__start,
+.section .section4-wrap .section5-text .text-content .text-content__start,
+.section .section5-wrap .section2-text .text-content .text-content__start,
+.section .section5-wrap .section3-text .text-content .text-content__start,
+.section .section5-wrap .section4-text .text-content .text-content__start,
+.section .section5-wrap .section5-text .text-content .text-content__start {
+  top: -1vw;
+  left: 0;
+}
+.section .section2-wrap .section2-text .text-content .text-content__end,
+.section .section2-wrap .section3-text .text-content .text-content__end,
+.section .section2-wrap .section4-text .text-content .text-content__end,
+.section .section2-wrap .section5-text .text-content .text-content__end,
+.section .section3-wrap .section2-text .text-content .text-content__end,
+.section .section3-wrap .section3-text .text-content .text-content__end,
+.section .section3-wrap .section4-text .text-content .text-content__end,
+.section .section3-wrap .section5-text .text-content .text-content__end,
+.section .section4-wrap .section2-text .text-content .text-content__end,
+.section .section4-wrap .section3-text .text-content .text-content__end,
+.section .section4-wrap .section4-text .text-content .text-content__end,
+.section .section4-wrap .section5-text .text-content .text-content__end,
+.section .section5-wrap .section2-text .text-content .text-content__end,
+.section .section5-wrap .section3-text .text-content .text-content__end,
+.section .section5-wrap .section4-text .text-content .text-content__end,
+.section .section5-wrap .section5-text .text-content .text-content__end {
+  right: 0;
+  bottom: 0;
+}
+.section .section2-wrap .section2-text .text-content p,
+.section .section2-wrap .section3-text .text-content p,
+.section .section2-wrap .section4-text .text-content p,
+.section .section2-wrap .section5-text .text-content p,
+.section .section3-wrap .section2-text .text-content p,
+.section .section3-wrap .section3-text .text-content p,
+.section .section3-wrap .section4-text .text-content p,
+.section .section3-wrap .section5-text .text-content p,
+.section .section4-wrap .section2-text .text-content p,
+.section .section4-wrap .section3-text .text-content p,
+.section .section4-wrap .section4-text .text-content p,
+.section .section4-wrap .section5-text .text-content p,
+.section .section5-wrap .section2-text .text-content p,
+.section .section5-wrap .section3-text .text-content p,
+.section .section5-wrap .section4-text .text-content p,
+.section .section5-wrap .section5-text .text-content p {
+  text-indent: 5vw;
+}
+.section .section2-wrap .section2-text .section2-button,
+.section .section2-wrap .section2-text .section3-button,
+.section .section2-wrap .section2-text .section4-button,
+.section .section2-wrap .section2-text .section5-button,
+.section .section2-wrap .section3-text .section2-button,
+.section .section2-wrap .section3-text .section3-button,
+.section .section2-wrap .section3-text .section4-button,
+.section .section2-wrap .section3-text .section5-button,
+.section .section2-wrap .section4-text .section2-button,
+.section .section2-wrap .section4-text .section3-button,
+.section .section2-wrap .section4-text .section4-button,
+.section .section2-wrap .section4-text .section5-button,
+.section .section2-wrap .section5-text .section2-button,
+.section .section2-wrap .section5-text .section3-button,
+.section .section2-wrap .section5-text .section4-button,
+.section .section2-wrap .section5-text .section5-button,
+.section .section3-wrap .section2-text .section2-button,
+.section .section3-wrap .section2-text .section3-button,
+.section .section3-wrap .section2-text .section4-button,
+.section .section3-wrap .section2-text .section5-button,
+.section .section3-wrap .section3-text .section2-button,
+.section .section3-wrap .section3-text .section3-button,
+.section .section3-wrap .section3-text .section4-button,
+.section .section3-wrap .section3-text .section5-button,
+.section .section3-wrap .section4-text .section2-button,
+.section .section3-wrap .section4-text .section3-button,
+.section .section3-wrap .section4-text .section4-button,
+.section .section3-wrap .section4-text .section5-button,
+.section .section3-wrap .section5-text .section2-button,
+.section .section3-wrap .section5-text .section3-button,
+.section .section3-wrap .section5-text .section4-button,
+.section .section3-wrap .section5-text .section5-button,
+.section .section4-wrap .section2-text .section2-button,
+.section .section4-wrap .section2-text .section3-button,
+.section .section4-wrap .section2-text .section4-button,
+.section .section4-wrap .section2-text .section5-button,
+.section .section4-wrap .section3-text .section2-button,
+.section .section4-wrap .section3-text .section3-button,
+.section .section4-wrap .section3-text .section4-button,
+.section .section4-wrap .section3-text .section5-button,
+.section .section4-wrap .section4-text .section2-button,
+.section .section4-wrap .section4-text .section3-button,
+.section .section4-wrap .section4-text .section4-button,
+.section .section4-wrap .section4-text .section5-button,
+.section .section4-wrap .section5-text .section2-button,
+.section .section4-wrap .section5-text .section3-button,
+.section .section4-wrap .section5-text .section4-button,
+.section .section4-wrap .section5-text .section5-button,
+.section .section5-wrap .section2-text .section2-button,
+.section .section5-wrap .section2-text .section3-button,
+.section .section5-wrap .section2-text .section4-button,
+.section .section5-wrap .section2-text .section5-button,
+.section .section5-wrap .section3-text .section2-button,
+.section .section5-wrap .section3-text .section3-button,
+.section .section5-wrap .section3-text .section4-button,
+.section .section5-wrap .section3-text .section5-button,
+.section .section5-wrap .section4-text .section2-button,
+.section .section5-wrap .section4-text .section3-button,
+.section .section5-wrap .section4-text .section4-button,
+.section .section5-wrap .section4-text .section5-button,
+.section .section5-wrap .section5-text .section2-button,
+.section .section5-wrap .section5-text .section3-button,
+.section .section5-wrap .section5-text .section4-button,
+.section .section5-wrap .section5-text .section5-button {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: clamp(1rem, 1vw, 1.8rem);
+  background-color: #350865;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #fff;
+}/*# sourceMappingURL=sub01-02.css.map */

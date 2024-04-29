@@ -1,0 +1,128 @@
+@use "../abstacts/_variavles" as *;
+@import "../_mixin.scss";
+
+
+.section {
+  width: 100%;
+  height: 100vh;
+}
+
+.section1 {
+  background-image: url(../../images/sub/01/02/pc-background-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include tablet {
+    background-image: url(../../images/sub/01/02/mobile-background-1.jpg);
+  }
+  .section1-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 100px;
+    color: #fff;
+    font-family: "GmarketSans";
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    @include tablet {
+      justify-content: flex-start;
+      gap: 5vw;
+    }
+    .section1-subTitle {
+      font-size: clamp($font-size-m, 3.5vw, 7rem);
+    }
+    .section1-title {
+      font-size: clamp(3rem, 6.4vw, 13rem);
+    }
+    .section1-text {
+      font-size: clamp($font-size-m, 3vw, 6rem);
+      word-break: keep-all;
+    }
+  }
+}
+
+.section {
+  .section2-wrap,
+  .section3-wrap,
+  .section4-wrap,
+  .section5-wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 0;
+    @include tablet {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      flex: 0 0 auto;
+      width: 45%;
+      height: auto;
+      @include tablet {
+        width: 70%;
+      }
+    }
+    .section2-text,
+    .section3-text,
+    .section4-text,
+    .section5-text
+{
+      padding: 0 5vw;
+      .text-subTitle {
+        color: #350565;
+        border-bottom: 4px solid #350565;
+        font-size: clamp($font-size-m, 2.5vw, 4.8rem);
+        font-family: "GmarketSans";
+        display: inline-block;
+        margin-top: 1vw;
+      }
+      .text-title {
+        margin: 2vw 0;
+        font-size: clamp($font-size-m, 2vw, $font-size-l);
+        font-family: "GmarketSans";
+      }
+      .text-content {
+        font-size: clamp(1.2rem, 1.2vw, $font-size-m);
+        display: inline-block;
+        position: relative;
+        .text-content__start,
+        .text-content__end {
+          position: absolute;
+          color: #c7c7c7;
+          font-size: clamp($font-size-l, 8vw, 15rem);
+          font-family: "GmarketSans";
+          height: 30px;
+        }
+        .text-content__start {
+          top: -1vw;
+          left: 0;
+        }
+        .text-content__end {
+          right: 0;
+          bottom: 0;
+        }
+        p{
+          text-indent: 5vw;
+        }
+      }
+      .section2-button,
+      .section3-button,
+      .section4-button,
+      .section5-button
+      {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: clamp(1rem,1vw,1.8rem);
+        background-color: #350865;
+        padding: 10px 20px;
+        border-radius: 50px;
+        color: #fff;
+      }
+    }
+  }
+}

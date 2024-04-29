@@ -1,0 +1,58 @@
+.section1 {
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background-color: #000;
+  font-family: "GmarketSans";
+}
+@media screen and (max-width: 768px) {
+  .section1 {
+    height: auto;
+  }
+}
+.section1 .section1-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 140px 10px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section1 .section1-wrap .info-title {
+  font-size: clamp(3rem, 4.5vw, 9rem);
+}
+.section1 .section1-wrap .info-wrap {
+  margin-top: 5vw;
+  font-size: clamp(2.2rem, 2.5vw, 5rem);
+}
+.section1 .section1-wrap .info-wrap .info-call {
+  display: flex;
+  gap: 2vw;
+}
+.section1 .section1-wrap .info-wrap .info-call .call-title {
+  white-space: nowrap;
+}
+.section1 .section1-wrap .info-wrap .info-time {
+  display: flex;
+  gap: 2vw;
+  margin: 2vw 0;
+}
+.section1 .section1-wrap .info-wrap .info-time .time-title {
+  white-space: nowrap;
+}
+.section1 .section1-wrap .info-wrap .info-time .time-text .time-text__hidden {
+  visibility: hidden;
+}
+.section1 .section1-wrap .info-wrap .info-time .time-text p:not(:last-child) {
+  margin-bottom: 10px;
+}
+.section1 .section1-wrap .info-wrap .info-come {
+  display: flex;
+  gap: 2vw;
+}
+.section1 .section1-wrap .info-wrap .info-come .come-title {
+  white-space: nowrap;
+}/*# sourceMappingURL=sub01-04.css.map */

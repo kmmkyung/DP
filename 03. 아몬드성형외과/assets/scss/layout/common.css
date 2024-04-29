@@ -31,6 +31,10 @@ a {
 @font-face {
   font-family: "Noto Serif KR", serif;
 }
+* {
+  outline: 1px solid turquoise;
+}
+
 .-hidden {
   display: none;
 }

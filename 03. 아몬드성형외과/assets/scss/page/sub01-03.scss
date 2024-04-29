@@ -1,0 +1,138 @@
+@use "../abstacts/_variavles" as *;
+@import "../_mixin.scss";
+
+.section1{
+  width: 100%;
+  height: 100vh;
+  @include tablet{
+    height: auto;
+  }
+  .section1-wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 1324px;
+    margin: 0 auto;
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5vw;
+    @include tablet{
+      max-width: 100%;
+      padding: 100px 20px;
+    }
+    .section1-text{
+      .section1-title{
+        color: #350565;
+        font-family: "GmarketSans";
+        font-size: clamp($font-size-l,3.5vw,6rem);
+        text-align: center;
+      }
+      .section1-content{
+        text-align: center;
+        font-size: clamp($font-size-s,1vw,2rem);
+        margin-top: min(2vw,20px);
+      }
+    }
+    .section1-plant{
+      .plant-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        .list-item{
+          position: relative;
+          width: 24%;
+          @include tablet{
+            width: 49%;
+            margin: 0 0 20px;
+          }
+          img{
+            vertical-align: middle;
+            flex: 0 0 auto;
+            width: 100%;
+            transition: all 0.4s;
+          }
+          .item-hover{
+            transition: all 0.6s;
+            font-family: "GmarketSans";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: clamp($font-size-m,3vw,4rem);
+            color: #350565;
+            opacity: 0;
+          }
+          .mobile-text{
+            display: none;
+            text-align: center;
+            font-family: "GmarketSans";
+            font-size: clamp($font-size-s,1vw,2rem);
+            margin-top: 10px;
+            @include tablet{
+              display: block;
+            }
+          }
+          &:hover img{
+            opacity: 0.5;
+          }
+          &:hover p{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.section2{
+  transition: all 1s;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-30%);
+  .section2-wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    .video-wrap{
+      video{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translateY(-50%);
+        @include tablet{
+          transform: translateY(-10%);
+        }
+      }
+      .video-close{
+        position: absolute;
+        right: 50px;
+        top: 50px;
+        i{
+          display: block;
+          color: #fff;
+          width: 50px;
+          height: 50px;
+          font-size: $font-size-l;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+.section2.active{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
