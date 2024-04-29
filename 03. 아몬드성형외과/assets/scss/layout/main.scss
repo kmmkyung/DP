@@ -340,10 +340,11 @@
           }
         }
         .swiper-icon{
+          display: none;
+          @include tablet{
+            display: block;
+          }
           img{
-            display: none;
-            @include tablet{
-              display: block;
               margin: 0 auto;
             }
           }
@@ -360,7 +361,6 @@
     }
   @include laptop{
     padding: clamp(50px, 7vw, 100px) 0;
-  }
   }
 }
 

@@ -1,0 +1,234 @@
+@use "../abstacts/_variavles" as *;
+@import "../_mixin.scss";
+
+.section {
+  width: 100%;
+  height: 100vh;
+}
+
+.section1 {
+  .section1-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .section1-text {
+      width: 100%;
+      height: 100%;
+      font-family: "GmarketSans", "Noto Sans KR";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .text-1 {
+        color: #c7c7c7;
+        font-size: clamp($font-size-l, 7.813vw, 15rem);
+        p {
+        }
+      }
+      .text-2 {
+        display: flex;
+        font-size: clamp($font-size-s, 3vw, 6rem);
+        font-weight: bold;
+        .text2-null {
+          width: 2vh;
+        }
+        .text2-right {
+          color: $color-purple;
+        }
+      }
+      .text-3 {
+        color: #c7c7c7;
+        font-size: clamp($font-size-l, 7.813vw, 15rem);
+        p {
+          transform: translateY(60%);
+        }
+      }
+    }
+  }
+}
+
+.section2 {
+  background-image: url(../../images/sub/01/01/background-2.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include laptopSmall{
+    background: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)), url(../../images/sub/01/01/doctor.gif); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .section2-wrap {
+    width: 100%;
+    height: 100%;
+    padding: min(10vw, 100px);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    .section2-text {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: space-between;
+      @include laptopSmall{
+        flex-direction: column;
+        gap: 2vw;
+      }
+      .list-item {
+        padding: 0 20px;
+        flex: 1 0 0%;
+        .text-number {
+          font-size: clamp($font-size-m, 3vw, 7rem);
+          font-weight: bold;
+        }
+        .text-title {
+          font-weight: bold;
+          font-size: clamp($font-size-m, 1.8vw, 3.5rem);
+        }
+        .text-content {
+          margin-top: clamp(1rem, 1vw, 2rem);
+          font-size: clamp(1rem, 1vw, 2rem);
+        }
+      }
+    }
+  }
+}
+
+.section3 {
+  .section3-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .section3-text {
+      width: 100%;
+      height: 100%;
+      font-family: "GmarketSans", "Noto Sans KR";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .text-1 {
+        color: #c7c7c7;
+        font-size: clamp($font-size-l, 7.813vw, 15rem);
+        p {
+        }
+      }
+      .text-2 {
+        display: flex;
+        font-size: clamp($font-size-s, 3vw, 6rem);
+        font-weight: bold;
+        .text2-null {
+          width: 2vh;
+        }
+        .text2-right {
+          color: $color-purple;
+        }
+      }
+      .text-3 {
+        color: #c7c7c7;
+        font-size: clamp($font-size-l, 7.813vw, 15rem);
+        p {
+          transform: translateY(60%);
+        }
+      }
+    }
+  }
+}
+
+.section4 {
+  background-image: url(../../images/sub/01/01/background-4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include laptopSmall{
+    background: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)), url(../../images/sub/01/01/doctor.gif); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .section4-wrap {
+    width: 100%;
+    height: 100%;
+    padding: min(10vw, 100px);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    .section4-text {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: space-between;
+      @include laptopSmall{
+        flex-direction: column;
+        gap: 2vw;
+      }
+      .list-item {
+        flex: 1 0 0%;
+        padding: 0 20px;
+        .text-number {
+          font-size: clamp($font-size-m, 3vw, 7rem);
+          font-weight: bold;
+        }
+        .text-title {
+          font-weight: bold;
+          font-size: clamp($font-size-m, 1.8vw, 3.5rem);
+        }
+        .text-content {
+          margin-top: clamp(1rem, 1vw, 2rem);
+          font-size: clamp(1rem, 1vw, 2rem);
+        }
+      }
+    }
+  }
+}
+
+.section5 {
+  background-image: url(../../images/sub/01/01/background-5.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include laptopSmall{
+    background-image: url(../../images/sub/01/01/mobile-background-5.jpg);
+
+  }
+  .sectio5-wrap {
+    width: 100%;
+    height: 100%;
+    padding: min(10vw, 100px);
+    color: #fff;
+    .section5-text {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include laptopSmall{
+        justify-content: flex-start;
+      }
+    }
+    p {
+      font-size: clamp($font-size-s, 2.6vw, 5rem);
+    }
+    .text-tiltle {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2vw;
+      @include laptopSmall{
+        flex-direction: row;
+        gap: 1vw;
+        flex-wrap: wrap;
+      }
+      h2 {
+        font-size: clamp($font-size-l, 4.5vw, 9rem);
+        position: relative;
+        display: inline-block;
+        width: fit-content;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 5px;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}

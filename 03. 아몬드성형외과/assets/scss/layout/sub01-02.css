@@ -1,0 +1,76 @@
+.section {
+  width: 100%;
+  height: 100vh;
+}
+
+.section1 {
+  background-image: url(../../images/sub/01/02/pc-background-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media screen and (max-width: 768px) {
+  .section1 {
+    background-image: url(../../images/sub/01/02/mobile-background-1.jpg);
+  }
+}
+.section1 .section1-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px;
+  color: #fff;
+  font-family: "GmarketSans";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 768px) {
+  .section1 .section1-wrap {
+    justify-content: flex-start;
+    gap: 5vw;
+  }
+}
+.section1 .section1-wrap .section1-subTitle {
+  font-size: clamp(2.2rem, 3.5vw, 7rem);
+}
+.section1 .section1-wrap .section1-title {
+  font-size: clamp(3rem, 6.4vw, 13rem);
+}
+.section1 .section1-wrap .section1-text {
+  font-size: clamp(2.2rem, 3vw, 6rem);
+  word-break: keep-all;
+}
+
+.section2 .section2-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section2 .section2-wrap img {
+  flex: 0 0 auto;
+  width: 45%;
+  height: auto;
+}
+.section2 .section2-wrap .section2-text {
+  padding: 0 5vw;
+}
+.section2 .section2-wrap .section2-text .text-subTitle {
+  color: #350565;
+  border-bottom: 4px solid #350565;
+  font-size: clamp(2.2rem, 2.5vw, 4.8rem);
+  font-family: "GmarketSans";
+  display: inline-block;
+  margin-top: 1vw;
+}
+.section2 .section2-wrap .section2-text .text-title {
+  margin: 2vw 0;
+  font-size: clamp(2.2rem, 2vw, 3rem);
+  font-family: "GmarketSans";
+}
+.section2 .section2-wrap .section2-text .text-content {
+  font-size: clamp(1.5rem, 1.5vw, 2.2rem);
+}/*# sourceMappingURL=sub01-02.css.map */

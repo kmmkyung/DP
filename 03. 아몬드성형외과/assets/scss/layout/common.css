@@ -68,6 +68,9 @@ header .header-wrap .logo .logo-mobile {
     display: block;
   }
 }
+header .header-wrap .logo .logo-sub img {
+  width: 8vw;
+}
 header .header-wrap .menu {
   cursor: pointer;
   display: flex;
