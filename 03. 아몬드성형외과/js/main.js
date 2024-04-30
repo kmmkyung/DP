@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded',function(){
       swiperVal = undefined;
     }
     if(window.innerWidth <= 768 && swiperVal == undefined){
-      ss = new Swiper('.section3-swiper', {
+      swiperVal = new Swiper('.section3-swiper', {
       slidesPerView: 1,
       simulateTouch: true,
         pagination: {
