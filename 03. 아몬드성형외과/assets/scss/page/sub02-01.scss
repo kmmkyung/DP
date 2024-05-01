@@ -1,6 +1,12 @@
+@use "../abstacts/_variavles" as *;
+@import "../_mixin.scss";
+
 .section{
   width: 100%;
   height: 100vh;
+  @include tablet{
+    height: auto;
+  }
 }
 
 .section1{
@@ -96,6 +102,85 @@
         width: 100%;
         height: 7px;
         background-color: #efeff0;
+      }
+    }
+  }
+}
+
+.section3{
+  background-color: rgb(239, 239, 240);
+  .section3-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 0;
+    max-width: 1324px;
+    margin: 0 auto;
+    position: relative;
+      .section3-text{
+      text-align: center;
+      .text-subTitle{
+        font-size: clamp($font-size-s,1.5vw,2.8rem);
+        span{
+          position: relative;
+          font-weight: bold;
+          &::before{
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: -15%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+      .text-title{
+        font-size: clamp($font-size-l,4vw,8rem);
+        font-family: "GmarketSans";
+        margin: min(5vw,30px) 0;
+      }
+    }
+    .section3-content{
+      width: 100%;
+      .content-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1vw;
+        .list-item{
+          width: 30%;
+          .item-text{
+            display: flex;
+            color: #fff;
+            p{
+              font-size: clamp(1rem,1vw,1.5rem);
+              width: 100%;
+              text-align: center;
+              line-height: 4;
+            }
+            .text-left{
+              background-color: #000;
+            }
+            .text-right{
+              background-color: #350566;
+            }
+          }
+          .item-twenty{
+            img{
+              width: 100%;
+            }
+          }
+        }
+      }
+      .content-caption{
+        margin-top: min(1vw,20px);
+        text-align: center;
+        font-size: clamp($font-size-s,1.5vw,1.8rem);
       }
     }
   }
