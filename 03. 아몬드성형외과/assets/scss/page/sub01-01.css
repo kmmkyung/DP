@@ -188,13 +188,13 @@
     background-image: url(../../images/sub/01/01/mobile-background-5.jpg);
   }
 }
-.section5 .sectio5-wrap {
+.section5 .section5-wrap {
   width: 100%;
   height: 100%;
   padding: min(10vw, 100px);
   color: #fff;
 }
-.section5 .sectio5-wrap .section5-text {
+.section5 .section5-wrap .section5-text {
   width: 100%;
   height: 100%;
   display: flex;
@@ -202,33 +202,33 @@
   justify-content: center;
 }
 @media screen and (max-width: 990px) {
-  .section5 .sectio5-wrap .section5-text {
+  .section5 .section5-wrap .section5-text {
     justify-content: flex-start;
   }
 }
-.section5 .sectio5-wrap p {
+.section5 .section5-wrap p {
   font-size: clamp(1.5rem, 2.6vw, 5rem);
 }
-.section5 .sectio5-wrap .text-tiltle {
+.section5 .section5-wrap .text-tiltle {
   display: flex;
   flex-direction: column;
   margin-top: 2vw;
 }
 @media screen and (max-width: 990px) {
-  .section5 .sectio5-wrap .text-tiltle {
+  .section5 .section5-wrap .text-tiltle {
     flex-direction: row;
     gap: 1vw;
     flex-wrap: wrap;
   }
 }
-.section5 .sectio5-wrap .text-tiltle h2 {
+.section5 .section5-wrap .text-tiltle h2 {
   font-size: clamp(3rem, 4.5vw, 9rem);
   position: relative;
   display: inline-block;
   width: -moz-fit-content;
   width: fit-content;
 }
-.section5 .sectio5-wrap .text-tiltle h2::after {
+.section5 .section5-wrap .text-tiltle h2::after {
   content: "";
   display: block;
   width: 100%;

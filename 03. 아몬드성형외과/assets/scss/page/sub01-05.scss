@@ -42,44 +42,76 @@
     height: 100vh;
     position: relative;
     display: flex;
+    @include laptopSmall{
+      flex-direction: column;
+      height: 300vh;
+    }
     .content-1{
-      flex: 1;
-      padding: 100px 80px;
+      padding: 100px 5vw;
       display: flex;
       align-items:center;
       justify-content: center;
       transition: all 0.4s;
+      gap: 1vw;
+      @include laptopSmall{
+        padding: 50px 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        height: 100vh;
+      }
       .content-1__title{
         font-family: "GmarketSans";
         .title{
-          font-size: 5rem;
+          font-size: clamp($font-size-l,2.5vw,5rem);
           white-space: nowrap;
         }
         .title-hidden{
           font-size: clamp($font-size-m,2vw,4rem);
+          margin-top: 1vw;
         }
       }
       .content-1__text{
         display: none;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         height: 100%;
         width: 50%;
+        @include laptopSmall{
+          display: block;
+          width: 100%;
+          height: auto;
+        }
         .text-1{
+          margin-top: min(10vw,20px);
           .text-1__title{
             font-weight: bold;
             font-size: clamp($font-size-s,2vw,$font-size-m);
+            margin-top: min(10vw,20px);
           }
           .text-1__content{
             font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            @include laptopSmall{
+              margin-top: 1.5vw;
+              font-size: clamp(1rem,1.5vw,$font-size-m);
+            }
+          }
+          @include laptopSmall{
+            &:not(:first-child)::before{
+              content: '';
+              display: block;
+              width: 80%;
+              height: 1px;
+              background-color: #000;
+            }
           }
         }
       }
     }
     .content-1.active{
       width: auto;
+      flex: auto;
       justify-content: space-between;
-      flex: 0;
+      gap: 1vw;
       .content-1__title{
         .title{
           font-size: clamp(5rem,6vw,12rem);
@@ -92,41 +124,114 @@
         display: flex;
       }
     }
-
+    .content-1.noActive{
+      flex: auto;
+      padding: 100px 1vw;
+      .content-1__title{
+        .title{
+          font-size: 2rem;
+        }
+        .title-hidden{
+          display: none;
+        }
+      }
+      .content-1__text{
+        display: none;
+      }
+    }
     .content-2{
       flex: 1;
       display: flex;
       background-color: #000;
       color: #fff;
-      padding: 100px 80px;
+      padding: 100px 5vw;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       transition: all 0.4s;
+      @include laptopSmall{
+        padding: 50px 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        height: 100vh;
+      }
       .content-2__title{
         font-family: "GmarketSans";
         .title{
           white-space: nowrap;
-          font-size: 5rem;
+          font-size: clamp($font-size-l,2.5vw,5rem);
+        }
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
+          margin-top: 1vw;
+        }
+      }
+      .content-2__text{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 50%;
+        @include laptopSmall{
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        .text-2{
+          margin-top: min(10vw,20px);
+          .text-2__title{
+            font-weight: bold;
+            font-size: clamp($font-size-s,2vw,$font-size-m);
+            margin-top: min(10vw,20px);
+          }
+          .text-2__content{
+            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            @include laptopSmall{
+              margin-top: 1.5vw;
+              font-size: clamp(1rem,1.5vw,$font-size-m);
+            }
+          }
+          @include laptopSmall{
+            &:not(:first-child)::before{
+              content: '';
+              display: block;
+              width: 80%;
+              height: 1px;
+              background-color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .content-2.active{
+      gap: 1vw;
+      width: auto;
+      flex: auto;
+      justify-content: space-between;
+      .content-2__title{
+        .title{
+          font-size: clamp(5rem,6vw,12rem);
         }
         .title-hidden{
           font-size: clamp($font-size-m,2vw,4rem);
         }
       }
       .content-2__text{
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-        width: 40%;
-        .text-2{
-          .text-2__title{
-            font-weight: bold;
-            font-size: clamp($font-size-s,2vw,$font-size-m);
-          }
-          .text-2__content{
-            font-size: clamp($font-size-s,1.5vw,$font-size-m);
-          }
+        display: flex;
+      }
+    }
+    .content-2.noActive{
+      flex: auto;
+      padding: 100px 1vw;
+      .content-2__title{
+        .title{
+          font-size: 2rem;
         }
+        .title-hidden{
+          display: none;
+        }
+      }
+      .content-2__text{
+        display: none;
       }
     }
     .content-3{
@@ -134,36 +239,95 @@
       background-color: rgb(101, 25, 177);
       color: #fff;
       display: flex;
-      padding: 100px 80px;
+      padding: 100px 5vw;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       transition: all 0.4s;
+      @include laptopSmall{
+        padding: 50px 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        height: 100vh;
+      }
       .content-3__title{
         font-family: "GmarketSans";
         .title{
           white-space: nowrap;
-          font-size: 5rem;
+          font-size: clamp($font-size-l,2.5vw,5rem);
         }
         .title-hidden{
           font-size: clamp($font-size-m,2vw,4rem);
         }
       }
+      .content-3__text{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 50%;
+        @include laptopSmall{
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        .text-3{
+          margin-top: min(10vw,20px);
+          .text-3__title{
+            font-weight: bold;
+            font-size: clamp($font-size-s,2vw,$font-size-m);
+            margin-top: min(10vw,20px);
+          }
+          .text-3__content{
+            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            @include laptopSmall{
+              margin-top: 1.5vw;
+              font-size: clamp(1rem,1.5vw,$font-size-m);
+            }
+          }
+          @include laptopSmall{
+            &:not(:first-child)::before{
+              content: '';
+              display: block;
+              width: 80%;
+              height: 1px;
+              background-color: #fff;
+            }
+          }
+        }
+      }
     }
-    .content-3__text{
-      display: none;
-      flex-direction: column;
+    .content-3.active{
+      gap: 1vw;
+      width: auto;
+      flex: auto;
       justify-content: space-between;
-      height: 100%;
-      width: 50%;
-      .text-3{
-        .text-3__title{
-          font-weight: bold;
-          font-size: clamp($font-size-s,2vw,$font-size-m);
+      .content-3__title{
+        .title{
+          font-size: clamp(5rem,6vw,12rem);
         }
-        .text-3__content{
-          font-size: clamp($font-size-s,1.5vw,$font-size-m);
+        .title-hidden{
+          font-size: clamp($font-size-m,2vw,4rem);
         }
+      }
+      .content-3__text{
+        display: flex;
+      }
+    }
+    .content-3.noActive{
+      flex: auto;
+      padding: 100px 1vw;
+      .content-3__title{
+        .title{
+          font-size: 2rem;
+        }
+        .title-hidden{
+          display: none;
+        }
+      }
+      .content-3__text{
+        display: none;
       }
     }
   }
 }
+
