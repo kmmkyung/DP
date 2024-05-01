@@ -141,7 +141,7 @@
       .text-title{
         font-size: clamp($font-size-l,4vw,8rem);
         font-family: "GmarketSans";
-        margin: min(5vw,30px) 0;
+        margin: min(4vw,25px) 0;
       }
     }
     .section3-content{
@@ -161,7 +161,7 @@
               font-size: clamp(1rem,1vw,1.5rem);
               width: 100%;
               text-align: center;
-              line-height: 4;
+              line-height: 3;
             }
             .text-left{
               background-color: #000;
