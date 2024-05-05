@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .section {
   width: 100%;
   height: 100vh;
@@ -270,6 +271,7 @@
   margin: 0 auto;
 }
 .section5 .section5-wrap .section5-container {
+  padding: 100px 0;
   margin: 0 10px;
 }
 .section5 .section5-wrap .section5-container .section5-title {
@@ -281,7 +283,7 @@
 .section5 .section5-wrap .section5-container i {
   font-size: clamp(4rem, 6vw, 10rem);
   font-family: "GmarketSans";
-  color: #350565;
+  color: #461a72;
   display: inline-block;
   transform: translate(20%, -30%);
 }
@@ -290,13 +292,300 @@
   position: relative;
 }
 .section5 .section5-wrap .section5-container .section5-swiper .swiper-pagination {
+  position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
-  border-bottom: 7px solid #fff;
+  border-bottom: 7px solid rgba(255, 255, 255, 0.7);
+  text-align: center;
 }
-.section5 .section5-wrap .section5-container .section5-swiper .swiper-pagination li {
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-pagination .swiper-pagination-bullet {
   font-family: "GmarketSans";
   font-size: clamp(1rem, 1.5vw, 3rem);
   padding-bottom: 1vw;
+  width: 20%;
+  position: relative;
+  height: auto;
+  margin: 0;
+  background-color: transparent;
+}
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-pagination .swiper-pagination-bullet::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 100%;
+  left: 0;
+  height: 7px;
+  background-color: #461a72;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-pagination .swiper-pagination-bullet-active::after {
+  opacity: 1;
+}
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-list {
+  margin-top: 2vw;
+}
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-list .list-item .itme-title {
+  font-size: clamp(1rem, 1.2vw, 2rem);
+}
+.section5 .section5-wrap .section5-container .section5-swiper .swiper-list .list-item .item-text {
+  margin-top: 2vw;
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #a3a3a3;
+}
+
+.section6 .section6-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  text-align: center;
+  max-width: 1324px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section6 .section6-wrap .section6-subText {
+  font-family: "GmarketSansLight";
+  font-size: clamp(1rem, 1.5vw, 3rem);
+}
+.section6 .section6-wrap .section6-title {
+  margin-top: min(1vw, 20px);
+  font-size: clamp(4rem, 6vw, 10rem);
+  font-family: "GmarketSans";
+  color: #351563;
+}
+.section6 .section6-wrap .line-list {
+  margin-top: min(2vw, 40px);
+  display: flex;
+  width: 100%;
+  gap: 1vw;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+.section6 .section6-wrap .line-list .list-item {
+  position: relative;
+  flex: 1 0 0%;
+}
+.section6 .section6-wrap .line-list .list-item img {
+  width: 100%;
+}
+.section6 .section6-wrap .line-list .list-item p {
+  position: absolute;
+  font-size: clamp(1rem, 1.2vw, 2.5rem);
+  font-family: "GmarketSans";
+  color: #fff;
+  bottom: 10px;
+  left: 10px;
+}
+.section6 .section6-wrap .section6-caption {
+  font-size: clamp(1rem, 1vw, 2rem);
+  margin-top: min(1vw, 20px);
+}
+
+.section7 .section7-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  text-align: center;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section7 .section7-wrap .section7-title {
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  font-family: "GmarketSans";
+}
+.section7 .section7-wrap .section7-text {
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #a3a3a3;
+}
+.section7 .section7-wrap .section7-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: min(4vw, 40px);
+  gap: 1vw;
+}
+.section7 .section7-wrap .section7-list .list-item {
+  height: 100%;
+}
+.section7 .section7-wrap .section7-list .list-item img {
+  width: 100%;
+}
+.section7 .section7-wrap .section7-list .list-item p {
+  margin-top: min(1vw, 20px);
+  font-size: clamp(1rem, 1vw, 1.5rem);
+}
+
+.section8 .section8-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  text-align: center;
+  max-width: 1324px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section8 .section8-wrap .section8-title {
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  font-family: "GmarketSansLight";
+}
+.section8 .section8-wrap .section8-title b {
+  font-family: "GmarketSans";
+}
+.section8 .section8-wrap .section8-subTitle {
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #a3a3a3;
+}
+.section8 .section8-wrap .section8-example {
+  margin-top: clamp(3.5rem, 3.5vw, 7rem);
+  display: flex;
+  width: 100%;
+}
+.section8 .section8-wrap .section8-example .example-leader {
+  flex: 0 0 auto;
+  width: 50%;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-before-wrap {
+  position: relative;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-before-wrap .leader-before {
+  width: 100%;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-before-wrap::after {
+  content: "BEFORE";
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  position: absolute;
+  padding: 20px 0;
+  width: 125px;
+  background-color: #d4d4d4;
+  top: 0;
+  left: 0;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-after-wrap {
+  overflow: hidden;
+  margin-top: 1vw;
+  position: relative;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-after-wrap .leader-after {
+  width: 100%;
+  filter: blur(10px);
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-after-wrap::before {
+  content: "로그인 후 확인가능합니다.";
+  width: 100%;
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-imgs .leader-after-wrap::after {
+  content: "AFTER";
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #fff;
+  position: absolute;
+  padding: 20px 0;
+  width: 125px;
+  background-color: #350565;
+  top: 0;
+  left: 0;
+}
+.section8 .section8-wrap .section8-example .example-leader .leader-caption {
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #fff;
+  background-color: #383838;
+  padding: 20px;
+}
+.section8 .section8-wrap .section8-example .example-more {
+  width: 50%;
+  padding: 0 60px;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 {
+  width: 100%;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1 .list-item,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 .list-item {
+  display: flex;
+  width: 100%;
+  gap: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1 .list-item .item-before,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 .list-item .item-before {
+  width: 50%;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1 .list-item .item-after-wrap,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 .list-item .item-after-wrap {
+  overflow: hidden;
+  width: 50%;
+  position: relative;
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1 .list-item .item-after-wrap .item-after,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 .list-item .item-after-wrap .item-after {
+  width: 100%;
+  filter: blur(10px);
+}
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__1 .list-item .item-after-wrap::before,
+.section8 .section8-wrap .section8-example .example-more .section8-swiper .swiper-wrapper .more-list__2 .list-item .item-after-wrap::before {
+  content: "로그인 후 확인가능합니다.";
+  width: 100%;
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.section8 .section8-wrap .section8-example .example-more .more-button {
+  width: 100%;
+  font-size: clamp(1rem, 1vw, 1.5rem);
+  color: #fff;
+  background-color: #383838;
+  padding: 20px;
+}
+
+.section9 {
+  background-image: url(../../images/sub/02/background-4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section9 .section9-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.section9 .section9-wrap .section9-title {
+  font-size: clamp(4rem, 6vw, 10rem);
+  font-family: "GmarketSans";
+  color: #3f1b65;
+  opacity: 0.5;
+  text-align: center;
 }/*# sourceMappingURL=sub02-01.css.map */
