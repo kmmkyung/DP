@@ -43,7 +43,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 100px 0;
+  padding: 100px 20px;
   max-width: 1324px;
   margin: 0 auto;
   display: flex;
@@ -74,6 +74,7 @@
       width: 100%;
       justify-content: space-around;
       margin-top: 3vw;
+      position: relative;
       .list-item{
         position: relative;
         text-align: center;
@@ -94,6 +95,11 @@
           height: 27px;
           background-color: #350565;
           border-radius: 50%;
+          @include tablet{
+            top: -2.5px;
+            width: 10px;
+            height: 10px;
+          }
         }
       }
       &::before{
@@ -102,6 +108,9 @@
         width: 100%;
         height: 7px;
         background-color: #efeff0;
+        @include tablet{
+          height: 5px;
+        }
       }
     }
   }
@@ -113,7 +122,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 100px 0;
+    padding: 100px 20px;
     max-width: 1324px;
     margin: 0 auto;
     position: relative;
@@ -135,6 +144,10 @@
             top: -15%;
             left: 50%;
             transform: translateX(-50%);
+            @include tablet{
+              width: 3px;
+              height: 3px;
+            }
           }
         }
       }
@@ -146,14 +159,28 @@
     }
     .section3-content{
       width: 100%;
+      .content-list__wrap{
+        @include tablet{
+          overflow: auto;
+        }
+      }
       .content-list{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         gap: 1vw;
+        @include tablet{
+          justify-content: space-between;
+          overflow: auto;
+          width: 200%;
+        }
         .list-item{
           width: 30%;
+          @include tablet{
+            width: 30%;
+            flex: 0 0 auto;
+          }
           .item-text{
             display: flex;
             color: #fff;
@@ -189,7 +216,11 @@
 .section4{
   background-image: url(../../images/sub/02/background-2.jpg);
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
+  @include tablet{
+    background-position: top right;
+  }
   .section4-wrap{
     width: 100%;
     height: 100%;
@@ -206,6 +237,9 @@
       margin: 0 10px;
       padding: clamp(3rem,3vw,6.5rem);
       text-align: center;
+      @include tablet{
+        padding-bottom: 20vw;
+      }
       .content-text{
         text-align: left;
         .text-subTitle{
@@ -239,6 +273,9 @@
             top: 50%;
             transform: translateY(-50%);
             margin: 0 40px;
+            @include tablet{
+              visibility: hidden;
+            }
           }
           input{
             padding: 10px;
