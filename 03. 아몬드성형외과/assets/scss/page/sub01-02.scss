@@ -30,14 +30,35 @@
       gap: 5vw;
     }
     .section1-subTitle {
+      opacity: 0;
       font-size: clamp($font-size-m, 3.5vw, 7rem);
+      transform: translateX(-10%);
+      transition: all 0.5s;
+    }
+    .section1-subTitle.active{
+      opacity: 1;
+      transform: translateX(0%);
     }
     .section1-title {
+      opacity: 0;
       font-size: clamp(3rem, 6.4vw, 13rem);
+      transform: translateY(100%);
+      transition: all 1s 0.5s;
+    }
+    .section1-title.active{
+      opacity: 1;
+      transform: translateY(0%);
     }
     .section1-text {
+      opacity: 0;
       font-size: clamp($font-size-m, 3vw, 6rem);
       word-break: keep-all;
+      transform: translateY(150%);
+      transition: all 1s 1s;
+    }
+    .section1-text.active{
+      opacity: 1;
+      transform: translateY(0%);
     }
   }
 }
@@ -56,23 +77,30 @@
     padding: 100px 0;
     @include tablet {
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
     }
     img {
       flex: 0 0 auto;
-      width: 45%;
+      width: 40%;
       height: auto;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 0.5s;
       @include tablet {
-        width: 70%;
+        width: 100%;
       }
+    }
+    img.active{
+      opacity: 1;
+      transform: translateX(0%);
     }
     .section2-text,
     .section3-text,
     .section4-text,
-    .section5-text
-{
+    .section5-text{
       padding: 0 5vw;
+      max-width: 90vw;
       .text-subTitle {
         color: #350565;
         border-bottom: 4px solid #350565;
@@ -80,16 +108,25 @@
         font-family: "GmarketSans";
         display: inline-block;
         margin-top: 1vw;
+        transition: all 0.5s;
+        opacity: 0;
+        transform: translateY(100%);
       }
       .text-title {
         margin: 2vw 0;
         font-size: clamp($font-size-m, 2vw, $font-size-l);
         font-family: "GmarketSans";
+        transition: all 0.5s 0.4s;
+        opacity: 0;
+        transform: translateY(100%);
       }
       .text-content {
         font-size: clamp(1.2rem, 1.2vw, $font-size-m);
         display: inline-block;
         position: relative;
+        transition: all 0.5s 0.8s;
+        opacity: 0;
+        transform: translateY(100%);
         .text-content__start,
         .text-content__end {
           position: absolute;
@@ -122,6 +159,20 @@
         padding: 10px 20px;
         border-radius: 50px;
         color: #fff;
+      }
+    }
+    .section-text.active{
+      .text-subTitle {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+      .text-title {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+      .text-content {
+        opacity: 1;
+        transform: translateY(0%);
       }
     }
   }
