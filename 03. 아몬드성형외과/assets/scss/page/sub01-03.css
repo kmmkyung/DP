@@ -1,4 +1,12 @@
+.section1.active {
+  visibility: visible;
+  opacity: 1;
+}
+
 .section1 {
+  transition: all 1s 1s;
+  opacity: 0;
+  visibility: hidden;
   width: 100%;
   height: 100vh;
 }
