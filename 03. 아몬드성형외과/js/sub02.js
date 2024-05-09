@@ -33,12 +33,27 @@ window.addEventListener('DOMContentLoaded',function(){
         }
       },
     });
+
+  // section7 -swiper
+  section7Swiper1 = new Swiper('.mobile-swiper__1', {
+    slidesPerView: 1,
+    loop:true,
+    spaceBetween: 10, 
+    centeredSlides: true,
+    simulateTouch: true,
+    });
+  
+  section7Swiper1 = new Swiper('.mobile-swiper__2', {
+    slidesPerView: 1,
+    loop:true,
+    spaceBetween: 10, 
+    centeredSlides: true,
+    simulateTouch: true,
+    });
   
   // section8 - swiper
   section8Swiper = new Swiper('.section8-swiper', {
     slidesPerView: 1,
-    // effect:'fade',
-    // fadeEffect: { crossFade: true },
     centeredSlides: true,
     simulateTouch: true,
     });
