@@ -74,6 +74,7 @@
   max-width: 1400px;
   margin: 0 auto;
   gap: 2vw;
+  justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
   .section2 .section2-wrap {
@@ -84,17 +85,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2vw;
 }
 .section2 .section2-wrap .section2-left .left-content1 h6 {
-  font-size: clamp(2.2rem, 1.8vw, 3rem);
+  font-size: clamp(1.3rem, 1.8vw, 3rem);
   font-family: "GmarketSans";
 }
 .section2 .section2-wrap .section2-left .left-content1 .left-content1__text {
   margin-top: 1vw;
 }
 .section2 .section2-wrap .section2-left .left-content1 .left-content1__text p {
-  font-size: clamp(1.5rem, 1.5vw, 2.2rem);
+  font-size: clamp(1.3rem, 1.5vw, 2.2rem);
   font-weight: bold;
 }
 .section2 .section2-wrap .section2-left .left-content2 h6 {
@@ -112,7 +112,7 @@
 }
 .section2 .section2-wrap .section2-left .left-content2 .left-content2__text .text-container p:first-child {
   color: #fd7f2c;
-  font-size: clamp(1.5rem, 1.5vw, 2.2rem);
+  font-size: clamp(1.3rem, 1.5vw, 2.2rem);
   font-weight: bold;
 }
 .section2 .section2-wrap .section2-left .left-content2 .left-content2__text .text-container p:last-child {
@@ -132,7 +132,7 @@
   font-weight: bold;
 }
 .section2 .section2-wrap .section2-left .left-content3 .left-content3__text p {
-  font-size: clamp(1.5rem, 1.5vw, 2.2rem);
+  font-size: clamp(1.3rem, 1.5vw, 2.2rem);
 }
 .section2 .section2-wrap .section2-left .left-content4 h6 {
   font-size: clamp(2.2rem, 1.8vw, 3rem);
@@ -143,7 +143,7 @@
 }
 .section2 .section2-wrap .section2-left .left-content4 .left-content4__text p {
   font-weight: bold;
-  font-size: clamp(1.5rem, 1.5vw, 2.2rem);
+  font-size: clamp(1.3rem, 1.5vw, 2.2rem);
 }
 .section2 .section2-wrap .section2-left .left-content__line {
   width: 100%;
@@ -168,11 +168,17 @@
 .section2-right .map {
   width: 100%;
   height: 100%;
-  background-color: #111;
 }
 @media screen and (max-width: 768px) {
   .section2-right .map {
     height: 400px;
     width: 100%;
   }
+}
+.section2-right .map .root_daum_roughmap {
+  width: 100%;
+  height: 100%;
+}
+.section2-right .map .root_daum_roughmap .wrap_map {
+  height: calc(100% - 32px);
 }/*# sourceMappingURL=sub01-04.css.map */

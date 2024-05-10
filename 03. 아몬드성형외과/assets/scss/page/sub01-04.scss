@@ -74,6 +74,7 @@
     max-width: 1400px;
     margin: 0 auto;
     gap: 2vw;
+    justify-content: space-between;
     @include tablet{
       flex-direction: column;
     }
@@ -81,16 +82,15 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 2vw;
       .left-content1{
         h6{
-          font-size: clamp($font-size-m,1.8vw,$font-size-l);
+          font-size: clamp(1.3rem,1.8vw,$font-size-l);
           font-family: "GmarketSans";
         }
         .left-content1__text{
           margin-top: 1vw;
           p{
-            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            font-size: clamp(1.3rem,1.5vw,$font-size-m);
             font-weight: bold;
           }
         }
@@ -111,7 +111,7 @@
           .text-container{
             p:first-child{
               color: #fd7f2c;
-              font-size: clamp($font-size-s,1.5vw,$font-size-m);
+              font-size: clamp(1.3rem,1.5vw,$font-size-m);
               font-weight: bold;
             }
             p:last-child{
@@ -134,7 +134,7 @@
             font-weight: bold;
           }
           p{
-            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            font-size: clamp(1.3rem,1.5vw,$font-size-m);
           }
         }
       }
@@ -147,7 +147,7 @@
           margin-top: 1vw;
           p{
             font-weight: bold;
-            font-size: clamp($font-size-s,1.5vw,$font-size-m);
+            font-size: clamp(1.3rem,1.5vw,$font-size-m);
           }
         }
       }
@@ -172,10 +172,16 @@
   .map{
     width: 100%;
     height: 100%;
-    background-color: #111;
     @include tablet{
       height: 400px;
       width: 100%;
+    }
+    .root_daum_roughmap {
+      width: 100%;
+      height: 100%;
+      .wrap_map{
+        height: calc(100% - 32px);
+      }
     }
   }
 }

@@ -16,6 +16,8 @@
   <script type="text/javascript" src="../plugin/jquery.fullPage.js"></script>
   <!-- typed.js -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- 카카오지도 -->
+  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
   <!-- css -->
   <link rel="stylesheet" href="../assets/scss/layout/common.css">
   <link rel="stylesheet" href="../assets/scss/page/sub01-04.css">
@@ -308,6 +310,7 @@
         </div>
         <div class="section2-right">
           <div class="map">
+            <div id="daumRoughmapContainer1715327144030" class="root_daum_roughmap root_daum_roughmap_landing"></div>
           </div>
         </div>
       </div>
@@ -315,3 +318,10 @@
   </main>
 </body>
 </html>
+
+<script charset="UTF-8">
+  new daum.roughmap.Lander({
+    "timestamp" : "1715327144030",
+    "key" : "2jayu",
+  }).render();
+</script>
