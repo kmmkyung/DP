@@ -8,8 +8,8 @@ window.addEventListener('DOMContentLoaded',function(){
     section2.classList.remove('active')
     section1.classList.add('active')
   })
-  // video.addEventListener('ended',function(){
-  //   section2.classList.remove('active')
-  //   section1.classList.add('active')
-  // })
+  video.addEventListener('ended',function(){
+    section2.classList.remove('active')
+    section1.classList.add('active')
+  })
 })
