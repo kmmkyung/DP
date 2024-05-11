@@ -31,26 +31,29 @@ window.addEventListener('DOMContentLoaded',function(){
       destination == 3?sub03Typed.start():sub03Typed.stop()
       if(destination == 2){
         let sec2TextItem = document.querySelectorAll('.section2-text .list-item')
-        sec2TextItem[0].classList.add('active')
-        setTimeout(()=>{
-          sec2TextItem[1].classList.add('active')
-          setTimeout(()=>{
-            sec2TextItem[2].classList.add('active')
-          },500)
-        },500)
+        itemTime(sec2TextItem)
       }
       if(destination == 4){
         let sec4TextItem = document.querySelectorAll('.section4-text .list-item')
-        sec4TextItem[0].classList.add('active')
-        setTimeout(()=>{
-          sec4TextItem[1].classList.add('active')
-          setTimeout(()=>{
-            sec4TextItem[2].classList.add('active')
-          },500)
-        },500)
+        itemTime(sec4TextItem)
       }
     }
   })
+
+  function setTimeoutItem(item,itemNum){
+    return new Promise(function(resolve){
+      setTimeout(()=>{
+        item[itemNum].classList.add('active')
+        resolve()
+      },500)
+    })
+  }
+
+  async function itemTime(item){
+    item[0].classList.add('active')
+    await setTimeoutItem(item,1)
+    await setTimeoutItem(item,2)
+  }
 
   // section1
   let sub01Typed = new Typed('.section1-text .text-2',{

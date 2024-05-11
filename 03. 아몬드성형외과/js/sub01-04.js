@@ -7,9 +7,6 @@ window.addEventListener('DOMContentLoaded',function(){
       if(entry.isIntersecting){
         entry.target.classList.add('active')
       }
-      else{
-        entry.target.classList.remove('active')
-      }
     },ioOption)
   })
 
@@ -26,6 +23,30 @@ window.addEventListener('DOMContentLoaded',function(){
     observer: true,
     scrollingSpeed: 600,
     keyboardScrolling: true,
+    onLeave: function(origin,destination){
+      if(destination == 2){
+        let sec2Map = document.querySelector('.section2-right .map-wrap')
+        let sec2content = document.querySelectorAll('.left-content')
+        itemTime(sec2content)
+        sec2Map.classList.add('active')
+      }
+    }
   })
 
+  function setTimeoutItem(item,itemNum){
+    return new Promise(function(resolve){
+      setTimeout(()=>{
+        item[itemNum].classList.add('active')
+        resolve()
+      },500)
+    })
+  }
+  
+  async function itemTime(item){
+    item[0].classList.add('active')
+    await setTimeoutItem(item,1)
+    await setTimeoutItem(item,2)
+    await setTimeoutItem(item,3)
+  }
 })
+
