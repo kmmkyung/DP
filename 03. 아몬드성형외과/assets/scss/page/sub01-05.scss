@@ -21,14 +21,43 @@
     .section1-title__1{
       font-family: "GmarketSans";
       font-size: clamp($font-size-l,5.5vw,10rem);
+      transition: all 0.5s;
+      transform: translateX(-50%);
+      opacity: 0;
     }
     .section1-title__2{
       font-family: "GmarketSans";
       font-size: clamp(5rem,6vw,12rem);
+      transition: all 0.5s;
+      transform: translateX(-50%);
+      opacity: 0;
     }
     .section1-text{
-      p{
+      .section1-text__1,
+      .section1-text__2,
+      .section1-text__3,
+      .section1-text__4{
         font-size: clamp($font-size-s,2vw,$font-size-m);
+        opacity: 0;
+        transition: all 0.5s;
+        transform: translateY(100%);
+      }
+    }
+    .section1-title__1.active{
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    .section1-title__2.active{
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    .section1-text{
+      .section1-text__1.active,
+      .section1-text__2.active,
+      .section1-text__3.active,
+      .section1-text__4.active{
+        opacity: 1;
+        transform: translateY(0%);
       }
     }
   }
