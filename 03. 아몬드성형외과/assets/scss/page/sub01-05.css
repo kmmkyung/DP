@@ -92,6 +92,7 @@
   font-family: "GmarketSans";
 }
 .section2 .section2-wrap .content-1 .content-1__title .title {
+  transition: all 1s;
   font-size: clamp(3rem, 2.5vw, 5rem);
   white-space: nowrap;
 }
@@ -100,17 +101,22 @@
   margin-top: 1vw;
 }
 .section2 .section2-wrap .content-1 .content-1__text {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 50%;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s 1s;
 }
 @media screen and (max-width: 990px) {
   .section2 .section2-wrap .content-1 .content-1__text {
-    display: block;
     width: 100%;
     height: auto;
+    visibility: visible;
+    opacity: 1;
   }
 }
 .section2 .section2-wrap .content-1 .content-1__text .text-1 {
@@ -146,13 +152,16 @@
   gap: 1vw;
 }
 .section2 .section2-wrap .content-1.active .content-1__title .title {
+  transition: all 1s;
   font-size: clamp(5rem, 6vw, 12rem);
 }
 .section2 .section2-wrap .content-1.active .content-1__title .title-hidden {
   font-size: clamp(2.2rem, 2vw, 4rem);
 }
 .section2 .section2-wrap .content-1.active .content-1__text {
-  display: flex;
+  width: 50%;
+  opacity: 1;
+  visibility: visible;
 }
 .section2 .section2-wrap .content-1.noActive {
   flex: auto;
@@ -165,7 +174,10 @@
   display: none;
 }
 .section2 .section2-wrap .content-1.noActive .content-1__text {
-  display: none;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
 }
 .section2 .section2-wrap .content-2 {
   flex: 1;
@@ -189,25 +201,31 @@
   font-family: "GmarketSans";
 }
 .section2 .section2-wrap .content-2 .content-2__title .title {
-  white-space: nowrap;
+  transition: all 1s;
   font-size: clamp(3rem, 2.5vw, 5rem);
+  white-space: nowrap;
 }
 .section2 .section2-wrap .content-2 .content-2__title .title-hidden {
   font-size: clamp(2.2rem, 2vw, 4rem);
   margin-top: 1vw;
 }
 .section2 .section2-wrap .content-2 .content-2__text {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 50%;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s 1s;
 }
 @media screen and (max-width: 990px) {
   .section2 .section2-wrap .content-2 .content-2__text {
-    display: block;
     width: 100%;
     height: auto;
+    visibility: visible;
+    opacity: 1;
   }
 }
 .section2 .section2-wrap .content-2 .content-2__text .text-2 {
@@ -243,13 +261,16 @@
   justify-content: space-between;
 }
 .section2 .section2-wrap .content-2.active .content-2__title .title {
+  transition: all 1s;
   font-size: clamp(5rem, 6vw, 12rem);
 }
 .section2 .section2-wrap .content-2.active .content-2__title .title-hidden {
   font-size: clamp(2.2rem, 2vw, 4rem);
 }
 .section2 .section2-wrap .content-2.active .content-2__text {
-  display: flex;
+  width: 50%;
+  opacity: 1;
+  visibility: visible;
 }
 .section2 .section2-wrap .content-2.noActive {
   flex: auto;
@@ -262,7 +283,10 @@
   display: none;
 }
 .section2 .section2-wrap .content-2.noActive .content-2__text {
-  display: none;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
 }
 .section2 .section2-wrap .content-3 {
   flex: 1;
@@ -286,24 +310,30 @@
   font-family: "GmarketSans";
 }
 .section2 .section2-wrap .content-3 .content-3__title .title {
-  white-space: nowrap;
+  transition: all 1s;
   font-size: clamp(3rem, 2.5vw, 5rem);
+  white-space: nowrap;
 }
 .section2 .section2-wrap .content-3 .content-3__title .title-hidden {
   font-size: clamp(2.2rem, 2vw, 4rem);
 }
 .section2 .section2-wrap .content-3 .content-3__text {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 50%;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s 1s;
 }
 @media screen and (max-width: 990px) {
   .section2 .section2-wrap .content-3 .content-3__text {
-    display: block;
     width: 100%;
     height: auto;
+    visibility: visible;
+    opacity: 1;
   }
 }
 .section2 .section2-wrap .content-3 .content-3__text .text-3 {
@@ -345,7 +375,9 @@
   font-size: clamp(2.2rem, 2vw, 4rem);
 }
 .section2 .section2-wrap .content-3.active .content-3__text {
-  display: flex;
+  width: 50%;
+  opacity: 1;
+  visibility: visible;
 }
 .section2 .section2-wrap .content-3.noActive {
   flex: auto;
@@ -358,5 +390,8 @@
   display: none;
 }
 .section2 .section2-wrap .content-3.noActive .content-3__text {
-  display: none;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
 }/*# sourceMappingURL=sub01-05.css.map */

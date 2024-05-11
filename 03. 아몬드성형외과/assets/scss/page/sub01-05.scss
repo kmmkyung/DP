@@ -91,6 +91,7 @@
       .content-1__title{
         font-family: "GmarketSans";
         .title{
+          transition: all 1s;
           font-size: clamp($font-size-l,2.5vw,5rem);
           white-space: nowrap;
         }
@@ -100,15 +101,20 @@
         }
       }
       .content-1__text{
-        display: none;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
-        width: 50%;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s 1s;
         @include laptopSmall{
-          display: block;
           width: 100%;
           height: auto;
+          visibility: visible;
+          opacity: 1;
         }
         .text-1{
           margin-top: min(10vw,20px);
@@ -143,6 +149,7 @@
       gap: 1vw;
       .content-1__title{
         .title{
+          transition: all 1s;
           font-size: clamp(5rem,6vw,12rem);
         }
         .title-hidden{
@@ -150,7 +157,9 @@
         }
       }
       .content-1__text{
-        display: flex;
+        width: 50%;
+        opacity: 1;
+        visibility: visible;
       }
     }
     .content-1.noActive{
@@ -165,7 +174,10 @@
         }
       }
       .content-1__text{
-        display: none;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
       }
     }
     .content-2{
@@ -186,8 +198,9 @@
       .content-2__title{
         font-family: "GmarketSans";
         .title{
-          white-space: nowrap;
+          transition: all 1s;
           font-size: clamp($font-size-l,2.5vw,5rem);
+          white-space: nowrap;
         }
         .title-hidden{
           font-size: clamp($font-size-m,2vw,4rem);
@@ -195,15 +208,20 @@
         }
       }
       .content-2__text{
-        display: none;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
-        width: 50%;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s 1s;
         @include laptopSmall{
-          display: block;
           width: 100%;
           height: auto;
+          visibility: visible;
+          opacity: 1;
         }
         .text-2{
           margin-top: min(10vw,20px);
@@ -238,6 +256,7 @@
       justify-content: space-between;
       .content-2__title{
         .title{
+          transition: all 1s;
           font-size: clamp(5rem,6vw,12rem);
         }
         .title-hidden{
@@ -245,7 +264,9 @@
         }
       }
       .content-2__text{
-        display: flex;
+        width: 50%;
+        opacity: 1;
+        visibility: visible;
       }
     }
     .content-2.noActive{
@@ -260,7 +281,10 @@
         }
       }
       .content-2__text{
-        display: none;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
       }
     }
     .content-3{
@@ -281,23 +305,29 @@
       .content-3__title{
         font-family: "GmarketSans";
         .title{
-          white-space: nowrap;
+          transition: all 1s;
           font-size: clamp($font-size-l,2.5vw,5rem);
+          white-space: nowrap;
         }
         .title-hidden{
           font-size: clamp($font-size-m,2vw,4rem);
         }
       }
       .content-3__text{
-        display: none;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
-        width: 50%;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s 1s;
         @include laptopSmall{
-          display: block;
           width: 100%;
           height: auto;
+          visibility: visible;
+          opacity: 1;
         }
         .text-3{
           margin-top: min(10vw,20px);
@@ -339,7 +369,9 @@
         }
       }
       .content-3__text{
-        display: flex;
+        width: 50%;
+        opacity: 1;
+        visibility: visible;
       }
     }
     .content-3.noActive{
@@ -354,7 +386,10 @@
         }
       }
       .content-3__text{
-        display: none;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
       }
     }
   }

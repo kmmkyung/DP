@@ -36,27 +36,45 @@ window.addEventListener('DOMContentLoaded',function(){
     observer: true,
     scrollingSpeed: 600,
     keyboardScrolling: true,
+    responsiveWidth:990,
   })
 
-  const sec2Content = document.querySelectorAll('.section2 .content') //3개의 요소
-  sec2Content.forEach(function(ele,idx){
-    ele.addEventListener('mouseenter',function(event){
-      event.target.classList.add('active') // 타겟인 요소는 class active부착
-      if(event.target !== ele){ // 타겟이 아닌 요소는 noActive 부착
-        ele.classList.add('noActive')
-      }
-    })
-  })
+  let timer;
+  let sec2Content = document.querySelectorAll('.section2 .content')
+  window.addEventListener("load", section2Fn);
+  window.addEventListener("resize", function(){
+    clearTimeout(timer)
+    timer = setTimeout(section2Fn,200)
+  });
+  
+  function section2Fn(){
+    if(window.innerWidth>990){
+      sec2Content.forEach(function(ele){
+        ele.addEventListener('mouseenter',section2FnEnter)
+        ele.addEventListener('mouseleave',section2FnLeave)
+      })
+    }
+    else{
+      sec2Content.forEach(function(ele){
+        ele.classList.remove('active')
+        ele.classList.remove('noActive')
+        ele.removeEventListener('mouseenter',section2FnEnter)
+        ele.removeEventListener('mouseleave',section2FnLeave)
+      })
+    }
+  }
 
-  classList.contain
-    // function mouseEvent(ele,num){
-    //   ele.addEventListener('mouseenter',function(event){
-    //     event.target.classList.add('active')
+  function section2FnEnter(event){
+    event.target.classList.add('active')
+    let noActive = document.querySelectorAll('.content[class]:not(.active)')
+    noActive.forEach(ele => ele.classList.add('noActive'))
+  }
+  function section2FnLeave(event){
+    event.target.classList.remove('active')
+    let noActive = document.querySelectorAll('.content[class]:not(.active)')
+    noActive.forEach(ele => ele.classList.remove('noActive'))
+  }
 
-    //   })
-    //   ele.addEventListener('mouseleave',function(event){
-    //     event.target.classList.remove('active')
-    //   })
-    // }
+
 
 })
