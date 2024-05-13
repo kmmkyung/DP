@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded',function(){
     spaceBetween: 10, 
     allowTouchMove: true,
     thumbs: {
-      swiper: section7Swiper2,
+      swiper: section6Swiper2,
     },
   });
 

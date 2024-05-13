@@ -430,6 +430,7 @@
             margin: 0 40px;
             @include tablet{
               visibility: hidden;
+              margin: auto;
             }
           }
           input{

@@ -432,6 +432,7 @@
 @media screen and (max-width: 768px) {
   .section4 .section4-wrap .section4-content .content-list .list-item .item-line {
     visibility: hidden;
+    margin: auto;
   }
 }
 .section4 .section4-wrap .section4-content .content-list .list-item input {
