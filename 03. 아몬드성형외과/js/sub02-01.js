@@ -1,11 +1,40 @@
 window.addEventListener('DOMContentLoaded',function(){
+  // all
+    $('#fullpage').fullpage({
+      licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE', 
+      showActiveTooltip: false,
+      scrollHorizontally: true,
+      autoScrolling:true,
+      fitToSection: true,
+      fitToSectionDelay: 600,
+      observer: true,
+      scrollingSpeed: 600,
+      keyboardScrolling: true,
+      responsiveWidth:990,
+    })
+
+    let ioOption = {
+      threshold: 1
+    }
+    let io = new IntersectionObserver(function(entries){
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('active')
+        }
+      },ioOption)
+    })
+
+    const entry = document.querySelectorAll('.entry')
+    entry.forEach (ele => io.observe(ele))  
+  
+
   // section3- twenty
   $(function(){
     $(".item-twenty").twentytwenty({
-      default_offset_pct: 0.7, // How much of the before image is visible when the page loads
-      no_overlay: true, //Do not show the overlay with before and after
-      move_slider_on_hover: true, // Move slider on mouse hover?
-      move_with_handle_only: true, // Allow a user to swipe anywhere on the image to control slider movement. 
+      default_offset_pct: 0.7,
+      no_overlay: true, 
+      move_slider_on_hover: true,
+      move_with_handle_only: true,
       click_to_move: false
     });
   });
