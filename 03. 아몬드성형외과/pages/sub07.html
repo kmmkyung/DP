@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>민경</title>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script> 
+  <!-- bootstrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- fullPage.js -->
+  <link rel="stylesheet" type="text/css" href="../plugin/css/jquery.fullPage.css">
+  <script type="text/javascript" src="../plugin/jquery.fullPage.js"></script>
+  <!-- typed.js -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- twenty -->
+  <script src="../plugin/jquery.event.move.js" type="text/javascript"></script>
+  <script src="../plugin/jquery.twentytwenty.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../plugin/css/twentytwenty.css" type="text/css" media="screen" />
+  <!-- css -->
+  <link rel="stylesheet" href="../assets/scss/layout/common.css">
+  <!-- <link rel="stylesheet" href="../assets/scss/page/sub02-01.css"> -->
+  <!-- js -->
+  <script src="../js/common.js"></script>
+  <!-- <script src="../js/sub02-01.js"></script> -->
+</head>
+<body>
+  <!-- 헤더 -->
+  <header id="header" class="header">
+    <div class="header-wrap">
+      <div class="logo">
+        <h1>아몬드성형외과</h1>
+        <a class="logo-sub" href="#">
+          <img src="../assets/images/base/logo-subPage.png" alt="logo">
+        </a>
+      </div>
+      <div class="menu">
+        <i class="bi bi-list"></i>
+        <span>MENU</span>
+      </div>
+    </div>
+  </header>
+  <!-- 메뉴 -->
+  <div class="menuAll">
+    <div class="menuAll-wrap"> 
+      <!-- logo & close -->
+      <div class="menuAll-button">
+        <div class="menuAll-logo">
+          <a href="#"><img src="../assets/images/base/logo-pc-W.gif" alt="logo"></a>
+        </div>
+        <div class="menuAll-close">
+          <i class="bi bi-x-lg"></i>
+        </div>
+      </div>
+      <!-- 메뉴리스트 -->
+      <div class="menuAll-menu">
+        <ul class="menu-list">
+          <li class="list-item">
+            <h6>병원소개</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">아몬드소개</a></li>
+                <li class="list-item"><a href="#">의료진소개</a></li>
+                <li class="list-item"><a href="#">시설</a></li>
+                <li class="list-item"><a href="#">진료시간 & 위치</a></li>
+                <li class="list-item"><a href="#">시스템</a></li>
+                <li class="list-item"><a href="#">공지</a></li>
+                <li class="list-item"><a href="#">언론보도</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>특화수술</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">톡톡 순간유착</a></li>
+                <li class="list-item"><a href="#">자연유착</a></li>
+                <li class="list-item"><a href="#">라이너 트임</a></li>
+                <li class="list-item"><a href="#">자연절개</a></li>
+                <li class="list-item"><a href="#">눈재수술</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>눈수술</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">톡톡 순간유착</a></li>
+                <li class="list-item"><a href="#">자연유착</a></li>
+                <li class="list-item"><a href="#">자연절개</a></li>
+                <li class="list-item"><a href="#">눈매교정</a></li>
+                <li class="list-item"><a href="#">눈재수술</a></li>
+                <li class="list-item"><a href="#">남자눈성형</a></li>
+                <li class="list-item"><a href="#">눈밑지방재배치</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>트임성형</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">라이너 트임</a></li>
+                <li class="list-item"><a href="#">앞/윗트임</a></li>
+                <li class="list-item"><a href="#">트임복원</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>중년눈성형</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">상안검</a></li>
+                <li class="list-item"><a href="#">하안검</a></li>
+                <li class="list-item"><a href="#">눈썹하거상술</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>얼굴라인</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">얼굴지방이식</a></li>
+                <li class="list-item"><a href="#">실리프팅</a></li>
+                <li class="list-item"><a href="#">애플윤곽술</a></li>
+                <li class="list-item"><a href="#">VS랩주사</a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>쁘띠</h6>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#"></a></li>
+              </ol>
+            </div>
+          </li>
+          <li class="list-item">
+            <h6>후기 & 이벤트 & 상담</h6>
+            <div class="menu-line"></div>
+            <div class="subMenu-wrap">
+              <ol class="subMenu-list">
+                <li class="list-item"><a href="#">전후사진</a></li>
+                <li class="list-item"><a href="#">리얼후기</a></li>
+                <li class="list-item"><a href="#">리얼스토리</a></li>
+                <li class="list-item"><a href="#">온라인상담</a></li>
+                <li class="list-item"><a href="#">모델지원</a></li>
+                <li class="list-item"><a href="#">자주하는질문</a></li>
+                <li class="list-item"><a href="#">이벤트</a></li>
+              </ol>
+            </div>
+          </li>
+        </ul>
+        <ol class="text-list">
+          <li class="list-item">
+            <span class="list-item__text">나에게 어울리는<br>자연스러움을 창조합니다.</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">아몬드성형외과 만의<br>특화된 기술로 수술합니다.</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">나에게 알맞은<br>눈성형으로 빛나는 눈매 완성</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">답답한 눈매를<br>시원하고 또렷하게</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">세월의 흔적을<br>아몬드에서 지울 수 있습니다.</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">보다 균일하고<br>보다 매끄러운 라인을 위해</span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text"></span>
+          </li>
+          <li class="list-item">
+            <span class="list-item__text">모든 고객에게<br>최상의 서비스를 제공합니다.</span>
+          </li>
+        </ol>
+      </div>
+      <!-- 메뉴아이콘 -->
+      <div class="menuAll-icon">
+        <ul class="icon-list">
+          <li class="list-item"><i class="bi bi-lock-fill"></i></li>
+          <li class="list-item">
+            <img class="item-blog__w" src="../assets/images/icon/blog.png" alt="icon">
+            <img class="item-blog__p" src="../assets/images/icon/blog-purple.png" alt="icon">
+          </li>
+          <li class="list-item"><i class="bi bi-youtube"></i></li>
+          <li class="list-item"><i class="bi bi-instagram"></i></li>
+          <li class="list-item"><i class="bi bi-facebook"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- 하단 고정바 -->
+  <aside class="aside-bottom">
+    <div class="aside-wrap">
+      <div class="aside-arrow">
+        <img src="../assets/images/icon/arrow.png" alt="arrow">
+      </div>
+      <div class="aside-icons">
+        <i class="bi bi-x-lg aside-close"></i>
+        <ul class="icons-list">
+          <li class="list-item"><a href="#"><img src="../assets/images/icon/camera.png" alt="전후사진"><span>전후사진</span></a></li>
+          <li class="list-item"><a href="#"><img src="../assets/images/icon/youtube.png" alt="아몬드TV"><span>아몬드TV</span></a></li>
+          <li class="list-item"><a href="#"><img src="../assets/images/icon/blog.png" alt="아이줌연구소"><span>아이줌연구소</span></a></li>
+        </ul>
+      </div>
+      <div class="aside-callImg">
+        <div class="callImg-text">
+          <p>의사보다 내가 더 만족하는 아몬드</p>
+          <span>02. 541. 5900</span>
+        </div>
+        <div class="callImg-img">
+          <img src="../assets/images/base/menu-bottom-1.jpg" alt="">
+          <img src="../assets/images/base/menu-bottom-1.jpg" alt="">
+          <img src="../assets/images/base/menu-bottom-1.jpg" alt="">
+          <span>MORE</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- 우측 고정 아이콘 -->
+  <aside class="aside-right">
+    <ul class="right-list">
+      <li class="list-item list-item__kakao">
+        <a href="#"><span>카카오톡 상담</span><img src="../assets/images/icon/kakao.png" alt="kakao"></a>
+      </li>
+      <li class="list-item list-item__pencil">
+        <a href="#"><span>온라인 상담</span><img src="../assets/images/icon/pencil.png" alt="pencil"></a>
+      </li>
+    </ul>
+  </aside>
+  <!-- 본문시작 -->
+  <main class="main" id="fullpage">
+    <section class="section section1">
+      <div class="section1-wrap">
+        <div class="section1-subTitle entry">
+          <p class="section1-subTitle__1">비교적 부담 없는 <b>간단한 시술</b>로</p>
+          <P class="section1-subTitle__2"><b>고민 부위</b>를</P>
+          <P class="section1-subTitle__3">효과적으로 <b>개선</b>하고 싶다면</P>
+        </div>
+        <div class="section1-title entry">
+          <h2 class="section1-title__1">AMOND</h2>
+          <h2 class="section1-title__2">쁘띠</h2>
+        </div>
+      </div>
+    </section>
+    <!-- 수면슈링크 -->
+    <section class="section section2">
+      <div class="section2-wrap">
+        <div class="section2-navigation">
+          <ol class="nav-list">
+            <li class="list-item"><a href="#">수면슈링크</a></li>
+            <li class="list-item"><a href="#">울쎄라</a></li>
+            <li class="list-item"><a href="#">리쥬란힐러</a></li>
+            <li class="list-item"><a href="#">리프테라</a></li>
+          </ol>
+        </div>
+        <div class="section2-title entry">
+          <h6 class="section2-title__1">통증 걱정 줄인 강력한</h6>
+          <h6 class="section2-title__2">리프팅&탄력 솔루션</h6>
+          <h6 class="section2-title__3"><b>수면슈링크</b></h6>
+          <p class="section2-title__4">슈링크는 피부 속 깊은 진피층과 섬유 근막층(SMAS)에 고강도 초음파(HIFU)를 침투시켜 열 응고점을 만들고, 그 중심으로 콜라겐 섬유 재생을 유도해 늘어진 피부 조직을 수축시키고 당겨주는 효과적인 초음파 리프팅 시술로, 아몬드성형외과에서는 통증에 예민해 피부 시술이 부담스러운 환자분들을 위한 수면슈링크를 별도로 진행하여 통증 걱정을 확 줄임으로써 슈링크 리프팅의 만족도를 한층 더 높였습니다.
+          </p>
+        </div>
+        <div class="section2-information entry">
+          <b class="information-title">Information</b>
+          <ol class="information-list">
+            <li class="list-item item-1">
+              <b>수술시간</b>
+              <p>30분 내외</p>
+            </li>
+            <li class="list-item item-2">
+              <b>마취방법</b>
+              <p>수면/연고</p>
+            </li>
+            <li class="list-item item-3">
+              <b>멍/부기</b>
+              <p>거의 없음</p>
+            </li>
+            <li class="list-item item-4">
+              <b>회복기간</b>
+              <p>시술 당일부터<br>일상생활 가능</p>
+            </li>
+            <li class="list-item item-5">
+              <b>흉터</b>
+              <p>없음</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="section section3">
+      <div class="section3-wrap">
+        <div class="section3-content entry">
+          <div class="content-text">
+            <i class="text-subTitle">나에게 해당된다면 Check it!</i>
+            <p class="text-title">수면슈링크가 <span class="content-text__color">필요한 경우</span></p>
+          </div>
+          <ol class="content-list">
+            <li class="list-item item-1">
+              <span class="item-number">01.</span>
+              <p class="item-text">피부 탄력이 떨어지는 게 걱정이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-2">
+              <span class="item-number">02.</span>
+              <p class="item-text">피부가 늘어지고 점점 처지는 게 고민이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-3">
+              <span class="item-number">03.</span>
+              <p class="item-text">잔주름이 많아져 고민이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-4">
+              <span class="item-number">04.</span>
+              <p class="item-text">피부 당김 효과를 경험하고 싶으신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-5">
+              <span class="item-number">05.</span>
+              <p class="item-text">절개를 통한 리프팅이 부담이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-6">
+              <span class="item-number">06.</span>
+              <p class="item-text">회복기간이 필요한 리프팅이 부담이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-7">
+              <span class="item-number">07.</span>
+              <p class="item-text">평소 통증에 예민해 피부시술이 어려웠던 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-8">
+              <span class="item-number">08.</span>
+              <p class="item-text">날렵한 턱선을 원하시는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+          </ol>
+          <button class="content-button">결과 확인하기!</button>
+        </div>
+      </div>
+    </section>
+    <section class="section section4">
+      <div class="section4-wrap">
+        <h6 class="section4-title">
+          빛나던 나를 되찾는 <b>피부 힐링 솔루션,</b><br>깊이감 있는 아름다움을 끌어 올리다.
+        </h6>
+        <div class="section4-content">
+          <img src="../assets/images/sub/07/1-1.gif" alt="수면슈링크">
+        </div>
+      </div>
+    </section>
+    <section class="section section5">
+      <div class="section5-wrap">
+        <div class="section5-container entry">
+          <h2 class="section5-title">아몬드 수면슈링크</h2>
+          <i>Check Point</i>
+          <div class="section5-swiper">
+            <ol class="swiper-pagination">
+              <li>Point 01</li>
+              <li>Point 02</li>
+              <li>Point 03</li>
+            </ol>
+            <ol class="swiper-list swiper-wrapper">
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">통증 걱정 없는 수면슈링크</h6>
+                <p class="item-text">
+                  큰 통증은 시술에 어려움을 더해 환자와 의사 모두에게 부담이 될 수 있기 때문에 아몬드성형외과에서는 통증에 예민해 피부 시술이 어려운 환자분들을
+                  위한 수면슈링크를 진행하여 통증 걱정 없이 편안하게 시술을 받으실 수 있도록 도와드리고 있으며, 잠을 자는 동안 고강도의 강력한 초음파 에너지를
+                  피부층별로 세밀하게 조사하여 통증 없이 강력한 리프팅 효과를 선사해 드리고 있습니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">정확한 주기의 팁 교체와 정품 팁 사용</h6>
+                <p class="item-text">
+                  정확한 주기에 팁을 교체하지 않거나 정품이 아닌 팁 혹은 재생 팁을 사용할 경우에는 원하는 효과를 기대하기 어려울 뿐만 아니라 물집이나 화상 등의
+                  부작용을 야기할 수 있습니다. 아몬드성형외과에서는 슈링크 리프팅 시술에 있어 정품이 아닌 팁이나 재생 팁을 일체 사용하지 않고 항상 정확한 주기에
+                  정품 팁을 교체해 사용하기 때문에 안전하게 시술을 받으실 수 있으며, 피부의 두께와 부위별로 다양한 종류의 정품 팁을 사용하여 리프팅 효과는 극대화하고
+                  부작용은 최소화하였습니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">1:1 맞춤 디자인 설계 및 시술</h6>
+                <p class="item-text">
+                  아몬드성형외과에서는 풍부한 시술 경험과 미적감각을 가진 성형외과 전문의가 개인별 얼굴 지방의 양, 피부상태, 골격, 연령대, 피부 탄력 정도 등 다양한
+                  요소를 꼼꼼하고 정확하게 분석하여 개개인의 윤곽과 니즈에 맞는 가장 이상적인 1:1 맞춤 디자인을 설계 및 시술하기 때문에 강력한 페이스 리프팅과
+                  더불어 탄력 개선, 주름 완화, 이중턱 제거, 피부 톤업 등의 효과를 동시에 볼 수 있습니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 울쎄라 -->
+    <section class="section section6">
+      <div class="section2-wrap">
+        <div class="section2-navigation">
+          <ol class="nav-list">
+            <li class="list-item"><a href="#">수면슈링크</a></li>
+            <li class="list-item"><a href="#">울쎄라</a></li>
+            <li class="list-item"><a href="#">리쥬란힐러</a></li>
+            <li class="list-item"><a href="#">리프테라</a></li>
+          </ol>
+        </div>
+        <div class="section2-title entry">
+          <h6 class="section2-title__1">피부를 원하는 대로 정교하게 디자인할 수 있는</h6>
+          <h6 class="section2-title__2">세계 최초 미국 FDA 인증 리프팅</h6>
+          <h6 class="section2-title__3"><b>울쎄라</b></h6>
+          <p class="section2-title__4">울쎄라는 세계 최초 미국 FDA승인을 받은 안정성 높은 리프팅 장비로, 초음파 영상 모니터를 통해 의료진이 피부층을 직접 보면서
+            표피 및 진피 뿐만 아니라 타 레이저로는 접근하기 어려운 근막(SMAS)층까지 균일한 열에너지를 피부 타겟층에 집속할 수 있는
+            고강도 초음파 리프팅 장비입니다. 울쎄라로 조사하는 고강도 초음파 에너지는 SMAS층에 열 응고 부위를 만들어 피부의 자연적인 회복을 유도하며,
+            주름과 탄력 저하 등 노화의 근본 원인을 치료합니다.
+          </p>
+        </div>
+        <div class="section2-information entry">
+          <b class="information-title">Information</b>
+          <ol class="information-list">
+            <li class="list-item item-1">
+              <b>수술시간</b>
+              <p>30분 내외</p>
+            </li>
+            <li class="list-item item-2">
+              <b>마취방법</b>
+              <p>수면/연고</p>
+            </li>
+            <li class="list-item item-3">
+              <b>멍/부기</b>
+              <p>거의 없음</p>
+            </li>
+            <li class="list-item item-4">
+              <b>회복기간</b>
+              <p>시술 당일부터<br>일상생활 가능</p>
+            </li>
+            <li class="list-item item-5">
+              <b>흉터</b>
+              <p>없음</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="section section7">
+      <div class="section3-wrap">
+        <div class="section3-content entry">
+          <div class="content-text">
+            <i class="text-subTitle">나에게 해당된다면 Check it!</i>
+            <p class="text-title">울쎄라가 <span class="content-text__color">필요한 경우</span></p>
+          </div>
+          <ol class="content-list">
+            <li class="list-item item-1">
+              <span class="item-number">01.</span>
+              <p class="item-text">전반적인 얼굴 주름 개선을 원하시는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-2">
+              <span class="item-number">02.</span>
+              <p class="item-text">처진 턱살로 얼굴이 전체적으로 처져 보이거나 턱과 목의 경계가 불분명한 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-3">
+              <span class="item-number">03.</span>
+              <p class="item-text">피부에 탄력이 없어 고민인 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-4">
+              <span class="item-number">04.</span>
+              <p class="item-text">볼이 처져서 팔자주름이 두드러져 보이는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-5">
+              <span class="item-number">05.</span>
+              <p class="item-text">유지기간이 긴 리프팅을 찾고 계신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-6">
+              <span class="item-number">06.</span>
+              <p class="item-text">얇은 눈꺼풀로 잔주름이 많아 고민이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-7">
+              <span class="item-number">07.</span>
+              <p class="item-text">절개를 통한 리프팅이 부담이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+          </ol>
+          <button class="content-button">결과 확인하기!</button>
+        </div>
+      </div>
+    </section>
+    <section class="section section8">
+      <div class="section8-wrap">
+        <div class="section8-text">
+          <p class="text-subTitle">강력한 리프팅에는 피부 손상이 반드시 따른다?</p>
+          <h6 class="text-title">
+            피부 속 목표치를 집중 전달로
+            <span>극손상을 줄인 리프팅!</span>
+          </h6>
+        </div>
+        <div class="section8-content">
+          <img src="../assets/images/sub/07/2-1.png" alt="울쎄라">
+        </div>
+      </div>
+    </section>
+    <section class="section section9">
+      <div class="section9-wrap">
+        <h6 class="section9-title">
+          빛나던 나를 되찾는 <b>피부 힐링 솔루션,</b><br>깊이감 있는 아름다움을 끌어 올리다.
+        </h6>
+        <div class="section9-content">
+          <img src="../assets/images/sub/07/2-2.gif" alt="울쎄라">
+        </div>
+      </div>
+    </section>
+    <section class="section section10">
+      <div class="section5-wrap">
+        <div class="section5-container entry">
+          <h2 class="section5-title">아몬드 울쎄라</h2>
+          <i>Check Point</i>
+          <div class="section5-swiper">
+            <ol class="swiper-pagination">
+              <li>Point 01</li>
+              <li>Point 02</li>
+              <li>Point 03</li>
+            </ol>
+            <ol class="swiper-list swiper-wrapper">
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">개인 마다 다른 피부 구조에 맞는 맞춤형 시술 진행</h6>
+                <p class="item-text">
+                  같은 부위라도 피부의 타입이나 처짐 정도, 근육의 방향 등에 따라 시술 방법이 달라야 하기 때문에 정확한 진단 후 개인의 피부 상태에 맞는 맞춤형 울쎄라 시술을 진행하는 것이 중요합니다. 아몬드성형외과에서는 풍부한 시술 경험 및 노하우를 가진 성형외과 전문의가 울쎄라의 특허 받은 초음파 영상 기술로 환자의 피부 깊이 및 구조를 실시간으로 직접 보면서 피부의 탄력도 및 잔주름과 관련이 있는 표피, 진피 뿐만 아니라 피부 처짐의 원인이 되나 다른 레이저 장비로는 접근하기 어려운 깊은 근막층까지 균일한 열에너지를 효과적으로 조사할 수 있으며, 개인 마다 다른 부위별 피부 두께를 초음파로 꼼꼼하게 확인하면서 적절한 시술 깊이 및 방향, 강도, 샷수 등을 섬세하게 조정하며 조사하기 때문에 보다 안전하고 효과적으로 시술할 수 있습니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">다양한 정품 울쎄라 인증 방법을 통한 시술 신뢰도 상승</h6>
+                <p class="item-text">
+                  정확한 주기에 팁을 교체하지 않거나 정품이 아닌 팁 혹은 재생 팁을 사용할 경우에는 원하는 효과를 기대하기 어려울 뿐만 아니라 부작용을 야기할 수 있습니다.아몬드성형외과에서는 울쎄라 리프팅 시술에 있어 정품이 아닌 팁이나 재생 팁을 일체 사용하지 않고 항상 정확한 주기에 정품 팁을 교체해 사용하기 때문에 안전하게 시술을 받으실 수 있습니다. 또한, 정품 울쎄라는 시술 후 로그파일이 기록되는데, 이 로그파일에는 울쎄라 정품 장비와 시술에 사용한 핸드피스의 시리얼 넘버가 기록되기 때문에 정품 팁을 사용하여 시술 전 계획했던 만큼의 샷수가 정확히 들어갔는지 육안으로 확인이 가능하며, 정품 팁을 사용하여 울쎄라 시술을 받은 경우, 시술 후 정품 인증 스티커를 제공하기 때문에 스티커에 기재된 인증번호 또는 QR코드를 통해 정품 팁 인증을 받을 수 있어 시술에 대한 신뢰도를 더욱 높일 수 있습니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">강력한 리프팅 효과와 독보적인 유지기간</h6>
+                <p class="item-text">
+                  울쎄라 리프팅은 기존의 레이저 리프팅으로는 개선이 어려워 안면거상술로만 개선이 가능했던 부위까지 비수술적인 방법으로 타이트닝이 가능하며, 피부를 중력 반대 방향으로 서서히 당겨주는 정밀한 시술로 탄력 증가와 리프팅 효과가 점진적으로 나타나 시술 만족도와 리프팅 효과가 뛰어나며, 유지기간이 비교적 짧은 다른 레이저 리프팅에 비해 한번 시술을 받으면 일반적으로 약 1년 이상 효과가 유지될 수 있다는 독보적인 장점이 있습니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section11">
+      <div class="section11-wrap">
+        <div class="section11-text">
+          <p class="text-subTitle">강력한 리프팅에는 피부 손상이 반드시 따른다?</p>
+          <h6 class="text-title">울쎄라 자문의<br><span>박동권원장님 직접시술</span></h6>
+          <p class="text-text">
+            아몬드성형외과는 안전성과 효과를 인정받은 울쎄라 정품 장비와 정품 팁을 사용하며
+            울쎄라 자문의 박동권 원장님이 직접 상담과 직접 시술을 진행하기 때문에
+            효과에 대한 신뢰를 드릴 수 있습니다.
+          </p>
+        </div>
+        <div class="section11-content">
+          <img src="../assets/images/sub/07/2-3-1.png" alt="울쎄라">
+          <img src="../assets/images/sub/07/2-3-2.png" alt="울쎄라">
+        </div>
+      </div>
+    </section>
+    <section class="section section12">
+      <div class="section12-wrap">
+        <div class="section12-content1">
+          <h6>울쎄라 정품, 정샷 확인 <b>투명시술제도</b></h6>
+          <p>비정품 장비 & 팁으로 규정되지 않은 방식의 시술로 미비한 효과와 부작용의 우려가 있기 때문에 반드시 정품, 정샷을 사용하는 병원에서 시술하기를 권장하며 아몬드는 울쎄라 화면을 통해 정품장비와 팁으로 샷수를 시술하게 되는 투명한 시술과정과 결과를 확인 하실 수 있습니다.</p>
+          <div class="content1-img">
+            <img src="../assets/images/sub/07/2-4-1.png" alt="울쎄라 투명시술제도">
+          </div>
+        </div>
+        <div class="section12-content2">
+          <h6>시술 후 병원에서 울쎄라<br>정품인증번호 스티커가 부착된<br><b>정품인증서 발급 받기</b></h6>
+          <p>홀로그램 스티커로 울쎄라 정품팁 사용을 확인하세요! 홀로그램 스티커를 한 번 더 떼어내시면 포인트 적립할 수 있는 큐알코드가 나옵니다.</p>
+          <div class="content2-img">
+            <img src="../assets/images/sub/07/2-4-2.png" alt="울쎄라 정품인증서">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section13">
+      <div class="section13-wrap1">
+        <div class="section13-content">
+          <h6 class="content-title"><span>언제나 연구하고 발전</span>하는 아몬드</h6>
+          <ul class="content-list">
+            <li><img src="../assets/images/sub/07/2-5-1.jpg" alt="성형학회"></li>
+            <li><img src="../assets/images/sub/07/2-5-2.jpg" alt="성형학회"></li>
+            <li><img src="../assets/images/sub/07/2-5-3.jpg" alt="성형학회"></li>
+            <li><img src="../assets/images/sub/07/2-5-4.jpg" alt="성형학회"></li>
+          </ul>
+        </div>
+        <div class="section13-wrap2">
+          <p class="section13-text">
+            아몬드성형외과 의료진은 현재의 뛰어남에 만족하지 않고 늘 발전하기 위해 노력하고 있습니다.<br>
+            여러 성형학회에 교류하고 참여하며 최신지견을 넓히고 수술 / 시술 기술에 있어<br>
+            누구보다 앞서가기 위해 끊임없이 연구하여 최상의 결과를 만들고 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 리쥬란힐러 -->
+    <section class="section section14">
+      <div class="section14-wrap">
+        <div class="section14-navigation">
+          <ol class="nav-list">
+            <li class="list-item"><a href="#">수면슈링크</a></li>
+            <li class="list-item"><a href="#">울쎄라</a></li>
+            <li class="list-item"><a href="#">리쥬란힐러</a></li>
+            <li class="list-item"><a href="#">리프테라</a></li>
+          </ol>
+        </div>
+        <div class="section14-title entry">
+          <h6 class="section14-title__1">손상되고 지친 피부를 다시 건강하고 생기있게 되돌려주는</h6>
+          <h6 class="section14-title__2">명품 피부 힐링 솔루션</h6>
+          <h6 class="section14-title__3"><b>리쥬란힐러</b></h6>
+          <p class="section14-title__4">리쥬란힐러는 인체 적합성이 높다고 알려진 연어에서 추출한 생체 복합 물질을 피부 속 깊숙이 전달시켜 피부의 재생능력을 활성화하는데
+            도움을 주는 시술로, 손상된 피부 조직을 보완하여 잃어버린 피부건강을 다시 되찾을 수 있도록 돕는 명품 피부 힐링 솔루션입니다.
+          </p>
+        </div>
+        <div class="section14-information entry">
+          <b class="information-title">Information</b>
+          <ol class="information-list">
+            <li class="list-item item-1">
+              <b>수술시간</b>
+              <p>30분 내외</p>
+            </li>
+            <li class="list-item item-2">
+              <b>마취방법</b>
+              <p>수면/연고</p>
+            </li>
+            <li class="list-item item-3">
+              <b>멍/부기</b>
+              <p>거의 없음</p>
+            </li>
+            <li class="list-item item-4">
+              <b>회복기간</b>
+              <p>시술 당일부터<br>일상생활 가능</p>
+            </li>
+            <li class="list-item item-5">
+              <b>흉터</b>
+              <p>없음</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="section section15">
+      <div class="section3-wrap">
+        <div class="section3-content entry">
+          <div class="content-text">
+            <i class="text-subTitle">나에게 해당된다면 Check it!</i>
+            <p class="text-title">리쥬란힐러 <span class="content-text__color">필요한 경우</span></p>
+          </div>
+          <ol class="content-list">
+            <li class="list-item item-1">
+              <span class="item-number">01.</span>
+              <p class="item-text">노화, 자외선 등으로 인해 손상된 피부를 개선하고 싶은 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-2">
+              <span class="item-number">02.</span>
+              <p class="item-text">피부가 푸석푸석하고 거친 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-3">
+              <span class="item-number">03.</span>
+              <p class="item-text">피부가 얇고 힘이 없는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-4">
+              <span class="item-number">04.</span>
+              <p class="item-text">피지감소와 모공축소를 원하시는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-5">
+              <span class="item-number">05.</span>
+              <p class="item-text">잔주름과 짙은 팔자주름이 고민인 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-6">
+              <span class="item-number">06.</span>
+              <p class="item-text">전체적으로 피부를 개선해 동안피부가 되고 싶은 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+          </ol>
+          <button class="content-button">결과 확인하기!</button>
+        </div>
+      </div>
+    </section>
+    <section class="section section16">
+      <div class="section16-wrap">
+        <h6 class="section16-title">
+          빛나던 나를 되찾는 <b>피부 힐링 솔루션,</b><br>깊이감 있는 아름다움을 끌어 올리다.
+        </h6>
+        <div class="section16-content">
+          <img src="../assets/images/sub/07/3-1.gif" alt="리쥬란힐러">
+        </div>
+      </div>
+    </section>
+    <section class="section section17">
+      <div class="section17-wrap">
+        <div class="section17-text">
+          <p class="section17-subTitle">
+            눈으로 직접 보고 느끼는 차이,
+          </p>
+          <h6 class="section17-title">
+            피부를 복원하다!
+          </h6>
+        </div>
+        <div class="section17-content">
+          <div class="content-1">
+            <p>탄력 강화</p>
+            <img src="../assets/images/sub/07/3-2-1.jpg" alt="탄력강화">
+          </div>
+          <div class="content-2">
+            <p>수분 강화</p>
+            <img src="../assets/images/sub/07/3-2-2.jpg" alt="수분강화">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section18">
+      <div class="section5-wrap">
+        <div class="section5-container entry">
+          <h2 class="section5-title">아몬드 리쥬란힐러</h2>
+          <i>Check Point</i>
+          <div class="section5-swiper">
+            <ol class="swiper-pagination">
+              <li>Point 01</li>
+              <li>Point 02</li>
+              <li>Point 03</li>
+            </ol>
+            <ol class="swiper-list swiper-wrapper">
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">피부 속부터 근본적으로 개선하여 피부를 건강하게</h6>
+                <p class="item-text">
+                  리쥬란힐러는 회복 기능이 뛰어난 생체 복합 물질을 피부 속 진피층에 직접 전달하는 시술로, 피부 속부터 탄력 세포와 수분을 촘촘하게 채워 주름과 모공,여드름 흉터, 피부톤 등을 개선하고 피부의 유수분 밸런스를 맞춰 노화, 자외선, 피부 자극 등으로부터 피부를 건강하게 되돌릴 수 있도록 근본적인 도움을 줍니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">손상된 피부를 복원 및 재생</h6>
+                <p class="item-text">
+                  리쥬란힐러는 레이저 시술이 어려운 민감하고 예민한 피부에도 시술이 가능한 안전하고 효과적인 성분으로 이루어져 있으며, 리쥬란힐러의 주성분은인체 염기조성과 가장 유사한 연어에서 추출한 생체 적합 물질인 PN(Polynucleotide)으로, 회복 작용에 큰 효과가 있어 손상된 세포를 재생시킴으로써피부치유능력을 활성화시켜 피부 속 생리 환경을 개선하고 피부 구조를 복원하는데 탁월한 역할을 하는 명품 피부 힐링 솔루션입니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">실력 있는 의료진의 섬세한 기술력으로 시술 효과 극대화</h6>
+                <p class="item-text">
+                  리쥬란힐러의 효과를 극대화하기 위해서는 시술이 필요한 부위에 얼마나 촘촘하고 꼼꼼하게 정량을 주사하느냐가 굉장히 중요합니다.아몬드성형외과에서는 풍부한 시술 경험으로 터득한 다양한 노하우와 피부 및 혈관 구조에 대한 깊은 해부학적인 지식을 보유한 실력 있는 성형외과 전문의가환자의 얼굴 및 피부상태, 연령대, 피부 탄력 정도 등 다양한 요소를 꼼꼼하고 정확하게 분석하여 개개인의 얼굴과 피부 타입에 맞는 가장 효과적이고 자연스러운아름다움을 만들 수 있도록 1:1 맞춤 디자인을 설계 및 시술하고 있습니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 리프테라 -->
+    <section class="section section19">
+      <div class="section19-wrap">
+        <div class="section19-navigation">
+          <ol class="nav-list">
+            <li class="list-item"><a href="#">수면슈링크</a></li>
+            <li class="list-item"><a href="#">울쎄라</a></li>
+            <li class="list-item"><a href="#">리쥬란힐러</a></li>
+            <li class="list-item"><a href="#">리프테라</a></li>
+          </ol>
+        </div>
+        <div class="section19-title entry">
+          <h6 class="section19-title__1">듀얼타입 핸드피스로</h6>
+          <h6 class="section19-title__2">얼굴 모든 부위를 촘촘하게<br>풀페이스 리프팅 제공하는 솔루션</h6>
+          <h6 class="section19-title__3"><b>리프테라</b></h6>
+          <p class="section19-title__4">리프테라는 고강도 초음파(HIFU) 에너지를 SMAS(근막층)에 빠르게 조사해 콜라겐 생성을 유도하며, 노화로 인한 피부처짐을 개선하는 리프팅입니다. 펜/라인 타입의 듀얼 어플리케이터와 독창적인 TDT 기술을 활용해 피부 손상 없이 굴곡진 라인까지 놓치지 않은 리프팅 효과를 선사합니다.
+          </p>
+        </div>
+        <div class="section19-information entry">
+          <b class="information-title">Information</b>
+          <ol class="information-list">
+            <li class="list-item item-1">
+              <b>수술시간</b>
+              <p>30분 내외</p>
+            </li>
+            <li class="list-item item-2">
+              <b>마취방법</b>
+              <p>수면/연고</p>
+            </li>
+            <li class="list-item item-3">
+              <b>멍/부기</b>
+              <p>거의 없음</p>
+            </li>
+            <li class="list-item item-4">
+              <b>회복기간</b>
+              <p>시술 당일부터<br>일상생활 가능</p>
+            </li>
+            <li class="list-item item-5">
+              <b>흉터</b>
+              <p>없음</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="section section20">
+      <div class="section3-wrap">
+        <div class="section3-content entry">
+          <div class="content-text">
+            <i class="text-subTitle">나에게 해당된다면 Check it!</i>
+            <p class="text-title">리프테라가 <span class="content-text__color">필요한 경우</span></p>
+          </div>
+          <ol class="content-list">
+            <li class="list-item item-1">
+              <span class="item-number">01.</span>
+              <p class="item-text">늘어지고 처진 얼굴이 고민이신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-2">
+              <span class="item-number">02.</span>
+              <p class="item-text">탄력과 잔주름 개선을 동시에 원하시는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-3">
+              <span class="item-number">03.</span>
+              <p class="item-text">절개나 실을 이용한 리프팅 시술이 부담되는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-4">
+              <span class="item-number">04.</span>
+              <p class="item-text">간편하고 통증이 적은 리프팅 시술을 원하시는 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-5">
+              <span class="item-number">05.</span>
+              <p class="item-text">일상생활에 지장이 없이 V라인을 만들고 싶으신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-6">
+              <span class="item-number">06.</span>
+              <p class="item-text">얼굴에 굴곡이 많아 기존 초음파리프팅 시술로 효과를 많이 못 보신 분</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+            <li class="list-item item-7">
+              <span class="item-number">07.</span>
+              <p class="item-text">눈밑지방재배치, 하안검성형술 이후 남아있는 잔주름을 개선하고 싶을 때</p>
+              <div class="item-line"></div>
+              <input type="checkbox">
+            </li>
+          </ol>
+          <button class="content-button">결과 확인하기!</button>
+        </div>
+      </div>
+    </section>
+    <section class="section section21">
+      <div class="section21-wrap">
+        <div class="section21-text">
+          <p class="text-subTitle">한 번의 시술만으로도 느껴지는 풀 페이스 리프팅 효과</p>
+          <h6 class="text-title">
+            주름 / 탄력 개선 / 리프팅
+            <span>굴곡진 부분까지 놓치지 않는 강력 리프팅!</span>
+          </h6>
+        </div>
+        <div class="section21-content">
+          <img src="../assets/images/sub/07/4-2.png" alt="리프테라">
+          <img src="../assets/images/sub/07/mobile-4-2.png" alt="리프테라">
+        </div>
+      </div>
+    </section>
+    <section class="section section22">
+      <div class="section22-wrap">
+        <div class="section22-content">
+          <div class="content-left">
+            <h6 class="content-title">리프테라<br>KEY DOCTORS</h6>
+            <p class="content-text">아몬드성형외과는 안전성과 효과를 인정받은 리프테라 정품 장비와
+              정품 팁을 사용하며 리프테라 자문의인 박동권원장님과
+              김상헌원장님이 직접 상담과 직접 시술을 진행하기 때문에
+              효과에 대한 신뢰를 드릴 수 있습니다.
+            </p>
+            <img src="../assets/images/sub/07/4-3-2.jpg" alt="정품">
+          </div>
+          <div class="content-right">
+            <img class="pc-img" src="../assets/images/sub/07/4-3-1.png" alt="정품">
+            <img class="mobile-img" src="../assets/images/sub/07/mobile-4-3-1.png" alt="정품">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section23">
+      <div class="section9-wrap">
+        <h6 class="section9-title">
+          강력한 열에너지가 만들어내는 <b>리프팅 솔루션,</b><br>굴곡진 부분까지 놓치지 않고 끌어올리다.
+        </h6>
+        <div class="section9-content">
+          <img src="../assets/images/sub/07/4-4.gif" alt="리프테라">
+        </div>
+      </div>
+    </section>
+    <section class="section section24">
+      <div class="section5-wrap">
+        <div class="section5-container entry">
+          <h2 class="section5-title">아몬드 리프테라</h2>
+          <i>Check Point</i>
+          <div class="section5-swiper">
+            <ol class="swiper-pagination">
+              <li>Point 01</li>
+              <li>Point 02</li>
+              <li>Point 03</li>
+            </ol>
+            <ol class="swiper-list swiper-wrapper">
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">피부 손상없는 TDT형식의 리프팅</h6>
+                <p class="item-text">
+                  피부 깊은 곳에 집속형 없이 시술이 가능한 초음파를 10Hz의 속도로 빠르게 조사해 SMAS층 뿐만 아니라 진피층 콜라겐 섬유를 재생을 촉진하여 주름과 탄력을 개선하여 피부 타이트닝과 리프팅 효과를 동시에 얻을 수 있습니다
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">통증없이 빠른 시간 내에 강력한 리프팅 효과</h6>
+                <p class="item-text">
+                  Dot형 열응고점으로 이루어진 양방향샷으로 왕복 조사가 가능하며, 모니터를 보며 근막층을 찾아 시술하기 때문에 15~20분 내에 시술이 합니다. 또한 얼굴 모든 부위를 커버 할 수 있는 듀얼타입핸드피스로 이상적인 풀페이스 리프팅를 진행하며 우수한 피크파워 기술력으로 조직 내 열에너지를 이용하여 효과는 높이고 통증과 열감을 줄인 리프팅 레이저입니다.
+                </p>
+              </li>
+              <li class="list-item swiper-slide">
+                <h6 class="itme-title">라프테라 키닥터의 맞춤 시술</h6>
+                <p class="item-text">
+                  아몬드성형외과에서는 리프테라 키닥터의 풍부한 시술 경험 및 노하우로 전문적인 1:1 맞춤 시술을 통해 같은 부위라도 피부의 타입과 처짐 정도, 근육의 방향등에 따라 강도 및 어플리케이션 타입을 차별화하여 보다 안전하고 효과적으로 시술을 진행하고 있습니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section section25">
+      <div class="section25-wrap">
+        <p class="section25-title entry">A MOMENT OF NEW DAY</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
