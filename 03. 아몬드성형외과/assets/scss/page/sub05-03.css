@@ -494,7 +494,7 @@
 }
 @media screen and (max-width: 768px) {
   .section5 {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../images/sub/02/mobile-background-3.gif);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../images/sub/05/mobile-background-3.gif);
   }
 }
 .section5 .section5-wrap {
