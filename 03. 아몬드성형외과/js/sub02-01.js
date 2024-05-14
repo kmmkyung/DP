@@ -21,10 +21,6 @@ window.addEventListener('DOMContentLoaded',function(){
         if(entry.isIntersecting){
           entry.target.classList.add('active')
         }
-        else{
-          entry.target.classList.remove('active')
-
-        }
       },ioOption)
     })
 

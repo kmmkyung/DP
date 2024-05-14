@@ -20,13 +20,13 @@ window.addEventListener('DOMContentLoaded',function(){
   const menuText = document.querySelectorAll('.menuAll-menu .text-list .list-item')// 문구
   
   menuList.forEach(function(ele,idx){
-    let subMenuHeight =  subMenuList[idx].clientHeight;
     ele.addEventListener('click',function(event){
       const menuListActive = document.querySelector('.menuAll-menu .menu-list .list-item h6.active');
       const menuTextActive = document.querySelector('.menuAll-menu .menu-list>.list-item.active');
       const menuItemActive = document.querySelector('.menuAll-menu .text-list .list-item.active');
       const subMenuListWrapActive = document.querySelector('.menuAll-menu .subMenu-wrap.active');
-
+      let subMenuHeight =  subMenuList[idx].clientHeight;
+      
       if(event.target == ele && menuListActive == event.target || menuListActive == null || event.target !==  menuList[7]){
         menuList[idx].classList.add('active')
         menuItem[idx].classList.add('active')
