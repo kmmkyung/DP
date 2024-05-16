@@ -38,6 +38,8 @@
 .section2 {
   width: 100%;
   height: 100%;
+  max-width: 1325px;
+  margin: 0 auto;
 }
 .section2 .section2-wrap {
   padding: 20px 0;
@@ -45,7 +47,35 @@
   height: 100%;
 }
 .section2 .section2-wrap .title-list {
-  margin: 5vw;
+  margin-top: 5vw;
+  padding: 0 20px;
   display: flex;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.section2 .section2-wrap .title-list .list-item {
+  flex: 1 0 0;
+  background-color: #e2e2e2;
+  text-align: center;
+  padding: 10px;
+}
+.section2 .section2-wrap .title-list .list-item a {
+  font-size: clamp(1.5rem, 1.8vw, 2rem);
+  display: block;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+}
+.section2 .section2-wrap .title-list .list-item.active {
+  background-color: #330264;
+}
+.section2 .section2-wrap .title-list .list-item.active a {
+  color: #fff;
+}
+.section2 .section2-wrap .line {
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  margin: 2.5vw 0;
 }/*# sourceMappingURL=sub08.css.map */
