@@ -63,37 +63,57 @@ window.addEventListener('DOMContentLoaded',function(){
       },
     });
 
-  // section7 -swiper
-  section7Swiper2 = new Swiper('.mobile-swiper__2', {
-      spaceBetween: 10,
-      slidesPerView: 3,
-      freeMode: true,
-      watchSlidesProgress: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-  });
+    section5Swiper = new Swiper('.section10-swiper', {
+      slidesPerView: 1,
+      loop:true,
+      effect:'fade',
+      fadeEffect: { crossFade: true },
+      spaceBetween: 10, 
+      centeredSlides: true,
+      simulateTouch: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet:function(index,className){
+            return `<li class=${className}>${paginationValue[index]}</li>`
+          }
+        },
+      });
 
-  section7Swiper1 = new Swiper('.mobile-swiper__1', {
-    spaceBetween: 10, 
-    allowTouchMove: true,
-    thumbs: {
-      swiper: section7Swiper2,
-    },
-  });
-
-  // section8 - swiper
-  section8Swiper = new Swiper('.section8-swiper', {
-    slidesPerView: 1,
-    centeredSlides: true,
-    simulateTouch: true,
-    freeMode: true,
-    watchSlidesProgress: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-
+      
+      section5Swiper = new Swiper('.section18-swiper', {
+        slidesPerView: 1,
+        loop:true,
+        effect:'fade',
+        fadeEffect: { crossFade: true },
+        spaceBetween: 10, 
+        centeredSlides: true,
+        simulateTouch: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet:function(index,className){
+              return `<li class=${className}>${paginationValue[index]}</li>`
+            }
+          },
+        });
+    
+        section5Swiper = new Swiper('.section24-swiper', {
+          slidesPerView: 1,
+          loop:true,
+          effect:'fade',
+          fadeEffect: { crossFade: true },
+          spaceBetween: 10, 
+          centeredSlides: true,
+          simulateTouch: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              renderBullet:function(index,className){
+                return `<li class=${className}>${paginationValue[index]}</li>`
+              }
+            },
+          });
+      
+  
 })

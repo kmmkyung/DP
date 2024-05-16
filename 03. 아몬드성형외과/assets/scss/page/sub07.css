@@ -1653,6 +1653,7 @@
   display: flex;
   gap: 2vw;
   margin-top: 2vw;
+  justify-content: center;
 }
 .section17 .section17-wrap .section17-content .content-1 P {
   text-align: center;
@@ -1677,4 +1678,805 @@
 .section17 .section17-wrap .section17-content .content-2 img {
   margin-top: 10px;
   width: 100%;
+}
+
+.section18 {
+  background-image: url(../../images/sub/07/background-swiper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .section18 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../images/sub/07/mobile-background-swiper.gif);
+  }
+}
+.section18 .section18-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 0;
+  max-width: 1324px;
+  margin: 0 auto;
+}
+.section18 .section18-wrap .section18-container {
+  padding: 100px 0;
+  margin: 0 10px;
+}
+.section18 .section18-wrap .section18-container .section18-title {
+  font-size: clamp(2.4rem, 4vw, 5.5rem);
+  font-family: "GmarketSansLight";
+  position: relative;
+  z-index: 1;
+  transform: translateX(-50%);
+  transition: all 0.4s;
+  opacity: 0;
+}
+.section18 .section18-wrap .section18-container i {
+  font-size: clamp(4rem, 6vw, 10rem);
+  font-family: "GmarketSans";
+  color: #124a54;
+  display: inline-block;
+  transform: translate(20%, 100%);
+  transition: all 0.4s 0.2s;
+  opacity: 0;
+}
+.section18 .section18-wrap .section18-container .section18-swiper {
+  margin-top: clamp(5rem, 5vw, 10rem);
+  position: relative;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-pagination {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 7px solid rgba(255, 255, 255, 0.7);
+  text-align: center;
+  transform: translateY(100%);
+  transition: all 0.4s 0.4s;
+  opacity: 0;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-pagination .swiper-pagination-bullet {
+  font-family: "GmarketSans";
+  font-size: clamp(1rem, 1.5vw, 3rem);
+  padding-bottom: 1vw;
+  width: 20%;
+  position: relative;
+  height: auto;
+  margin: 0;
+  background-color: transparent;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-pagination .swiper-pagination-bullet::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 100%;
+  left: 0;
+  height: 7px;
+  background-color: #124a54;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-pagination .swiper-pagination-bullet-active::after {
+  opacity: 1;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-list {
+  margin-top: 2vw;
+  transform: translateY(100%);
+  transition: all 0.4s 0.6s !important;
+  opacity: 0;
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-list .list-item .itme-title {
+  font-size: clamp(1.5rem, 1.2vw, 2rem);
+}
+.section18 .section18-wrap .section18-container .section18-swiper .swiper-list .list-item .item-text {
+  margin-top: 2vw;
+  font-size: clamp(1.2rem, 1vw, 1.5rem);
+  color: #a3a3a3;
+}
+.section18 .section18-wrap .section18-container.active .section18-title {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.section18 .section18-wrap .section18-container.active i {
+  transform: translate(20%, -30%);
+  opacity: 1;
+}
+.section18 .section18-wrap .section18-container.active .section18-swiper .swiper-pagination {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section18 .section18-wrap .section18-container.active .section18-swiper .swiper-list {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.section19-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 20px;
+  max-width: 1324px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section19-wrap .section19-navigation {
+  width: 100%;
+}
+.section19-wrap .section19-navigation .nav-list {
+  display: flex;
+  justify-content: center;
+}
+.section19-wrap .section19-navigation .nav-list .list-item {
+  border: min(1vw, 10px) solid #116c4a;
+  width: 260px;
+  text-align: center;
+  padding: 10px 0;
+}
+.section19-wrap .section19-navigation .nav-list .list-item a {
+  font-size: clamp(1.5rem, 1.8vw, 2rem);
+  font-family: "GmarketSans";
+  color: #116c4a;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.section19-wrap .section19-navigation .nav-list .list-item.active {
+  background-color: #116c4a;
+}
+.section19-wrap .section19-navigation .nav-list .list-item.active a {
+  color: #fff;
+}
+.section19-wrap .section19-title {
+  margin-top: 3vw;
+}
+.section19-wrap .section19-title h6 {
+  font-size: clamp(1.5rem, 2.5vw, 5rem);
+  font-family: "GmarketSansLight";
+  line-height: 1.4;
+  transform: translateX(-20%);
+  opacity: 0;
+}
+.section19-wrap .section19-title .section19-title__1 {
+  transition: all 0.4s;
+}
+.section19-wrap .section19-title .section19-title__2 {
+  transition: all 0.4s 0.2s;
+}
+.section19-wrap .section19-title .section19-title__3 {
+  transition: all 0.4s 0.4s;
+}
+.section19-wrap .section19-title .section19-title__4 {
+  transition: all 0.4s 0.6s;
+}
+.section19-wrap .section19-title b {
+  font-family: "GmarketSans";
+}
+.section19-wrap .section19-title p {
+  font-size: clamp(1rem, 1vw, 2rem);
+  margin-top: min(2vw, 40px);
+  transform: translateY(100%);
+  opacity: 0;
+}
+.section19-wrap .section19-title.active h6 {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.section19-wrap .section19-title.active p {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.section19-wrap .section19-information {
+  margin-top: min(4vw, 50px);
+}
+.section19-wrap .section19-information .information-title {
+  font-family: "GmarketSans";
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s 0.8s;
+}
+.section19-wrap .section19-information .information-list {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 3vw;
+  position: relative;
+}
+.section19-wrap .section19-information .information-list .list-item {
+  position: relative;
+  text-align: center;
+  padding: 20px 0 0 0;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.4s 1s;
+}
+.section19-wrap .section19-information .information-list .list-item b {
+  font-size: clamp(1rem, 1vw, 2rem);
+}
+.section19-wrap .section19-information .information-list .list-item p {
+  font-size: clamp(1rem, 1vw, 1.5rem);
+}
+.section19-wrap .section19-information .information-list .list-item::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 27px;
+  height: 27px;
+  background-color: #124a54;
+  border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+  .section19-wrap .section19-information .information-list .list-item::before {
+    top: -2.5px;
+    width: 10px;
+    height: 10px;
+  }
+}
+.section19-wrap .section19-information .information-list::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 7px;
+  background-color: #efeff0;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s 0.8s;
+}
+@media screen and (max-width: 768px) {
+  .section19-wrap .section19-information .information-list::before {
+    height: 5px;
+  }
+}
+.section19-wrap .section19-information .information-list .item-1 {
+  transition: all 0.4s 1s;
+}
+.section19-wrap .section19-information .information-list .item-2 {
+  transition: all 0.4s 1.2s;
+}
+.section19-wrap .section19-information .information-list .item-3 {
+  transition: all 0.4s 1.4s;
+}
+.section19-wrap .section19-information .information-list .item-4 {
+  transition: all 0.4s 1.6s;
+}
+.section19-wrap .section19-information .information-list .item-5 {
+  transition: all 0.4s 1.8s;
+}
+.section19-wrap .section19-information.active .information-title {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section19-wrap .section19-information.active .information-list .list-item {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section19-wrap .section19-information.active .information-list::before {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.section20 {
+  background-image: url(../../images/sub/07/background-4-1.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 768px) {
+  .section20 {
+    background-position: top left;
+  }
+}
+.section20 .section20-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+}
+.section20 .section20-wrap .section20-content {
+  background-color: #fff;
+  max-width: 1324px;
+  width: 100%;
+  height: 100%;
+  margin: 0 10px;
+  padding: clamp(3rem, 3vw, 6.5rem);
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .section20 .section20-wrap .section20-content {
+    padding-bottom: 20vw;
+  }
+}
+.section20 .section20-wrap .section20-content .content-text {
+  text-align: left;
+}
+.section20 .section20-wrap .section20-content .content-text .text-subTitle {
+  font-size: clamp(1rem, 1vw, 2.2rem);
+  transform: translateX(-20%);
+  opacity: 0;
+  transition: all 0.4s;
+}
+.section20 .section20-wrap .section20-content .content-text .text-title {
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  padding-top: 10px;
+  font-family: "GmarketSans";
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s 0.2s;
+}
+.section20 .section20-wrap .section20-content .content-text .text-title .content-text__color {
+  color: #116c4a;
+}
+.section20 .section20-wrap .section20-content .content-list {
+  margin-top: 2vw;
+}
+.section20 .section20-wrap .section20-content .content-list .list-item {
+  display: flex;
+  width: 100%;
+  font-size: clamp(1rem, 1vw, 2rem);
+  margin-top: 1vw;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.section20 .section20-wrap .section20-content .content-list .list-item .item-number {
+  font-weight: bold;
+  margin-right: 1vw;
+}
+.section20 .section20-wrap .section20-content .content-list .list-item .item-line {
+  width: 100%;
+  flex: 1 0 0%;
+  border-bottom: 2px dotted #a3a3a3;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 40px;
+}
+@media screen and (max-width: 768px) {
+  .section20 .section20-wrap .section20-content .content-list .list-item .item-line {
+    visibility: hidden;
+    margin: auto;
+  }
+}
+.section20 .section20-wrap .section20-content .content-list .list-item input {
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.section20 .section20-wrap .section20-content .content-list .item-1 {
+  transition: all 0.4s 0.4s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-2 {
+  transition: all 0.4s 0.6s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-3 {
+  transition: all 0.4s 0.8s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-4 {
+  transition: all 0.4s 1s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-5 {
+  transition: all 0.4s 1.2s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-6 {
+  transition: all 0.4s 1.4s;
+}
+.section20 .section20-wrap .section20-content .content-list .item-7 {
+  transition: all 0.4s 1.6s;
+}
+.section20 .section20-wrap .section20-content .content-button {
+  background-color: #116c4a;
+  color: #fff;
+  font-size: clamp(1rem, 1.2vw, 2rem);
+  padding: 2rem 4rem;
+  margin-top: 2vw;
+  border-radius: 10px;
+  transition: all 0.4s 1.8s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.section20 .section20-wrap .section20-content.active .content-text .text-subTitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section20 .section20-wrap .section20-content.active .content-text .text-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section20 .section20-wrap .section20-content.active .content-list .list-item {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section20 .section20-wrap .section20-content.active .content-button {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.section21 {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(239, 239, 240);
+}
+.section21 .section21-wrap {
+  position: relative;
+  padding: 100px 20px 0;
+  max-width: 1324px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.section21 .section21-wrap .section21-text {
+  text-align: center;
+}
+.section21 .section21-wrap .section21-text .text-subTitle {
+  font-size: clamp(1rem, 1vw, 2.2rem);
+  opacity: 0;
+  transition: all 0.4s;
+  transform: translateX(-20%);
+}
+.section21 .section21-wrap .section21-text .text-title {
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  margin-top: 10px;
+}
+.section21 .section21-wrap .section21-text .title-1 {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s 0.2s;
+  font-family: "GmarketSansLight";
+}
+.section21 .section21-wrap .section21-text .title-2 {
+  font-family: "GmarketSans";
+  color: #116c4a;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s 0.4s;
+}
+.section21 .section21-wrap .section21-content {
+  width: 100%;
+  text-align: center;
+}
+.section21 .section21-wrap .section21-content img {
+  vertical-align: bottom;
+  max-width: 1200px;
+  width: 100%;
+}
+.section21 .section21-wrap .section21-content .pc-img {
+  display: inline;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s 0.6s;
+}
+@media screen and (max-width: 768px) {
+  .section21 .section21-wrap .section21-content .pc-img {
+    display: none;
+  }
+}
+.section21 .section21-wrap .section21-content .mobile-img {
+  display: none;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s 0.6s;
+}
+@media screen and (max-width: 768px) {
+  .section21 .section21-wrap .section21-content .mobile-img {
+    display: inline;
+  }
+}
+.section21 .section21-wrap .section21-text.active .text-subTitle {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.section21 .section21-wrap .section21-text.active .title-1, .section21 .section21-wrap .section21-text.active .title-2 {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.section21 .section21-wrap .section21-content.active .pc-img, .section21 .section21-wrap .section21-content.active .mobile-img {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.section22 {
+  background-image: url(../../images/sub/07/background-4-3.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.section22 .section22-wrap {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.section22 .section22-wrap .section22-content {
+  color: #fff;
+}
+.section22 .section22-wrap .section22-content .content-left .left-text {
+  padding: 100px 20px 0;
+  max-width: 1324px;
+  margin: 0 auto;
+}
+.section22 .section22-wrap .section22-content .content-left .left-text .content-subTitle {
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  font-family: "GmarketSansLight";
+}
+.section22 .section22-wrap .section22-content .content-left .left-text .content-title {
+  font-family: "GmarketSans";
+  color: #116c4a;
+  font-size: clamp(1.8rem, 4vw, 5.5rem);
+  margin: 1vw;
+}
+.section22 .section22-wrap .section22-content .content-left .left-text .content-text {
+  width: 50%;
+  font-size: clamp(1rem, 1vw, 2rem);
+}
+.section22 .section22-wrap .section22-content .img-wrap {
+  width: 100%;
+  padding: 20px;
+  background-color: #116c4a;
+  margin-top: 1vw;
+}
+.section22 .section22-wrap .section22-content .img-wrap img {
+  max-width: 400px;
+  width: 50%;
+  margin-left: 12vw;
+}
+.section22 .section22-wrap .section22-content .content-right {
+  width: 50%;
+  text-align: center;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+}
+.section22 .section22-wrap .section22-content .content-right .pc-img {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s 0.6s;
+  z-index: 1;
+}
+@media screen and (max-width: 768px) {
+  .section22 .section22-wrap .section22-content .content-right .pc-img {
+    display: none;
+  }
+}
+.section22 .section22-wrap .section22-content .content-right .mobile-img {
+  display: none;
+  bottom: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(100%);
+  z-index: 1;
+  transition: all 0.4s 0.6s;
+}
+@media screen and (max-width: 768px) {
+  .section22 .section22-wrap .section22-content .content-right .mobile-img {
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section22 .section22-wrap .section22-content .content-right {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+.section22 .section22-wrap .section22-content .content-right.active .pc-img, .section22 .section22-wrap .section22-content .content-right.active .mobile-img {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.section23 .section23-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 20px;
+  max-width: 1324px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .section23 .section23-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.section23 .section23-wrap .section23-title {
+  font-size: clamp(2rem, 4vw, 5.5rem);
+  font-weight: normal;
+  font-family: "GmarketSansLight";
+  text-align: center;
+  transform: translateX(-20%);
+  opacity: 0;
+  transition: all 0.4s;
+}
+.section23 .section23-wrap .section23-title b {
+  font-family: "GmarketSans";
+  color: #116c4a;
+}
+.section23 .section23-wrap .section23-subTitle {
+  font-size: clamp(2rem, 4vw, 5.5rem);
+  font-weight: normal;
+  font-family: "GmarketSansLight";
+  text-align: center;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s 0.2s;
+}
+.section23 .section23-wrap .section23-content {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s 0.4s;
+}
+.section23 .section23-wrap .section23-content img {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  max-width: 500px;
+}
+.section23 .section23-wrap .section23-title.active {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.section23 .section23-wrap .section23-subTitle.active {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section23 .section23-wrap .section23-content.active {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.section24 {
+  background-image: url(../../images/sub/07/background-swiper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .section24 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../images/sub/07/mobile-background-swiper.gif);
+  }
+}
+.section24 .section24-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 0;
+  max-width: 1324px;
+  margin: 0 auto;
+}
+.section24 .section24-wrap .section24-container {
+  padding: 100px 0;
+  margin: 0 10px;
+}
+.section24 .section24-wrap .section24-container .section24-title {
+  font-size: clamp(2.4rem, 4vw, 5.5rem);
+  font-family: "GmarketSansLight";
+  position: relative;
+  z-index: 1;
+  transform: translateX(-50%);
+  transition: all 0.4s;
+  opacity: 0;
+}
+.section24 .section24-wrap .section24-container i {
+  font-size: clamp(4rem, 6vw, 10rem);
+  font-family: "GmarketSans";
+  color: #116c4a;
+  display: inline-block;
+  transform: translate(20%, 100%);
+  transition: all 0.4s 0.2s;
+  opacity: 0;
+}
+.section24 .section24-wrap .section24-container .section24-swiper {
+  margin-top: clamp(5rem, 5vw, 10rem);
+  position: relative;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-pagination {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 7px solid rgba(255, 255, 255, 0.7);
+  text-align: center;
+  transform: translateY(100%);
+  transition: all 0.4s 0.4s;
+  opacity: 0;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-pagination .swiper-pagination-bullet {
+  font-family: "GmarketSans";
+  font-size: clamp(1rem, 1.5vw, 3rem);
+  padding-bottom: 1vw;
+  width: 20%;
+  position: relative;
+  height: auto;
+  margin: 0;
+  background-color: transparent;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-pagination .swiper-pagination-bullet::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  width: 100%;
+  left: 0;
+  height: 7px;
+  background-color: #116c4a;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-pagination .swiper-pagination-bullet-active::after {
+  opacity: 1;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-list {
+  margin-top: 2vw;
+  transform: translateY(100%);
+  transition: all 0.4s 0.6s !important;
+  opacity: 0;
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-list .list-item .itme-title {
+  font-size: clamp(1.5rem, 1.2vw, 2rem);
+}
+.section24 .section24-wrap .section24-container .section24-swiper .swiper-list .list-item .item-text {
+  margin-top: 2vw;
+  font-size: clamp(1.2rem, 1vw, 1.5rem);
+  color: #a3a3a3;
+}
+.section24 .section24-wrap .section24-container.active .section24-title {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.section24 .section24-wrap .section24-container.active i {
+  transform: translate(20%, -30%);
+  opacity: 1;
+}
+.section24 .section24-wrap .section24-container.active .section24-swiper .swiper-pagination {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.section24 .section24-wrap .section24-container.active .section24-swiper .swiper-list {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.section25 {
+  background-image: url(../../images/sub/07/background-5.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 768px) {
+  .section25 {
+    height: 60vh;
+    background-image: url(../../images/sub/07/mobile-background-5.jpg);
+  }
+}
+.section25 .section25-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.section25 .section25-wrap .section25-title {
+  font-size: clamp(4rem, 6vw, 10rem);
+  font-family: "GmarketSans";
+  color: #3f1b65;
+  text-align: center;
+  transition: all 0.4s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.section25 .section25-wrap .section25-title.active {
+  transform: translateY(0%);
+  opacity: 0.5;
 }/*# sourceMappingURL=sub07.css.map */
