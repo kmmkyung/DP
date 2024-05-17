@@ -1,0 +1,27 @@
+@use "./abstacts/_variavles.scss" as *;
+
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin laptopSmall {
+  @media screen and (max-width: $breakpoint-laptopSmall) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+

@@ -1,0 +1,7 @@
+@use '../abstacts/variavles' as *;
+@use '../_mixin.scss' as *;
+
+.section1{
+  background-color: $main-color;
+}
+
