@@ -54,46 +54,52 @@ header .header-wrap {
 .nav .logo {
   padding-left: 80px;
 }
-.nav .menu-list {
+.nav .mainMenu-list {
   width: 100%;
   display: flex;
   gap: 10px;
+  align-items: center;
   position: relative;
 }
-.nav .menu-list .list-item {
+.nav .mainMenu-list .list-item {
   position: relative;
   width: 100px;
   text-align: center;
 }
-.nav .menu-list .list-item a {
+.nav .mainMenu-list .list-item a {
+  color: #fff;
   font-size: 1.5rem;
   display: block;
 }
-.nav .menu-list .list-item .subMenu-wrap {
+.nav .mainMenu-list .list-item .subMenu-wrap {
+  transition: all 0.5s;
+  height: 0;
+  overflow: hidden;
   position: absolute;
   width: 100px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
-.nav .menu-list .list-item .subMenu-wrap .subMenu-item .list-item {
+.nav .mainMenu-list .list-item .subMenu-wrap .subMenu-list .list-item {
   padding: 10px 0;
   text-align: center;
 }
-.nav .menu-list .list-item .subMenu-wrap .subMenu-item .list-item a {
+.nav .mainMenu-list .list-item .subMenu-wrap .subMenu-list .list-item a {
+  color: #fff;
   font-size: 1rem;
   display: block;
   width: 100%;
   font-size: 13px;
   letter-spacing: -0.25px;
 }
-.nav .menu-list .menu-membership a {
-  color: #e0ded1;
+.nav .mainMenu-list .menu-membership a {
+  color: #dfd284;
 }
-.nav .menu-list .menu-button {
+.nav .mainMenu-list .menu-button {
   width: auto;
 }
-.nav .menu-list .menu-deco {
+.nav .mainMenu-list .menu-deco {
   position: absolute;
   letter-spacing: 3.4px;
   transform: rotate(90deg);
@@ -103,9 +109,9 @@ header .header-wrap {
   right: -35px;
   color: #e0ded1;
   font-size: 1.5rem;
-  font-family: serif;
 }
 .nav .menu-all {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -159,7 +165,11 @@ header .header-wrap {
   color: #fff;
   font-weight: lighter;
 }
-.nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap.active {
+.nav .menu-all.active {
+  opacity: 1;
+  display: block;
+}
+.nav .menu-all.active .list-item__wrap {
   opacity: 1;
   top: 40%;
 }/*# sourceMappingURL=common.css.map */

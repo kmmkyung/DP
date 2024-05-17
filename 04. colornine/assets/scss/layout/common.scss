@@ -22,30 +22,36 @@ header{
   .logo{
     padding-left: 80px;
   }
-  .menu-list{
+  .mainMenu-list{
     width: 100%;
     display: flex;
     gap: 10px;
+    align-items: center;
     position: relative;
     .list-item{
       position: relative;
       width: 100px;
       text-align: center;
       a{
+        color: #fff;
         font-size: $font-size-s;
         display: block;
       }
       .subMenu-wrap{
+        transition: all 0.5s;
+        height: 0;
+        overflow: hidden;
         position: absolute;
         width: 100px;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
-        .subMenu-item{
+        .subMenu-list{
           .list-item{
             padding: 10px 0;
             text-align: center;
             a{
+              color: #fff;
               font-size: 1rem;
               display: block;
               width: 100%;
@@ -58,7 +64,7 @@ header{
     }
     .menu-membership{
       a{
-        color: #e0ded1;
+        color: #dfd284;
       }
     }
     .menu-button{
@@ -74,10 +80,10 @@ header{
       right: -35px;
       color: #e0ded1;
       font-size: $font-size-s;
-      font-family: serif;
     }
   }
   .menu-all{
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -127,12 +133,16 @@ header{
               font-weight: lighter;
             }
           }
-          .list-item__wrap.active{
-            opacity: 1;
-            top: 40%;
-          }
         }
       }
+    }
+  }
+  .menu-all.active{
+    opacity: 1;
+    display: block;
+    .list-item__wrap{
+      opacity: 1;
+      top: 40%;
     }
   }
 }
