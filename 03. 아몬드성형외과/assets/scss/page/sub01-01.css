@@ -288,26 +288,26 @@
 .section5 .section5-wrap p {
   font-size: clamp(1.5rem, 2.6vw, 5rem);
 }
-.section5 .section5-wrap .text-tiltle {
+.section5 .section5-wrap .text-title {
   display: flex;
   flex-direction: column;
   margin-top: 2vw;
 }
 @media screen and (max-width: 990px) {
-  .section5 .section5-wrap .text-tiltle {
+  .section5 .section5-wrap .text-title {
     flex-direction: row;
     gap: 1vw;
     flex-wrap: wrap;
   }
 }
-.section5 .section5-wrap .text-tiltle h2 {
+.section5 .section5-wrap .text-title h2 {
   font-size: clamp(3rem, 4.5vw, 9rem);
   position: relative;
   display: inline-block;
   width: -moz-fit-content;
   width: fit-content;
 }
-.section5 .section5-wrap .text-tiltle h2::after {
+.section5 .section5-wrap .text-title h2::after {
   content: "";
   display: block;
   width: 0%;
@@ -315,7 +315,7 @@
   background-color: #fff;
   transition: all 1s 0.4s;
 }
-.section5 .section5-wrap .text-tiltle h2.active::after {
+.section5 .section5-wrap .text-title h2.active::after {
   content: "";
   display: block;
   width: 100%;
