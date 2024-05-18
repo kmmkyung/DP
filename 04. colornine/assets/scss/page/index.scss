@@ -3,5 +3,13 @@
 
 .section1{
   background-color: $main-color;
+  width: 100%;
+  overflow: hidden;
+  .section1-wrap{
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 400px 20px 0;
+  }
 }
 

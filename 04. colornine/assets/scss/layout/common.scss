@@ -69,6 +69,9 @@ header{
     }
     .menu-button{
       width: auto;
+      img{
+        vertical-align: middle;
+      }
     }
     .menu-deco{
       position: absolute;
@@ -83,19 +86,22 @@ header{
     }
   }
   .menu-all{
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background: rgba(33, 33, 33, 0.98);
+    z-index: -1;
     .all-wrap{
       display: block;
       height: 100%;
       .menu-list{
         width: 100%;
         height: 100%;
+        display: flex;
         .list-item{
           width: calc(100% / 6);
           min-height: 150px;
@@ -104,10 +110,10 @@ header{
           border-left: 1px solid rgba(255, 255, 255, 0.5);
           text-align: left;
           .list-item__wrap{
-            position: absolute;
+            position: relative;
             top: 45%;
             opacity: 0;
-            transition: all 0.5s;
+            transition: all 1s;
             width: 100%;
             button{
               width: 100%;
@@ -126,11 +132,14 @@ header{
               color:#fff;
               font-weight: normal;
             }
-            p a{
-              margin: 20px 0;
-              font-size: $font-size-s;
-              color:#fff;
-              font-weight: lighter;
+            p{
+              margin: 10px 0;
+              a{
+                margin: 20px 0;
+                font-size: $font-size-s;
+                color:#fff;
+                font-weight: lighter;
+              }
             }
           }
         }
@@ -139,10 +148,17 @@ header{
   }
   .menu-all.active{
     opacity: 1;
-    display: block;
-    .list-item__wrap{
-      opacity: 1;
-      top: 40%;
+    z-index: 999;
+    visibility: visible;
+    .all-wrap{
+      .menu-list{
+        .list-item{
+          .list-item__wrap{
+            opacity: 1;
+            top: 40%; 
+          }
+        }
+      }
     }
   }
 }

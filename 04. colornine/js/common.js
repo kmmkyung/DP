@@ -19,7 +19,11 @@ window.addEventListener('DOMContentLoaded',function(){
   // header 버튼 누르면 전체메뉴 보이게 하기
   const menuButton = document.querySelector('.menu-button')
   const menuAll = document.querySelector('.menu-all')
+  const menuClose = document.querySelector('.menu-close')
   menuButton.addEventListener('click',function(){
     menuAll.classList.add('active')
+  })
+  menuClose.addEventListener('click',function(){
+    menuAll.classList.remove('active')
   })
 })

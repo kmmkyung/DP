@@ -99,6 +99,9 @@ header .header-wrap {
 .nav .mainMenu-list .menu-button {
   width: auto;
 }
+.nav .mainMenu-list .menu-button img {
+  vertical-align: middle;
+}
 .nav .mainMenu-list .menu-deco {
   position: absolute;
   letter-spacing: 3.4px;
@@ -111,13 +114,15 @@ header .header-wrap {
   font-size: 1.5rem;
 }
 .nav .menu-all {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(33, 33, 33, 0.98);
+  z-index: -1;
 }
 .nav .menu-all .all-wrap {
   display: block;
@@ -126,6 +131,7 @@ header .header-wrap {
 .nav .menu-all .all-wrap .menu-list {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 .nav .menu-all .all-wrap .menu-list .list-item {
   width: 16.6666666667%;
@@ -136,10 +142,10 @@ header .header-wrap {
   text-align: left;
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap {
-  position: absolute;
+  position: relative;
   top: 45%;
   opacity: 0;
-  transition: all 0.5s;
+  transition: all 1s;
   width: 100%;
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap button {
@@ -159,6 +165,9 @@ header .header-wrap {
   color: #fff;
   font-weight: normal;
 }
+.nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p {
+  margin: 10px 0;
+}
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p a {
   margin: 20px 0;
   font-size: 1.5rem;
@@ -167,9 +176,10 @@ header .header-wrap {
 }
 .nav .menu-all.active {
   opacity: 1;
-  display: block;
+  z-index: 999;
+  visibility: visible;
 }
-.nav .menu-all.active .list-item__wrap {
+.nav .menu-all.active .all-wrap .menu-list .list-item .list-item__wrap {
   opacity: 1;
   top: 40%;
 }/*# sourceMappingURL=common.css.map */

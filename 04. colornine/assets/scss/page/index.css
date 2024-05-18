@@ -1,3 +1,11 @@
 .section1 {
   background-color: #26262c;
+  width: 100%;
+  overflow: hidden;
+}
+.section1 .section1-wrap {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 400px 20px 0;
 }/*# sourceMappingURL=index.css.map */
