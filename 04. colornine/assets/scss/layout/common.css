@@ -52,24 +52,50 @@ header .header-wrap {
   justify-content: space-between;
 }
 .nav .logo {
+  flex-basis: 20%;
   padding-left: 80px;
+  display: block;
+  padding-left: 0;
+}
+.nav .logo a {
+  display: block;
+  max-width: 200px;
+}
+.nav .logo a img {
+  width: 100%;
 }
 .nav .mainMenu-list {
   width: 100%;
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: flex-end;
   position: relative;
+}
+@media screen and (max-width: 1024px) {
+  .nav .mainMenu-list .list-item:not(:nth-child(6)) {
+    display: none;
+  }
 }
 .nav .mainMenu-list .list-item {
   position: relative;
   width: 100px;
   text-align: center;
 }
+@media screen and (max-width: 768px) {
+  .nav .mainMenu-list .list-item {
+    width: auto;
+  }
+}
 .nav .mainMenu-list .list-item a {
-  color: #fff;
+  color: #e0ded1;
   font-size: 1.5rem;
   display: block;
+}
+@media screen and (max-width: 768px) {
+  .nav .mainMenu-list .list-item a {
+    font-size: 1.3rem;
+  }
 }
 .nav .mainMenu-list .list-item .subMenu-wrap {
   transition: all 0.5s;
@@ -97,6 +123,7 @@ header .header-wrap {
   color: #dfd284;
 }
 .nav .mainMenu-list .menu-button {
+  cursor: pointer;
   width: auto;
 }
 .nav .mainMenu-list .menu-button img {
@@ -123,6 +150,7 @@ header .header-wrap {
   height: 100vh;
   background: rgba(33, 33, 33, 0.98);
   z-index: -1;
+  transition: all 0.5s;
 }
 .nav .menu-all .all-wrap {
   display: block;
@@ -133,13 +161,40 @@ header .header-wrap {
   height: 100%;
   display: flex;
 }
+@media screen and (max-width: 1024px) {
+  .nav .menu-all .all-wrap .menu-list {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .nav .menu-all .all-wrap .menu-list .list-item__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+.nav .menu-all .all-wrap .menu-list .list-item:not(:first-child) {
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width: 1024px) {
+  .nav .menu-all .all-wrap .menu-list .list-item:not(:first-child) {
+    border: none;
+  }
+}
 .nav .menu-all .all-wrap .menu-list .list-item {
   width: 16.6666666667%;
   min-height: 150px;
   height: 100%;
-  padding: 24px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
   text-align: left;
+}
+@media screen and (max-width: 1024px) {
+  .nav .menu-all .all-wrap .menu-list .list-item {
+    width: 50%;
+    height: auto;
+    min-height: 300px;
+    border: none;
+  }
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap {
   position: relative;
@@ -160,9 +215,14 @@ header .header-wrap {
   transition: 0.4s;
   cursor: pointer;
 }
+@media screen and (max-width: 1024px) {
+  .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap button {
+    padding: 0;
+  }
+}
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap h6 a {
   font-size: 3.5rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: normal;
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p {
@@ -171,8 +231,12 @@ header .header-wrap {
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p a {
   margin: 20px 0;
   font-size: 1.5rem;
+  opacity: 0.5;
   color: #fff;
   font-weight: lighter;
+}
+.nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p a:hover {
+  opacity: 1;
 }
 .nav .menu-all.active {
   opacity: 1;

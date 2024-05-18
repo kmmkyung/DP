@@ -20,22 +20,44 @@ header{
   align-items: center;
   justify-content: space-between;
   .logo{
+    flex-basis: 20%;
     padding-left: 80px;
+    display: block;
+    padding-left: 0;
+    a{
+      display: block;
+      max-width: 200px;
+      img{
+        width: 100%;
+      }
+    }
   }
   .mainMenu-list{
     width: 100%;
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: flex-end;
     position: relative;
+    .list-item:not(:nth-child(6)){
+      @include laptop{
+        display: none;
+      }
+    }
     .list-item{
       position: relative;
       width: 100px;
       text-align: center;
+      @include tablet{
+        width: auto;
+      }
       a{
-        color: #fff;
+        color: #e0ded1; 
         font-size: $font-size-s;
         display: block;
+        @include tablet{
+          font-size: 1.3rem;
+        }
       }
       .subMenu-wrap{
         transition: all 0.5s;
@@ -68,6 +90,7 @@ header{
       }
     }
     .menu-button{
+      cursor: pointer;
       width: auto;
       img{
         vertical-align: middle;
@@ -95,6 +118,7 @@ header{
     height: 100vh;
     background: rgba(33, 33, 33, 0.98);
     z-index: -1;
+    transition: all 0.5s;
     .all-wrap{
       display: block;
       height: 100%;
@@ -102,13 +126,34 @@ header{
         width: 100%;
         height: 100%;
         display: flex;
+        @include laptop{
+          flex-wrap: wrap;
+        }
+        .list-item__close{
+          @include laptop{
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+        .list-item:not(:first-child){
+          border-left: 1px solid rgba(255, 255, 255, 0.5);
+          @include laptop{
+            border: none;
+          }
+        }
         .list-item{
           width: calc(100% / 6);
           min-height: 150px;
           height: 100%;
-          padding: 24px;
-          border-left: 1px solid rgba(255, 255, 255, 0.5);
+          padding: 20px;
           text-align: left;
+          @include laptop{
+            width: 50%;
+            height: auto;
+            min-height: 300px;
+            border: none;
+          }
           .list-item__wrap{
             position: relative;
             top: 45%;
@@ -126,10 +171,13 @@ header{
               margin: 0;
               transition: 0.4s;
               cursor: pointer;
+              @include laptop{
+                padding: 0;
+              }
             }
             h6 a{
               font-size: 3.5rem;
-              color:#fff;
+              color:rgba(255, 255, 255, 0.9);
               font-weight: normal;
             }
             p{
@@ -137,8 +185,12 @@ header{
               a{
                 margin: 20px 0;
                 font-size: $font-size-s;
+                opacity: 0.5;
                 color:#fff;
                 font-weight: lighter;
+                &:hover{
+                  opacity: 1;
+                }
               }
             }
           }
@@ -162,3 +214,4 @@ header{
     }
   }
 }
+
