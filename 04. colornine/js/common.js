@@ -26,4 +26,15 @@ window.addEventListener('DOMContentLoaded',function(){
   menuClose.addEventListener('click',function(){
     menuAll.classList.remove('active')
   })
+
+  // 스크롤시 header 고정
+  let header = document.querySelector('.header')
+  window.addEventListener('scroll',function(){
+    if(this.window.scrollY >= header.offsetHeight){
+      header.classList.add('active')
+    }
+    else{
+      header.classList.remove('active')
+    }
+  })
 })

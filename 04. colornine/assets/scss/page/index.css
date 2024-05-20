@@ -241,10 +241,21 @@
     padding: 0 30px 40px;
   }
 }
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap {
+    display: block;
+  }
+}
 .section2 .section2-wrap .content-left {
   flex: 1;
   width: 50%;
   padding: 0 30px;
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-left {
+    width: 100%;
+    padding: 0;
+  }
 }
 .section2 .section2-wrap .content-left .left-wrap {
   position: sticky;
@@ -258,23 +269,333 @@
   gap: 1vw;
   height: 100vh;
 }
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-left .left-wrap {
+    display: block;
+    height: auto;
+    width: 50%;
+    border-bottom: 1px solid #eee;
+  }
+}
 .section2 .section2-wrap .content-left .left-wrap .left-caption {
-  font-size: 4.8rem;
-  margin-left: 110px;
+  font-size: min(4vw, 4.8rem);
+  margin-left: min(4vw, 110px);
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-caption {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-caption {
+    font-size: 6vw;
+  }
 }
 .section2 .section2-wrap .content-left .left-wrap .left-img {
   width: 90%;
   height: auto;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-img {
+    display: none;
+  }
 }
 .section2 .section2-wrap .content-left .left-wrap .left-title {
+  margin-left: min(5vw, 110px);
   font-size: 1.5rem;
 }
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-title {
+    margin-left: 0;
+    margin: 20px 0;
+  }
+}
 .section2 .section2-wrap .content-left .left-wrap .left-text {
+  margin-left: min(5vw, 110px);
   font-size: 1.5rem;
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-text {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-left .left-wrap .left-text {
+    display: none;
+  }
 }
 .section2 .section2-wrap .content-right {
   flex: 1;
   width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-right {
+    width: 100%;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap {
+  padding: 600px 30px 0;
+}
+@media screen and (max-width: 768px) {
+  .section2 .section2-wrap .content-right .right-wrap {
+    padding: 10vw 0;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item {
+  text-align: center;
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-img {
+  width: 100%;
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-subTitle {
+  margin-top: 1vw;
+  font-size: 1.5rem;
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-title {
+  margin-top: 1vw;
+  font-size: 1.5rem;
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-text {
+  margin-top: 1vw;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: -0.25px;
+  color: #26262c;
+  word-break: keep-all;
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-text span {
+  display: block;
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-right .right-wrap .product-list .list-item .item-text span {
+    display: inline;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex {
+  display: flex;
+  gap: 2vw;
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex {
+    flex-direction: column;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex .item-left {
+  width: 50%;
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex .item-left {
+    width: 100%;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex .item-right {
+  width: 50%;
+}
+@media screen and (max-width: 1024px) {
+  .section2 .section2-wrap .content-right .right-wrap .product-list .list-item__flex .item-right {
+    width: 100%;
+  }
+}
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item__2,
+.section2 .section2-wrap .content-right .right-wrap .product-list .list-item__3 {
+  margin: 5vw 0;
+}
+.section2 .section2-wrap .button-more {
+  margin: 5vw auto;
+  display: block;
+  padding: 20px;
+  background: none;
+  color: #26262c;
+  border: 1px solid #26262c;
+  transition: all 0.5s;
+}
+.section2 .section2-wrap .button-more:hover {
+  color: #fff;
+  background-color: #26262c;
+}
+
+.section3 {
+  background-image: url(../../image/sec4-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+.section3 .section3-wrap {
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap {
+  padding: 0 20px;
+  max-width: 850px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+.section3 .section3-wrap .medical-wrap .medical-text {
+  width: 50%;
+  padding: 190px 20px 0;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-title {
+  color: #fff;
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #aaa;
+  text-align: center;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list {
+  padding-top: 20px;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .list-item {
+  margin: 20px 0;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .list-item a {
+  margin-left: 20px;
+  width: calc(100% - 20px);
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 4px 12px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .list-item a:hover {
+  border-bottom: 1px solid #aaa;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-1 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-1:hover span {
+  transform: translateY(-50%) rotate(360deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-1 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #e0ded1;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(326deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-2 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-2:hover span {
+  transform: translateY(-50%) rotate(360deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-2 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #dfd284;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(315deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-3 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-3:hover span {
+  transform: translateY(-50%) rotate(0deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-3 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #d5a357;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(40deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-4 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-4:hover span {
+  transform: translateY(-50%) rotate(0deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-4 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #d1b0a0;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-5 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-5:hover span {
+  transform: translateY(-50%) rotate(0deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-5 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #c06673;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(130deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-6 {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-6:hover span {
+  transform: translateY(-50%) rotate(0deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-text .medical-list .item-6 span {
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  background: #b03e25;
+  transition: 0.4s;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+}
+.section3 .section3-wrap .medical-wrap .medical-imges {
+  position: relative;
+}
+.section3 .section3-wrap .medical-wrap .medical-imges .medical-deco {
+  position: absolute;
+  top: 20px;
+  left: -40px;
+  transform: rotate(350deg);
+  animation-name: decoText;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+.section3 .section3-wrap .medical-wrap .medical-imges .medical-img {
+  transform: translateY(10%);
+  overflow: hidden;
+  border-radius: 250px 250px 0 0;
 }
 
 @keyframes fadeInOut {
@@ -320,7 +641,7 @@
     transform: translate(29%, -18%);
   }
 }
-@keyframes decoMove-3 {
+@keyframes decoMove-4 {
   0% {
     top: 16%;
     transform: translateX(52%);
@@ -332,5 +653,20 @@
   100% {
     top: 13%;
     transform: translateX(50%);
+  }
+}
+@keyframes decoText {
+  0% {
+    top: 20px;
+    left: -30px;
+  }
+  50% {
+    top: 0;
+    left: 0px;
+    transform: rotate(360deg);
+  }
+  100% {
+    top: 20px;
+    left: -30px;
   }
 }/*# sourceMappingURL=index.css.map */
