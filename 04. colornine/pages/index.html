@@ -6,10 +6,14 @@
   <title>Document</title>
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="stylesheet" href="../assets/scss/layout/common.css">
     <link rel="stylesheet" href="../assets/scss/page/index.css">
     <script src="../js/common.js"></script>
+    <script src="../js/index.js"></script>
 </head>
 <body>
   <header class="header">
@@ -155,10 +159,10 @@
       </div>
       <div class="content2">
         <div class="content2-wrap">
-          <img class="content2-img__1" src="../assets/image/sec2-1.jpg" alt="colorNine">
-          <img class="content2-img__2" src="../assets/image/sec2-2.jpg" alt="colorNine">
-          <img class="content2-img__3" src="../assets/image/sec2-3.jpg" alt="colorNine">
-          <img class="content2-img__4" src="../assets/image/sec2-4.jpg" alt="colorNine">
+          <img class="content2-img__1" src="../assets/image/sec1-1.jpg" alt="colorNine">
+          <img class="content2-img__2" src="../assets/image/sec1-2.jpg" alt="colorNine">
+          <img class="content2-img__3" src="../assets/image/sec1-3.jpg" alt="colorNine">
+          <img class="content2-img__4" src="../assets/image/sec1-4.jpg" alt="colorNine">
         </div>
       </div>
     </div>
@@ -168,7 +172,7 @@
       <div class="content-left">
         <div class="left-wrap">
           <p class="left-caption font-Cormorant">The color nine is<br>always with you!</p>
-          <img class="left-img" src="../assets/image/sec3-1.jpg" alt="COLOR NINE PACKAGE">
+          <img class="left-img" src="../assets/image/sec2-1.jpg" alt="COLOR NINE PACKAGE">
           <h2 class="left-title font-Archivo">COLOR NINE PACKAGE</h2>
           <p class="left-text">
             컬러나인의 모든 패키지 한약은 자체 브랜딩 된 디자인에 담겨있습니다.<br>
@@ -181,7 +185,7 @@
         <div class="right-wrap">
           <ol class="product-list">
             <li class="list-item">
-              <img class="item-img" src="../assets/image/sec3-product-1.jpg" alt="no.9">
+              <img class="item-img" src="../assets/image/sec2-product-1.jpg" alt="no.9">
               <h6 class="item-title font-Archivo">No.9<br>GONG JIN DAN</h6>
               <p class="item-subTitle">특허 번호 30-1139829<br>
                 [디자인 무단 사용 시, 법적인 제재를 받을 수 있습니다]
@@ -195,7 +199,7 @@
             </li>
             <li class="list-item list-item__flex list-item__2">
               <div class="item-left">
-                <img class="item-img " src="../assets/image/sec3-product-2.jpg" alt="no.1">
+                <img class="item-img " src="../assets/image/sec2-product-2.jpg" alt="no.1">
                 <h6 class="item-title font-Archivo">No.1 <span class="font-lighter">1:1 맞춤한약</span></h6>
                 <p class="item-text">
                   맥진과 설진 및 문진표 작성, 간기능검사 등 최적의
@@ -207,7 +211,7 @@
                 </p>
               </div>
               <div class="item-right">
-                <img class="item-img" src="../assets/image/sec3-product-3.jpg" alt="no.2">
+                <img class="item-img" src="../assets/image/sec2-product-3.jpg" alt="no.2">
                 <h6 class="item-title font-Archivo">No.2<br>투고탕</h6>
                 <p class="item-text">
                   내 몸에 필요한 약. 하지만 딱 하루치만 필요할 때
@@ -219,7 +223,7 @@
             </li>
             <li class="list-item list-item__flex list-item__3">
               <div class="item-left">
-                <img class="item-img" src="../assets/image/sec3-product-4.jpg" alt="no.4">
+                <img class="item-img" src="../assets/image/sec2-product-4.jpg" alt="no.4">
                 <h6 class="item-title font-Archivo">No.4<br>상비약</h6>
                 <p class="item-text">
                   당신 가족의 주치의가 되고 싶은 마음을 가득 담았습니다.
@@ -229,7 +233,7 @@
                 </p>
               </div>
               <div class="item-right">
-                <img class="item-img" src="../assets/image/sec3-product-5.jpg" alt="no.5">
+                <img class="item-img" src="../assets/image/sec2-product-5.jpg" alt="no.5">
                 <h6 class="item-title font-Archivo">No.5<br>다이어트</h6>
                 <p class="item-text">
                   컬러나인 다이어트 프로그램 제로 시리즈는
@@ -241,7 +245,7 @@
               </div>
             </li>
             <li class="list-item">
-              <img class="item-img" src="../assets/image/sec3-product-6.jpg" alt="no.7">
+              <img class="item-img" src="../assets/image/sec2-product-6.jpg" alt="no.7">
               <h6 class="item-title font-Archivo">No.6<br>KYUKG OK GO</h6>
               <p class="item-text">
                 <span>인체 본질의 면역력을 길러주는 경옥고입니다.</span>
@@ -288,14 +292,91 @@
             </li>
           </ul>
         </div>
-        <div class="medical-imges">
-          <img class="medical-deco" src="../assets/image/sec4-deco.png" alt="deco">
+        <div class="medical-images">
+          <img class="medical-deco" src="../assets/image/sec3-deco.png" alt="deco">
           <div class="medical-img">
-            <img src="../assets/image/sec4-2.jpg" alt="medical">
+            <img src="../assets/image/sec3-2.jpg" alt="medical">
           </div>
         </div>
       </div>
     </div>
   </section>
+  <section class="section4">
+    <div class="section4-wrap">
+      <h2 class="section4-title font-Archivo">COLOR NINE SPACE</h2>
+      <p class="section4-subTitle">ALL OF OUR SPACE IS COORDINATED FOR YOU</p>
+      <p class="section4-text">
+        <span>우리의 공간 모두는 당신을 위해 조율되어 있습니다.</span>
+        <span>모든 치료공간은 1인실 프라이빗룸으로 편안하게 진료를 받을 수 있으며,</span>
+        <span>진료 대기와 치료 중 오감을 만족시킬 수 있도록</span>
+        <span>뱅앤올룹슨 스피커와 대형 샤이니지, 그리고 빔프로젝트와 오브제 등이 마련되어 있습니다.</span>
+      </p>
+      <div class="space-swiper">
+        <ul class="space-list swiper-wrapper">
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-1.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-2.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-3.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-4.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-5.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-6.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-7.jpg" alt="space">
+          </li>
+          <li class="list-item swiper-slide">
+            <img src="../assets/image/sec4-8.jpg" alt="space">
+          </li>
+        </ul>
+        <div class="swiper-button-prev">
+          <i class="bi bi-chevron-left"></i>
+        </div>
+        <div class="swiper-button-next">
+          <i class="bi bi-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-wrap">
+      <div class="footer1">
+        <img class="footer1-logo" src="../assets/image/logo.png" alt="logo">
+        <p class="footer1-text">
+          컬러나인은 9가지 다채로운 과목을 진료한다는 뜻으로,<br>
+          <b>젊음,도약,재충전</b>이라는 3가지 키워드로 당신을 맞이합니다.
+        </p>
+      </div>
+      <div class="footer2">
+        <b class="footer2-title font-Archivo">OPENING HOURS</b>
+        <p class="footer2-time1">
+          <span class="time-day">월/화/수/목/금 </span><span class="time-time">10 : 00 ~ 20 : 00 </span><span class="time-lunch">/ 점심시간 14 : 00 ~ 15 : 00</span>
+        </p>
+        <p class="footer2-time2">
+          <span class="time-day">월/화/수/목/금 </span><span class="time-time">10 : 00 ~ 20 : 00 </span><span class="time-lunch">/ 점심시간 14 : 00 ~ 15 : 00</span>
+        </p>
+        <p class="footer2-time3">일요일,공휴일은 휴진입니다.</p>
+      </div>
+      <div class="footer3">
+        <div class="footer3-title font-Archivo">COLOR NINE</div>
+        <address>
+          <p>컬러나인 한의원( COLOR NINE KOREAN MEDICINE CLINIC )</p>
+          <p>주소: 경기도 성남시 분당구 백현동 534, 판교 테크원타워 2층 컬러나인 한의원</p>
+          <p>사업자번호: 467 - 18 - 01454 (대표:이항아)</p>
+        </address>
+        <a class="footer3-button1" href="#">관리자 로그인</a>
+        <a href="#">수정요청</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -53,7 +53,7 @@
   }
   .content1-title {
     color: #5f5d61;
-    font-size: 4rem;
+    font-size: min(10vw,4rem);
     text-align: center;
     transition: all 0.5s;
     animation: fadeInOut 1s;
@@ -369,11 +369,14 @@
 }
 
 .section3{
-  background-image: url(../../image/sec4-1.jpg);
+  background-image: url(../../image/sec3-1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
+  @include laptopSmall{
+    height: auto;
+  }
   .section3-wrap{
     width: 100%;
     height: 100%;
@@ -384,14 +387,26 @@
       padding: 0 20px;
       max-width: 850px;
       position: absolute;
-      bottom: 0;
       right: 0;
-
+      width: 100%;
       display: flex;
-      align-items: center;
+      bottom: -10%;
+      @include laptopSmall{
+        position: relative;
+        padding: 50px 0;
+      }
+      @include tablet{
+        position: relative;
+        top: auto;
+        bottom: auto;
+      }
       .medical-text{
         width: 50%;
         padding: 190px 20px 0;
+        @include tablet{
+          width: 100%;
+          padding: 40px;
+        }
         .medical-title{
           color: #fff;
           font-size: $font-size-s;
@@ -402,7 +417,7 @@
         .medical-list{
           padding-top: 20px;
           .list-item{
-            margin: 20px 0;
+            margin: 25px 0;
             a{
               margin-left: 20px;
               width: calc(100% - 20px);
@@ -527,12 +542,17 @@
           }
         }
       }
-      .medical-imges{
+      .medical-images{
         position: relative;
+        width: 60%;
+        padding: 20px 4px;
+        @include tablet{
+          display: none;
+        }
         .medical-deco{
           position: absolute;
-          top: 20px;
-          left: -40px;
+          top: 0;
+          left: -35px;
           transform: rotate(350deg);
           animation-name: decoText;
           animation-duration: 6s;
@@ -541,10 +561,182 @@
           animation-timing-function: ease-in-out;
         }
         .medical-img{
-          transform: translateY(10%);
           overflow: hidden;
-          border-radius: 250px 250px 0 0 ;
+          border-radius: 240px 240px 0 0 ;
         }
+      }
+    }
+  }
+}
+
+.section4{
+  width: 100%;
+  .section4-wrap{
+    max-width: 1450px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 330px 20px 180px;
+    text-align: center;
+    .section4-title{
+    font-size: min(6vw,3rem);  
+    }
+    .section4-subTitle{
+      font-size: min(4vw,$font-size-s);
+      color: #999999;
+      opacity: 0.5;
+      margin: 20px 0 60px;
+    }
+    .section4-text{
+      font-size: $font-size-s;
+      color: #999999;
+      span {
+        display: block;
+        @include tablet{
+          display: inline;
+        }
+      }
+    }
+    .space-swiper{
+      margin-top: 100px;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      .swiper-wrapper{
+        .list-item{
+          width: 100%;
+          img{
+            width: 100%;
+          }
+        }
+      }
+      .swiper-button-prev,
+      .swiper-button-next{
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        i{
+          font-size: 20px;
+        }
+      }
+      .swiper-button-prev::after,
+      .swiper-button-next::after{
+        display: none;
+      }
+    }
+  }
+}
+
+.footer{
+  .footer-wrap{
+    width: 100%;
+    max-width: 1860px;
+    margin: 0 auto;
+    padding: 40px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    @include tablet{
+      flex-direction: column;
+      padding: 0 20px;
+    }
+    .footer1{
+      padding: 25px 5px;
+      border-top: 1px solid #bdbdbf;
+      width: 33.3%;
+      @include tablet{
+        width: 100%;
+      }
+      .footer1-logo{
+        max-width: 155px;
+      }
+      .footer1-text{
+        padding-top: 25px ;
+        opacity: 0.6;
+        font-size: $font-size-s;
+      }
+    }
+    .footer2{
+      padding: 25px 5px;
+      border-top: 1px solid #bdbdbf;
+      width: 33.3%;
+      @include tablet{
+        width: 100%;
+      }
+      .footer2-title{
+        font-weight: bold;
+        font-size: $font-size-s;
+      }
+      .footer2-time1{
+        font-size: $font-size-s;
+        padding-top: 25px;
+        .time-day{
+          font-weight: bold;
+          font-size: $font-size-s;
+        }
+        .time-time{
+          color: #ca412f;
+          font-weight: bold;
+        }
+        .time-lunch{
+          opacity: 0.6;
+          @include mobile{
+            display: block;
+          }
+        }
+      }
+      .footer2-time2{
+        font-size: $font-size-s;
+        .time-day{
+          font-weight: bold;
+          font-size: $font-size-s;
+        }
+        .time-time{
+          color: #ca412f;
+          font-weight: bold;
+        }
+        .time-lunch{
+          opacity: 0.6;
+          @include mobile{
+            display: block;
+          }
+        }
+      }
+      .footer2-time3{
+        font-size: $font-size-s;
+        margin-top: 10px;
+      }
+    }
+    .footer3{
+      padding: 25px 5px;
+      border-top: 1px solid #bdbdbf;
+      width: 33.3%;
+      @include tablet{
+        width: 100%;
+      }
+      .footer3-title{
+        font-weight: bold;
+        font-size: $font-size-s;
+      }
+      address{
+        margin-top: 25px;
+        p{
+          font-style: normal;
+          font-size: $font-size-s;
+        }
+      }
+      a{
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 1rem;
+        opacity: 0.6;
+        border-bottom: 1px solid #bdbdbf;
+      }
+      .footer3-button1{
+        margin-right: 10px;
       }
     }
   }
@@ -614,18 +806,16 @@
 
 @keyframes decoText {
   0% {
-    top: 20px;
-    left: -30px;
-}
-
-50% {
-    top: 0;
-    left: 0px;
-    transform: rotate(360deg);
-
-}
-100% {
-    top: 20px;
-    left: -30px;
-}
+    top: 0px;
+    left: -35px;
+  }
+  50% {
+    top: -30px;
+    left: 5px;
+    transform: rotate(365deg);
+  }
+  100% {
+    top: 0px;
+    left: -35px;
+  }
 }
