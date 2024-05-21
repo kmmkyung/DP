@@ -56,13 +56,14 @@
     font-size: min(10vw,4rem);
     text-align: center;
     transition: all 0.5s;
-    animation: fadeInOut 1s;
-    letter-spacing: 6px;
+    font-weight: lighter;
   }
   .content1-video {
+    animation: fadeInOut 0.5s 0.3s;
     position: relative;
     width: 100%;
     padding-top: 50px;
+    transition: all 0.5s;
     .video-wrap {
       position: relative;
       max-width: 965px;
@@ -88,6 +89,7 @@
         color: rgba(255, 255, 255, 0.6);
         border-radius: 2px;
         transition: all 0.5s;
+        cursor: pointer;
         &:hover {
           border: 1px solid #26262c;
           background: #26262c;
@@ -98,28 +100,41 @@
     .video-text__1 {
       font-weight: 600;
       color: #e0ded1;
-      opacity: 0.7;
       font-size: min(8vw, 10rem);
       position: absolute;
       top: 120px;
       left: -55px;
-      transition: all 0.5s;
+      transform: rotate(90deg);
+      transform-origin: bottom left;
+      transition: all 0.8s 0.3s;
+      opacity: 0;
       @include laptop {
         left: 0;
         top: 80px;
       }
     }
+    .video-text__1.active{
+      opacity: 0.7;
+      transform: rotate(0deg);
+    }
     .video-text__2 {
       font-weight: 600;
       color: #e0ded1;
-      opacity: 0.7;
       font-size: min(8vw, 10rem);
       position: absolute;
       bottom: 0;
       right: 25px;
+      transform: rotate(-90deg);
+      transform-origin: bottom right;
+      opacity: 0;
+      transition: all 0.8s;
       @include laptop {
         right: 0;
       }
+    }
+    .video-text__2.active{
+      opacity: 0.7;
+      transform: rotate(0deg);
     }
   }
   .content1-text {
@@ -136,15 +151,35 @@
       text-align: center;
       font-size: $font-size-s;
       font-weight: lighter;
-      opacity: 0.4;
+      .text-1__all{
+        display: block;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.8s;
+      }
+      .text-1__all.active{
+        opacity: 0.4;
+        transform: translateY(0);
+      }
     }
     .text-2 {
       font-size: min(8vw, 8rem);
       padding: 60px 0;
       display: block;
+      transition: all 0.8s;
+      transform: perspective(400px) rotateX(-90deg);
+      opacity: 0;
+    }
+    .text-2.active{
+      opacity: 1;
+      transform: perspective(400px) rotateX(0deg);
     }
     .text-3 {
       font-size: $font-size-s;
+      opacity: 0;
+    }
+    .text-3.active{
+      animation: rotateY 0.8s 0.5s forwards;
     }
   }
 }
@@ -260,27 +295,43 @@
           width: 90%;
           height: auto;
           margin: 0 auto;
+          transition: all 0.5s;
+          transform: translateX(-20px);
+          opacity: 0;
           @include tablet {
             display: none;
           }
         }
-        .left-title {
-          margin-left: min(5vw, 110px);
-          font-size: $font-size-s;
-          @include laptop {
-            margin-left: 0;
-            margin: 20px 0;
+        .left-img.active{
+          opacity: 1;
+          transform: translateX(0px);
+        }
+        .left-text__all{
+          transition: all 0.5s;
+          transform: translateX(-20px);
+          opacity: 0;
+          .left-title {
+            margin-left: min(5vw, 110px);
+            font-size: $font-size-s;
+            @include laptop {
+              margin-left: 0;
+              margin: 20px 0;
+            }
+          }
+          .left-text {
+            margin-left: min(5vw, 110px);
+            font-size: $font-size-s;
+            @include laptop {
+              margin-left: 0;
+            }
+            @include tablet {
+              display: none;
+            }
           }
         }
-        .left-text {
-          margin-left: min(5vw, 110px);
-          font-size: $font-size-s;
-          @include laptop {
-            margin-left: 0;
-          }
-          @include tablet {
-            display: none;
-          }
+        .left-text__all.active{
+          transform: translateX(0px);
+          opacity: 1;
         }
       }
     }
@@ -298,6 +349,9 @@
         .product-list {
           .list-item {
             text-align: center;
+            opacity: 0;
+            transition: all 0.5s;
+            transform: translateY(20px);
             .item-img {
               width: 100%;
             }
@@ -349,6 +403,10 @@
           .list-item__3 {
             margin: 5vw 0;
           }
+          .list-item.active{
+            opacity: 1;
+            transform: translateY(0px);
+          }
         }
       }
     }
@@ -360,10 +418,17 @@
       color: #26262c;
       border: 1px solid #26262c;
       transition: all 0.5s;
+      opacity: 0;
+      transform: translateY(20px);
+      cursor: pointer;
       &:hover {
         color: #fff;
         background-color: #26262c;
       }
+    }
+    .button-more.active{
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 }
@@ -374,6 +439,9 @@
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
+  opacity: 0;
+  transition: all 0.5s;
+  transform: translateY(20px);
   @include laptopSmall{
     height: auto;
   }
@@ -568,6 +636,10 @@
     }
   }
 }
+.section3.active{
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .section4{
   width: 100%;
@@ -577,18 +649,28 @@
     width: 100%;
     padding: 330px 20px 180px;
     text-align: center;
+    @include tablet{
+      padding: 180px 20px;
+    }
     .section4-title{
-    font-size: min(6vw,3rem);  
+    font-size: min(6vw,3rem);
+    opacity: 0;
+    transition: all 0.5s;  
     }
     .section4-subTitle{
       font-size: min(4vw,$font-size-s);
       color: #999999;
-      opacity: 0.5;
       margin: 20px 0 60px;
+      opacity: 0;
+      transition: all 0.5s;
+      transform: translateY(20px); 
     }
     .section4-text{
       font-size: $font-size-s;
       color: #999999;
+      opacity: 0;
+      transition: all 0.5s;
+      transform: translateY(20px); 
       span {
         display: block;
         @include tablet{
@@ -596,12 +678,25 @@
         }
       }
     }
+    .section4-title.active{
+      opacity: 1;
+    }
+    .section4-subTitle.active{
+      opacity: 0.5;
+      transform: translateY(0);
+    }
+    .section4-text.active{
+      opacity: 1;
+      transform: translateY(0);
+    }
     .space-swiper{
       margin-top: 100px;
       width: 100%;
       height: 100%;
       overflow: hidden;
       position: relative;
+      opacity: 0;
+      transition: all 0.5s 0.5s;
       .swiper-wrapper{
         .list-item{
           width: 100%;
@@ -625,6 +720,9 @@
       .swiper-button-next::after{
         display: none;
       }
+    }
+    .space-swiper.active{
+      opacity: 1;
     }
   }
 }
@@ -817,5 +915,21 @@
   100% {
     top: 0px;
     left: -35px;
+  }
+}
+
+@keyframes rotateY {
+  0% {
+    transform: perspective(400px) rotateY(90deg);
+  }
+  40% {
+    transform: perspective(400px) rotateY(-10deg);
+  }
+  70% {
+    transform: perspective(400px) rotateY(10deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
   }
 }

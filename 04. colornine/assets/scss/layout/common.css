@@ -237,7 +237,7 @@ header.active .menu-deco {
   }
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap h6 a {
-  font-size: 3.5rem;
+  font-size: min(5vw, 3.5rem);
   color: rgba(255, 255, 255, 0.9);
   font-weight: normal;
 }
@@ -246,7 +246,7 @@ header.active .menu-deco {
 }
 .nav .menu-all .all-wrap .menu-list .list-item .list-item__wrap p a {
   margin: 20px 0;
-  font-size: 1.5rem;
+  font-size: min(4vw, 1.5rem);
   opacity: 0.5;
   color: #fff;
   font-weight: lighter;

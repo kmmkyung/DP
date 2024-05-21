@@ -186,7 +186,7 @@ header.active{
               }
             }
             h6 a{
-              font-size: 3.5rem;
+              font-size: min(5vw,3.5rem);
               color:rgba(255, 255, 255, 0.9);
               font-weight: normal;
             }
@@ -194,7 +194,7 @@ header.active{
               margin: 10px 0;
               a{
                 margin: 20px 0;
-                font-size: $font-size-s;
+                font-size: min(4vw,$font-size-s);
                 opacity: 0.5;
                 color:#fff;
                 font-weight: lighter;
