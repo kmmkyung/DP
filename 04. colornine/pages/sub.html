@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- bootstrap icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/scss/layout/common.css" />
+    <link rel="stylesheet" href="../assets/scss/page/sub.css" />
+    <script src="../js/common.js"></script>
+    <!-- <script src="../js/sub.js"></script> -->
+  </head>
+  <body>
+    <header class="header">
+      <div class="herader-wrap">
+        <nav class="nav">
+          <div class="logo">
+            <a href="#"><img src="../assets/image/logo.png" alt="logo" /></a>
+          </div>
+          <div class="mainMenu-wrap">
+            <ol class="mainMenu-list">
+              <li class="list-item menuTitle">
+                <a href="#">COLOR NINE</a>
+                <div class="subMenu-wrap">
+                  <ul class="subMenu-list">
+                    <li class="list-item"><a href="#">컬러나인</a></li>
+                    <li class="list-item"><a href="#">둘러보기</a></li>
+                    <li class="list-item"><a href="#">진료시간 및 위치</a></li>
+                    <li class="list-item"><a href="#">의료진 소개</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="list-item menuTitle">
+                <a href="#">진료과목</a>
+                <div class="subMenu-wrap">
+                  <ul class="subMenu-list">
+                    <li class="list-item"><a href="#">근골격계질환</a></li>
+                    <li class="list-item"><a href="#">교통사고</a></li>
+                    <li class="list-item"><a href="#">다이어트</a></li>
+                    <li class="list-item"><a href="#">안면비대칭</a></li>
+                    <li class="list-item"><a href="#">내과질환</a></li>
+                    <li class="list-item"><a href="#">맞춤한약</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="list-item menuTitle">
+                <a href="#">처방한약</a>
+                <div class="subMenu-wrap">
+                  <ul class="subMenu-list">
+                    <li class="list-item"><a href="#">처방한약</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="list-item menuTitle">
+                <a href="#">커뮤니티</a>
+                <div class="subMenu-wrap">
+                  <ul class="subMenu-list">
+                    <li class="list-item"><a href="#">Q&A</a></li>
+                    <li class="list-item"><a href="#">네이버예약</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="list-item menu-membership">
+                <a href="#">MEMBERSHIP</a>
+              </li>
+              <li class="list-item menu-button">
+                <img src="../assets/image/menu-icon.png" alt="menu-icon" />
+              </li>
+              <li class="list-item menu-deco font-Cormorant">NAVIGATIE</li>
+            </ol>
+          </div>
+          <div class="menu-all">
+            <div class="all-wrap">
+              <ol class="menu-list">
+                <li class="list-item list-item__close">
+                  <div class="list-item__wrap">
+                    <button class="menu-close">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-item__wrap">
+                    <h6><a class="font-Cormorant" href="#">COLOR NINE</a></h6>
+                    <p><a href="#">컬러나인</a></p>
+                    <p><a href="#">둘러보기</a></p>
+                    <p><a href="#">진료시간 및 위치</a></p>
+                    <p><a href="#">의료진 소개</a></p>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-item__wrap">
+                    <h6><a href="#">진료과목</a></h6>
+                    <p><a href="#">근골격계질환</a></p>
+                    <p><a href="#">교통사고</a></p>
+                    <p><a href="#">다이어트</a></p>
+                    <p><a href="#">안면비대칭</a></p>
+                    <p><a href="#">내과질환</a></p>
+                    <p><a href="#">맞춤한약</a></p>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-item__wrap">
+                    <h6><a href="#">처방한약</a></h6>
+                    <p><a href="#">처방한약</a></p>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-item__wrap">
+                    <h6><a href="#">커뮤니티</a></h6>
+                    <p><a href="#">Q&A</a></p>
+                    <p><a href="#">네이버예약</a></p>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-item__wrap">
+                    <h6><a class="font-Cormorant" href="#">MEMBERSHIP</a></h6>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <aside class="aside">
+      <ol class="aside-list">
+        <li class="list-item"><a href="#">N</a></li>
+        <li class="list-item">
+          <a href="#"><i class="bi bi-door-open"></i></a>
+        </li>
+        <li class="list-item">
+          <a href="#"><i class="bi bi-box-arrow-right"></i></a>
+        </li>
+        <li class="list-item">
+          <a href="#"><i class="bi bi-arrow-up-short"></i></a>
+        </li>
+      </ol>
+    </aside>
+    <section class="section1">
+      <div class="section1-wrap">
+        <div class="content-deco">
+          <span class="deco-1">
+            <img src="../assets/image/main-deco1.png" alt="deco" />
+          </span>
+          <span class="deco-2">
+            <img src="../assets/image/main-deco2.png" alt="deco" />
+          </span>
+          <span class="deco-3">
+            <img src="../assets/image/main-deco3.png" alt="deco" />
+          </span>
+          <span class="deco-4">
+            <img src="../assets/image/main-deco4.png" alt="deco" />
+          </span>
+        </div>
+        <div class="content1-wrap">
+          <div class="content-text">
+            <h2 class="content-title font-Cormorant">MEDICAL SUBJECT</h2>
+            <p class="content-subTitle">근골격계 질환</p>
+            <p class="content-text">
+              <span>컬러나인의 치료는 당신을 통증으로부터 자유롭게, 더 나은 삶을
+                살아갈 수 있도록 돕습니다.</span>
+              <span>허리를 구부리거나 목 어깨를 돌리는 것, 무거운 물건을 들고
+                다리를 높이 올리는 것까지.</span>
+              <span>목 어깨 통증과 허리 통증에서 벗어나 일상 생활로 빠르게 복귀할
+                수 있도록</span>
+              <span>컬러나인의 의료 스텝들은 최선을 다하겠습니다.</span>
+              <br/><br/>
+              <span>깃털처럼 가벼운 c커브의 목과 부드러운 허리 근육을 느껴
+                보세요.</span>
+            </p>
+          </div>
+        </div>
+        <div class="content2-wrap">
+          <div class="content2">
+            <div class="img-wrap">
+              <img
+                src="../assets/image/sub/sec2-img.png"
+                alt="MEDICAL SUBJECT"
+              />
+            </div>
+            <div class="text-wrap">
+              <h2 class="text-title font-Cormorant">MEDICAL SUBJECT</h2>
+              <ol class="subject-list">
+                <li class="list-item">
+                  <h6 class="item-title">디스크와 협착증</h6>
+                  <p class="item-subTitle">DISC DISEASE AND SPINAL STENOSIS</p>
+                  <p class="item-text">
+                    <span>
+                      주로 후방, 외측 방향으로 척추뼈 사이의 디스크가 돌출이
+                      되어 신경을 압박하게 됩니다.
+                    </span>
+                    <span>
+                      이로 인해 허리의 통증을 호소하거나 다리 저림, 배뇨
+                      기능저하, 하지부 근력이 약화하게 됩니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="list-item">
+                  <h6 class="item-title">염좌성 통증</h6>
+                  <p class="item-subTitle">SORE PAIN</p>
+                  <p class="item-text">
+                    <span>
+                      디스크 파열 없이 건이나 근육, 인대 손상으로 통증이
+                      생깁니다.
+                    </span>
+                    <span>
+                      갑자기 근육이나 관절이 젖혀질 경우나 장기간 잘못된 자세로
+                      생활할 때 발생하게 됩니다.
+                    </span>
+                    <span>
+                      디스크의 파열이 없더라도 환자의 자각적인 증상은 심하게
+                      나타날 수 있기 때문에 빠른 조기 치료를 요합니다.
+                    </span>
+                  </p>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-wrap">
+        <div class="footer1">
+          <img class="footer1-logo" src="../assets/image/logo.png" alt="logo" />
+          <p class="footer1-text">
+            컬러나인은 9가지 다채로운 과목을 진료한다는 뜻으로,<br />
+            <b>젊음,도약,재충전</b>이라는 3가지 키워드로 당신을 맞이합니다.
+          </p>
+        </div>
+        <div class="footer2">
+          <b class="footer2-title font-Archivo">OPENING HOURS</b>
+          <p class="footer2-time1">
+            <span class="time-day">월/화/수/목/금 </span
+            ><span class="time-time">10 : 00 ~ 20 : 00 </span
+            ><span class="time-lunch">/ 점심시간 14 : 00 ~ 15 : 00</span>
+          </p>
+          <p class="footer2-time2">
+            <span class="time-day">월/화/수/목/금 </span
+            ><span class="time-time">10 : 00 ~ 20 : 00 </span
+            ><span class="time-lunch">/ 점심시간 14 : 00 ~ 15 : 00</span>
+          </p>
+          <p class="footer2-time3">일요일,공휴일은 휴진입니다.</p>
+        </div>
+        <div class="footer3">
+          <div class="footer3-title font-Archivo">COLOR NINE</div>
+          <address>
+            <p>컬러나인 한의원( COLOR NINE KOREAN MEDICINE CLINIC )</p>
+            <p>
+              주소: 경기도 성남시 분당구 백현동 534, 판교 테크원타워 2층
+              컬러나인 한의원
+            </p>
+            <p>사업자번호: 467 - 18 - 01454 (대표:이항아)</p>
+          </address>
+          <a class="footer3-button1" href="#">관리자 로그인</a>
+          <a href="#">수정요청</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
