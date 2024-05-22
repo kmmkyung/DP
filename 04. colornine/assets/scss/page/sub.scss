@@ -43,82 +43,150 @@
   }
 }
 
-.content1-wrap{
+.content1-wrap {
   padding: 240px 20px;
-  .content-text{
-    .content-title{
+  @include tablet {
+    padding: 180px 20px 120px;
+  }
+  .content-text {
+    .content-title {
       padding-top: 140px;
       text-align: center;
-      font-size: 5rem;
+      font-size: min(10vw, 5rem);
       color: #26262c;
       font-weight: lighter;
     }
-    .content-subTitle{
+    .content-subTitle {
       margin: 90px 0 35px;
       text-align: center;
       font-size: $font-size-l;
     }
-    .content-text{
+    .content-text {
       text-align: center;
-      font-size: $font-size-s;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
       color: #999999;
       word-break: keep-all;
-      span{
+      span {
         display: block;
+        @include tablet {
+          display: inline;
+        }
       }
     }
   }
 }
 
-.content2-wrap{
+.content2-wrap {
   position: relative;
   width: 100%;
-  padding: 30px 40px 0;
+  padding: 30px 40px;
   background: #2f2f2f;
   overflow: hidden;
   display: flex;
   overflow: hidden;
-  .content2{
+  @include tablet{
+    padding: 0;
+  }
+  .content2 {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    .img-wrap{
+    @include tablet {
+      flex-direction: column-reverse;
+    }
+    .img-wrap {
       position: absolute;
       bottom: 0;
       left: 0;
-      img{
-      vertical-align: top;
-      width: 90%;
+      @include tablet{
+        position: relative;
+      }
+      img {
+        vertical-align: top;
+        width: 90%;
+      }
     }
-    }
-    .text-wrap{
+    .text-wrap {
       color: #fff;
       width: 40%;
       padding: 200px 150px 50px 20px;
-      .text-title{
+      position: relative;
+      z-index: 1;
+      @include laptop {
+        width: 50%;
+        padding: 90px 40px;
+      }
+      @include tablet{
+        width: 100%;
+        padding: 40px 20px 0;
+      }
+      .text-title {
         font-size: 4rem;
         font-weight: lighter;
+        @include tablet{
+          text-align: center;
+        }
       }
-      .subject-list{
+      .subject-list {
         width: 100%;
-        .list-item{
+        .list-item {
           padding-left: 23px;
           border-left: 1px solid rgba(255, 255, 255, 0.5);
           margin-top: 70px;
-          .item-title{
+          @include tablet{
+            margin-top: 50px;
+          }
+          .item-title {
             font-size: $font-size-l;
           }
-          .item-subTitle{
-            font-size: $font-size-s;
+          .item-subTitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
           }
-          .item-text{
+          .item-text {
             margin-top: 24px;
-            font-size: $font-size-s;
-            span{
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            span {
               display: block;
+              @include tablet{
+                display: inline;
+              }
             }
           }
-        } 
+        }
+      }
+    }
+  }
+}
+
+.section2{
+  width: 100%;
+  .section2-wrap{
+    max-width: 1046px;
+    margin: 0 auto;
+    padding: 90px 0;
+    position: relative;
+    .section2-title{
+      text-align: center;
+      font-size: 3rem;
+    }
+    .section2-content{
+      .content-list{
+        display: flex;
+        flex-wrap: wrap;
+        .list-item{
+          width: 50%;
+          @include tablet{
+            width: 100%;
+          }
+          .item-img{
+            width: 100%;
+            height: 80px;
+            text-align: center;
+            img{}
+          }
+          .item-title{}
+          .item-text{}
+        }
       }
     }
   }
