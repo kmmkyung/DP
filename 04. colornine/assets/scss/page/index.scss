@@ -57,9 +57,10 @@
     text-align: center;
     transition: all 0.5s;
     font-weight: lighter;
+    animation: fadeInOut 1s;
   }
   .content1-video {
-    animation: fadeInOut 0.5s 0.3s;
+    animation: fadeInOut 1s 0.5s;
     position: relative;
     width: 100%;
     padding-top: 50px;
