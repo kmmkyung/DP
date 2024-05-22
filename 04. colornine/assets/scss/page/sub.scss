@@ -55,11 +55,25 @@
       font-size: min(10vw, 5rem);
       color: #26262c;
       font-weight: lighter;
+      transition: all 0.5s;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    .content-title.active{
+      opacity: 1;
+      transform: translateY(0px);
     }
     .content-subTitle {
       margin: 90px 0 35px;
       text-align: center;
       font-size: $font-size-l;
+      transition: all 0.5s;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    .content-subTitle.active{
+      opacity: 1;
+      transform: translateY(0px);
     }
     .content-text {
       text-align: center;
@@ -68,9 +82,30 @@
       word-break: keep-all;
       span {
         display: block;
+        transform: translateY(20px);
+        opacity: 0;
         @include tablet {
           display: inline;
         }
+      }
+      span.active{
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      .text-1{
+        transition: all 0.5s;
+      }
+      .text-2{
+        transition: all 0.5s 0.2s;
+      }
+      .text-3{
+        transition: all 0.5s 0.4s;
+      }
+      .text-4{
+        transition: all 0.5s 0.6s;
+      }
+      .text-5{
+        transition: all 0.5s 0.8s;
       }
     }
   }
@@ -84,7 +119,7 @@
   overflow: hidden;
   display: flex;
   overflow: hidden;
-  @include tablet{
+  @include tablet {
     padding: 0;
   }
   .content2 {
@@ -97,14 +132,20 @@
     .img-wrap {
       position: absolute;
       bottom: 0;
-      left: 0;
-      @include tablet{
+      left: -20px;
+      opacity: 0;
+      transition: all 0.5s 0.2s;
+      @include tablet {
         position: relative;
       }
       img {
         vertical-align: top;
         width: 90%;
       }
+    }
+    .img-wrap.active{
+      left: 0;
+      opacity: 1;
     }
     .text-wrap {
       color: #fff;
@@ -116,16 +157,23 @@
         width: 50%;
         padding: 90px 40px;
       }
-      @include tablet{
+      @include tablet {
         width: 100%;
         padding: 40px 20px 0;
       }
       .text-title {
         font-size: 4rem;
         font-weight: lighter;
-        @include tablet{
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s;
+        @include tablet {
           text-align: center;
         }
+      }
+      .text-title.active{
+        opacity: 1;
+        transform: translateY(0);
       }
       .subject-list {
         width: 100%;
@@ -133,23 +181,47 @@
           padding-left: 23px;
           border-left: 1px solid rgba(255, 255, 255, 0.5);
           margin-top: 70px;
-          @include tablet{
+          @include tablet {
             margin-top: 50px;
           }
-          .item-title {
-            font-size: $font-size-l;
+          .item-title__all{
+            transform: translateY(20px);
+            transition: all 0.5s;
+            opacity: 0;
+            .item-title {
+              font-size: $font-size-l;
+            }
+            .item-subTitle {
+              font-size: clamp(1rem, 2.5vw, 1.5rem);
+            }
           }
-          .item-subTitle {
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
+          .item-title__all.active{
+            transform: translateY(0px);
+            opacity: 1;
           }
           .item-text {
             margin-top: 24px;
             font-size: clamp(1rem, 2.5vw, 1.5rem);
             span {
+              opacity: 0;
+              transform: translateY(20px);
               display: block;
-              @include tablet{
+              @include tablet {
                 display: inline;
               }
+            }
+            span.active{
+              opacity: 1;
+              transform: translateY(0px);
+            }
+            .text-1{
+              transition: all 0.5s;
+            }
+            .text-2{
+              transition: all 0.5s 0.2s;
+            }
+            .text-3{
+              transition: all 0.5s 0.4s;
             }
           }
         }
@@ -158,35 +230,196 @@
   }
 }
 
-.section2{
+.section2 {
   width: 100%;
-  .section2-wrap{
+  .section2-wrap {
     max-width: 1046px;
     margin: 0 auto;
     padding: 90px 0;
     position: relative;
-    .section2-title{
+    .section2-title {
       text-align: center;
       font-size: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s;
     }
-    .section2-content{
-      .content-list{
+    .section2-title.active{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section2-content {
+      .content-list {
         display: flex;
         flex-wrap: wrap;
-        .list-item{
+        .list-item {
           width: 50%;
-          @include tablet{
+          min-height: 330px;
+          padding: 20px;
+          @include tablet {
             width: 100%;
           }
-          .item-img{
+          .item-img {
             width: 100%;
             height: 80px;
             text-align: center;
-            img{}
+            transition: all 0.5s 0.2s;
+            opacity: 0;
           }
-          .item-title{}
-          .item-text{}
+          .item-img__none {
+            @include tablet {
+              display: none;
+            }
+          }
+          .item-title {
+            text-align: center;
+            font-size: $font-size-m;
+            padding: 35px 0;
+            transition: all 0.5s 0.5s;
+            transform: translateY(20px);
+            opacity: 0;
+            span {
+              font-weight: normal;
+            }
+          }
+          .item-text {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            line-height: 21px;
+            color: #666666;
+            letter-spacing: -0.25px;
+            word-break: keep-all;
+            transition: all 0.5s 1s;
+            transform: translateY(20px);
+            opacity: 0;
+          }
         }
+        .list-item.active{
+          .item-img {
+            opacity: 1;
+          }
+          .item-title {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .item-text {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}
+
+.section3 {
+  background-image: url(../../image/sub/sec4-bg.jpg);
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: 100%;
+  background-color: #fafafa;
+  .section3-wrap {
+    .section3-content {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+      .section3-color {
+        max-width: 170px;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: all 0.5s;
+      }
+      .section3-color.active{
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section3-title {
+        font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+        padding: 50px 0 20px;
+      }
+      .section3-text {
+        font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+        span {
+          display: block;
+          opacity: 0;
+          transform: translateY(20px);
+          @include tablet {
+            display: inline;
+          }
+        }
+        .text-1{
+          transition: all 0.5s;
+        }
+        .text-2{
+          transition: all 0.5s 0.2s;
+        }
+        span.active{
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+      .section3-herb {
+        width: 100%;
+        padding: 40px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s;
+      }
+      .section3-herb.active{
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+    .section3-people {
+      width: 100%;
+      max-width: 1148px;
+      margin: 0 auto;
+      padding: 70px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s;
+      img {
+        width: 100%;
+      }
+    }
+    .section3-people.active{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.section4 {
+  width: 100%;
+  .section4-wrap {
+    .section4-text {
+      padding: 100px 0;
+      text-align: center;
+      h6 {
+        font-size: min(8vw, 5rem);
+        font-weight: lighter;
+        padding: 0 0 12px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s;
+      }
+      h6.active{
+        opacity: 1;
+        transform: translateY(0);
+      }
+      p {
+        font-size: min(4vw, 2.4rem);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s;
+        span {
+          color: #ffb1a4;
+        }
+      }
+      p.active{
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }

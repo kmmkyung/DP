@@ -15,18 +15,15 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="../assets/scss/layout/common.css" />
+    <link rel="stylesheet" href="../assets/scss/layout/sub-common.css" />
     <link rel="stylesheet" href="../assets/scss/page/sub.css" />
-    <script src="../js/common.js"></script>
-    <!-- <script src="../js/sub.js"></script> -->
+    <script src="../js/sub-common.js"></script>
+    <script src="../js/sub.js"></script>
   </head>
   <body>
     <header class="header">
-      <div class="herader-wrap">
+      <div class="header-wrap">
         <nav class="nav">
           <div class="logo">
             <a href="#"><img src="../assets/image/logo.png" alt="logo" /></a>
@@ -169,60 +166,64 @@
         </div>
         <div class="content1-wrap">
           <div class="content-text">
-            <h2 class="content-title font-Cormorant">MEDICAL SUBJECT</h2>
-            <p class="content-subTitle">근골격계 질환</p>
+            <h2 class="content-title font-Cormorant entry">MEDICAL SUBJECT</h2>
+            <p class="content-subTitle entry">근골격계 질환</p>
             <p class="content-text">
-              <span>컬러나인의 치료는 당신을 통증으로부터 자유롭게, 더 나은 삶을
+              <span class="entry text-1">컬러나인의 치료는 당신을 통증으로부터 자유롭게, 더 나은 삶을
                 살아갈 수 있도록 돕습니다.</span>
-              <span>허리를 구부리거나 목 어깨를 돌리는 것, 무거운 물건을 들고
+              <span class="entry text-2">허리를 구부리거나 목 어깨를 돌리는 것, 무거운 물건을 들고
                 다리를 높이 올리는 것까지.</span>
-              <span>목 어깨 통증과 허리 통증에서 벗어나 일상 생활로 빠르게 복귀할
+              <span class="entry text-3">목 어깨 통증과 허리 통증에서 벗어나 일상 생활로 빠르게 복귀할
                 수 있도록</span>
-              <span>컬러나인의 의료 스텝들은 최선을 다하겠습니다.</span>
+              <span class="entry text-4">컬러나인의 의료 스텝들은 최선을 다하겠습니다.</span>
               <br/><br/>
-              <span>깃털처럼 가벼운 c커브의 목과 부드러운 허리 근육을 느껴
+              <span class="entry text-5">깃털처럼 가벼운 c커브의 목과 부드러운 허리 근육을 느껴
                 보세요.</span>
             </p>
           </div>
         </div>
         <div class="content2-wrap">
           <div class="content2">
-            <div class="img-wrap">
+            <div class="img-wrap entry">
               <img
                 src="../assets/image/sub/sec2-img.png"
                 alt="MEDICAL SUBJECT"
               />
             </div>
             <div class="text-wrap">
-              <h2 class="text-title font-Cormorant">MEDICAL SUBJECT</h2>
+              <h2 class="text-title font-Cormorant entry">MEDICAL SUBJECT</h2>
               <ol class="subject-list">
                 <li class="list-item">
-                  <h6 class="item-title">디스크와 협착증</h6>
-                  <p class="item-subTitle">DISC DISEASE AND SPINAL STENOSIS</p>
+                  <div class="item-title__all entry">
+                    <h6 class="item-title">디스크와 협착증</h6>
+                    <p class="item-subTitle">DISC DISEASE AND SPINAL STENOSIS</p>
+                  </div>
                   <p class="item-text">
-                    <span>
+                    <span class="entry text-1">
                       주로 후방, 외측 방향으로 척추뼈 사이의 디스크가 돌출이
                       되어 신경을 압박하게 됩니다.
                     </span>
-                    <span>
+                    <span class="entry text-2">
                       이로 인해 허리의 통증을 호소하거나 다리 저림, 배뇨
                       기능저하, 하지부 근력이 약화하게 됩니다.
                     </span>
                   </p>
                 </li>
                 <li class="list-item">
-                  <h6 class="item-title">염좌성 통증</h6>
-                  <p class="item-subTitle">SORE PAIN</p>
+                  <div class="item-title__all entry">
+                    <h6 class="item-title">염좌성 통증</h6>
+                    <p class="item-subTitle">SORE PAIN</p>
+                  </div>
                   <p class="item-text">
-                    <span>
+                    <span class="entry text-1">
                       디스크 파열 없이 건이나 근육, 인대 손상으로 통증이
                       생깁니다.
                     </span>
-                    <span>
+                    <span class="entry text-2">
                       갑자기 근육이나 관절이 젖혀질 경우나 장기간 잘못된 자세로
                       생활할 때 발생하게 됩니다.
                     </span>
-                    <span>
+                    <span class="entry text-3">
                       디스크의 파열이 없더라도 환자의 자각적인 증상은 심하게
                       나타날 수 있기 때문에 빠른 조기 치료를 요합니다.
                     </span>
@@ -236,57 +237,78 @@
     </section>
     <section class="section2">
       <div class="section2-wrap">
-        <h2 class="section2-title font-Archivo">HOW TO?</h2>
+        <h2 class="section2-title font-Archivo entry">HOW TO?</h2>
         <div class="section2-content">
           <ul class="content-list">
-            <li class="list-item">
+            <li class="list-item entry">
               <div class="item-img">
                 <img src="../assets/image/sub/sec3_skill1.png" alt="skill">
               </div>
-              <h6 class="item-title">침(Acupuncture)</h6>
+              <h6 class="item-title">침<span>(Acupuncture)</span></h6>
               <p class="item-text">환자분의 니즈에 맞게 1단계에서부터 3단계까지 통증 강도를 설정할 수 있습니다.<br>
                 여러 굵기와 강도의 침을 통증부, 근육부 및 혈자리에 정확히 타겟팅하여 치료합니다.<br>
                 침은 의사의 고도의 숙련된 스킬이기 때문에, 정확한 부위를 캐치하여 근육의 압통점 및 문제부위와 연결된 신경주행경로까지 적정한 자극을 주며 들어가는 것이 중요합니다.</p>
             </li>
-            <li class="list-item">
+            <li class="list-item entry">
               <div class="item-img">
                 <img src="../assets/image/sub/sec3_skill2.png" alt="skill">
               </div>
-              <h6 class="item-title">약침(Pharmacopuncture)</h6>
+              <h6 class="item-title">약침<span>(Pharmacopuncture)</span></h6>
               <p class="item-text">약과 침을 결합시킨 것으로, 치료 부위에    효능이 있는 약액을 주입합니다.<br>
                 주사제 기준과 동일한 무균시험을 실시하여 합격한 것만 사용하고 있으며, 스테로이드 등은 들어가 있지 않고 오로지 한약재만 사용하고 있습니다.</p>
             </li>
-            <li class="list-item">
+            <li class="list-item entry">
               <div class="item-img">
                 <img src="../assets/image/sub/sec3_skill3.png" alt="skill">
               </div>
-              <h6 class="item-title">부항(Cupping therapy)</h6>
+              <h6 class="item-title">부항<span>(Cupping therapy)</span></h6>
               <p class="item-text">부항컵과 피부 사이에 600~610mmhg정도의 음압을 형성하여 모세혈관을 확장시키며 간질액의 가스교환을 도와, 신진대사를 증진시킵니다.<br>
                 더불어 진통효과와 소염효과를 빠르게 증진시킵니다.</p>
             </li>
-            <li class="list-item">
+            <li class="list-item entry">
               <div class="item-img">
                 <img src="../assets/image/sub/sec3_skill4.png" alt="skill">
               </div>
-              <h6 class="item-title">추나요법(Chuna manual therapy)</h6>
+              <h6 class="item-title">추나요법<span>(Chuna manual therapy)</span></h6>
               <p class="item-text">관절의 정렬을 통해 부정확한 자세를 바로 잡고 통증을 이완시킵니다.<br>
                 근막을 부드럽게 이완시켜 신체의 가동범위를 늘려줍니다.</p>
             </li>
-            <li class="list-item">
+            <li class="list-item entry">
               <div class="item-img">
                 <img src="../assets/image/sub/sec3_skill5.png" alt="skill">
               </div>
-              <h6 class="item-title">한약(Herb medicine)</h6>
+              <h6 class="item-title">한약<span>(Herb medicine)</span></h6>
               <p class="item-text">근골격계 통증을 오래 앓다보면 대개 뼈와 근육이 약해지며 완충 역할을 하기 어려워집니다.<br>
                 우슬, 두충 등 관절에 좋은 한약재를 선별하여 개별 맞춤 처방하고 척추 주변 근육과 인대를 강화하여 척추의 퇴행 속도를 늦춰줍니다.</p>
             </li>
-            <li class="list-item">
-              <div class="item-img"></div>
+            <li class="list-item entry">
+              <div class="item-img item-img__none"></div>
               <h6 class="item-title">공통사항</h6>
               <p class="item-text">*시술 후 안내서 및 운동사항을 티칭해 드립니다.<br>
                 *전 치료실 모두 1인실로 구성된 프라이빗 진료실에서 당신에게 가장 최적화된 진료 시스템을 구축합니다.</p>
             </li>
           </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section3">
+      <div class="section3-wrap">
+        <div class="section3-content">
+          <img class="section3-color entry" src="../assets/image/sub/sec4-img1.png" alt="colorNine">
+          <h6 class="section3-title entry">컬러나인의 모든 패키지 한약은 자체 브랜딩 된 디자인에 담겨있습니다.</h6>
+        <p class="section3-text"><span class="entry text-1">거기에, 원장이 하나하나 꼼꼼하고 세심하게 고른 처방으로 컬러나인의 개성을 표현합니다.</span><span class="entry text-2">환경을 생각해 모든 패키징은 재활용 할 수 있는 소재에 담으려고 애썼습니다.</span></p>
+        <img class="section3-herb entry" src="../assets/image/sub/sec4-img2.png" alt="Herb medicine">
+      </div>
+        <div class="section3-people entry">
+          <img src="../assets/image/sub/sec5-img.jpg" alt="people">
+        </div>
+      </div>
+    </section>
+    <section class="section4">
+      <div class="section4-wrap">
+        <div class="section4-text">
+          <h6 class="font-Cormorant entry">Better together, smile together</h6>
+          <p class="font-Archivo entry">WITH <span>COLOR NINE</span></p>
         </div>
       </div>
     </section>

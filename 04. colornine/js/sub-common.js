@@ -1,4 +1,7 @@
 window.addEventListener('DOMContentLoaded',function(){
+  
+  let header = document.querySelector('.header')
+
   // header submenu 보이게하기
   const menuTitle = document.querySelectorAll('.mainMenu-list .menuTitle')
   const subMenuWrap = document.querySelectorAll('.mainMenu-list .subMenu-wrap')
@@ -7,11 +10,9 @@ window.addEventListener('DOMContentLoaded',function(){
 
   menuTitle.forEach(function(ele,idx){
     let vh = subMenu[idx].clientHeight;
-
     ele.addEventListener('mouseenter',function(){
       subMenuWrap[idx].style.height = vh + "px";
       header.style.height = 100 + vh + "px";
-
     })
     ele.addEventListener('mouseleave',function(){
       subMenuWrap[idx].style.height = 0;
@@ -31,9 +32,9 @@ window.addEventListener('DOMContentLoaded',function(){
   })
 
   // 스크롤시 header 고정
-  let header = document.querySelector('.header')
-  window.addEventListener('scroll',function(){
-    if(this.window.scrollY >= header.offsetHeight){
+  let content1 = document.querySelector('.section1 .content1-wrap')
+  window.addEventListener('scroll',function(){    
+    if(this.window.scrollY >= content1.offsetHeight){
       header.classList.add('active')
     }
     else{

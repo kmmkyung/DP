@@ -130,7 +130,7 @@ header.active .menu-deco {
   text-align: center;
 }
 .nav .mainMenu-list .list-item .subMenu-wrap .subMenu-list .list-item a {
-  color: #fff;
+  color: #e0ded1;
   font-size: 1rem;
   display: block;
   width: 100%;
@@ -414,4 +414,4 @@ header.active .menu-deco {
 }
 .footer .footer-wrap .footer3 .footer3-button1 {
   margin-right: 10px;
-}/*# sourceMappingURL=common.css.map */
+}/*# sourceMappingURL=sub-common.css.map */
