@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* 변수 설정 */
+:root{
+  --font-size-xl : 3.2rem;
+  --font-size-l : 1.8rem;
+  --font-size-m : 1.6rem;
+  --font-size-s : 1.4rem;
+  --font-size-xs : 1.2rem;
+  --font-size-main : 2rem;
+  --main-color : #ea1979;
+  --font-title-color:rgb(51,51,51);
+  --font-con-color:rgb(85,85,85);
+}
+
+html{
+  font-size: 10px;
+}
+
+/* *{
+  outline: 1px solid turquoise;
+} */
+
+body{
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.-hidden{
+  display: none !important
+}
