@@ -126,7 +126,19 @@ header ul .last-li button{
   border: 1px solid #000;
 }
 
-
 .last-td{
   background-color: lightgoldenrodyellow;
+}
+
+aside{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  border: 1px solid #000;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.title-btn {
+  margin-bottom: 20px;
 }
