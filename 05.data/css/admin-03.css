@@ -19,6 +19,17 @@ button {
   font-size: 14px;
 }
 
+p{
+  font-size: 14px;
+  padding: 5px 2px;
+  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
+  background-color: #f5f5f5;
+  width: 95px;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  box-sizing: border-box;
+}
 /* header */
 header {
   position: absolute;
@@ -76,7 +87,7 @@ header ul .last-li button{
   gap: 10px;
 }
 
-.titleBtn p{
+.titleBtn span{
   color: red;
   font-weight: bold;
 }
