@@ -52,6 +52,7 @@ p{
 
 .content-right{
   width: 900px;
+  position: relative;
 }
 
 .btn-wrap{
@@ -119,7 +120,7 @@ p{
   width: 100%;
   gap: 7px;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .flexGrow{
@@ -141,19 +142,22 @@ p{
   line-height: 120px;
 }
 
-.left-4_content1{
+.left-4_content1,
+.right-4_content1{
   margin-top: 10px;
   box-sizing: border-box;
 }
 
-.left-4_content1 ul{
+.left-4_content1 ul,
+.right-4_content1 ul{
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
 }
 
-.left-4_content1 ul li{
+.left-4_content1 ul li,
+.right-4_content1 ul li{
   padding: 5px;
   border-top: 1px solid #aaa;
   border-left: 1px solid #aaa;
@@ -162,14 +166,10 @@ p{
   transform: translateY(1px);
 }
 
-.left-4_content1 .tap1{
+.left-4_content1 .tap1,
+.right-4_content1 .tap1{
   position: relative;
   z-index: 2;
-}
-
-.left-4_content1 .tap2{
-  position: relative;
-  z-index: 1;
 }
 
 .content1-1,
@@ -213,7 +213,6 @@ p{
   display: none;
 }
 
-
 .table-wrap {
   border: 1px solid #888;
   min-height: 300px;
@@ -255,4 +254,23 @@ p{
 
 .table tbody td button{
   width: 80px;
+}
+
+.table-wrap2{
+  margin-top: 10px;
+}
+
+.right-4_content1 .content1{
+  position: relative;
+  z-index: 1;
+  padding: 0 20px 20px;
+  border: 1px solid #aaa;
+}
+
+.close-btn{
+  position: absolute;
+  right: 0;
+  margin-top: 20px;
+  padding: 10px;
+  width: 200px;
 }
