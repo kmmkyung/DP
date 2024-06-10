@@ -141,7 +141,7 @@ p {
 
 .table-wrap {
   border: 1px solid #888;
-  height: 300px;
+  height: 100%;
   width: 100%;
   overflow: auto;
   margin-top: 20px;
