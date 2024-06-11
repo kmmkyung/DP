@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/admin-06.css">
+</head>
+<body>
+  <section class="section1">
+    <div class="top-btn">
+      <div class="top-btn_left">
+        <p class="left-main noBtn title-btn">거래내역</p>
+        <div class="top-btn_right">
+          <button>오버나잇 내역</button>
+          <button>스탑로스 내역</button>
+          <button>MIT 내역</button>
+        </div>
+      </div>
+      <div class="subTop-btn">
+        <p class="noBtn">거래일자</p>
+        <input type="date">
+        <span>~</span>
+        <input type="date">
+        <p class="noBtn">거래종목</p>
+        <select name="" id="">
+          <option value="">전체</option>
+        </select>
+        <p class="noBtn">주문방법</p>
+        <select name="" id="">
+          <option value="">전체</option>
+        </select>
+        <p class="noBtn">상태</p>
+        <select name="" id="">
+          <option value="">전체</option>
+        </select>
+        <p class="noBtn">검색어</p>
+        <select name="" id="">
+          <option value="">전체</option>
+        </select>
+        <input type="text">
+        <button class="search-btn">검색</button>
+        <p class="subTop-btn_text">매수체결: 0회 매도체결: 0회</p>
+      </div>
+    </div>
+    
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th rowspan="2">시간</th>
+            <th rowspan="2">매체</th>
+            <th rowspan="2">주문번호</th>
+            <th rowspan="2">원주문번호</th>
+            <th rowspan="2">아이디</th>
+            <th colspan="13">거래정보</th>
+            <th rowspan="2">평가금액</th>
+            <th rowspan="2">보유잔고</th>
+            <th colspan="4">잔고</th>
+            <th rowspan="2">매도1호가</th>
+            <th rowspan="2">매수1호가</th>
+            <th rowspan="2">현재가</th>
+          </tr>
+          <tr>
+            <th>주문방법</th>
+            <th>접수상태</th>
+            <th>거래종목</th>
+            <th>매매구분</th>
+            <th>가격유형</th>
+            <th>주문가격</th>
+            <th>체결가격</th>
+            <th>주문량</th>
+            <th>체결량</th>
+            <th>장외거래</th>
+            <th>손익</th>
+            <th>수수료</th>
+            <th>총손익</th>
+            <th>체결</th>
+            <th>미체결</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+  </section>
+</body>
+</html>
