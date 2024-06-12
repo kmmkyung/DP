@@ -103,6 +103,11 @@ button {
 .title-btn{
   font-weight: bold;
   display: block;
+  width: 150px;
+}
+
+.top-btn_right button{
+  width: 150px;
 }
 
 .tap-list{
@@ -124,10 +129,9 @@ button {
   z-index: 1;
 }
 
-.tap-list .list-item:nth-child(1){
+.tap-list .list-item:nth-child(3){
   z-index: 3;
 }
-
 
 .tap-content{
   box-sizing: border-box;
@@ -145,9 +149,6 @@ button {
   position: relative;
 }
 
-.tap-content2{
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
+.tap-content1{
+  visibility: visible;
 }
