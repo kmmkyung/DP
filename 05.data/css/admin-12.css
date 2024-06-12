@@ -122,10 +122,19 @@ tfoot th{
   width: 200px;
   border: 1px solid #000;
 }
+
 .content{
   margin-top: 20px;
   display: flex;
   gap: 50px;
+}
+
+.content>.content-left{
+  flex-basis: 60%;
+}
+
+.content>.content-right{
+  flex-basis: 40%;
 }
 
 .btn-wrap{
@@ -136,4 +145,64 @@ tfoot th{
 .btn-wrap button:nth-child(2),
 .btn-wrap button:nth-child(4){
   margin-right: 10vw;
+}
+
+.left-2,.left-3{
+  margin-top: 20px;
+}
+
+.content-right{
+  box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid;
+}
+
+.content-right .content-wrap{
+  display: flex;
+  gap: 50px;
+}
+
+.content-right .content-left .table-wrap{
+  width: 200px;
+}
+
+.content-right1{
+  margin-top: 20px;
+}
+
+.right-2,
+.right-3,
+.right-4,
+.right-5{
+  margin-top: 10px;
+}
+
+.content-right1 button{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.content-right .content-left .table-wrap{
+  min-height : 1600px
+}
+
+.content-right2 .table-wrap{
+  min-height: 800px;
+}
+
+.rigth2-text{
+  margin-top: 20px;
+}
+
+.rigth2-text .noBtn{
+  width: 150px;
+  margin-right: 10px;
+}
+
+.rigth2-text input{
+  margin-right: 10px;
+}
+
+.rigth2-text .last-btn{
+  width: 100%;
 }
