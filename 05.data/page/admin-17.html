@@ -37,14 +37,54 @@
       <p class="noBtn grid4-2">15:19:00</p>
       <p class="noBtn grid5-1">해외선물 오버나잇 시간</p>
       <p class="noBtn grid5-2">15:19:00</p>
-      <p class="noBtn grid5-3">체결율</p>
-      <p class="whiteP grid5-4">60 <span>%</span></p>
-      <button class="grid5-5">체결율 적용</button>
-      <button class="grid5-6">장시간 기본 값 저장</button>
-      <button class="grid5-7">장시간 기본 값</button>
-      <button class="grid5-8">거래시간, 틱가치, 수수료, 수량 변경</button>
+      <div class="box grid5-3">
+        <p class="noBtn">체결율</p>
+        <input type="text" value="60" id="text1">
+        <label for="text1">%</label>
+      </div>
+      <button class="grid5-4">체결율 적용</button>
+      <button class="grid5-5">장시간 기본 값 저장</button>
+      <button class="grid5-6">장시간 기본 값</button>
+      <button class="grid5-7">거래시간, 틱가치, 수수료, 수량 변경</button>
     </div>
     
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>종목</th>
+            <th>종목코드</th>
+            <th>월물</th>
+            <th>개장시간</th>
+            <th>주문시작</th>
+            <th>주문종료</th>
+            <th>폐장시간</th>
+            <th>거래가능</th>
+            <th>거래상태변경</th>
+            <th>틱가치</th>
+            <th>수수료</th>
+            <th>주문가능수량</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>주간선물</td>
+            <td>101V6000</td>
+            <td>F2406</td>
+            <td>08:00:00</td>
+            <td>00:00:00</td>
+            <td>00:00:00</td>
+            <td>00:00:00</td>
+            <td><input type="checkbox">거래가능</td>
+            <td><button>거래상태 변경</button></td>
+            <td>12000원</td>
+            <td>0.00023%</td>
+            <td>5</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    <p class="last-text">개장 관련 시간 및 틱 가치는 장 마감이후 진행 하셔야 다음날 적용이 됩니다. (예시 - 12월 1일 오전 5시 ~ 6기 변경 -> 12월 1일 개장시 부터 적용됨)</p>
   </section>
 </body>
 </html>
