@@ -21,7 +21,10 @@ button {
   background-color: skyblue;
   border: 1px solid #6cb3cf;
   font-size: 14px;
-  width: 120px
+  width: 120px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 .noBtn {
@@ -45,6 +48,7 @@ button {
   background-color: #f5f5f5;
   padding: 20px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .whiteP {
