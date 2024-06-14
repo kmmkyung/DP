@@ -1,0 +1,192 @@
+select,
+input {
+  width: 95px;
+  padding: 5px 5px;
+}
+
+input[type='checkbox']{
+  width: auto;
+}
+
+input[type='text']{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+button {
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  background-color: skyblue;
+  border: 1px solid #6cb3cf;
+  font-size: 14px;
+  width: 120px;
+}
+
+.noBtn {
+  font-size: 14px;
+  padding: 5px 2px;
+  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
+  background-color: #f5f5f5;
+  min-width: 120px;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.section1 {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: auto;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+}
+
+.whiteP {
+  background-color: #fff;
+  border-bottom: 1px solid #000;
+  margin: 0;
+  padding: 0;
+}
+
+.table-wrap {
+  border: 1px solid #888;
+  min-height: 500px;
+  max-height: 500px;
+  width: 100%;
+  overflow: auto;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid #888;
+  width: 100%;
+}
+
+.table thead {
+  border: 1px solid #000;
+  background-color: #f5f5f5;
+  height: 30px;
+}
+
+.table thead th {
+  border: 1px solid #000;
+  background-color: #eee;
+  width: 100px;
+}
+
+.table tbody {
+  /* background-color: #fff; */
+}
+
+.table tbody tr {
+  height: 30px;
+  background-color: lightsteelblue;
+}
+
+.table tbody td {
+  border: 1px solid #000;
+}
+
+.table tbody td button {
+  width: 120px;
+}
+
+
+/* ---------------------------- */
+
+.title-btn{
+  font-weight: bold;
+  display: block;
+  width: 180px;
+  line-height: 2.4;
+}
+
+.box-1{
+  margin-top: 20px;
+  border: 1px solid #000;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  position: relative;
+}
+
+.box-1::after{
+  content: '적용환율';
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  background-color: #f5f5f5;
+}
+
+.box-2{
+  margin-top: 20px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 20px;
+  position: relative;
+}
+
+.box-2::after{
+  content: '선물 증거금';
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  background-color: #f5f5f5;
+}
+
+.box-3{
+  border: 1px solid #000;
+  margin-top: 20px;
+  padding: 20px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.box-3_wrap{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.box-3::after{
+  content: '장외거래';
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  background-color: #f5f5f5;
+}
+
+.box-3_6{
+  margin-top: 20px;
+}
+
+.box-4{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  }
+  
+  .box-4_left{
+    border: 1px solid #000;
+    padding: 20px;
+    box-sizing: border-box;
+  }
