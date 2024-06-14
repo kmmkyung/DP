@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/admin-21.css">
+</head>
+<body>
+  <section class="section section1">
+    <div class="top-btn">
+      <div class="top-btn_left">
+        <p class="left-main noBtn title-btn">단타매매 감시</p>
+      </div>
+    </div>
+    
+    <div class="box-wrap">
+      <div class="box-1">
+        <p class="noBtn">설정1(매매간격)</p>
+        <input type="checkbox" id="check-1">
+        <label for="check-1">사용</label>
+        <input type="text" id="text-1">
+        <label for="text-1">분 이내</label>
+        <input type="text" id="text-2">
+        <label for="text-2">건</label>
+        <span>회원이 설정시간이내에 몇건의 거래를 했는지를 감지합니다.</span>
+      </div>
+      <div class="box-2">
+        <p class="noBtn">설정1(매매간격)</p>
+        <input type="checkbox" id="check-3">
+        <label for="check-3">사용</label>
+        <input type="text" id="text-3">
+        <label for="text-3">틱 이내</label>
+        <input type="text" id="text-4">
+        <label for="text-4">회</label>
+        <span>틱틱이 거래 감지 목적으로, 설정된 틱 기준 설정 횟수 이상 거래를 감지합니다.</span>
+      </div>
+      <p>단타매매감시 설정은 당일 장 시작에서 폐장까지 기준으로 합니다.</p>
+      <button>적용</button>
+    </div>
+
+    <div class="reload-btn-wrap">
+      <button class="reload-btn">새로고침</button>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>시간</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>감시종류</th>
+            <th>IP주소</th>
+            <th>거래내역</th>
+            <th>동일IP</th>
+            <th>1:1채팅</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2024-04-04 00:00:00</td>
+            <td>ten19</td>
+            <td>홍길동</td>
+            <td>설정1(매매간격)</td>
+            <td></td>
+            <td><button>거래내역 확인</button></td>
+            <td><button>동일IP 확인</button></td>
+            <td><button>채팅 시작</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</body>
+</html>

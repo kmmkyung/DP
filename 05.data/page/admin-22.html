@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin-22.css" />
+  </head>
+  <body>
+    <section class="section section1">
+      <div class="top-btn">
+        <div class="top-btn_left">
+          <p class="left-main noBtn title-btn">이벤트 관리</p>
+        </div>
+      </div>
+
+      <div class="box-top">
+        <div class="box-1">
+          <div class="event-1">
+            <p class="noBtn">첫입금이벤트</p>
+            <input type="checkbox" id="check-1" />
+            <label for="check-1">사용</label>
+            <input type="text" readonly value="3" /><span>%</span>
+          </div>
+          <div class="event-2">
+            <p class="noBtn">입금무한이벤트</p>
+            <input type="checkbox" id="check-1" />
+            <label for="check-1">사용</label>
+            <input type="text" readonly value="3" /><span>%</span>
+          </div>
+          <div class="event-3">
+            <p class="noBtn">특정시간입금이벤트</p>
+            <input type="checkbox" id="check-1" />
+            <label for="check-1">사용</label>
+            <input type="text" readonly value="5" /><span>%</span>
+            <input type="time" />
+            <span>~</span>
+            <input type="time" />
+            <div class="radio-wrap">
+              <input type="radio" id="redio-1" />
+              <label for="redio-1">한번만 지급</label>
+              <input type="radio" id="redio-2" />
+              <label for="redio-2">계속 지급</label>
+            </div>
+          </div>
+        </div>
+        <div class="box2-wrap">
+          <div class="box-2">
+            <div class="text-1">
+              <p class="noBtn">가입축하이벤트</p>
+              <input type="checkbox" class="check-2" />
+              <label for="check-2">사용</label>
+              <input type="text" /><span>원</span>
+            </div>
+            <div class="text-2">
+              <p class="noBtn">손실금이벤트</p>
+              <input type="checkbox" class="check-3" />
+              <label for="check-3">사용</label>
+              <p>상세설정은 개별설정에서 해주세요.</p>
+            </div>
+          </div>
+          <button>이벤트 정보 적용</button>
+        </div>
+      </div>
+
+      <div class="box-3">
+        <ul class="title-list">
+          <li class="list-item">손실금 현황</li>
+          <li class="list-item">수익률 현황</li>
+          <li class="list-item">수익왕 현황</li>
+        </ul>
+      </div>
+
+      <div class="box-4">
+        <div class="box-top">
+          <div class="top-left">
+            <p class="noBtn">날짜</p>
+            <select name="" id="">
+              <option value="">2024-05-31</option>
+            </select>
+            <button>손실금현황 검색</button>
+          </div>
+          <div class="top-right">
+            <button>손실금이벤트 지급</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" id="check-4" /><label for="check-4"
+                    >순위</label
+                  >
+                </th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>해외개장예탁총액</th>
+                <th>해외예탁총액</th>
+                <th>입금액</th>
+                <th>별도추가입금액</th>
+                <th>출금액</th>
+                <th>손실금</th>
+                <th>지급액</th>
+                <th>보상액</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
