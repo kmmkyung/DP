@@ -55,8 +55,7 @@ select,input{
 
 .table-wrap {
   border: 1px solid #888;
-  min-height: 300px;
-  max-height: 300px;
+  height: 300px;
   width: 100%;
   overflow: auto;
   margin-top: 20px;
