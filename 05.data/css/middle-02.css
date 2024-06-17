@@ -68,6 +68,7 @@ select,input{
   border-collapse: collapse;
   border: 1px solid #888;
   width: 100%;
+  min-width: 1000px;
 }
 
 .table thead {
@@ -105,4 +106,48 @@ select,input{
 .left{
   display: flex;
   gap: 10px;
+}
+
+.left-1,
+.right,
+.right-1{
+  display: flex;
+  gap: 10px;
+}
+
+
+@media screen and (max-width:900px) {
+
+  .left {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+
+  .bottom-btn {
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bottom-btn .right {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+  button {
+    width: 210px;
+  }
+}
+
+@media screen and (max-width:425px) {
+
+
+  .topBtn-1{
+    display: block;
+      margin: 0 auto;
+  }
 }

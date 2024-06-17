@@ -27,3 +27,12 @@ header{
   background-color: skyblue;
 }
 
+@media screen and (max-width:425px) {
+
+
+.btn-wrap button {
+  font-size: 12px;
+  width: 48%;
+}
+
+}
