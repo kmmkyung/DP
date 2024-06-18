@@ -113,7 +113,8 @@ header{
 background: #0038df;
 }
 
-.table-wrap{
+
+.table-wrap {
   height: 300px;
   width: 100%;
   overflow: auto;
@@ -121,15 +122,11 @@ background: #0038df;
   background-color: #fff;
 }
 
-.table{
+.table {
   text-align: center;
+  border-collapse: collapse;
   width: 100%;
-  position: relative;
-  border-collapse: separate;
-  border-spacing: 0;
-  height: 300px;
   min-width: 1000px;
-  font-size: 1rem;
 }
 
 .table thead {
