@@ -1,28 +1,94 @@
-p{
+body{
+  background-color: #e0e3eb;
+  padding: 0 10px;
+}
+
+header{
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.header-wrap{
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.header-wrap .btn-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-wrap button{
   font-size: 12px;
-  padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  background-color: #f5f5f5;
   width: 100px;
-  text-align: center;
-  display: inline-block;
+  height: 50px;
+  border-radius: 1.3px;
+  transition: 0.5s;
+  position: relative;
 }
 
-select,input{
-  width: 100px;
-  padding: 5px 3px;
+.btn-wrap button:nth-child(6)::after{
+  content: '';
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
 }
 
-/* section1 */
+.btn-wrap button:hover{
+  font-weight: bold;
+}
+
+@media screen and (max-width:425px) {
+  .btn-wrap button {
+    font-size: 12px;
+    width: 48%;
+  }
+}
+
 .section1{
   max-width: 1500px;
   margin: 0 auto;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #fff;
+  border-radius: 1rem;
 }
 
 .section-wrap{
   padding: 20px;
+  margin-top: 20px;
+}
+
+button{
+  width: 120px;
+  height: 30px;
+}
+
+select,input{
+  width: 100px;
+  padding: 5px 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e3eb;
+}
+
+p{
+  font-size: 12px;
+  padding: 5px 2px;
+  /* box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff; */
+  background-color: #f5f5f5;
+  width: 100px;
+  text-align: center;
+  border-radius: 0.5rem;
 }
 
 .top-btn{
@@ -31,14 +97,25 @@ select,input{
   justify-content: space-between;
 }
 
-.top-btn button{
-  width: 200px;
-  height: 30px;
+.top-btn .btn-1{
+  position: relative;
+  width: 100px;
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 50px;
+  padding: 0;
 }
 
-.top-btn .btn-1{
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  display: block;
+.top-btn .btn-1::after{
+  content: '';
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
 }
 
 .left-content{
@@ -55,13 +132,32 @@ select,input{
 }
 
 .left-btn .left-btn1,
-.left-btn .left-btn2,
-.right-btn1{
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  width: 80px;
-  padding: 5px 2px;
+.left-btn .left-btn2{
+  border: 1px solid #0027b3;
+  color: #000;
+  transition: 0.5s;
+  border-radius: 0.5rem;
 }
+
+
+.left-btn .left-btn1:hover,
+.left-btn .left-btn2:hover{
+  background: #0038df;
+  color: #fff;
+}
+
+
+.right-btn1{
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+}
+
+.right-btn1:hover{
+  background: #0038df;
+}
+
 
 .right-wrap{
   display: flex;
@@ -74,17 +170,8 @@ select,input{
 .right-btn1{
   display: block;
 }
-
-.table caption{
-  height: 30px;
-  background-color: #f5f5f5;
-  border: 1px solid #000;
-}
-
 .table-wrap {
-  border: 1px solid #888;
-  min-height: 300px;
-  max-height: 300px;
+  height: 300px;
   width: 100%;
   overflow: auto;
   margin-top: 20px;
@@ -94,28 +181,75 @@ select,input{
 .table {
   text-align: center;
   border-collapse: collapse;
-  border: 1px solid #888;
   width: 100%;
+  min-width: 1000px;
+  font-size: 12px;
 }
 
 .table thead {
+  position: sticky;
+  top: 0;
+  height: 30px;
+}
+
+.table tfoot{
+  position: sticky;
+  bottom: 0;
+  background: #f1f1f1;
+  height: 30px;
+}
+
+table th {
+    height: 2rem;
+    line-height: 1.8rem;
+    background: #f1f1f1;
+    text-align: center;
+    border: 1px solid #fff;
+    border-top: none;
+}
+
+table td {
+    padding: 0 0.1rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.table tbody td button{
+  width: 80px;
+}
+
+.table tfoot{
+  position: sticky;
+  bottom: 0;
   border: 1px solid #000;
   background-color: #f5f5f5;
   height: 30px;
 }
 
-.table thead th {
-  border: 1px solid #000;
+
+caption{
+  margin-top: 10px;
+  font-size: 12px;
+  border: 1px solid #e3e3e3;
 }
 
-.table tbody {
-  background-color: #fff;
+.right-text{
+  width: 100%;
+  background-color: transparent;
 }
 
-.table tbody tr {
-  height: 30px;
+.right-wrap span{
+  font-size: 12px;
+  word-break: keep-all;
 }
 
-.table tbody td {
-  border: 1px solid #000;
+@media screen and (max-width:850px) {
+  .top-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
 }

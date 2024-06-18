@@ -260,10 +260,10 @@ table td {
   align-items: flex-start;
 }
 
-  .dateday {
-      flex-direction: column;
-      align-items: flex-start;
-  }
+.dateday {
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 }
 
