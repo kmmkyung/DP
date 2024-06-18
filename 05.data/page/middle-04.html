@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/middle-04.css">
 </head>
 <body>
@@ -15,8 +14,10 @@
         <button class="btn-1">에이전트 현황</button>
         <button class="btn-2">유저 현황</button>
         <button class="btn-3">기간별 수익 현황</button>
+        <button class="btn-3">유저 수익 현황</button>
         <button class="btn-4">거래내역</button>
         <button class="btn-5">실시간 현황</button>
+        <button class="btn-6">입/출금 현황</button>
         <button class="btn-6">비밀번호 변경</button>
         <button class="btn-7">종료</button>
       </div>
@@ -49,9 +50,11 @@
         <div class="right-btn">
           <div class="btn">
             <p class="rightBtn-1">날짜</p>
-            <input type="date">
-            <label for="data-last">~</label>
-            <input type="date" name="data-last">
+            <div class="btn dateday">
+              <input type="date">
+              <label for="data-last">~</label>
+              <input type="date" name="data-last">
+            </div>
           </div>
           <div class="btn">
             <select name="name" id="name">

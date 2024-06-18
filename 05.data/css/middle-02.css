@@ -34,7 +34,7 @@ header{
   position: relative;
 }
 
-.btn-wrap button:first-child::after{
+.btn-wrap button:nth-child(2)::after{
   content: '';
   background-color: #0027b3;
   position: absolute;
@@ -66,6 +66,7 @@ p{
   background-color: #f5f5f5;
   width: 100px;
   text-align: center;
+  border-radius: 0.5rem;
 }
 
 .section1 {
@@ -82,13 +83,15 @@ p{
 }
 
 button{
-  width: 200px;
+  width: 120px;
   height: 30px;
 }
 
 select,input{
   width: 100px;
   padding: 5px 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e3eb;
 }
 
 .top-btn button{
@@ -99,8 +102,10 @@ select,input{
 .top-btn .topBtn-1{
   position: relative;
   width: 100px;
-  height: 50px;
   font-size: 12px;
+  background-color: #fff;
+  line-height: 50px;
+  padding: 0;
 }
 
 .top-btn .topBtn-1::after{
@@ -151,6 +156,7 @@ select,input{
   border-collapse: collapse;
   width: 100%;
   min-width: 1000px;
+  font-size: 12px;
 }
 
 .table thead {
@@ -188,6 +194,7 @@ table td {
   display: block;
   margin-top: 10px;
   text-align: right;
+  font-size: 12px;
 }
 
 .left{
@@ -211,12 +218,11 @@ table td {
     flex-direction: column;
 }
 
-
   .bottom-btn {
     margin: 20px 0;
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: row;
     gap: 10px;
   }
 
@@ -232,7 +238,13 @@ table td {
 }
 
 @media screen and (max-width:425px) {
-
+  .bottom-btn {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
 
   .topBtn-1{
     display: block;

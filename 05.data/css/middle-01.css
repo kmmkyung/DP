@@ -79,15 +79,18 @@ header{
 }
 
 .top-btn button{
-  width: 200px;
+  width: 120px;
   height: 30px;
 }
 
 .top-btn .btn-1{
   position: relative;
-  width: auto;
-  height: 50px;
+  width: 100px;
   font-size: 12px;
+  background-color: #fff;
+  line-height: 50px;
+  text-align: center;
+  padding: 0;
 }
 
 .top-btn .btn-1::after{
@@ -127,6 +130,7 @@ background: #0038df;
   border-collapse: collapse;
   width: 100%;
   min-width: 1000px;
+  font-size: 12px;
 }
 
 .table thead {
