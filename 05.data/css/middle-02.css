@@ -1,3 +1,62 @@
+/* header */
+body{
+  background-color: #e0e3eb;
+  padding: 0 10px;
+}
+
+header{
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.header-wrap{
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.header-wrap .btn-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-wrap button{
+  font-size: 12px;
+  width: 100px;
+  height: 50px;
+  border-radius: 1.3px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.btn-wrap button:first-child::after{
+  content: '';
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
+}
+
+.btn-wrap button:hover{
+  font-weight: bold;
+}
+
+@media screen and (max-width:425px) {
+  .btn-wrap button {
+    font-size: 12px;
+    width: 48%;
+  }
+}
+
 /* section1 */
 .section1{
   max-width: 1500px;
@@ -17,6 +76,7 @@ p{
 
 .section-wrap{
   padding: 20px;
+  margin-top: 20px;
 }
 
 button{
@@ -37,8 +97,15 @@ select,input{
 }
 
 .rightBtn-1 {
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+  height: 50px;
+}
+
+.rightBtn-1:hover{
+  background: #0038df;
 }
 
 .bottom-btn{
