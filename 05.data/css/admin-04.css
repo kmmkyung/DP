@@ -22,7 +22,7 @@ button {
   border: none;
 }
 
-button:hover{
+button:hover {
   background: #0038df;
 }
 
@@ -34,13 +34,15 @@ p {
   border-radius: 0.5rem;
   margin: 0;
   width: 95px;
-
 }
 
-
-.btn{
+.btn {
   display: flex;
   gap: 10px;
+}
+
+.dateLabel{
+  background-color: #fff;
 }
 
 .section1 {
@@ -62,15 +64,18 @@ p {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .content-left {
   width: 550px;
+  flex: 0 0 auto;
 }
 
 .content-right {
   width: 900px;
   position: relative;
+  overflow: auto;
 }
 
 .btn-wrap {
@@ -160,6 +165,7 @@ p {
   display: flex;
   gap: 7px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .meno {
@@ -247,20 +253,22 @@ p {
   display: none;
 }
 
-
 .table-wrap {
   height: 300px;
-  width: 100%;
+  /* width: 100%; */
   overflow: auto;
   margin-top: 20px;
   background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5rem;
+  min-width: 300px;
 }
 
 .table {
   text-align: center;
   border-collapse: collapse;
   width: 100%;
-  min-width: 1000px;
+  /* min-width: 1000px; */
   font-size: 12px;
 }
 
@@ -270,7 +278,7 @@ p {
   height: 30px;
 }
 
-.table tfoot{
+.table tfoot {
   position: sticky;
   bottom: 0;
   background: #f1f1f1;
@@ -278,21 +286,21 @@ p {
 }
 
 table th {
-    height: 2rem;
-    line-height: 1.8rem;
-    background: #f1f1f1;
-    text-align: center;
-    white-space: nowrap;
+  height: 2rem;
+  line-height: 1.8rem;
+  background: #f1f1f1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 table td {
-    padding: 0 0.1rem;
-    height: 2rem;
-    line-height: 1.8rem;
-    border-bottom: 1px solid #e3e3e3;
+  padding: 0 0.1rem;
+  height: 2rem;
+  line-height: 1.8rem;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-.table tbody td button{
+.table tbody td button {
   background: #0027b3;
   color: #fff;
   transition: 0.5s;
@@ -300,11 +308,12 @@ table td {
 }
 
 .table-wrap2 {
-  width: 100%;
+  min-width: 300px;
   overflow: auto;
   margin-top: 20px;
   background-color: #fff;
-  height: 100px;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5rem;
 }
 
 .right-4_content1 .content1 {
@@ -335,4 +344,86 @@ table td {
 ::-webkit-scrollbar {
   width: 6px;
   height: 10px;
+}
+
+
+.flex1{
+  flex:auto;
+}
+
+@media screen and (max-width:1220px){
+  .content-wrap {
+    flex-direction: column;
+  }
+
+  .content-left {
+    width: auto;
+  }
+
+  .whiteP {
+    flex: 1;
+  }
+
+  .flex1{
+    flex:1;
+  }
+  
+  .content-right {
+    width: auto;
+    overflow: visible;
+  }
+
+  .close-btn {
+    position: static;
+  }
+
+  .left-4_content1 ul, .right-4_content1 ul {
+    flex-wrap: wrap;
+  }
+
+  .left-4_content1 ul li, .right-4_content1 ul li {
+    padding: 5px;
+    border: 1px solid #e3e3e3;
+    background-color: #fff;
+    transform: translateY(0);
+    font-size: 12px;
+    border-radius: 0.2rem;
+  }
+
+  .left-4_content1 ul li.on, .right-4_content1 ul li.on{
+    background: #0027b3;
+    color: #fff;
+  }
+}
+
+
+@media screen and (max-width:620px){
+  .w100p{
+    width: 100%;
+  }
+  .wAuto{
+    width: auto;
+  }
+  .btn-wrap {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    flex-direction: column;
+  }
+  .left-1 {
+    margin-top: 20px;
+  }
+  .flexDC{
+    flex-direction: column;
+  }
+  .item {
+    width: 100%;
+  }
+  textarea{
+    width: 150px;
+  }
+.table-wrap {
+    min-width: auto;
+  }
 }
