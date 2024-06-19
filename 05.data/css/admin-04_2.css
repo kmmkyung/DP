@@ -61,6 +61,10 @@ p {
   gap: 10px;
 }
 
+.content-left{
+  flex: 0 0 auto;
+}
+
 .left-1,
 .left-2,
 .right-1 {
@@ -83,7 +87,7 @@ p {
 .left-1::after {
   content: "기본정보";
   position: absolute;
-  top: -15%;
+  top: -10%;
   font-size: 14px;
   background-color: #fff;
 }
@@ -108,20 +112,25 @@ p {
 .left-2::after {
   content: "기본이벤트";
   position: absolute;
-  top: -10%;
+  top: -7%;
   font-size: 14px;
   background-color: #fff;
+}
+
+.content-right{
+  flex: 1;
 }
 
 .right-1{
   display: flex;
   gap: 10px;
+  flex-direction:column
 }
 
 .right-1::after {
   content: "거래정보";
   position: absolute;
-  top: -4%;
+  top: -7%;
   font-size: 14px;
   background-color: #fff;
 }
