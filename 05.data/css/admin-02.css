@@ -24,6 +24,10 @@ button {
   border: none;
 }
 
+.blueBtn:hover{
+  background: #0038df;
+}
+
 p{
   font-size: 12px;
   padding: 5px 2px;
@@ -71,6 +75,11 @@ header ul li button {
   width: 100%;
   border: none;
 }
+
+header ul li button:hover{
+  background: #0038df;
+}
+
 
 header ul .last-li {
   flex-basis: 100%;

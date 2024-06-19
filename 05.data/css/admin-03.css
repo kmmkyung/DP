@@ -1,34 +1,41 @@
+body {
+  background-color: #e0e3eb;
+  padding: 0 10px;
+}
+
 select,
 input {
   width: 100px;
-  padding: 5px 3px;
+  padding: 5px 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e3eb;
 }
 
 button {
-  padding: 5px 2px;
   width: 120px;
-  font-size: 14px;
+  height: 30px;
 }
 
 .blueBtn{
-  text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  padding: 5px 2px;
-  width: 120px;
-  font-size: 14px;
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.blueBtn:hover{
+  background: #0038df;
 }
 
 p{
-  font-size: 14px;
+  font-size: 12px;
   padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
   background-color: #f5f5f5;
-  width: 95px;
+  width: 100px;
   text-align: center;
-  display: inline-block;
+  border-radius: 0.5rem;
   margin: 0;
-  box-sizing: border-box;
 }
 /* header */
 header {
@@ -36,6 +43,7 @@ header {
   width: 350px;
   top: 0px;
   right: 10px;
+  z-index: 2;
 }
 
 header ul {
@@ -47,6 +55,7 @@ header ul {
   background-color: #fff;
   justify-content: space-between;
   gap: 5px;
+  border-radius: 1rem;
 }
 
 li{
@@ -55,12 +64,19 @@ li{
 
 header ul li button{
   text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
   padding: 5px 2px;
   font-size: 14px;
   white-space: nowrap;
   width: 100%;
+  border: none;
+}
+
+header ul li button:hover{
+  background: #0038df;
 }
 
 header ul .last-li{
@@ -75,8 +91,9 @@ header ul .last-li button{
 .section1 {
   max-width: 1500px;
   margin: 0 auto;
-  width: auto;
-  background-color: #f5f5f5;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1rem;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -87,21 +104,41 @@ header ul .last-li button{
   gap: 10px;
 }
 
+.titleBtn p{
+  position: relative;
+  line-height: 50px;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+.titleBtn p::after{
+  content: '';
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
+}
+
 .titleBtn span{
   color: red;
   font-weight: bold;
+  font-size: 12px;
 }
 
 .content{
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .table-wrap {
-  border: 1px solid #888;
-  min-height: 300px;
-  max-height: 300px;
+  height: 300px;
   width: 100%;
   overflow: auto;
   margin-top: 20px;
@@ -111,31 +148,53 @@ header ul .last-li button{
 .table {
   text-align: center;
   border-collapse: collapse;
-  border: 1px solid #888;
   width: 100%;
+  min-width: 1000px;
+  font-size: 12px;
 }
 
 .table thead {
-  border: 1px solid #000;
-  background-color: #f5f5f5;
+  position: sticky;
+  top: 0;
   height: 30px;
 }
 
-.table thead th {
-  border: 1px solid #000;
+.table tfoot{
+  position: sticky;
+  bottom: 0;
+  background: #f1f1f1;
+  height: 30px;
 }
 
-.table tbody {
+table th {
+    height: 2rem;
+    line-height: 1.8rem;
+    background: #f1f1f1;
+    text-align: center;
+    white-space: nowrap;
+}
+
+table td {
+    padding: 0 0.1rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.table tbody td button{
+  width: 80px;
+  border: 1px solid #0027b3;
+  color: #000;
+  transition: 0.5s;
+  border-radius: 0.5rem;
   background-color: #fff;
 }
 
-.table tbody tr {
-  height: 30px;
+
+.table tbody td button:hover{
+  background: #0038df;
 }
 
-.table tbody td {
-  border: 1px solid #000;
-}
 
 .last-td{
   background-color: lightgoldenrodyellow;
@@ -143,13 +202,60 @@ header ul .last-li button{
 
 aside{
   position: absolute;
-  top: 30%;
-  left: 50%;
+  width: 500px;
   border: 1px solid #000;
-  padding: 20px;
+  top: 20%;
+  left: 50%;
   background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 1rem;
+  transform: translateX(-50%);
 }
 
 .title-btn {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
+
+.title-btn button{
+  width: auto;
+  border: none;
+  padding: 0 10px;
+  border-radius: 0.5rem;
+}
+
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
+.aside-btn{
+  justify-content: end;
+  margin-top: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: rgba(186, 186, 186, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+@media screen and (max-width: 640px) {
+  aside {
+    width: 360px;
+  }
+
+  .content-1,
+  .content-3
+  {
+    flex-direction: column;
+  }
+}
+

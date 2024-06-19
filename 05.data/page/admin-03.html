@@ -36,27 +36,31 @@
       <span>메모에 [가입매체 : WTS]가 있는 경우 [바탕화면 보기]가 지원되지 않습니다.</span>
     </div>
     <div class="content">
-      <div class="content-1">
+      <div class="content-1 btn">
         <p>날짜</p>
-        <input type="date">
-        <label for="data-last">~</label>
-        <input type="date" name="data-last">
+        <div class="btn">
+          <input type="date">
+          <label for="data-last">~</label>
+          <input type="date" name="data-last">
+        </div>
       </div>
-      <div class="content-2">
+      <div class="content-2 btn">
         <p>멤버쉽상태</p>
         <select>
           <option value="">전체</option>
           <option value="">전체</option>
         </select>
       </div>
-      <div class="content-3">
+      <div class="content-3 btn">
         <p>검색어</p>
-        <select>
-          <option value="">이름</option>
-        </select>
-        <input type="text">
+        <div class="btn">
+          <select>
+            <option value="">이름</option>
+          </select>
+          <input type="text">
+        </div>
       </div>
-      <div class="content-4">
+      <div class="content-4 btn">
         <p>IP</p>
         <input type="text">
       </div>
@@ -123,15 +127,20 @@
       <p>
         동일IP 확인
       </p>
+      <button>X</button>
     </div>
     <div class="main-btn">
-      <p>검색어</p>
-      <select name="" id="">
-        <option>IP</option>
-        <option>IP</option>
-      </select>
-      <input type="text">
-      <button class="blueBtn">검색</button>
+      <div class="btn">
+        <p>검색어</p>
+        <select name="" id="">
+          <option>IP</option>
+          <option>IP</option>
+        </select>
+        <input type="text">
+      </div>
+      <div class="btn aside-btn">
+        <button class="blueBtn">검색</button>
+      </div>
     </div>
     <div class="table-wrap">
       <table class="table">
@@ -147,12 +156,12 @@
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>2adsf</td>
-            <td>3afasdfef</td>
-            <td>4adfadsfasd</td>
-            <td>5afdfadfafafdsf</td>
-            <td>6asdfadsf</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

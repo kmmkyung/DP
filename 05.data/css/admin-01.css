@@ -5,7 +5,7 @@ body {
 
 select,
 input,
-textarea{
+textarea {
   width: 100px;
   padding: 5px 0;
   border-radius: 0.5rem;
@@ -27,7 +27,7 @@ p {
   margin: 0;
 }
 
-.displayInline{
+.displayInline {
   display: inline-block;
 }
 
@@ -69,6 +69,10 @@ header ul li button {
   border: none;
 }
 
+header ul li button:hover{
+  background: #0038df;
+}
+
 header ul .last-li {
   flex-basis: 100%;
 }
@@ -86,7 +90,7 @@ header ul .last-li button {
   border-radius: 1rem;
 }
 
-.titleBtn p{
+.titleBtn p {
   margin-left: 20px;
   padding-top: 20px;
   position: relative;
@@ -96,8 +100,8 @@ header ul .last-li button {
   line-height: 50px;
 }
 
-.titleBtn p::after{
-  content: '';
+.titleBtn p::after {
+  content: "";
   background-color: #0027b3;
   position: absolute;
   width: 100%;
@@ -149,8 +153,12 @@ header ul .last-li button {
   border: none;
 }
 
+.left .top-btn-2 button:hover{
+  background: #0038df;
+}
 
-.left .top-btn-2 .file{
+
+.left .top-btn-2 .file {
   border: 1px solid #0027b3;
   color: #000;
   transition: 0.5s;
@@ -158,11 +166,10 @@ header ul .last-li button {
   background-color: #fff;
 }
 
-.left .top-btn-2 .file:hover{
+.left .top-btn-2 .file:hover {
   background: #0038df;
   color: #fff;
 }
-
 
 .table-wrap {
   height: 300px;
@@ -186,7 +193,7 @@ header ul .last-li button {
   height: 30px;
 }
 
-.table tfoot{
+.table tfoot {
   position: sticky;
   bottom: 0;
   background: #f1f1f1;
@@ -194,20 +201,20 @@ header ul .last-li button {
 }
 
 table th {
-    height: 2rem;
-    line-height: 1.8rem;
-    background: #f1f1f1;
-    text-align: center;
+  height: 2rem;
+  line-height: 1.8rem;
+  background: #f1f1f1;
+  text-align: center;
 }
 
 table td {
-    padding: 0 0.1rem;
-    height: 2rem;
-    line-height: 1.8rem;
-    border-bottom: 1px solid #e3e3e3;
+  padding: 0 0.1rem;
+  height: 2rem;
+  line-height: 1.8rem;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-.table tbody td button{
+.table tbody td button {
   width: 80px;
   border: 1px solid #0027b3;
   color: #000;
@@ -216,12 +223,12 @@ table td {
   background-color: #fff;
 }
 
-.table tbody td button.on{
+.table tbody td button.on {
   background: #0038df;
   color: #fff;
 }
 
-.right{
+.right {
   width: 680px;
 }
 
@@ -238,11 +245,9 @@ table td {
   border: none;
 }
 
-
-.blueBtn:hover{
+.blueBtn:hover {
   background: #0038df;
 }
-
 
 aside {
   position: absolute;
@@ -275,6 +280,18 @@ aside {
   justify-content: space-between;
 }
 
+.top-btn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-btn button{
+  width: auto;
+  border: none;
+  padding: 0 10px;
+  border-radius: 0.5rem;
+}
+
 ::-webkit-scrollbar-thumb {
   height: 17%;
   background-color: rgba(186, 186, 186, 0.5);
@@ -286,34 +303,44 @@ aside {
   height: 10px;
 }
 
-@media screen and (max-width:1445px) {
+@media screen and (max-width: 1445px) {
   .left,
-  .right{
+  .right {
     width: 100%;
   }
 
-  .right{
+  .right {
     margin-top: 20px;
   }
 }
 
-@media screen and (max-width:640px) {
-    .right .top-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-  aside {
-    width: 420px;
+@media screen and (max-width: 640px) {
+  .right .top-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
+
+  aside {
+    width: 350px;
+  }
+
   .left .top-btn {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .bottom-btn {
+    margin-top: 10px;
 }
 
-.serchBtn{
-  margin-top: 10px;
-}
+  .bottom-left button:last-child{
+    margin-top: 10px;
+  }
+
+  .serchBtn {
+    margin-top: 10px;
+  }
 }

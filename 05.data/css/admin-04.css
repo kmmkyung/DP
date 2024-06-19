@@ -1,42 +1,60 @@
+body {
+  background-color: #e0e3eb;
+  padding: 0 10px;
+}
+
 select,
 input {
   width: 95px;
-  padding: 5px 5px;
+  padding: 5px 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e3eb;
 }
 
 button {
   padding: 5px;
-  font-size: 14px;
   text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  font-size: 14px;
+  font-size: 12px;
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+button:hover{
+  background: #0038df;
 }
 
 p {
-  font-size: 14px;
+  font-size: 12px;
   padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
   background-color: #f5f5f5;
-  width: 95px;
   text-align: center;
-  display: inline-block;
+  border-radius: 0.5rem;
   margin: 0;
-  box-sizing: border-box;
+  width: 95px;
+
+}
+
+
+.btn{
+  display: flex;
+  gap: 10px;
 }
 
 .section1 {
   max-width: 1500px;
   margin: 0 auto;
-  width: auto;
-  background-color: #f5f5f5;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1rem;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .whiteP {
-  /* width:  60px; */
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
 
 .content-wrap {
@@ -62,15 +80,24 @@ p {
 }
 
 .title-btn p {
-  width: 95px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  background-color: #f5f5f5;
-  text-align: center;
+  position: relative;
+  width: 100px;
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 50px;
+  padding: 0;
 }
 
-.top-btn1 button,
-.top-btn2 button {
-  width: 95px;
+.title-btn p::after {
+  content: "";
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
 }
 
 .top-btn1 {
@@ -80,7 +107,7 @@ p {
 .top-btn2 {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .left-1,
@@ -88,31 +115,32 @@ p {
 .left-3 {
   box-sizing: border-box;
   padding: 20px;
-  border: 1px solid;
+  border: 1px solid #e3e3e3;
   position: relative;
   margin-top: 10px;
+  border-radius: 0.5rem;
 }
 
 .left-1::after {
   content: "기본정보";
   position: absolute;
   top: -2%;
-  font-size: 14px;
-  background-color: #f5f5f5;
+  font-size: 12px;
+  background-color: #fff;
 }
 .left-2::after {
   content: "예탁정보";
   position: absolute;
   top: -3%;
-  font-size: 14px;
-  background-color: #f5f5f5;
+  font-size: 12px;
+  background-color: #fff;
 }
 .left-3::after {
   content: "계좌번호";
   position: absolute;
   top: -4%;
-  font-size: 14px;
-  background-color: #f5f5f5;
+  font-size: 12px;
+  background-color: #fff;
 }
 
 .left-1__flex {
@@ -154,16 +182,20 @@ p {
   padding: 0;
   list-style-type: none;
   display: flex;
+  position: relative;
+  right: -12px;
 }
 
 .left-4_content1 ul li,
 .right-4_content1 ul li {
   padding: 5px;
-  border-top: 1px solid #aaa;
-  border-left: 1px solid #aaa;
-  border-right: 1px solid #aaa;
-  background-color: #f5f5f5;
+  border-top: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+  background-color: #fff;
   transform: translateY(1px);
+  font-size: 12px;
+  border-radius: 0.2rem;
 }
 
 .left-4_content1 .tap1,
@@ -177,13 +209,15 @@ p {
   position: relative;
   z-index: 1;
   padding: 20px;
-  border: 1px solid #aaa;
+  border: 1px solid #e3e3e3;
+  position: relative;
+  border-radius: 0.5rem;
 }
 
 .content1-1 span,
 .content1-2 span {
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 12px;
+  line-height: 24px;
 }
 
 .content1-1 button,
@@ -213,10 +247,9 @@ p {
   display: none;
 }
 
+
 .table-wrap {
-  border: 1px solid #888;
-  min-height: 300px;
-  max-height: 300px;
+  height: 300px;
   width: 100%;
   overflow: auto;
   margin-top: 20px;
@@ -226,51 +259,80 @@ p {
 .table {
   text-align: center;
   border-collapse: collapse;
-  border: 1px solid #888;
   width: 100%;
+  min-width: 1000px;
+  font-size: 12px;
 }
 
 .table thead {
-  border: 1px solid #000;
-  background-color: #f5f5f5;
+  position: sticky;
+  top: 0;
   height: 30px;
 }
 
-.table thead th {
-  border: 1px solid #000;
-}
-
-.table tbody {
-  background-color: #fff;
-}
-
-.table tbody tr {
+.table tfoot{
+  position: sticky;
+  bottom: 0;
+  background: #f1f1f1;
   height: 30px;
 }
 
-.table tbody td {
-  border: 1px solid #000;
+table th {
+    height: 2rem;
+    line-height: 1.8rem;
+    background: #f1f1f1;
+    text-align: center;
+    white-space: nowrap;
 }
 
-.table tbody td button {
-  width: 80px;
+table td {
+    padding: 0 0.1rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.table tbody td button{
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
 }
 
 .table-wrap2 {
-  margin-top: 10px;
+  width: 100%;
+  overflow: auto;
+  margin-top: 20px;
+  background-color: #fff;
+  height: 100px;
 }
 
 .right-4_content1 .content1 {
   position: relative;
   z-index: 1;
   padding: 0 20px 20px;
-  border: 1px solid #aaa;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5rem;
 }
 
 .close-btn {
   position: absolute;
   right: 0;
   margin-top: 20px;
-  padding: 10px;
   width: 200px;
+  background: #0027b3;
+  color: #fff;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: rgba(186, 186, 186, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
 }
