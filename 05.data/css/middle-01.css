@@ -291,5 +291,19 @@ table td {
     font-size: 12px;
     width: 48%;
   }
+
+  .btn-wrap button{
+    width: 100%;
+  }
+
+  .text-wrap p{
+    text-align: left;
+  }
+
+  .text-wrap p,
+  .displayB{
+    display: block;
+  }
+
 }
 
