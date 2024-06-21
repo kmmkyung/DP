@@ -44,11 +44,11 @@ textarea {
   border: none;
 }
 
-.color-red{
+.color-red {
   color: red;
 }
 
-.color-blue{
+.color-blue {
   color: blue;
 }
 
@@ -107,7 +107,6 @@ body {
   position: relative;
   cursor: pointer;
   border-radius: 1rem;
-  
 }
 
 .btn-wrap button:hover {
@@ -140,14 +139,14 @@ body {
   font-weight: bold;
 }
 
-.dayData-text{
+.dayData-text {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
 }
 
-.total-list{
+.total-list {
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -155,7 +154,7 @@ body {
   justify-content: center;
 }
 
-.text-wrap{
+.text-wrap {
   display: flex;
   gap: 20px;
 }
@@ -167,7 +166,6 @@ body {
   background-color: #fff;
   padding: 0;
 }
-
 
 /* dayData */
 .top-dayData {
@@ -188,14 +186,14 @@ body {
   font-weight: bold;
 }
 
-.dayData-text{
+.dayData-text {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
 }
 
-.total-list{
+.total-list {
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -203,7 +201,7 @@ body {
   justify-content: center;
 }
 
-.text-wrap{
+.text-wrap {
   display: flex;
   gap: 20px;
 }
@@ -256,7 +254,6 @@ body {
   box-sizing: border-box;
   padding: 20px;
   border-radius: 1rem;
-  height: 590px;
 }
 
 .title-btn p {
@@ -281,11 +278,6 @@ body {
   transform: translateX(-50%);
 }
 
-.section-wrap {
-  padding: 20px;
-  margin-top: 20px;
-}
-
 .content {
   display: flex;
   justify-content: space-between;
@@ -296,7 +288,7 @@ body {
 }
 
 .left-content {
-  width: 680px;
+  width: calc(50% - 10px);
   height: 100%;
 }
 
@@ -306,10 +298,10 @@ body {
   align-items: center;
 }
 
-.left-content .top-btn-2,
+/* .left-content .top-btn-2,
 .right-content .top-btn-2 {
   margin-top: 10px;
-}
+} */
 
 .left-content .top-btn-2 button {
   text-align: center;
@@ -323,10 +315,9 @@ body {
   border: none;
 }
 
-.left-content .top-btn-2 button:hover{
+.left-content .top-btn-2 button:hover {
   background: #0038df;
 }
-
 
 .left-content .top-btn-2 .file {
   border: 1px solid #0027b3;
@@ -343,7 +334,7 @@ body {
 
 .table-wrap {
   height: 400px;
-  width: 100%;
+  max-width: 720px;
   overflow: auto;
   margin-top: 20px;
   background-color: #fff;
@@ -352,7 +343,7 @@ body {
 .table {
   text-align: center;
   border-collapse: collapse;
-  width: 100%;
+  width: 720px;
   font-size: 12px;
 }
 
@@ -398,7 +389,7 @@ table td {
 }
 
 .right-content {
-  width: 680px;
+  width: calc(50% - 10px);
   height: 100%;
 }
 
@@ -438,19 +429,19 @@ aside {
   justify-content: space-between;
 }
 
-.top-btn{
+.top-btn {
   display: flex;
   justify-content: space-between;
 }
 
-.top-btn button{
+.top-btn button {
   width: auto;
   border: none;
   padding: 0 10px;
   border-radius: 0.5rem;
 }
 
-@media screen and (max-width: 1445px) {
+/* @media screen and (max-width: 1445px) {
   .left,
   .right {
     width: 100%;
@@ -458,6 +449,33 @@ aside {
 
   .right {
     margin-top: 20px;
+  }
+} */
+
+@media screen and (max-width: 1250px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .left-content,
+  .right-content{
+    width: 100%;
+  }
+
+  .table-wrap {
+    height: 400px;
+    max-width: 100%;
+    overflow: auto;
+    margin-top: 20px;
+    background-color: #fff;
+  }
+
+  .table{
+    width: 100%;
+  }
+
+  .displayB{
+    display: block !important;
   }
 }
 
@@ -481,13 +499,13 @@ aside {
 
   .bottom-btn {
     margin-top: 10px;
-}
+  }
 
-  .bottom-left button:last-child{
+  .bottom-left button:last-child {
     margin-top: 10px;
   }
 
   .serchBtn {
     margin-top: 10px;
   }
-} */
+}
