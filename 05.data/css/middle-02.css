@@ -46,7 +46,6 @@ body {
 }
 
 .body-wrap {
-  height: 100vh;
   box-sizing: border-box;
   display: flex;
   padding: 20px;
@@ -167,11 +166,6 @@ body {
   padding: 20px;
 }
 
-.top-btn button {
-  width: 120px;
-  height: 30px;
-}
-
 .top-btn .btn-1 {
   position: relative;
   width: 100px;
@@ -210,7 +204,7 @@ body {
   box-sizing: border-box;
   padding: 20px;
   border-radius: 1rem;
-  height: calc(100% - 102px - 30px - 90px - 56px);
+  height: 500px;
 }
 
 button {
@@ -344,20 +338,6 @@ table td {
   gap: 10px;
 }
 
-@media screen and (max-width: 1325px) {
-  .body-wrap {
-    height: 100%;
-  }
-  .main-content {
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 20px;
-    border-radius: 1rem;
-    height: calc(100% - 102px - 30px - 249px - 56px);
-    min-height: 700px;
-  }
-}
-
 @media screen and (max-width: 1200px) {
 
   .top-btn {
@@ -366,18 +346,7 @@ table td {
   }
 }
 @media screen and (max-width: 900px) {
-    .body-wrap{
-      height: auto;
-    }
-  
-    .section1 {
-      width: 100%;
-    }
-  
-    .main-content{
-      height: 900px;
-    }
-  
+
 
   .dayData-total {
     flex-direction: column;
@@ -416,6 +385,14 @@ table td {
 }
 
 @media screen and (max-width: 768px) {
+  .section1 {
+    width: 100%;
+  }
+
+  .main-content{
+    height: 700px;
+  }
+
   .body-wrap {
     flex-direction: column;
   }

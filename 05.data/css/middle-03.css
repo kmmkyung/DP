@@ -114,8 +114,13 @@ body {
 }
 
 .section1 {
+  height: 100%;
   max-width: 1500px;
   width: calc(100% - 140px);
+}
+
+.section-wrap{
+  height: 100%;
 }
 
 /* dayData */
@@ -176,11 +181,6 @@ body {
   padding: 20px;
 }
 
-.top-btn button {
-  width: 120px;
-  height: 30px;
-}
-
 .top-btn .btn-1 {
   position: relative;
   width: 100px;
@@ -219,7 +219,7 @@ body {
   box-sizing: border-box;
   padding: 20px;
   border-radius: 1rem;
-  height: 394px;
+  height: 500px;
 }
 
 button{
@@ -380,6 +380,18 @@ table td {
 }
   
   @media screen and (max-width: 768px) {
+    .body-wrap {
+      height: auto;
+    }
+    
+    .section1 {
+      width: 100%;
+    }
+    
+    .main-content {
+      height: 700px;
+    }
+    
     .section1 {
       width: 100%;
     }

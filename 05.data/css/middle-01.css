@@ -46,7 +46,6 @@ body {
 }
 
 .body-wrap {
-  height: 100vh;
   box-sizing: border-box;
   display: flex;
   padding: 20px;
@@ -168,7 +167,7 @@ body {
 }
 
 .top-btn button {
-  width: 120px;
+  width: 200px;
   height: 30px;
 }
 
@@ -258,16 +257,8 @@ table td {
 
 
 @media screen and (max-width: 900px) {
-  .body-wrap{
-    height: auto;
-  }
-
   .section1 {
     width: 100%;
-  }
-
-  .main-content{
-    height: 900px;
   }
 
   .dayData-total{
@@ -283,7 +274,7 @@ table td {
 
 @media screen and (max-width: 768px) {
   .main-content{
-    height: 900px;
+    height: 700px;
   }
 
   .body-wrap {
