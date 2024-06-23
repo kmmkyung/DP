@@ -83,7 +83,7 @@ body {
 .logo-wrap {
   text-align: center;
   width: 100%;
-  height: 100px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,10 +127,6 @@ body {
   height: 100%;
   max-width: 1500px;
   width: calc(100% - 140px);
-}
-
-.section-wrap {
-  height: 100%;
 }
 
 /* dayData */
