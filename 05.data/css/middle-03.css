@@ -11,17 +11,26 @@
 
 p {
   font-size: 12px;
-  padding: 5px 2px;
   background-color: #f5f5f5;
   width: 100px;
   text-align: center;
   border-radius: 0.5rem;
   margin: 0;
   white-space: nowrap;
+  height: 30px;
+  line-height: 30px;
 }
 
-button {
-  width: 120px;
+select,input{
+  width: 100px;
+  padding: 5px 0;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e3eb;
+  height: 30px;
+}
+
+button{
+  padding: 0 10px;
   height: 30px;
 }
 
@@ -222,23 +231,6 @@ body {
   height: 500px;
 }
 
-button{
-  width: 120px;
-  height: 30px;
-}
-
-select,input{
-  width: 100px;
-  padding: 5px 0;
-  border-radius: 0.5rem;
-  border: 1px solid #e0e3eb;
-}
-
-.top-btn button{
-  width: 200px;
-  height: 30px;
-}
-
 .top-btn .topBtn-1{
   position: relative;
   width: 100px;
@@ -246,6 +238,7 @@ select,input{
   background-color: #fff;
   line-height: 50px;
   padding: 0;
+  height: 50px;
 }
 
 .top-btn .topBtn-1::after{
@@ -260,10 +253,10 @@ select,input{
   transform: translateX(-50%);
 }
 
-.bottom-btn{
+.bottom-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
 }
@@ -366,6 +359,7 @@ table td {
     align-items: flex-start;
     flex-direction: row;
     gap: 10px;
+    justify-content:flex-start;
   }
   
   .bottom-btn .right {

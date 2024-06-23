@@ -11,18 +11,14 @@
 
 p {
   font-size: 12px;
-  padding: 5px 2px;
   background-color: #f5f5f5;
   width: 100px;
   text-align: center;
   border-radius: 0.5rem;
   margin: 0;
   white-space: nowrap;
-}
-
-button {
-  width: 120px;
   height: 30px;
+  line-height: 30px;
 }
 
 .blueBtn {
@@ -166,11 +162,6 @@ body {
   padding: 20px;
 }
 
-.top-btn button {
-  width: 200px;
-  height: 30px;
-}
-
 .top-btn .btn-1 {
   position: relative;
   width: 100px;
@@ -179,6 +170,7 @@ body {
   line-height: 50px;
   text-align: center;
   padding: 0;
+  height: 50px;
 }
 
 .top-btn .btn-1::after {
@@ -198,6 +190,8 @@ body {
   color: #fff;
   transition: 0.5s;
   border-radius: 0.5rem;
+  height: 30px;
+  padding: 0 10px;
 }
 
 .top-btn .btn-2:hover {
@@ -209,7 +203,6 @@ body {
   box-sizing: border-box;
   padding: 20px;
   border-radius: 1rem;
-  height: calc(100% - 102px - 30px - 90px);
 }
 
 /* table */
