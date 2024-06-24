@@ -25,7 +25,6 @@ p {
   background: #0027b3;
   color: #fff;
   transition: 0.5s;
-  border-radius: 0.5rem;
   border: none;
 }
 
@@ -34,58 +33,77 @@ p {
 }
 
 .color-blue{
-  color: blue;
+  color: lightskyblue;
+}
+
+.color-yellow{
+  color: gold;
 }
 
 body {
   background-color: #e0e3eb;
+  width: 100%;
+  height: 100vh;
 }
 
-.body-wrap {
-  box-sizing: border-box;
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-  align-items: start;
-  justify-content: center;
+.top-menu{
+  padding: 0 20px;
+  background-color: #fff;
 }
 
 .logo-wrap {
   text-align: center;
   width: 100%;
-  height: 110px;
+  height: 50px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 1rem;
+}
+
+.logo-wrap h1{
+  font-size: 15px;
+  line-height: 50px;
+}
+
+header{
+  width: 150px;
+  height: 100%;
 }
 
 .header-wrap {
-  border-radius: 1rem;
+  height: 100%;
   background-color: #ffffff;
-  padding: 10px;
-  margin-top: 20px;
+  border-right: 1px solid #0027b3;
+  position: relative;
 }
 
 .header-wrap .btn-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: flex-start;
   flex-wrap: wrap;
+}
+
+.btn-wrap{
+  width: 150px;
+  height: 100%;
+}
+
+.btn-wrap li{
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.btn-wrap li button{
+  width: 100%;
+  height: 100%;
 }
 
 .btn-wrap button {
   font-size: 12px;
-  width: 100px;
-  height: 50px;
-  border-radius: 1.3px;
   transition: 0.5s;
   position: relative;
   cursor: pointer;
-  border-radius: 1rem;
 }
 
 .btn-wrap button:hover {
@@ -93,8 +111,21 @@ body {
   background-color: #0027b3;
 }
 
+.menu-more{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 149px;
+  transform: translateY(-50%);
+  background: #fff;
+  padding: 10px;
+  color: #0027b3;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
 .section1 {
-  max-width: 1500px;
   width: 100%;
   height: 100%;
 }
@@ -103,15 +134,13 @@ body {
   height: 100%;
 }
 
-
 /* dayData */
 .top-dayData {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   box-sizing: border-box;
   padding: 20px;
-  border-radius: 1rem;
-  background-color: #fff;
+  background-color: #111;
 }
 
 .dayData-total {
@@ -119,6 +148,7 @@ body {
   gap: 10px;
   font-size: 12px;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 .dayData-text{
@@ -138,6 +168,25 @@ body {
   justify-content: center;
 }
 
+.total-list p{
+  padding: 0 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+  width: auto;
+}
+
+.total-list span{
+  padding-right: 10px;
+}
+
+.total-green{
+  background-color: lightgreen;
+  padding: 0 10px;
+  border-bottom-right-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
 .text-wrap{
   display: flex;
   gap: 20px;
@@ -146,9 +195,11 @@ body {
 .text-wrap h6,
 .text-wrap p {
   display: inline;
-  font-size: 12px;
-  background-color: #fff;
+  font-size: 14px;
   padding: 0;
+  color: #fff;
+  background-color: transparent;
+  font-weight: bold;
 }
 
 .top-btn {
@@ -156,9 +207,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  margin-top: 20px;
   background: #fff;
-  border-radius: 1rem;
   padding: 20px;
 }
 
@@ -189,7 +238,6 @@ body {
   background: #0027b3;
   color: #fff;
   transition: 0.5s;
-  border-radius: 0.5rem;
   height: 30px;
   padding: 0 10px;
 }
@@ -198,11 +246,18 @@ body {
   background: #0038df;
 }
 
+.body-wrap{
+  display: flex;
+  width: 100%;
+  height: calc(100% - 160px);
+  background-color: #fff;
+  position: relative;
+}
+
 .main-content {
   background-color: #fff;
   box-sizing: border-box;
   padding: 20px;
-  border-radius: 1rem;
 }
 
 /* table */
@@ -250,10 +305,6 @@ table td {
 
 
 @media screen and (max-width: 900px) {
-  .section1 {
-    width: 100%;
-  }
-
   .dayData-total{
     flex-direction: column;
   }
@@ -266,12 +317,17 @@ table td {
 }
 
 @media screen and (max-width: 768px) {
-  .main-content{
-    height: 700px;
+  .header-wrap{
+    position: absolute;
+    z-index: 999;
+    transform: translateX(-150px);
+    transition: 0.5s;
   }
 
-  .body-wrap {
-    flex-direction: column;
+  .header-wrap.active{
+    position: absolute;
+    z-index: 999;
+    transform: translateX(0);
   }
 
   header{
@@ -288,8 +344,23 @@ table td {
     min-width: 100px;
   }
 
-  .header-wrap .btn-wrap {
-    flex-direction: row;
+  .menu-more{
+    display: block;
+  }
+
+  .menu-bg{
+    display: none;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .menu-bg.active{
+    display: block;
   }
 
   table th {
@@ -314,7 +385,7 @@ table td {
   .text-wrap p,
   .displayB{
     display: block;
+    height: 100%;
   }
-
 }
 

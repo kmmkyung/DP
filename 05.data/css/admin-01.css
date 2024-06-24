@@ -359,16 +359,25 @@ aside {
   transform: translateX(-50%);
 }
 
+aside .aside-top-btn{
+  display: flex;
+  justify-content: space-between;
+}
+
 #textMore {
   margin-top: 20px;
   width: 100%;
   height: 300px;
+  border-radius: 1rem;
 }
 
 .chatText input {
   height: 80px;
   width: 100%;
-  margin-bottom: 20px;
+}
+
+aside .bottom-btn{
+  margin-top: 20px;
 }
 
 

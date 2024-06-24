@@ -1,417 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/admin-04.css">
-</head>
-<body>
-  <section class="section section1">
-    <div class="content-wrap">
-      <div class="content-left">
-        <div class="btn-wrap">
-          <div class="btn-left">
-            <div class="title-btn">
-              <p>고객정보</p>
-            </div>
-            <div class="top-btn1 btn">
-              <p class="wAuto">검색어</p>
-              <select class="wAuto" name="" id="">
-                <option value="">아이디</option>
-              </select>
-              <input class="wAuto" type="text">
-              <button>검색</button>
-            </div>
-          </div>
-          <div class="top-btn2">
-            <button>고객개별설정</button>
-            <button>거래 내역</button>
-            <button>1:1 채팅상담</button>
-          </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/admin-04.css" />
+  </head>
+  <body>
+    <div class="body-wrap">
+      <header>
+        <div class="logo-wrap">
+          <img src="../images/logo.svg" alt="logo" />
         </div>
-        <div class="left-1">
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">아이디</p>
-              <p class="flexGrow">box3</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">이름</p>
-              <P class="whiteP">이병헌</P>
-              <button>변경</button>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">비밀번호</p>
-              <p class="whiteP flexGrow">3333</p>
-              <button>변경</button>
-            </div>
-            <div class="item">
-              <p class="noBtn">닉네임</p>
-              <P class="whiteP">이병헌</P>
-            <button>변경</button>
-            </div>
-          </div>  
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">접속거부</p>
-              <select class="flexGrow" name="" id="">
-                <option value="">접속가능</option>
-              </select>
-              <button>변경</button>
-              </div>
-            <div class="item">
-              <p class="noBtn">휴면상태</p>
-              <select class="flex1" name="" id="">
-                <option value="">정상</option>
-              </select>
-              <button>변경</button>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <p class="noBtn wAuto">휴대전화</p>
-            <select class="flex1 wAuto" name="" id="">
-              <option value="">010</option>
-            </select>
-            <p class="flex1 wAuto">XXXX</p>
-            <p class="flex1 wAuto">XXXX</p>
-            <button class="flexGrow">휴대전화변경</button>
-          </div>
-          <div class="left-1__flex flexDC">
-            <p class="noBtn wAuto">이메일</p>
-            <P class="flexGrow wAuto">a@a.com</P>
-            <button>변경</button>
-            <p class="noBtn wAuto">생년월일</p>
-            <p class="wAuto">1990.01.01</p>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-            <p class="noBtn">가입일</p>
-            <p class="flexGrow">2023-05-30</p>
-          </div>
-          <div class="item">
-            <p class="noBtn">회원등급</p>
-            <select class="flex1" name="" id="">
-              <option value="">일반</option>
-            </select>
-            <button>변경</button>
-          </div>
-          </div>
-          <div class="left-1__flex flexDC flex1">
-            <div class="item">
-              <p class="noBtn">가입상태</p>
-              <p class="flexGrow">정상회원</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">계정상태</p>
-              <p class="flexGrow">일반계정</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">최근접속</p>
-              <p class="flexGrow">2023-05-30</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">부본사</p>
-              <p class="flexGrow">Bgod</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">접속거부</p>
-              <select class="flexGrow" name="" id="">
-                <option value="">Bmother</option>
-              </select>
-              </div>
-            <div class="item">
-              <p class="noBtn">휴면상태</p>
-              <select class="flex1" name="" id="">
-                <option value="">Bman</option>
-              </select>
-              <button>변경</button>
-            </div>
-          </div>
-          <div class="left-1__flex meno">
-            <p class="noBtn ">메모</p>
-            <textarea class="flexGrow" name="" id="" cols="30" rows="10"></textarea>
-            <button>메모저장</button>
-          </div>
-        </div>
-        <div class="left-2">
-          <div class="left-1__flex">
-            <div class="item">
-              <p class="noBtn">최근예탁일자</p>
-              <p class="flexGrow">0000-00-00 00 00 00</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">거래계좌번호</p>
-              <p class="flexGrow">0000-00-00</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">예탁잔고</p>
-              <p class="flexGrow">000000</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">총입금액</p>
-              <p class="flexGrow">0000-00-00</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">총출금액</p>
-              <p class="flexGrow">000000</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">기타입금</p>
-              <p class="flexGrow">0000-00-00</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">이벤트입금</p>
-              <p class="flexGrow">000000</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">총실현손익</p>
-              <p class="flexGrow">0000-00-00</p>
-            </div>
-            <div class="item">
-              <p class="noBtn">총수수료</p>
-              <p class="flexGrow">000000</p>
-            </div>
-          </div>
-        </div>
-        <div class="left-3">
-          <div class="left-1__flex flexDC">
-            <div class="item">
-              <p class="noBtn">은행명</p>
-              <select class="flexGrow" name="" id="">
-                <option value="">파바</option>
-              </select>
-              </div>
-            <div class="item">
-              <p class="noBtn">예금주</p>
-              <p class="flexGrow whiteP">이병헌</p>
-            </div>
-          </div>
-          <div class="left-1__flex flexDC ">
-            <p class="noBtn wAuto">계좌번호</p>
-            <p class="flexGrow whiteP wAuto">123453443</p>
-            <button>복사</button>
-            <button>계좌번호 변경</button>
-          </div>
-          <div class="left-1__flex">
-            <p class="noBtn">타인명의등록</p>
-            <p class="flexGrow whiteP">이병헌</p>
-            <button>변경</button>
-          </div>
-        </div>
-        <div class="left-4">
-          <div class="left-4_content1">
-              <ul>
-                <li class="tap1 on">별도 입금신청</li>
-                <li class="tap2">별도 출금신청</li>
-              </ul>
-              <div class="content1">
-                <div class="content1-1">
-                  <div class="left-1__flex">
-                    <div class="item">
-                      <p class="noBtn">은행명</p>
-                      <select class="flexGrow" name="" id="">
-                        <option value="">이벤트입금</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="left-1__flex">
-                    <div class="item">
-                      <p class="noBtn">입금신청액</p>
-                      <input class="flexGrow" type="text">
-                      <span>원</span>
-                    </div>
-                  </div>
-                  <div class="left-1__flex column">
-                    <div class="item">
-                      <button class="w100p">별도 입금</button>
-                    </div>
-                    <div class="item">
-                      <p class="noBtn">입금메모</p>
-                      <input class="flexGrow" type="text">
-                    </div>
-                  </div>
-                </div>
-                <div class="content1-2">
-                  <div class="left-1__flex">
-                    <div class="item">
-                      <p class="noBtn">은행명</p>
-                      <select class="flexGrow" name="" id="">
-                        <option value="">이벤트입금</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="left-1__flex">
-                    <div class="item">
-                      <p class="noBtn">입금신청액</p>
-                      <input class="flexGrow" type="text">
-                      <span>원</span>
-                    </div>
-                  </div>
-                  <div class="left-1__flex column">
-                    <div class="item">
-                      <button class="wAuto">별도 입금</button>
-                    </div>
-                    <div class="item">
-                      <p class="noBtn">입금메모</p>
-                      <input class="flexGrow" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="content-right">
-        <div class="top-btn btn">
-          <p class="wAuto">검색기간</p>
-          <input class="wAuto" type="date">
-          <p class="wAuto dateLabel">~</p>
-          <input class="wAuto" type="date" name="data-last">
-          <button>예탁현황 검색</button>
-        </div>
-        <div class="table-wrap">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>예탁일자</th>
-                <th>개장시예탁총액</th>
-                <th>입금완료</th>
-                <th>총실현금액</th>
-                <th>총수수료</th>
-                <th>실제손익</th>
-                <th>출금완료</th>
-                <th>예탁잔고</th>
-                <th>기타입금</th>
-                <th>이벤트입금</th>
-                <th>기타출금</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-              </tr>
-              <tr>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="table-wrap2">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>기간합계</th>
-                <th>총입금완료</th>
-                <th>총실현손익</th>
-                <th>총수수료</th>
-                <th>실제손익</th>
-                <th>총출금완료</th>
-                <th>기타입금</th>
-                <th>이벤트입금</th>
-                <th>기타출금</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-                <td>dfds</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="right-4_content1">
-          <ul>
-            <li class="tap1 on">입금 상세내역</li>
-            <li class="tap2">매체</li>
-            <li class="tap3">입금부분</li>
-            <li class="tap4">이벤트종류</li>
-            <li class="tap5">입금전금액</li>
-            <li class="tap6">입금액</li>
-            <li class="tap7">입금후금액</li>
-            <li class="tap8">처리상태</li>
-            <li class="tap9">메모</li>
+        <nav class="header-wrap">
+          <ul class="btn-wrap">
+            <li><button>1:1 채팅상담</button></li>
+            <li><button>신규가입 승인</button></li>
+            <li><button>고객관리</button></li>
+            <li><button>고객상세정보</button></li>
+            <li><button>실시간현황</button></li>
+            <li><button>거래내역</button></li>
+            <li><button>입/출금처리</button></li>
+            <li><button>계좌관리</button></li>
+            <li><button>사용자 이용로그</button></li>
+            <li><button>손익현황</button></li>
+            <li><button>에이전트 관리</button></li>
+            <li>
+              <button>에이전트<br />손익현황</button>
+            </li>
+            <li><button>장정보</button></li>
+            <li><button>공지사항</button></li>
+            <li><button>단타매매 감시</button></li>
+            <li><button>이벤트 관리</button></li>
+            <li><button>시스템설정</button></li>
           </ul>
-          <div class="content1">
-            <div class="table-wrap">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>처리일시</th>
-                    <th>매체</th>
-                    <th>입금구분</th>
-                    <th>이벤트종류</th>
-                    <th>입금전금액</th>
-                    <th>입금액</th>
-                    <th>입금후금액</th>
-                    <th>처리상태</th>
-                    <th>처리상태</th>
-                    <th>메모</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                    <td>dfds</td>
-                  </tr>
-                </tbody>
-              </table>
+        </nav>
+      </header>
+      <section class="section section1">
+        <div class="section-wrap">
+          <div class="top-dayData">
+            <div class="dayData-total">
+              <div class="total-list">
+                <p>
+                  입금 <span class="color-red">0</span>
+                  <span class="color-blue">0</span>
+                </p>
+                <p>
+                  출금 <span class="color-red">0</span>
+                  <span class="color-blue">0</span>
+                </p>
+              </div>
+              <div class="total-list">
+                <p>접속자 <span>0</span></p>
+                <p>가입 <span>0</span></p>
+              </div>
+              <div class="total-list">
+                <p>문의 <span>0</span></p>
+              </div>
+            </div>
+            <div class="dayData-text">
+              <div class="text-wrap">
+                <div class="text1">
+                  <h6>실현손익</h6>
+                  <p>
+                    <span>
+                      (<span class="color-red">입</span>
+                      <span class="color-blue">출</span>)
+                    </span>
+                    <span class="displayBlock">90,000</span>
+                    <span>
+                      (<span class="color-red">100,000</span> -
+                      <span class="color-blue">10,000</span>)
+                    </span>
+                  </p>
+                </div>
+                <div class="text3">
+                  <h6>회원 보유 머니 총액</h6>
+                  <p>
+                    <span>[ 1,000,000 ]</span>
+                  </p>
+                </div>
+                <div class="text4">
+                  <h6>금일 지원금</h6>
+                  <p>
+                    <span>[ 1,000,000 ]</span>
+                  </p>
+                </div>
+              </div>
+              <div class="text-wrap">
+                <div class="text2">
+                  <h6>갱신</h6>
+                  <p>
+                    <span>00</span>:<span>00</span>:<span>00</span>(데이터 갱신
+                    시간)
+                  </p>
+                </div>
+                <div class="text5">
+                  <h6>이상배팅</h6>
+                  <p>
+                    <span>0</span>
+                  </p>
+                </div>
+                <div class="text6">
+                  <h6>비번오류</h6>
+                  <p>
+                    <span>0</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top-btn">
+            <p class="title-btn">고객정보</p>
+            <div class="bottom-btn">
+              <div class="left">
+                <div class="left-1">
+                  <p class="leftBtn-1">검색어</p>
+                  <select class="wAuto" name="" id="">
+                    <option value="">아이디</option>
+                  </select>
+                </div>
+                <div class="left-2">
+                  <input class="wAuto" type="text" />
+                  <button class="blueBtn">검색</button>
+                </div>
+              </div>
+              <div class="right">
+                <div class="right-1">
+                  <button class="whiteBtn">고객개별설정</button>
+                  <button class="whiteBtn">거래 내역</button>
+                  <button class="whiteBtn">1:1 채팅상담</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <button class="close-btn">닫기</button>
-      </div>
-  </section>
-</body>
+        <div class="main-content">
+          <div class="content-wrap">
+            <div class="content-left">
+              <div class="left-1">
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>아이디</p>
+                    <p class="flex1">box3</p>
+                  </div>
+                  <div class="item">
+                    <p>이름</p>
+                    <p class="overflowAuto flex1">이병헌</p>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>비밀번호</p>
+                    <p class="overflowAuto flex1">3333333333333333333333</p>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                  <div class="item">
+                    <p>닉네임</p>
+                    <p class="overflowAuto flex1">이병헌</p>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>접속거부</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">접속가능</option>
+                    </select>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                  <div class="item">
+                    <p>휴면상태</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">정상</option>
+                    </select>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <p class="wAuto">휴대전화</p>
+                  <select class="flex1 wAuto" name="" id="">
+                    <option value="">010</option>
+                  </select>
+                  <p class="flex1 wAuto">XXXX</p>
+                  <p class="flex1 wAuto">XXXX</p>
+                  <button class="blackBtn">휴대전화변경</button>
+                </div>
+                <div class="displayFlex flexDC">
+                  <p class="wAuto">이메일</p>
+                  <p class="flex1 wAuto">a@a.com</p>
+                  <button class="blackBtn">변경</button>
+                  <p class="wAuto">생년월일</p>
+                  <p class="wAuto">1990.01.01</p>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>가입일</p>
+                    <p class="flex1">2023-05-30</p>
+                  </div>
+                  <div class="item">
+                    <p>회원등급</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">일반</option>
+                    </select>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC flex1">
+                  <div class="item">
+                    <p>가입상태</p>
+                    <p class="flex1">정상회원</p>
+                  </div>
+                  <div class="item">
+                    <p>계정상태</p>
+                    <p class="flex1">일반계정</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>최근접속</p>
+                    <p class="flex1">2023-05-30</p>
+                  </div>
+                  <div class="item">
+                    <p>부본사</p>
+                    <p class="flex1">Bgod</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>접속거부</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">Bmother</option>
+                    </select>
+                  </div>
+                  <div class="item">
+                    <p>휴면상태</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">Bman</option>
+                    </select>
+                    <button class="blackBtn">변경</button>
+                  </div>
+                </div>
+                <div class="displayFlex memo">
+                  <p>메모</p>
+                  <textarea
+                    class="flex1"
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                  ></textarea>
+                  <button class="blackBtn">메모저장</button>
+                </div>
+              </div>
+              <div class="left-2">
+                <div class="displayFlex">
+                  <div class="displayFlex">
+                    <p>최근예탁일자</p>
+                    <p class="flex1">0000-00-00 00 00 00</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>거래계좌번호</p>
+                    <p class="flex1">0000-00-00</p>
+                  </div>
+                  <div class="item">
+                    <p>예탁잔고</p>
+                    <p class="flex1">000000</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>총입금액</p>
+                    <p class="flex1">0000-00-00</p>
+                  </div>
+                  <div class="item">
+                    <p>총출금액</p>
+                    <p class="flex1">000000</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>기타입금</p>
+                    <p class="flex1">0000-00-00</p>
+                  </div>
+                  <div class="item">
+                    <p>이벤트입금</p>
+                    <p class="flex1">000000</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>총실현손익</p>
+                    <p class="flex1">0000-00-00</p>
+                  </div>
+                  <div class="item">
+                    <p>총수수료</p>
+                    <p class="flex1">000000</p>
+                  </div>
+                </div>
+              </div>
+              <div class="left-3">
+                <div class="displayFlex flexDC">
+                  <div class="item">
+                    <p>은행명</p>
+                    <select class="flex1" name="" id="">
+                      <option value="">파바</option>
+                    </select>
+                  </div>
+                  <div class="item">
+                    <p>예금주</p>
+                    <p class="flex1">이병헌</p>
+                  </div>
+                </div>
+                <div class="displayFlex flexDC">
+                  <p class="wAuto">계좌번호</p>
+                  <p class="flex1 wAuto">123453443</p>
+                  <button class="blackBtn">복사</button>
+                  <button class="blackBtn">계좌번호 변경</button>
+                </div>
+                <div class="displayFlex">
+                  <p>타인명의등록</p>
+                  <p class="flex1">이병헌</p>
+                  <button class="blackBtn">변경</button>
+                </div>
+              </div>
+              <div class="left-4">
+                <div class="left-4_content1">
+                  <ul>
+                    <li class="tap tap1 on">별도 입금신청</li>
+                    <li class="tap tap2">별도 출금신청</li>
+                  </ul>
+                  <div class="content1">
+                    <div class="content1-1">
+                      <div class="displayFlex">
+                        <p>은행명</p>
+                        <select class="flex1" name="" id="">
+                          <option value="">이벤트입금</option>
+                        </select>
+                      </div>
+                      <div class="displayFlex">
+                        <p>입금신청액</p>
+                        <input class="flex1" type="text" />
+                        <span>원</span>
+                      </div>
+                      <div class="displayFlex">
+                        <p>입금메모</p>
+                        <input class="flex1" type="text" />
+                        <button class="w100p blackBtn">별도 입금</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-right">
+              <div class="right-top-btn">
+                <p>검색기간</p>
+                <input class="wAuto" type="date" />
+                <span class="wAuto">~</span>
+                <input class="wAuto" type="date" name="data-last" />
+                <button class="blackBtn">예탁현황 검색</button>
+              </div>
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>예탁일자</th>
+                      <th>개장시예탁총액</th>
+                      <th>입금완료</th>
+                      <th>총실현금액</th>
+                      <th>총수수료</th>
+                      <th>실제손익</th>
+                      <th>출금완료</th>
+                      <th>예탁잔고</th>
+                      <th>기타입금</th>
+                      <th>이벤트입금</th>
+                      <th>기타출금</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-wrap2">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>기간합계</th>
+                      <th>총입금완료</th>
+                      <th>총실현손익</th>
+                      <th>총수수료</th>
+                      <th>실제손익</th>
+                      <th>총출금완료</th>
+                      <th>기타입금</th>
+                      <th>이벤트입금</th>
+                      <th>기타출금</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="right-4_content1">
+                <ul>
+                  <li class="tap tap1 on">입금 상세내역</li>
+                  <li class="tap tap2">매체</li>
+                  <li class="tap tap3">입금부분</li>
+                  <li class="tap tap4">이벤트종류</li>
+                  <li class="tap tap5">입금전금액</li>
+                  <li class="tap tap6">입금액</li>
+                  <li class="tap tap7">입금후금액</li>
+                  <li class="tap tap8">처리상태</li>
+                  <li class="tap tap9">메모</li>
+                </ul>
+                <div class="content1">
+                  <div class="table-wrap">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>처리일시</th>
+                          <th>매체</th>
+                          <th>입금구분</th>
+                          <th>이벤트종류</th>
+                          <th>입금전금액</th>
+                          <th>입금액</th>
+                          <th>입금후금액</th>
+                          <th>처리상태</th>
+                          <th>처리상태</th>
+                          <th>메모</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <button class="blueBtn close-btn">닫기</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
-
-

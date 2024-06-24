@@ -7,224 +7,321 @@
   <link rel="stylesheet" href="../css/admin-04_2.css">
 </head>
 <body>
-  <section class="section section1">
-    <div class="title-btn">
-      <p>고객개별 설정</p>
-    </div>
-    <div class="content-wrap">
-      <div class="content-left">
-        <div class="left-1">
-          <div class="left-id">
-            <P class="noBtn">아이디</P>
-            <p>boo3</p>
-          </div>
-          <div class="left-name">
-            <p class="noBtn">이름</p>
-            <p>이병헌</p>
-          </div>
-        </div>
-        <div class="left-2">
-          <p class="noBtn">손실금이벤트</p>
-          <div class="input">
-            <input type="checkbox" id="left-check">
-            <label for="left-check">사용</label>
-          </div>
-          <div class="input-text">
-            <div class="input">
-              <input type="text" id="left-text1">
-              <label for="left-text1">원 이상 손실시</label>
+  <div class="body-wrap">
+    <header>
+      <div class="logo-wrap">
+        <img src="../images/logo.svg" alt="logo" />
+      </div>
+      <nav class="header-wrap">
+        <ul class="btn-wrap">
+          <li><button>1:1 채팅상담</button></li>
+          <li><button>신규가입 승인</button></li>
+          <li><button>고객관리</button></li>
+          <li><button>고객상세정보</button></li>
+          <li><button>실시간현황</button></li>
+          <li><button>거래내역</button></li>
+          <li><button>입/출금처리</button></li>
+          <li><button>계좌관리</button></li>
+          <li><button>사용자 이용로그</button></li>
+          <li><button>손익현황</button></li>
+          <li><button>에이전트 관리</button></li>
+          <li><button>에이전트<br>손익현황</button></li>
+          <li><button>장정보</button></li>
+          <li><button>공지사항</button></li>
+          <li><button>단타매매 감시</button></li>
+          <li><button>이벤트 관리</button></li>
+          <li><button>시스템설정</button></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="section section1">
+      <div class="section-wrap">
+        <div class="top-dayData">
+          <div class="dayData-total">
+            <div class="total-list">
+              <p>입금 <span class="color-red">0</span> <span class="color-blue">0</span></p>
+              <p>출금 <span class="color-red">0</span> <span class="color-blue">0</span></p>
             </div>
-            <div class="input">
-              <input type="text" id="left-text2">
-              <label for="left-text2">% 지급</label>
+            <div class="total-list">
+              <p>접속자 <span>0</span></p>
+              <p>가입 <span>0</span></p>
+            </div>
+            <div class="total-list">
+              <p>문의 <span>0</span></p>
+            </div>
+          </div>
+          <div class="dayData-text">
+            <div class="text-wrap">
+              <div class="text1">
+                <h6>실현손익</h6>
+                <p>
+                  <span>
+                    (<span class="color-red">입</span>
+                    <span class="color-blue">출</span>)
+                  </span>
+                  <span class="displayBlock">90,000</span>
+                  <span>
+                    (<span class="color-red">100,000</span> -
+                    <span class="color-blue">10,000</span>)
+                  </span>
+                </p>
+              </div>
+              <div class="text3">
+                <h6>회원 보유 머니 총액</h6>
+                <p>
+                  <span>[ 1,000,000 ]</span>
+                </p>
+              </div>
+              <div class="text4">
+                <h6>금일 지원금</h6>
+                <p>
+                  <span>[ 1,000,000 ]</span>
+                </p>
+              </div>
+            </div>
+            <div class="text-wrap">
+              <div class="text2">
+                <h6>갱신</h6>
+                <p>
+                  <span>00</span>:<span>00</span>:<span>00</span>(데이터 갱신
+                  시간)
+                </p>
+              </div>
+              <div class="text5">
+                <h6>이상배팅</h6>
+                <p>
+                  <span>0</span>
+                </p>
+              </div>
+              <div class="text6">
+                <h6>비번오류</h6>
+                <p>
+                  <span>0</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="content-right">
-        <div class="right-1">
-          <div class="item">
-            <p class="noBtn">적용환율</p>
-            <p>1374.070</p><span>원/USD</span>
-            <p>175.712</p><span>원/HKD</span>
-          </div>
-          <div class="item">
-            <p class="noBtn">주간선물 수수료</p>
-            <p>0.0025</p>
-            <span>%(수수료X 호가 X 25만원)</span>
-          </div>
-          <div class="item">
-            <p class="noBtn">야간선물 수수료</p>
-            <p>0.0025</p>
-            <span>%(수수료X 호가 X 25만원)</span>
-          </div>
-          <div class="item">
-            <p class="noBtn">해외선물 수수료</p>
-            <p>5.00</p>
-            <span>$(수수료 X 적용환율)</span>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div class="bottom-wrap">
         <div class="top-btn">
-          <p>종목수량 일괄변경</p>
-          <input type="text">
-          <button>변경</button>
+          <p class="title-btn">고객개별 설정</p>
+          <div class="bottom-btn">
+            <div class="left">
+              <div class="left-1">
+                <div class="left-id">
+                  <P class="noBtn">아이디</P>
+                  <p>boo3</p>
+                </div>
+                <div class="left-name">
+                  <p class="noBtn">이름</p>
+                  <p>이병헌</p>
+                </div>
+              </div>
+              <div class="left-2">
+                <p class="noBtn">손실금이벤트</p>
+                <div class="input">
+                  <input type="checkbox" id="left-check">
+                  <label for="left-check">사용</label>
+                </div>
+                <div class="input-text">
+                  <div class="input">
+                    <input type="text" id="left-text1">
+                    <label for="left-text1">원 이상 손실시</label>
+                  </div>
+                  <div class="input">
+                    <input type="text" id="left-text2">
+                    <label for="left-text2">% 지급</label>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="right">
+              <div class="right-1">
+                <div class="item">
+                  <p class="noBtn">적용환율</p>
+                  <p>1374.070</p><span>원/USD</span>
+                  <p>175.712</p><span>원/HKD</span>
+                </div>
+                <div class="item">
+                  <p class="noBtn">주간선물 수수료</p>
+                  <p>0.0025</p>
+                  <span>%(수수료X 호가 X 25만원)</span>
+                </div>
+                <div class="item">
+                  <p class="noBtn">야간선물 수수료</p>
+                  <p>0.0025</p>
+                  <span>%(수수료X 호가 X 25만원)</span>
+                </div>
+                <div class="item">
+                  <p class="noBtn">해외선물 수수료</p>
+                  <p>5.00</p>
+                  <span>$(수수료 X 적용환율)</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <span>종목수량일괄 변경 시 변경수량을 입력하고 [변경버튼]을 누른 후 하단의 [개별설정 저장]을 하셔야 변경이 완료됩니다.</span>
-        <div class="table-wrap">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>종목</th>
-                <th>거래가능</th>
-                <th>거래상태변경</th>
-                <th>수수료</th>
-                <th>주문수량</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>주간선물</td>
-                <td>
-                  <input type="checkbox" id="tableCheck">
-                  <label for="tableCheck">거래가능</label>
-                </td>
-                <td>
-                  <button>거래상태변경</button>
-                </td>
-                <td>0.0025%</td>
-                <td>100</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <b class="save-text">개별설정의 변경은 거래에 영향을 줄 수 있어, 장종료 후 변경하길 권장합니다.</b>
-        <b class="save-text">장 중 변경이 필요할때는 반드시 포지션청산 후 변경 하시고, 재 거래 유도를 하셔야합니다.</b>
-        <button class="save-btn">개별설정 저장</button>
+          <div class="bottom-wrap">
+            <div class="top-btn">
+              <p>종목수량 일괄변경</p>
+              <input type="text">
+              <button>변경</button>
+            </div>
+            <span>종목수량일괄 변경 시 변경수량을 입력하고 [변경버튼]을 누른 후 하단의 [개별설정 저장]을 하셔야 변경이 완료됩니다.</span>
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>종목</th>
+                    <th>거래가능</th>
+                    <th>거래상태변경</th>
+                    <th>수수료</th>
+                    <th>주문수량</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>주간선물</td>
+                    <td>
+                      <input type="checkbox" id="tableCheck">
+                      <label for="tableCheck">거래가능</label>
+                    </td>
+                    <td>
+                      <button>거래상태변경</button>
+                    </td>
+                    <td>0.0025%</td>
+                    <td>100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <b class="save-text">개별설정의 변경은 거래에 영향을 줄 수 있어, 장종료 후 변경하길 권장합니다.</b>
+            <b class="save-text">장 중 변경이 필요할때는 반드시 포지션청산 후 변경 하시고, 재 거래 유도를 하셔야합니다.</b>
+            <button class="save-btn">개별설정 저장</button>
+          </div>
       </div>
-  </section>
+    </section>
+  </div>
 </body>
 </html>
 
