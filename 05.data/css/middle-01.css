@@ -169,22 +169,26 @@ header{
 }
 
 .total-list p{
-  padding: 0 0 0 10px;
-  display: flex;
-  justify-content: space-between;
-  min-width: 140px;
-  width: auto;
+  border-radius: 0;
 }
 
-.total-list span{
-  padding-right: 10px;
+
+.total-list .list-item{
+  display: flex;
+}
+
+.list-item .item-title{
+  width: 50px;
+  text-align: center;
+}
+
+.list-item .item-text{
+  width: 140px;
+  text-align: center;
 }
 
 .total-green{
   background-color: lightgreen;
-  padding: 0 10px;
-  border-bottom-right-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
 
 .text-wrap{
@@ -307,6 +311,7 @@ table td {
 @media screen and (max-width: 900px) {
   .dayData-total{
     flex-direction: column;
+    justify-content: center;
   }
 
   .text-wrap{
@@ -386,6 +391,39 @@ table td {
   .displayB{
     display: block;
     height: 100%;
+    line-height: 1.4;
   }
+
+  .total-list .list-item {
+    display: flex;
+    width: 100%;
+  }
+
+  .list-item .item-text{
+    width: 100%;
+  }
+
+  .top-dayData {
+    flex-direction: column;
+  }
+
+  .dayData-total {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 0px;
+    padding-bottom: 20px;
+}
+
+  .dayData-text {
+    justify-content: space-between;
+    padding: 0;
+    border-top: 1px solid #fff;
+    border-left: none;
+    padding-top: 20px;
+  }
+
+
 }
 
