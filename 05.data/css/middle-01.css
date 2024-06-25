@@ -115,7 +115,7 @@ header{
   display: none;
   position: absolute;
   top: 50%;
-  left: 149px;
+  left: 150px;
   transform: translateY(-50%);
   background: #fff;
   padding: 10px;
@@ -308,17 +308,15 @@ table td {
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 995px) {
+  .text-wrap{
+    flex-direction: column;
+  }
+  
   .dayData-total{
     flex-direction: column;
     justify-content: center;
   }
-
-  .text-wrap{
-    flex-direction: column;
-  }
-
-  
 }
 
 @media screen and (max-width: 768px) {
@@ -389,7 +387,6 @@ table td {
 
   .text-wrap p,
   .displayB{
-    display: block;
     height: 100%;
     line-height: 1.4;
   }
