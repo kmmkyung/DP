@@ -2,7 +2,6 @@
   background: #0027b3;
   color: #fff;
   transition: 0.5s;
-  border-radius: 0.5rem;
   padding: 0 10px;
   height: 30px;
 }
@@ -19,14 +18,7 @@
   flex-wrap: wrap;
 }
 
-.caption {
-  display: block;
-  text-align: right;
-  font-size: 12px;
-  background-color: #fff;
-  margin: 10px 0;
-  box-sizing: border-box;
-}
+
 
 .left {
   display: flex;
@@ -78,6 +70,10 @@
 }
 
 @media screen and (max-width: 425px) {
+  .bottom-btn {
+    justify-content: center;
+}
+
   .bottom-btn .right {
     align-items: center;
   }

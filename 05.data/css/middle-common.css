@@ -30,12 +30,25 @@ input {
   height: 30px;
 }
 
+button{
+  padding: 0 10px;
+  height: 30px;
+  white-space: nowrap;
+}
+
 .blueBtn {
-  background: #0027b3;
+  background: #414141;
   color: #fff;
   transition: 0.5s;
   border: none;
 }
+
+.whiteBtn {
+  color: #0027b3;
+  border: 1px solid #0027b3;
+  transition: 0.5s;
+}
+
 
 .color-red {
   color: tomato;
@@ -74,13 +87,11 @@ body {
 }
 
 .logo-wrap {
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  display: flex;
+  width: 150px;
+  height: 150px;
 }
 
-.logo-wrap h1 {
+.title-wrap h1 {
   font-size: 15px;
   line-height: 50px;
 }
@@ -88,10 +99,13 @@ body {
 header {
   width: 150px;
   height: 100%;
+  position: absolute;
+  z-index: 99;
+  top: 50px;
 }
 
 .header-wrap {
-  height: 100%;
+  height: calc(100% - 50px);
   background-color: #ffffff;
   border-right: 1px solid #0027b3;
   position: relative;
@@ -149,20 +163,65 @@ header {
 
 .section1 {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .section-wrap {
-  height: 100%;
+  /* height: 100%; */
+}
+
+.top-btn .topBtn-1{
+  position: relative;
+  width: 100px;
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 50px;
+  padding: 0;
+  height: 50px;
+}
+
+.top-btn .topBtn-1::after{
+  content: '';
+  background-color: #0027b3;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
+}
+
+.bottom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.caption {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  background-color: #fff;
+  margin: 10px 0;
+  box-sizing: border-box;
 }
 
 /* dayData */
+.dayData-wrap{
+  display: flex;
+  justify-content: flex-end;
+}
 .top-dayData {
   display: flex;
   gap: 10px;
   box-sizing: border-box;
   padding: 20px;
   background-color: #080d2d;
+  min-height: 150px;
+  width: calc(100% - 150px);
 }
 
 .dayData-total {
@@ -278,7 +337,7 @@ header {
   background-color: #fff;
   box-sizing: border-box;
   padding: 20px;
-  height: 500px;
+  /* height: 500px; */
 }
 
 /* table */
@@ -337,9 +396,9 @@ table td {
 }
 
 @media screen and (max-width: 768px) {
-  .body-wrap {
+  /* .body-wrap {
     height: 100%;
-  }
+  } */
 
   .dayData-total {
     flex-direction: row;
@@ -401,7 +460,7 @@ table td {
 
   .menu-bg {
     display: none;
-    position: absolute;
+    position: fixed;
     z-index: 99;
     top: 0;
     left: 0;
@@ -420,9 +479,9 @@ table td {
 }
 
 @media screen and (max-width: 425px) {
-  .main-content {
+  /* .main-content {
     height: 300px;
-  }
+  } */
 
   .btn-wrap button {
     font-size: 12px;
@@ -451,7 +510,7 @@ table td {
     flex-direction: column;
   }
 
-  .table-wrap {
+  /* .table-wrap {
     height: 300px;
-  }
+  } */
 }
