@@ -158,7 +158,6 @@ header {
   position: fixed;
   z-index: 99;
   top: 140px;
-  background-color: #fff;
 }
 
 .header-wrap {
@@ -172,7 +171,10 @@ header {
   line-height: 40px;
   background-color: #333;
   border-radius: 5px;
+}
 
+.btn-container{
+  margin-top: 5px;
 }
 
 .header-wrap .btn-wrap {
@@ -373,7 +375,7 @@ header {
 
 /* section1 */
 .section1 {
-  margin-left: 151px;
+  margin-left: 160px;
   height: 100%;
 }
 
