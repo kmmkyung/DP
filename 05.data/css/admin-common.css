@@ -37,6 +37,7 @@ button {
   padding: 0 10px;
   height: 30px;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .noBtn{
@@ -84,24 +85,31 @@ button {
 }
 
 /* top */
-.top-menu {
-  padding: 0 20px;
-  position: fixed;
-  width: 100%;
-  outline: 2px solid #eee;
-  z-index: 999;
-  background-color: #fff;
-}
-
-.title-wrap{
+.title-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.top-menu {
+  padding: 0 20px;
+  position: fixed;
+  width: 100%;
+  outline: 2px solid #eee;
+  z-index: 888;
+  background-color: #fff;
+}
+
+.title-wrap{
+  width: 150px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .title-wrap h1 {
   font-size: 15px;
-  line-height: 50px;
 }
 
 .mode-wrap img{
@@ -114,13 +122,8 @@ button {
   width: 150px;
   height: 150px;
   position: relative;
-}
-
-.logo-wrap img{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  line-height: 150px;
+  text-align: center;
 }
 
 header {
@@ -128,7 +131,7 @@ header {
   height: calc(100% - 50px);
   position: fixed;
   z-index: 99;
-  top: 50px;
+  top: 150px;
   background-color: #fff;
 }
 
@@ -142,12 +145,6 @@ header {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-}
-
-.btn-container{
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 600px;
 }
 
 .btn-wrap {
@@ -189,26 +186,32 @@ header {
 }
 
 /* dayData */
+.top-content{
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 888;
+}
+
 .dayData-wrap {
-  padding-top: 50px;
 }
 
 .top-dayData {
   display: flex;
   gap: 10px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 20px 0;
   background-color: #fff;
-  min-height: 150px;
-  margin-left: 151px;
-  box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.1);
+  height: 150px;
   position: relative;
   z-index: 88;
 }
 
 .dayData-total {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   font-size: 12px;
   font-weight: bold;
   margin-right: 10px;
@@ -217,15 +220,16 @@ header {
 .dayData-text {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   border-left: 1px solid #222;
   padding-left: 20px;
+  overflow: auto;
 }
 
 .total-list {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -252,7 +256,7 @@ header {
 
 .text-wrap {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -274,9 +278,16 @@ header {
   background-color: transparent;
 }
 
+.mode-wrap{
+  width: 40px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
 /* section1 */
 .section1 {
   margin-left: 151px;
+  padding-top: 150px;
   height: 100%;
 }
 
@@ -289,7 +300,6 @@ header {
   position: relative;
   width: 100px;
   font-size: 12px;
-  background-color: #fff;
   line-height: 50px;
   padding: 0;
   height: 50px;
@@ -315,18 +325,17 @@ header {
   padding: 20px;
 }
 
-.title-btn {
+.top-btn .btn-1 {
   position: relative;
   width: 100px;
   font-size: 12px;
-  background-color: #fff;
   line-height: 50px;
   text-align: center;
   padding: 0;
   height: 50px;
 }
 
-.title-btn::after {
+.top-btn .btn-1::after {
   content: "";
   background-color: #e5e5e5;
   position: absolute;
@@ -344,7 +353,6 @@ header {
   justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 }
 
 .main-content {
@@ -395,21 +403,10 @@ table td {
   white-space: nowrap;
 }
 
-.table tbody td button {
-  width: 80px;
-  border: 1px solid #e5e5e5;
-  transition: 0.5s;
-}
-
-.table tbody td button.on {
-  background: #e5e5e5;
-}
-
 .caption {
   display: block;
   text-align: right;
   font-size: 12px;
-  background-color: #fff;
   margin: 10px 0;
   box-sizing: border-box;
 }
@@ -443,7 +440,7 @@ body.dark .noBtn{
 }
 
 body.dark .colorBtn{
-  background-color: #555;
+  background-color: #000;
   color: #e3e3e3;
 }
 
@@ -459,6 +456,8 @@ body.dark .top-menu{
   outline: 2px solid #000;
 }
 
+
+body.dark .top-content,
 body.dark .top-dayData{
   background: #181a20;
   color: #e3e3e3;
@@ -522,24 +521,11 @@ body.dark td {
   border-bottom: 1px solid #333;
 }
 
-body.dark .table tbody td button {
-  width: 80px;
-  border: 1px solid #e5e5e5;
-  transition: 0.5s;
-  color: #fff;
-}
 
-body.dark .table tbody td button.on {
-  background: #e5e5e5;
-  color: #000;
-}
+
 
 @media screen and (max-width: 1621px) {
   .dayData-total {
-    display: flex;
-    gap: 10px;
-    font-size: 12px;
-    font-weight: bold;
     margin-right: 10px;
     flex-direction: column;
     justify-content: center;
@@ -547,10 +533,19 @@ body.dark .table tbody td button.on {
 }
 
 @media screen and (max-width: 768px) {
+  .top-content {
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .title-wrap{
+    height: 40px;
+  }
+
   .dayData-total {
     flex-direction: row;
     display: flex;
-    gap: 10px;
     font-size: 12px;
     font-weight: bold;
     margin-right: 0px;
@@ -561,6 +556,16 @@ body.dark .table tbody td button.on {
     flex-direction: column;
     gap: 0;
     margin-left: 0;
+    height: 250px;
+    padding: 20px;
+  }
+
+  .mode-wrap{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: auto;
+    z-index: 999;
   }
 
   .total-list {
@@ -576,8 +581,10 @@ body.dark .table tbody td button.on {
   }
 
   header {
+    height: 100vh;
     transform: translateX(-150px);
     transition: 0.5s;
+    top: 0;
   }
 
   header.active {
@@ -594,15 +601,6 @@ body.dark .table tbody td button.on {
     margin-top: 0px;
   }
 
-  .btn-container{
-    overflow-y: hidden;
-    height: 350px;
-  }
-  
-  header.active .btn-container{
-    overflow-y: auto;
-  }
-
   .menu-more {
     display: block;
   }
@@ -610,7 +608,7 @@ body.dark .table tbody td button.on {
   .menu-bg {
     display: none;
     position: fixed;
-    z-index: 89;
+    z-index: 88;
     top: 0;
     left: 0;
     width: 100%;
@@ -624,6 +622,7 @@ body.dark .table tbody td button.on {
 
   .section1 {
     margin-left: 0;
+    padding: 0;
   }
 
   table th {
@@ -632,9 +631,14 @@ body.dark .table tbody td button.on {
 }
 
 @media screen and (max-width: 425px) {
-  /* .main-content {
-    height: 300px;
-  } */
+
+  .btn-container{
+    overflow-y: hidden;
+  }
+  
+  header.active .btn-container{
+    overflow-y: auto;
+  }
 
   .bottom-btn {
     justify-content: center;
@@ -667,4 +671,7 @@ body.dark .table tbody td button.on {
     flex-direction: column;
   }
 
+  /* .table-wrap {
+    height: 300px;
+  } */
 }
