@@ -29,7 +29,6 @@ select,
 input {
   width: 100px;
   padding: 5px 0;
-  border-radius: 0.5rem;
   border: 1px solid #e5e5e5;
   height: 30px;
 }
@@ -343,6 +342,7 @@ header {
 .main-content {
   box-sizing: border-box;
   padding: 20px;
+  background-color: #fff;
 }
 
 /* table */
@@ -407,6 +407,12 @@ body.dark p {
   background-color: #181a20;
 }
 
+body.dark select,
+body.dark input {
+  background-color: #181a20;
+  color: #e3e3e3;
+  border: 1px solid #333;
+}
 
 body.dark .color-green {
   font-weight: bold;
@@ -468,6 +474,10 @@ body.dark .menu-more {
   border-top: 1px solid #000;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
+}
+
+body.dark .main-content {
+  background-color: #181a20;
 }
 
 body.dark .section-wrap {
@@ -584,6 +594,10 @@ body.dark td {
   /* .main-content {
     height: 300px;
   } */
+
+  .bottom-btn {
+    justify-content: center;
+  }
 
   .btn-wrap button {
     font-size: 12px;

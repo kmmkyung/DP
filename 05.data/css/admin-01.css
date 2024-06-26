@@ -1,5 +1,4 @@
 .main-content {
-  background-color: #fff;
   box-sizing: border-box;
   padding: 20px;
   border-radius: 1rem;
@@ -9,28 +8,6 @@
   flex-wrap: wrap;
 }
 
-.title-btn {
-  position: relative;
-  width: 100px;
-  font-size: 12px;
-  background-color: #fff;
-  line-height: 50px;
-  text-align: center;
-  padding: 0;
-  height: 50px;
-}
-
-.title-btn::after {
-  content: "";
-  background-color: #0027b3;
-  position: absolute;
-  width: 100%;
-  height: 5px;
-  bottom: 0rem;
-  left: 50%;
-  border-radius: 0.2rem;
-  transform: translateX(-50%);
-}
 
 .left-content,
 .right-content {
@@ -61,20 +38,6 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-}
-
-.table tbody td button {
-  width: 80px;
-  border: 1px solid #0027b3;
-  color: #000;
-  transition: 0.5s;
-  background-color: #fff;
-  color: #0027b3;
-}
-
-.table tbody td button.on {
-  background: #0038df;
-  color: #fff;
 }
 
 aside {

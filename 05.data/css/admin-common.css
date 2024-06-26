@@ -29,7 +29,6 @@ select,
 input {
   width: 100px;
   padding: 5px 0;
-  border-radius: 0.5rem;
   border: 1px solid #e5e5e5;
   height: 30px;
 }
@@ -316,17 +315,18 @@ header {
   padding: 20px;
 }
 
-.top-btn .btn-1 {
+.title-btn {
   position: relative;
   width: 100px;
   font-size: 12px;
+  background-color: #fff;
   line-height: 50px;
   text-align: center;
   padding: 0;
   height: 50px;
 }
 
-.top-btn .btn-1::after {
+.title-btn::after {
   content: "";
   background-color: #e5e5e5;
   position: absolute;
@@ -344,11 +344,13 @@ header {
   justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .main-content {
   box-sizing: border-box;
   padding: 20px;
+  background-color: #fff;
 }
 
 /* table */
@@ -393,6 +395,16 @@ table td {
   white-space: nowrap;
 }
 
+.table tbody td button {
+  width: 80px;
+  border: 1px solid #e5e5e5;
+  transition: 0.5s;
+}
+
+.table tbody td button.on {
+  background: #e5e5e5;
+}
+
 .caption {
   display: block;
   text-align: right;
@@ -413,6 +425,14 @@ body.dark p {
   background-color: #181a20;
 }
 
+body.dark select,
+body.dark input {
+  background-color: #181a20;
+  color: #e3e3e3;
+  border: 1px solid #333;
+}
+
+
 
 body.dark .color-green {
   font-weight: bold;
@@ -426,7 +446,7 @@ body.dark .colorBtn {
 
 body.dark .whiteBtn {
   color: #e3e3e3;
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  border: 1px solid #333;
   transition: 0.5s;
 }
 
@@ -476,6 +496,10 @@ body.dark .menu-more {
   border-bottom: 1px solid #000;
 }
 
+body.dark .main-content {
+  background-color: #181a20;
+}
+
 body.dark .section-wrap {
   background: #181a20;
   color: #e3e3e3;
@@ -495,8 +519,17 @@ body.dark td {
   border-bottom: 1px solid #333;
 }
 
+body.dark .table tbody td button {
+  width: 80px;
+  border: 1px solid #e5e5e5;
+  transition: 0.5s;
+  color: #fff;
+}
 
-
+body.dark .table tbody td button.on {
+  background: #e5e5e5;
+  color: #000;
+}
 
 @media screen and (max-width: 1621px) {
   .dayData-total {
@@ -590,6 +623,10 @@ body.dark td {
   /* .main-content {
     height: 300px;
   } */
+
+  .bottom-btn {
+    justify-content: center;
+  }
 
   .btn-wrap button {
     font-size: 12px;
