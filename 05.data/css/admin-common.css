@@ -591,6 +591,15 @@ body.dark .table tbody td button.on {
     margin-top: 0px;
   }
 
+  .btn-container{
+    overflow-y: hidden;
+    height: 350px;
+  }
+  
+  header.active .btn-container{
+    overflow-y: auto;
+  }
+
   .menu-more {
     display: block;
   }
