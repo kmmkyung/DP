@@ -9,16 +9,19 @@
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 768px) {
-  .top-btn {
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-direction: column;
-  }
 
-  .bottom-btn {
-    justify-content: flex-start;
-  }
+@media screen and (max-width: 900px) {
+  
+    .top-btn {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bottom-btn {
+      justify-content: flex-start;
+    }
 }
 
 @media screen and (max-width: 425px) {

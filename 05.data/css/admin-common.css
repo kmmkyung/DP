@@ -432,22 +432,25 @@ body.dark input {
   border: 1px solid #333;
 }
 
-
-
 body.dark .color-green {
   font-weight: bold;
   color: lightgreen;
 }
 
-body.dark .colorBtn {
-  background: rgba(0, 0, 0, 0.9);
+body.dark .noBtn{
+  border: 1px solid #333;
+  color: #e3e3e3;
+}
+
+body.dark .colorBtn{
+  background-color: #555;
   color: #e3e3e3;
 }
 
 body.dark .whiteBtn {
+  background-color: #333;
   color: #e3e3e3;
-  border: 1px solid #333;
-  transition: 0.5s;
+  border: none;
 }
 
 body.dark .top-menu{

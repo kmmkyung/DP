@@ -1,25 +1,3 @@
-.rightBtn-1 {
-  background: #0027b3;
-  color: #fff;
-  transition: 0.5s;
-  padding: 0 10px;
-  height: 30px;
-}
-
-.rightBtn-1:hover {
-  background: #0038df;
-}
-
-.bottom-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-
-
 .left {
   display: flex;
   gap: 10px;
@@ -35,7 +13,6 @@
 }
 
 @media screen and (max-width: 1200px) {
-
   .top-btn {
     flex-direction: column;
     align-items: flex-start;
