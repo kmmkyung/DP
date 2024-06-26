@@ -9,12 +9,17 @@
   height: 10px;
 }
 
+body {
+  background-color: #e5e5e5;
+  width: 100%;
+  height: 100vh;
+}
+
 p {
   font-size: 12px;
   background-color: #f5f5f5;
   width: 100px;
   text-align: center;
-  border-radius: 0.5rem;
   margin: 0;
   white-space: nowrap;
   height: 30px;
@@ -26,48 +31,49 @@ input {
   width: 100px;
   padding: 5px 0;
   border-radius: 0.5rem;
-  border: 1px solid #e0e3eb;
+  border: 1px solid #e5e5e5;
   height: 30px;
 }
 
-button{
+button {
   padding: 0 10px;
   height: 30px;
   white-space: nowrap;
 }
 
-.blueBtn {
-  background: #414141;
-  color: #fff;
+.colorBtn {
+  background: #e5e5e5;
   transition: 0.5s;
   border: none;
 }
 
 .whiteBtn {
-  color: #0027b3;
-  border: 1px solid #0027b3;
+  border: 1px solid #e5e5e5;
   transition: 0.5s;
 }
 
-
 .color-red {
   color: tomato;
+  font-weight: bold;
 }
 
 .color-blue {
   color: lightskyblue;
+  font-weight: bold;
 }
 
 .color-yellow {
   color: gold;
+  font-weight: bold;
 }
 
 .color-green {
+  font-weight: bold;
   color: lightgreen;
 }
 
 .total-bg {
-  background-color: lightskyblue;
+  background-color: #e5e5e5;
 }
 
 .topText {
@@ -75,19 +81,21 @@ button{
   letter-spacing: 1px;
 }
 
-body {
-  background-color: #e0e3eb;
-  width: 100%;
-}
+/* top */
 
 .top-menu {
   padding: 0 20px;
   background-color: #fff;
+  position: fixed;
+  width: 100%;
+  outline: 2px solid #eee;
+  z-index: 999;
 }
 
-.logo-wrap {
-  width: 150px;
-  height: 150px;
+.title-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title-wrap h1 {
@@ -95,10 +103,22 @@ body {
   line-height: 50px;
 }
 
+.mode-wrap img{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.logo-wrap {
+  width: 150px;
+  height: 150px;
+  background-color: #f5f5f5;
+}
+
 header {
   width: 150px;
   height: calc(100% - 50px);
-  position: absolute;
+  position: fixed;
   z-index: 99;
   top: 50px;
   background-color: #ffffff;
@@ -118,7 +138,6 @@ header {
 
 .btn-wrap {
   width: 150px;
-  /* height: 100%; */
 }
 
 .btn-wrap li {
@@ -130,9 +149,7 @@ header {
 .btn-wrap li button {
   width: 100%;
   height: 100%;
-}
-
-.btn-wrap button {
+  font-weight: bold;
   font-size: 12px;
   transition: 0.5s;
   position: relative;
@@ -140,8 +157,7 @@ header {
 }
 
 .btn-wrap button:hover {
-  color: #fff;
-  background-color: #0027b3;
+  background-color: #e5e5e5;
 }
 
 .menu-more {
@@ -152,64 +168,15 @@ header {
   transform: translateY(-50%);
   background: #fff;
   padding: 10px;
-  color: #0027b3;
+  color: #666;
   border-top: 1px solid #000;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
 }
 
-.section1 {
-  width: 100%;
-  /* height: 100%; */
-}
-
-.section-wrap {
-  /* height: 100%; */
-}
-
-.top-btn .topBtn-1{
-  position: relative;
-  width: 100px;
-  font-size: 12px;
-  background-color: #fff;
-  line-height: 50px;
-  padding: 0;
-  height: 50px;
-}
-
-.top-btn .topBtn-1::after{
-  content: '';
-  background-color: #0027b3;
-  position: absolute;
-  width: 100%;
-  height: 5px;
-  bottom: 0rem;
-  left: 50%;
-  border-radius: 0.2rem;
-  transform: translateX(-50%);
-}
-
-.bottom-btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.caption {
-  display: block;
-  text-align: right;
-  font-size: 12px;
-  background-color: #fff;
-  margin: 10px 0;
-  box-sizing: border-box;
-}
-
 /* dayData */
-.dayData-wrap{
-  display: flex;
-  justify-content: flex-end;
+.dayData-wrap {
+  padding-top: 50px;
 }
 
 .top-dayData {
@@ -217,9 +184,12 @@ header {
   gap: 10px;
   box-sizing: border-box;
   padding: 20px;
-  background-color: #080d2d;
+  background-color: #fff;
   min-height: 150px;
-  width: calc(100% - 150px);
+  margin-left: 150px;
+  box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 88;
 }
 
 .dayData-total {
@@ -279,7 +249,6 @@ header {
   display: inline;
   font-size: 14px;
   padding: 0;
-  color: #fff;
   background-color: transparent;
 }
 
@@ -287,33 +256,36 @@ header {
   display: inline;
   font-size: 14px;
   padding: 0;
-  color: #fff;
   background-color: transparent;
 }
 
-.top-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  background: #fff;
-  padding: 20px;
+/* section1 */
+.section1 {
+  margin-left: 151px;
+  height: 100%;
 }
 
-.top-btn .btn-1 {
+.section-wrap {
+  height: 100%;
+}
+
+.top-btn {
+  background-color: #fff;
+}
+
+.top-btn .topBtn-1 {
   position: relative;
   width: 100px;
   font-size: 12px;
   background-color: #fff;
   line-height: 50px;
-  text-align: center;
   padding: 0;
   height: 50px;
 }
 
-.top-btn .btn-1::after {
+.top-btn .topBtn-1::after {
   content: "";
-  background-color: #0027b3;
+  background-color: #e5e5e5;
   position: absolute;
   width: 100%;
   height: 5px;
@@ -323,23 +295,55 @@ header {
   transform: translateX(-50%);
 }
 
-.body-wrap {
+.top-btn {
   display: flex;
-  width: 100%;
-  background-color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.top-btn .btn-1 {
   position: relative;
+  width: 100px;
+  font-size: 12px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0;
+  height: 50px;
+  background-color: #fff;
+}
+
+.top-btn .btn-1::after {
+  content: "";
+  background-color: #e5e5e5;
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  bottom: 0rem;
+  left: 50%;
+  border-radius: 0.2rem;
+  transform: translateX(-50%);
+}
+
+.bottom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .main-content {
   background-color: #fff;
   box-sizing: border-box;
   padding: 20px;
-  /* height: 500px; */
+  height: 100%;
 }
 
 /* table */
 .table-wrap {
-  height: 450px;
+  height: 500px;
   width: 100%;
   overflow: auto;
   background-color: #fff;
@@ -380,6 +384,16 @@ table td {
   white-space: nowrap;
 }
 
+.caption {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  background-color: #fff;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+
 @media screen and (max-width: 1621px) {
   .dayData-total {
     display: flex;
@@ -393,10 +407,6 @@ table td {
 }
 
 @media screen and (max-width: 768px) {
-  /* .body-wrap {
-    height: 100%;
-  } */
-
   .dayData-total {
     flex-direction: row;
     display: flex;
@@ -458,7 +468,7 @@ table td {
   .menu-bg {
     display: none;
     position: fixed;
-    z-index: 99;
+    z-index: 89;
     top: 0;
     left: 0;
     width: 100%;
