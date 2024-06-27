@@ -159,10 +159,12 @@ header {
   position: fixed;
   z-index: 99;
   top: 120px;
+  height: 100%;
 }
 
 .header-wrap {
   position: relative;
+  height: 100%;
 }
 
 .header-title {
@@ -177,8 +179,9 @@ header {
 
 .btn-container {
   margin-top: 5px;
-  background-color: #f5f5f5;
   border-radius: 5px;
+  height: 100%;
+  background: #fff;
 }
 
 .header-wrap .btn-wrap {
@@ -416,6 +419,7 @@ header {
   justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .main-content {
@@ -471,7 +475,8 @@ table td {
   display: block;
   text-align: right;
   font-size: 12px;
-  margin: 10px 0;
+  padding: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
@@ -509,7 +514,7 @@ body.dark .colorBtn {
 }
 
 body.dark .whiteBtn {
-  background-color: #222;
+  background-color: #333;
   color: #e3e3e3;
   border: none;
 }

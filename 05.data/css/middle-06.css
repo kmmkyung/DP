@@ -28,6 +28,10 @@
   word-break: keep-all;
 }
 
+body.dark .caption-text{
+  background-color: transparent;
+}
+
 @media screen and (max-width: 768px) {
   .top-btn {
     align-items: flex-start;

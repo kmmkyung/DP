@@ -7,6 +7,7 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 
@@ -19,9 +20,17 @@
       justify-content: space-between;
     }
 
-    .bottom-btn {
-      justify-content: flex-start;
-    }
+}
+
+@media screen and (max-width: 768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+
+  .left,
+  .right{
+    justify-content: flex-start;
+  }
 }
 
 @media screen and (max-width: 425px) {
@@ -56,10 +65,17 @@
     justify-content: center;
   }
 
-  .right-1{
+  .right-1,
+  .right-2{
     display: flex;
     gap: 10px;
     flex-direction: column;
     align-items: center;
+  }
+
+  .btn{
+    display: flex;
+    gap: 10px;
+
   }
 }

@@ -1,3 +1,5 @@
+
+
 .left,
 .left-1,
 .left-2,
@@ -21,26 +23,12 @@
 }
 
 .section2{
-  margin-left: 151px;
+  margin-left: 160px;
   height: 100%;
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 1325px) {
-  .left {
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-    align-items: start;
-  }
-
-  .bottom-btn {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: space-between;
-    width: 100%;
-  }
 
   .bottom-btn .right {
     display: flex;
@@ -53,12 +41,17 @@
   }
 }
 
-@media screen and (max-width: 1062px) {
+@media screen and (max-width: 768px) {
   .section1 .bottom-btn {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .section2 {
+    margin-left: 0;
+    padding: 0;
   }
 
   .section2 .bottom-btn {
