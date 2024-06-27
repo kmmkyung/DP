@@ -1,13 +1,8 @@
 .main-content {
-  box-sizing: border-box;
-  padding: 20px;
-  border-radius: 1rem;
-  min-height: 500px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
-
 
 .left-content,
 .right-content {
@@ -70,11 +65,16 @@ aside {
   padding: 20px;
   border-radius: 1rem;
   transform: translateX(-50%);
+  z-index: 99;
 }
 
 aside .aside-top-btn {
   display: flex;
   justify-content: space-between;
+}
+
+body.dark aside{
+  background-color: #333;
 }
 
 #textMore {
@@ -101,6 +101,10 @@ aside .bottom-btn {
 }
 
 @media screen and (max-width: 768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+
   aside {
     width: 350px;
   }
@@ -119,10 +123,6 @@ aside .bottom-btn {
 }
 
 @media screen and (max-width: 425px) {
-  .displayBlock {
-    display: block;
-  }
-
   .left-2 {
     display: flex;
     gap: 10px;
