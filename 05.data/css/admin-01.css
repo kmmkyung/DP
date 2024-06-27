@@ -40,6 +40,25 @@
   flex-wrap: wrap;
 }
 
+.table-wrap{
+  margin-top: 10px;
+}
+
+.table button{
+  background-color: #f5f5f5;
+  font-size: 12px;
+  box-shadow:none;
+}
+
+.table button.on{
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark table button{
+  background-color: #eee;
+}
+
 aside {
   position: absolute;
   width: 500px;

@@ -38,13 +38,15 @@ button {
   height: 30px;
   white-space: nowrap;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.2),
+  1px 1px 1px 0px rgba(255, 255, 255, 0.2),
+    2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-.mt5{
-  margin-top: 5px;
-}
 
-.noBtn{
+.noBtn {
   background-color: #f5f5f5;
 }
 
@@ -70,7 +72,7 @@ button {
 }
 
 .color-yellow {
-  color: gold;
+  color: orange;
   font-weight: bold;
 }
 
@@ -79,14 +81,14 @@ button {
   color: rgb(0, 209, 146);
 }
 
-.top-content .colorBox-red{
+.top-content .colorBox-red {
   background-color: tomato;
   color: #fff;
   border-radius: 8px;
   text-shadow: 1px 1px 2px black, 0 0 1px black;
 }
 
-.top-content .colorBox-blue{
+.top-content .colorBox-blue {
   background-color: lightskyblue;
   color: #fff;
   border-radius: 8px;
@@ -98,7 +100,7 @@ button {
   background-color: rgb(0, 209, 146);
   border-radius: 8px;
   text-shadow: 1px 1px 2px black, 0 0 1px black;
-} 
+}
 
 .top-content .total-bg {
   background-color: #e5e5e5;
@@ -126,7 +128,7 @@ button {
   background-color: #fff;
 }
 
-.title-wrap{
+.title-wrap {
   width: 150px;
   flex: 0 0 auto;
   display: flex;
@@ -138,7 +140,7 @@ button {
   font-size: 15px;
 }
 
-.mode-wrap img{
+.mode-wrap img {
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -154,27 +156,29 @@ button {
 
 header {
   width: 150px;
-  height: calc(100% - 50px);
   position: fixed;
   z-index: 99;
-  top: 140px;
+  top: 120px;
 }
 
 .header-wrap {
   position: relative;
 }
 
-.header-title{
+.header-title {
   text-align: center;
   font-size: 14px;
-  height: 40px;
-  line-height: 40px;
-  background-color: #333;
+  height: 30px;
+  line-height: 30px;
   border-radius: 5px;
+  box-shadow: -2px -3px 3px 1px rgba(255, 255, 255, 0.2);
+  background-color: #f5f5f5;
 }
 
-.btn-container{
+.btn-container {
   margin-top: 5px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 
 .header-wrap .btn-wrap {
@@ -184,6 +188,7 @@ header {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .btn-wrap {
@@ -192,7 +197,7 @@ header {
 
 .btn-wrap li {
   width: 100%;
-  height: 40px;
+  height: 30px;
   text-align: center;
 }
 
@@ -205,10 +210,7 @@ header {
   transition: 0.5s;
   position: relative;
   cursor: pointer;
-}
-
-.btn-wrap button:hover {
-  background-color: #e5e5e5;
+  background-color: #fff;
 }
 
 .menu-more {
@@ -226,29 +228,26 @@ header {
 }
 
 /* dayData */
-.top-content{
+.top-content {
   display: flex;
   align-items: center;
   background-color: #fff;
   box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 888;
-  height: 120px;
+  height: 110px;
 }
 
 .top-dayData {
   display: flex;
-  gap: 10px;
   box-sizing: border-box;
   padding: 10px 0;
-  background-color: #fff;
   position: relative;
   z-index: 88;
 }
 
 .dayData-total {
   display: flex;
-  gap: 5px;
   font-size: 12px;
   font-weight: bold;
   margin-right: 10px;
@@ -257,13 +256,13 @@ header {
 .dayData-text {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
   align-items: center;
   padding-left: 20px;
   overflow: auto;
+  height: 90px;
 }
 
-.dayData-total{
+.dayData-total {
   display: flex;
   flex-direction: column;
 }
@@ -273,14 +272,15 @@ header {
   gap: 5px;
 }
 
-.total-list-last{
+.total-list-last {
   display: flex;
   gap: 5px;
 }
 
-.total-list-last .list-item{
+.total-list-last .list-item {
   display: flex;
   gap: 5px;
+  align-items: center;
 }
 
 .total-list p {
@@ -290,6 +290,7 @@ header {
 .total-list .list-item {
   display: flex;
   gap: 5px;
+  align-items: center;
 }
 
 .list-item .item-title {
@@ -297,21 +298,20 @@ header {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
+  height: auto;
+  line-height: 2;
 }
 
 .list-item .item-text {
   width: 25px;
   text-align: center;
+  height: auto;
+  line-height: 2;
 }
 
 .text-wrap {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
-}
-
-.dayData-text .text {
-  position: relative;
 }
 
 .text-wrap h6 {
@@ -326,62 +326,72 @@ header {
   font-size: 12px;
   padding: 0;
   background-color: transparent;
+  width: auto;
+  margin-right: 10px;
+  line-height: 2;
 }
 
-.mode-wrap{
+.mode-wrap {
   width: 40px;
   text-align: center;
   flex: 0 0 auto;
 }
 
-
 /* topLink */
-.top-link{
+.top-link {
   display: flex;
   flex-direction: row;
-  padding-top: 120px;
+  padding-top: 110px;
   margin-left: 160px;
   font-weight: bold;
-  height: 160px;
   align-items: flex-end;
+  height: 145px;
+  gap: 20px;
 }
 
-.top-link p{
+.top-link p {
   width: auto;
 }
 
-.link-wrap1{
+.link-wrap1 {
   display: flex;
   gap: 10px;
   flex-basis: 50%;
 }
 
-.link-wrap2{
+.link-wrap1 p {
+  line-height: 1.8;
+  height: auto;
+}
+
+.link-wrap2 {
   display: flex;
   flex-basis: 50%;
 }
 
-.link-title{
-  border: 1px solid #111;
+.link-title {
+  border: 1px solid #333;
   padding: 0 10px;
+  line-height: 1.8;
+  height: auto;
 }
 
-.top-link .link-text{
+.top-link .link-text {
   width: 100%;
-  border: 1px solid #111;
-
+  border: 1px solid #333;
+  line-height: 1.8;
+  height: auto;
+  padding: 0 20px;
 }
-
 
 /* section1 */
 .section1 {
   margin-left: 160px;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .section-wrap {
-  height: 100%;
-  background: #fff;
+  /* height: 100%; */
 }
 
 .top-btn {
@@ -389,7 +399,15 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 20px;
+  padding: 10px 50px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.top-btn .title-btn {
+  font-weight: bold;
+  font-size: 16px;
+  color: darkorange;
 }
 
 .bottom-btn {
@@ -402,13 +420,13 @@ header {
 
 .main-content {
   box-sizing: border-box;
-  padding: 20px;
   background-color: #fff;
+  margin-top: 10px;
 }
 
 /* table */
 .table-wrap {
-  height: 500px;
+  max-height: 600px;
   width: 100%;
   overflow: auto;
 }
@@ -439,12 +457,13 @@ table th {
   background: #f1f1f1;
   text-align: center;
   white-space: nowrap;
+  border: 1px solid #e3e3e3;
 }
 table td {
   padding: 0 0.1rem;
   height: 2rem;
   line-height: 1.8rem;
-  border-bottom: 1px solid #e3e3e3;
+  border: 1px solid #e3e3e3;
   white-space: nowrap;
 }
 
@@ -456,9 +475,8 @@ table td {
   box-sizing: border-box;
 }
 
-
 /* dark */
-body.dark{
+body.dark {
   background: #000;
   color: #e3e3e3;
 }
@@ -479,45 +497,53 @@ body.dark .color-green {
   color: lightgreen;
 }
 
-body.dark .noBtn{
+body.dark .noBtn {
   border: 1px solid #333;
   color: #e3e3e3;
 }
 
-body.dark .colorBtn{
-  background-color: #000;
+body.dark .colorBtn {
+  background-color: #222327;
   color: #e3e3e3;
+  font-size: 16px;
 }
 
 body.dark .whiteBtn {
-  background-color: #333;
+  background-color: #222;
   color: #e3e3e3;
   border: none;
 }
 
-body.dark .top-menu{
+body.dark .top-menu {
   background: #181a20;
   color: #e3e3e3;
   outline: 2px solid #000;
 }
 
-body.dark .top-content,
-body.dark .top-dayData{
+body.dark .top-content {
   background: #181a20;
   color: #e3e3e3;
+  box-shadow: inset 1px 1px 5px 5px rgba(255, 255, 255, 0.2);
 }
 
-body.dark header{
-  background-color: #181a20;
+body.dark header {
   color: #e3e3e3;
 }
 
-body.dark .btn-wrap li button{
-  color: #fff;
+body.dark .header-title {
+  background-color: #1f2027;
+  box-shadow: -2px -3px 3px 1px rgba(255, 255, 255, 0.2);
 }
 
-body.dark .btn-wrap button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
+body.dark .btn-container {
+  background-color: #1f2027;
+}
+
+body.dark .btn-wrap li button {
+  color: #fff;
+  font-size: 12px;
+  background-color: #2d2e35;
+  box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 body.dark .menu-more {
@@ -528,35 +554,53 @@ body.dark .menu-more {
   border-bottom: 1px solid #000;
 }
 
-body.dark .main-content {
-  background-color: #181a20;
+body.dark .header-wrap {
+  margin-top: 0px;
+  background-color: #000;
 }
 
-body.dark .top-link p{
+body.dark .top-btn {
+  background-color: #2d2e35;
+  box-shadow: inset 1px 1px 3px 1px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .title-btn {
+  background-color: #2d2e35;
+}
+
+body.dark .main-content {
+  background-color: #222327;
+}
+
+body.dark .top-link p {
   background-color: transparent;
 }
 
 body.dark .section-wrap {
-  background: #181a20;
   color: #e3e3e3;
 }
 
-body.dark table{
+body.dark table {
   background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #333;
 }
 
 body.dark th,
-body.dark .table tfoot {
-  background:#000;
+body.dark tfoot {
+  background: #000;
+  color: orange;
+  border: 1px solid #333;
 }
 
-body.dark td {
-  background: rgba(255, 255, 255, 0.05);
+body.dark tbody td {
+  background: #1f2027;
+  border: 1px solid #333;
   border-bottom: 1px solid #333;
 }
 
-
-
+body.dark tfoot td {
+  border: 1px solid #333;
+}
 
 @media screen and (max-width: 1621px) {
   .dayData-total {
@@ -566,14 +610,46 @@ body.dark td {
   }
 }
 
+@media screen and (max-width: 900px) {
+  .top-link {
+    padding-top: 115px;
+    align-items: flex-start;
+    height: 165px;
+    gap: 0px;
+    flex-direction: column;
+    height: auto;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .top-link {
+    margin-left: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .link-wrap1 {
+    display: flex;
+    gap: 0px;
+    flex-direction: column;
+  }
+
+  .link-wrap1 p {
+    text-align: left;
+  }
+
+  .link-wrap1 .main-link {
+    margin-right: 10px;
+  }
+
   .top-content {
     flex-direction: column;
     position: relative;
     z-index: 1;
+    height: auto;
   }
 
-  .title-wrap{
+  .title-wrap {
     height: 40px;
   }
 
@@ -592,9 +668,10 @@ body.dark td {
     margin-left: 0;
     height: 250px;
     padding: 20px;
+    background-color: #fff;
   }
 
-  .mode-wrap{
+  .mode-wrap {
     position: absolute;
     top: 10px;
     right: 20px;
@@ -612,6 +689,7 @@ body.dark td {
     border-top: 1px solid #222;
     border-left: none;
     padding-top: 20px;
+    height: 150px;
   }
 
   header {
@@ -633,6 +711,7 @@ body.dark td {
 
   .header-wrap {
     margin-top: 0px;
+    background-color: #fff;
   }
 
   .menu-more {
@@ -662,15 +741,23 @@ body.dark td {
   table th {
     padding: 0 20px;
   }
+
+  body.dark .top-dayData {
+    background: none;
+  }
 }
 
 @media screen and (max-width: 425px) {
+  .total-list-first,
+  .total-list-last {
+    justify-content: center;
+  }
 
-  .btn-container{
+  .btn-container {
     overflow-y: hidden;
   }
-  
-  header.active .btn-container{
+
+  header.active .btn-container {
     overflow-y: auto;
   }
 
