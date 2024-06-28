@@ -18,6 +18,13 @@
 @media screen and (max-width:768px) {
   .subTop-btn,
   .btn-2{
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .subTop-btn,
+  .btn-2{
     justify-content: center;
   }
 }

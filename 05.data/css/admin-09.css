@@ -1,134 +1,43 @@
-select,
-input {
-  width: 95px;
-  padding: 5px 5px;
-}
-
-input[type='text']{
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-
-button {
-  padding: 5px;
-  font-size: 14px;
-  text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  font-size: 14px;
-  width: 120px
-}
-
-.noBtn {
-  font-size: 14px;
-  padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  background-color: #f5f5f5;
-  width: 120px;
-  text-align: center;
-  display: inline-block;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.section1 {
-  max-width: 1500px;
-  margin: 0 auto;
-  width: auto;
-  background-color: #f5f5f5;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.whiteP {
-  background-color: #fff;
-}
-
-.table-wrap {
-  border: 1px solid #888;
-  min-height: 500px;
-  max-height: 500px;
-  width: 100%;
-  overflow: auto;
-  margin-top: 20px;
-  background-color: #fff;
-}
-
-.table {
-  text-align: center;
-  border-collapse: collapse;
-  border: 1px solid #888;
-  width: 100%;
-}
-
-.table thead {
-  border: 1px solid #000;
-  background-color: #f5f5f5;
-  height: 30px;
-}
-
-.table thead th {
-  border: 1px solid #000;
-}
-
-.table tbody {
-  background-color: #fff;
-}
-
-.table tbody tr {
-  height: 30px;
-}
-
-.table tbody td {
-  border: 1px solid #000;
-}
-
-.table tbody td button {
-  width: 80px;
-}
-
-
-/* ---------------------------- */
-
-.top-btn{
-  display: flex;
-  gap: 100px;
-  justify-content: space-between;
-  width: 90%;
-}
-
-.title-btn{
-  font-weight: bold;
-  display: block;
-}
-
-.subTop-btn{
-  margin-top: 10px;
-  align-items: center;
-  display: flex;
-  gap: 50px;
-}
-
-.btn-2{
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.read{
-  height: 28px;
-}
-
 .content{
   display: flex;
   gap: 20px;
 }
 
 .content-left{
-  flex-basis: 40%;
+  flex-basis: 30%;
 }
 
 .content-right{
-  flex-basis: 60%;
+  flex-basis: 70%;
+}
+
+.btn{
+  display: flex;
+  gap: 5px;
+}
+
+@media screen and (max-width:1200px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .content-left{
+    flex-basis: 100%;
+  }
+  
+  .content-right{
+    flex-basis: 100%;
+  }
+}
+
+@media screen and (max-width:768px){
+  .bottom-btn{
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width:425px){
+  .bottom-btn{
+    justify-content: center;
+  }
 }

@@ -1,15 +1,15 @@
-.top-btn_right{
+.top-btn_right {
   padding: 10px 10px 0;
 }
 
-.subTop-btn{
+.subTop-btn {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
   margin: 10px 10px 20px;
 }
 
-.subTop-btn_text{
+.subTop-btn_text {
   background-color: transparent;
   width: auto;
   display: block;
@@ -17,13 +17,13 @@
   margin: 0 10px;
 }
 
-.btn{
+.btn {
   display: flex;
   gap: 5px;
 }
 
-@media screen and (max-width:425px) {
+@media screen and (max-width: 425px) {
   .subTop-btn {
     justify-content: center;
-}
+  }
 }

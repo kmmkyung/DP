@@ -1,0 +1,38 @@
+.subTop-btn {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn-1,
+.btn-2,
+.btn {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-1,
+.btn-2 {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-1,
+  .btn-2 {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .subTop-btn,
+  .btn-1,
+  .btn-2 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
