@@ -5,6 +5,10 @@
   gap: 5px;
 }
 
+.btn{
+  gap: 5px;
+}
+
 .bg-red{
   background-color: lightcoral;
 }
@@ -53,4 +57,8 @@ body.dark .table tr:nth-child(2n) td:nth-child(15){
   color: #e3e3e3;
 }
 
-
+@media screen and (max-width:425px){
+  .tap-list {
+    justify-content: center;
+}
+}
