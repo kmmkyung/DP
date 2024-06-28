@@ -128,10 +128,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.title-wrap h1 {
+.title-wrap .top-title {
   font-size: 15px;
+  font-weight: bold;
+}
+
+.title-wrap .top-day {
+  font-weight: 12;
+  font-weight: bold;
 }
 
 .mode-wrap img {
@@ -256,28 +263,19 @@ header {
   align-items: center;
   padding-left: 20px;
   overflow: auto;
-  height: 90px;
+  height: 110px;
+  align-content: center;
 }
 
 .dayData-total {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .total-list-first {
   display: flex;
   gap: 5px;
-}
-
-.total-list-last {
-  display: flex;
-  gap: 5px;
-}
-
-.total-list-last .list-item {
-  display: flex;
-  gap: 5px;
-  align-items: center;
 }
 
 .total-list p {
@@ -304,11 +302,19 @@ header {
   text-align: center;
   height: auto;
   line-height: 2;
+  padding: 0;
+  font-size: 12px;
+  box-shadow: none
 }
 
 .text-wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+.text-wrap .text{
+  height: 28px;
+  line-height: 28px;
 }
 
 .text-wrap h6 {
@@ -644,7 +650,7 @@ body.dark tfoot td {
   }
 
   .title-wrap {
-    height: 40px;
+    height: 60px;
   }
 
   .dayData-total {
@@ -745,8 +751,7 @@ body.dark tfoot td {
     flex-direction: column;
   }
 
-  .total-list-first,
-  .total-list-last {
+  .total-list-first{
     justify-content: center;
   }
 

@@ -1,130 +1,51 @@
-select,
-input {
-  width: 95px;
-  padding: 5px 5px;
-}
-
-button {
-  padding: 5px;
-  font-size: 14px;
-  text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  font-size: 14px;
-}
-
-.noBtn {
-  font-size: 14px;
-  padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  background-color: #f5f5f5;
-  width: 100px;
-  text-align: center;
-  display: inline-block;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.section1 {
-  max-width: 1500px;
-  margin: 0 auto;
-  width: auto;
-  background-color: #f5f5f5;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.whiteP {
-  background-color: #fff;
-}
-
-.table-wrap {
-  border: 1px solid #888;
-  min-height: 300px;
-  max-height: 300px;
-  width: 100%;
-  overflow: auto;
-  margin-top: 20px;
-  background-color: #fff;
-}
-
-.table {
-  text-align: center;
-  border-collapse: collapse;
-  border: 1px solid #888;
-  width: 100%;
-}
-
-.table thead {
-  border: 1px solid #000;
-  background-color: #f5f5f5;
-  height: 30px;
-}
-
-.table thead th {
-  border: 1px solid #000;
-}
-
-.table tbody {
-  background-color: #fff;
-}
-
-.table tbody tr {
-  height: 30px;
-}
-
-.table tbody td {
-  border: 1px solid #000;
-}
-
-.table tbody td button {
-  width: 80px;
-}
-
-
-/* ---------------------------- */
-
-.title-btn{
-  font-weight: bold;
-}
-
-.top-btn{
+.bottom-btn .btn {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 5px;
 }
 
-.left-main{
-  display: block;
-  margin-bottom: 20px;
-}
-
-.top-btn_right button{
-  padding: 20px;
-}
-
-.topSub-btn{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.topSub-btn_right p{
+.topSub-btn {
   text-align: right;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 2;
-  margin: 10px 0 0 0;
+  margin-right: 10px;
+  margin-bottom: 40px;
 }
 
-.red{
-  color: red;
+.topSub-btn2 {
+  margin-top: 10px;
 }
 
-.blue{
-  color: blue;
+.topSub-btn2 p {
+  width: auto;
+  text-align: right;
+  word-break: keep-all;
+  white-space: wrap;
+  height: auto;
 }
 
-.yellow{
-  background-color: lightgoldenrodyellow;
+@media screen and (max-width: 768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+
+  .topSub-btn1 {
+    margin-left: 10px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .bottom-btn {
+    flex-direction: column;
+  }
+
+  .btn{
+    flex-direction: column;
+  }
+  .btn-item{
+    display: flex;
+    gap: 5px;
+  }
+
+  .topSub-btn1{
+    text-align: center;
+  }
 }

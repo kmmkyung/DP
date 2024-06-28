@@ -59,9 +59,24 @@ button {
   border: none;
 }
 
+.tapBtn{
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
+}
+
+.tapBtn.on{
+  background-color: #aaa;
+  color: #fff;
+}
+
 .whiteBtn {
   border: 1px solid #e5e5e5;
   transition: 0.5s;
+}
+
+.border-gray{
+  border: 1px solid #e5e5e5;
+  line-height: 28px;
 }
 
 .color-red {
@@ -131,10 +146,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.title-wrap h1 {
+.title-wrap .top-title {
   font-size: 15px;
+  font-weight: bold;
+}
+
+.title-wrap .top-day {
+  font-weight: 12;
+  font-weight: bold;
 }
 
 .mode-wrap img {
@@ -259,28 +281,19 @@ header {
   align-items: center;
   padding-left: 20px;
   overflow: auto;
-  height: 90px;
+  height: 110px;
+  align-content: center;
 }
 
 .dayData-total {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .total-list-first {
   display: flex;
   gap: 5px;
-}
-
-.total-list-last {
-  display: flex;
-  gap: 5px;
-}
-
-.total-list-last .list-item {
-  display: flex;
-  gap: 5px;
-  align-items: center;
 }
 
 .total-list p {
@@ -307,11 +320,19 @@ header {
   text-align: center;
   height: auto;
   line-height: 2;
+  padding: 0;
+  font-size: 12px;
+  box-shadow: none
 }
 
 .text-wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+.text-wrap .text{
+  height: 28px;
+  line-height: 28px;
 }
 
 .text-wrap h6 {
@@ -495,7 +516,21 @@ body.dark textarea  {
   border: 1px solid #333;
 }
 
-body.dark .color-green {
+body.dark .tapBtn{
+  color: #e3e3e3;
+  box-shadow: none;
+}
+
+body.dark .tapBtn.on{
+  color: #333;
+  box-shadow: none;
+}
+
+body.dark .border-gray{
+  border: 1px solid #000;
+}
+
+  body.dark .color-green {
   font-weight: bold;
   color: lightgreen;
 }
@@ -657,7 +692,7 @@ body.dark .aside-top-btn .title-btn{
   }
 
   .title-wrap {
-    height: 40px;
+    height: 60px;
   }
 
   .dayData-total {
@@ -756,11 +791,6 @@ body.dark .aside-top-btn .title-btn{
   .dayData-total {
     align-items: center;
     flex-direction: column;
-  }
-
-  .total-list-first,
-  .total-list-last {
-    justify-content: center;
   }
 
   .btn-container {
