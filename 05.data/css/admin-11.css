@@ -1,88 +1,80 @@
-.tap-list{
+.tap-list {
   margin-left: 10px;
   padding-top: 10px;
   display: flex;
   gap: 5px;
 }
 
-.tap-btn{
+.tap-btn {
   display: flex;
   gap: 5px;
   margin: 10px;
 }
 
-.table-2{
+.table-2 {
   margin-top: 40px;
 }
 
-.bg-red{
+.bg-red {
   background-color: lightcoral;
 }
-.bg-skyBlue{
+.bg-skyBlue {
   background-color: skyblue;
 }
-.bg-blue{
+.bg-blue {
   background-color: paleturquoise;
 }
 
-body.dark .table-1 .table tr td:nth-child(7){
-  background-color: skyblue;
-  color: #000;
-}
-
-body.dark .table-2 .table tr td:nth-child(8){
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(7) {
   background-color: skyblue;
   color: #000;
 }
 
-body.dark .table-1 .table tr td:nth-child(13){
-  background-color: lightcoral;
-}
-
-body.dark .table-1 .table tr:nth-child(2n) td:nth-child(2){
-  background-color: lightcoral;
-}
-
-body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(14){
-  background-color: lightcoral;
-}
-
-body.dark .table-2 .table tr:nth-child(2n) td:nth-child(2){
-  background-color: lightcoral;
-}
-
-body.dark .table-1 .table tr td:nth-child(15){
-  background-color: paleturquoise;
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(8) {
+  background-color: skyblue;
   color: #000;
 }
 
-body.dark .table-2 .table tr td:nth-child(4){
-  background-color: paleturquoise;
-  color: #000;
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(13) {
+  background-color: lightcoral;
 }
 
+body.dark .table-1 .table tr:nth-child(2n) td:nth-child(2) {
+  background-color: lightcoral;
+}
+
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(14) {
+  background-color: lightcoral;
+}
+
+body.dark .table-2 .table tr:nth-child(2n) td:nth-child(2) {
+  background-color: lightcoral;
+}
+
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(15){
+  background-color: paleturquoise;
+  color: #000;
+  }
+
+  body.dark .table-1 .table tr:nth-child(2n) td:nth-child(4){
+  background-color: paleturquoise;
+  color: #000;
+  }
+
+  
 body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(16){
   background-color: paleturquoise;
   color: #000;
-}
+  }
 
-body.dark .table tr:nth-child(2n) td:nth-child(7){
-  background-color: #1f2027;
-  color: #e3e3e3;
-}
+  body.dark .table-2 .table tr:nth-child(2n) td:nth-child(4){
+  background-color: paleturquoise;
+  color: #000;
+  }
 
-body.dark .table tr:nth-child(2n) td:nth-child(13){
-  background-color: #1f2027;
-  color: #e3e3e3;
-}
-
-body.dark .table tr:nth-child(2n) td:nth-child(15){
-  background-color: #1f2027;
-  color: #e3e3e3;
-}
 
 @media screen and (max-width:425px){
   .tap-list {
     justify-content: center;
   }
-}
+} 

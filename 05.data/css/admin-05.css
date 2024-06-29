@@ -3,6 +3,11 @@
   gap: 5px;
 }
 
+.btn-item{
+  display: flex;
+  gap: 5px;
+}
+
 .topSub-btn {
   text-align: right;
   margin-right: 10px;
