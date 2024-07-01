@@ -1,12 +1,17 @@
-.tap-list{
+.btn{
   display: flex;
-  gap: 5px;
+  gap: 10px;
+}
+
+.tap-list {
+  display: flex;
+  gap: 10px;
   padding-top: 10px;
   margin-left: 10px;
   flex-wrap: wrap;
 }
 
-.table-2{
+.table-2 {
   margin-top: 20px;
 }
 
@@ -19,7 +24,6 @@
 .bg-blue {
   background-color: paleturquoise;
 }
-
 
 .bg-red {
   background-color: lightcoral;
@@ -57,23 +61,37 @@ body.dark .table-2 .table tr:nth-child(2n) td:nth-child(4) {
   background-color: lightcoral;
 }
 
-body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(16){
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(16) {
   background-color: paleturquoise;
   color: #000;
-  }
+}
 
-  body.dark .table-1 .table tr:nth-child(2n) td:nth-child(5){
+body.dark .table-1 .table tr:nth-child(2n) td:nth-child(5) {
   background-color: paleturquoise;
   color: #000;
-  }
+}
 
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(17) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+body.dark .table-2 .table tr:nth-child(2n) td:nth-child(6) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+@media screen and (max-width:768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+}
   
-body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(17){
-  background-color: paleturquoise;
-  color: #000;
+@media screen and (max-width:425px) {
+  .bottom-btn{
+    justify-content: center;
   }
-
-  body.dark .table-2 .table tr:nth-child(2n) td:nth-child(6){
-  background-color: paleturquoise;
-  color: #000;
-  }
+  .tap-list {
+    justify-content: center;
+}
+}

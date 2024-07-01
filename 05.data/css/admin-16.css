@@ -1,6 +1,11 @@
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
 .tap-list{
   display: flex;
-  gap: 5px;
+  gap: 10px;
   padding-top: 10px;
   margin-left: 10px;
   flex-wrap: wrap;
@@ -18,4 +23,66 @@
 }
 .bg-blue {
   background-color: paleturquoise;
+}
+
+
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(8) {
+  background-color: skyblue;
+  color: #000;
+}
+
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(8) {
+  background-color: skyblue;
+  color: #000;
+}
+
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(14) {
+  background-color: lightcoral;
+}
+
+body.dark .table-1 .table tr:nth-child(2n) td:nth-child(3) {
+  background-color: lightcoral;
+}
+
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(14) {
+  background-color: lightcoral;
+}
+
+body.dark .table-2 .table tr:nth-child(2n) td:nth-child(3) {
+  background-color: lightcoral;
+}
+
+body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(16) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+body.dark .table-1 .table tr:nth-child(2n) td:nth-child(5) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(16) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+body.dark .table-2 .table tr:nth-child(2n) td:nth-child(5) {
+  background-color: paleturquoise;
+  color: #000;
+}
+
+@media screen and (max-width:768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+}
+  
+@media screen and (max-width:425px) {
+  .bottom-btn{
+    justify-content: center;
+  }
+  .tap-list {
+    justify-content: center;
+}
 }

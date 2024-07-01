@@ -1,11 +1,11 @@
 .bottom-btn .btn {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .btn-item{
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .topSub-btn {
@@ -16,6 +16,12 @@
 
 .topSub-btn2 {
   margin-top: 10px;
+}
+
+.topSub-btn1{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .topSub-btn2 p {

@@ -2,7 +2,7 @@
   margin-left: 10px;
   padding-top: 10px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .table-2{
@@ -10,7 +10,7 @@
 }
 
 .btn{
-  gap: 5px;
+  gap: 10px;
 }
 
 .bg-red{

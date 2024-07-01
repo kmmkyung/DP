@@ -54,7 +54,7 @@ button {
 }
 
 .colorBtn {
-  background: #e5e5e5;
+  background-color: #e5e5e5;
   transition: 0.5s;
   border: none;
 }
@@ -72,6 +72,7 @@ button {
 .whiteBtn {
   border: 1px solid #e5e5e5;
   transition: 0.5s;
+  background-color: #fff;
 }
 
 .border-gray{

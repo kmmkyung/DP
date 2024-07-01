@@ -1,14 +1,14 @@
 .subTop-btn {
   padding: 10px 10px 20px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .btn-1,
 .btn-2,
 .btn {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 

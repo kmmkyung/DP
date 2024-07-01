@@ -2,7 +2,7 @@
   display: flex;
   padding: 10px;
   margin-bottom: 10px;
-  gap: 5px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
@@ -11,7 +11,7 @@
 .btn-2,
 .btn {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .btn-1,

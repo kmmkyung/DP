@@ -1,215 +1,65 @@
-html{
+
+input[type="checkbox"],
+input[type="radio"]{
+  width: auto;
+}
+
+label{
   font-size: 12px;
 }
 
-select{
-  width: 95px;
-  padding: 5px 5px;
+.event-1,
+.event-2,
+.event-3,
+.text-1,
+.text-2,
+.tap-list{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-input[type='checkbox']{
-  width: auto;
-}
-
-input[type='text']{
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  width: 50px;
-}
-
-button {
-  padding: 5px;
-  font-size: 14px;
-  text-align: center;
-  background-color: skyblue;
-  border: 1px solid #6cb3cf;
-  font-size: 14px;
-}
-
-.noBtn {
-  font-size: 14px;
-  padding: 5px 2px;
-  box-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
-  background-color: #f5f5f5;
+.noBtn{
   width: 150px;
-  text-align: center;
-  display: inline-block;
-  margin: 0;
 }
 
-.section1 {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: auto;
-  background-color: #f5f5f5;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.whiteP {
-  background-color: #fff;
-  border-bottom: 1px solid #000;
-  margin: 0;
-  padding: 0;
-}
-
-.table-wrap {
-  border: 1px solid #888;
-  min-height: 500px;
-  max-height: 500px;
-  width: 100%;
-  overflow: auto;
-  margin-top: 20px;
-  background-color: #fff;
-}
-
-.table {
-  border-collapse: collapse;
-  border: 1px solid #888;
-  width: 100%;
-  text-align: center;
-}
-
-.table thead {
-  border: 1px solid #000;
-  background-color: #f5f5f5;
-  height: 30px;
-}
-
-.table thead th {
-  border: 1px solid #000;
-  background-color: #eee;
-  width: 100px;
-}
-
-.table tbody {
-  /* background-color: #fff; */
-}
-
-.table tbody tr {
-  height: 30px;
-}
-
-.table tbody td {
-  border: 1px solid #000;
-  white-space: nowrap;
-}
-
-.table tbody td button {
-  width: 120px;
-}
-
-.table tr th:first-child{
-  width: 40px;
-}
-
-/* ---------------------------- */
-
-.title-btn{
-  font-weight: bold;
-  display: block;
-  width: 180px;
-  line-height: 2.4;
-}
-
-.title-wrap{
-  display: flex;
-  align-items: start;
-  gap: 20px;
+.box-3{
   margin-top: 20px;
 }
 
-.box-top{
+.box-4{
   display: flex;
-  margin-top: 20px;
-  gap: 20px;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap;
 }
 
-.box-1{
-  border: 1px solid #000;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-  flex: 1;
-}
-
-.box-1::after{
-  content:'입금이벤트';
-  background-color: #f5f5f5;
-  position: absolute;
-  line-height: 1.8;
-  top: -10px;
-  left: 20px;
-}
-
-.radio-wrap{
-  text-align: center;
-}
-
-.box2-wrap{
-  flex: 1;  
-}
-
-.box-2{
-  border: 1px solid #000;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
+.btn-day,
+.btn-radio{
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.box-2::after{
-  content:'기본이벤트';
-  background-color: #f5f5f5;
-  position: absolute;
-  line-height: 1.8;
-  top: -10px;
-  left: 20px;
-}
-
-.box2-wrap .text-2{
-  display: flex;
+  padding-left: 10px;
   align-items: center;
   gap: 10px;
 }
 
-.box2-wrap button{
-  width: 100%;
-  margin-top: 20px;
+
+span{
+  font-size: 12px;
 }
 
-.box-3 .title-list{
-  list-style-type: none;
-  display: flex;
-  padding: 0;
-  margin: 0;
-  margin-top: 20px;
 
+@media screen and (max-width:425px){
+  .event-1, .event-2, .event-3, .text-1, .text-2, .tap-list {
+    justify-content: center;
 }
 
-.title-list .list-item{
-  border-top: 1px solid #aaa;
-  border-left: 1px solid #aaa;
-  border-right: 1px solid #aaa;
-  background-color: #f5f5f5;
-  padding: 10px;
-  transform: translateY(1px);
-  position: relative;
-  z-index: 1;
-}
-
-.title-list .list-item:first-child{
-  z-index: 3;
+.box-top{
+  text-align: center;
 }
 
 .box-4{
-  box-sizing: border-box;
-  padding: 20px;
-  border: 1px solid #aaa;
-  position: relative;
-  z-index: 2;
+  justify-content: center;
+}
+
 }

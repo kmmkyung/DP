@@ -2,12 +2,12 @@
   margin-left: 10px;
   padding-top: 10px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .tap-btn {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   margin: 10px;
 }
 

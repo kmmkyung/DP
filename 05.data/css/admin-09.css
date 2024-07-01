@@ -13,7 +13,7 @@
 
 .btn{
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 @media screen and (max-width:1200px) {

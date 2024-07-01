@@ -1,6 +1,11 @@
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
 .tap-list{
   display: flex;
-  gap: 5px;
+  gap: 10px;
   padding-top: 10px;
   margin-left: 10px;
   flex-wrap: wrap;
@@ -66,3 +71,20 @@ body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(15){
   background-color: paleturquoise;
   color: #000;
   }
+
+
+    
+@media screen and (max-width:768px) {
+  .bottom-btn {
+    justify-content: flex-start;
+  }
+}
+  
+@media screen and (max-width:425px) {
+  .bottom-btn{
+    justify-content: center;
+  }
+  .tap-list {
+    justify-content: center;
+}
+}
