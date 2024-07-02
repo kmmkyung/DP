@@ -33,7 +33,7 @@ input {
   height: 30px;
 }
 
-button {
+header button {
   padding: 0 10px;
   height: 30px;
   white-space: nowrap;
@@ -41,8 +41,16 @@ button {
   font-size: 16px;
   font-weight: bold;
   box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.2),
-  1px 1px 1px 0px rgba(255, 255, 255, 0.2),
-    2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+button{
+  padding: 0 10px;
+  height: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold; 
 }
 
 .mt10{
@@ -421,7 +429,7 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 10px 50px;
+  padding: 10px;
   border-radius: 10px;
   background-color: #fff;
 }
@@ -445,6 +453,7 @@ header {
   box-sizing: border-box;
   background-color: #fff;
   margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* table */
@@ -452,6 +461,8 @@ header {
   max-height: 600px;
   width: 100%;
   overflow: auto;
+  padding: 0 10px;
+  padding-bottom: 10px;
 }
 
 .table {
@@ -545,6 +556,7 @@ body.dark .colorBtn {
   background-color: #222327;
   color: #e3e3e3;
   font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 body.dark .whiteBtn {

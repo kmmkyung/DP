@@ -20,4 +20,12 @@ window.addEventListener('DOMContentLoaded',function(){
       darkBtn.setAttribute('src','../images/dark-mode.png')
     }
   })
+
+  // input day 클릭시 선택기 보여지기
+  const browserInput = document.querySelectorAll("input[type='date']");
+  browserInput.forEach(ele=>{
+    ele.addEventListener('click',function(){
+      ele.showPicker()
+    })
+  })
 })
