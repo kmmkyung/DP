@@ -450,6 +450,7 @@ header {
   font-weight: bold;
   font-size: 16px;
   color: darkorange;
+  text-align: left;
 }
 
 .bottom-btn {
@@ -474,7 +475,6 @@ header {
   width: 100%;
   overflow: auto;
   padding: 0 10px;
-  padding-bottom: 10px;
 }
 
 .table {
@@ -666,7 +666,7 @@ body.dark tfoot td {
 }
 
 body.dark .aside-top-btn .title-btn{
-  background-color: #333;
+  background-color: #222;
 }
 
 @media screen and (max-width: 1621px) {
@@ -827,6 +827,34 @@ body.dark .aside-top-btn .title-btn{
 }
 
 @media screen and (max-width: 425px) {
+  .tac{
+    text-align: center;
+  }
+
+  .w10{
+    width: 10%;
+  }
+
+  .w25{
+    width: 25%;
+  }
+
+  .w30{
+    width: 30%;
+  }
+
+  .w33{
+    width: 33.33%;
+  }
+
+  .w50{
+    width: 50%;
+  }
+
+  .w100{
+    width: 100%;
+  }
+
   .dayData-total {
     align-items: center;
     flex-direction: column;

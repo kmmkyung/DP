@@ -74,7 +74,7 @@ aside .aside-top-btn {
 }
 
 body.dark aside{
-  background-color: #333;
+  background-color: #222;
 }
 
 #textMore {
@@ -137,5 +137,6 @@ aside .bottom-btn {
 
   .right-2 {
     justify-content: center;
+    flex-wrap: nowrap;
   }
 }
