@@ -51,10 +51,19 @@
 @media screen and (max-width: 425px) {
   .bottom-btn,
   .left,
+  .right{
+    flex-direction: column;
+  }
+
+  .bottom-btn,
+  .left,
   .left-1,
   .left-2,
-  .right{
+  .right,
+  .right-1
+  {
     align-items: center;
     justify-content: center;
+    flex-wrap: nowrap;
   }
 }

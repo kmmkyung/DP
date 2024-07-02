@@ -48,6 +48,7 @@ body.dark .sub-title{
   display: flex;
   gap: 20px;
   flex: 1;
+  flex-wrap: wrap;
 }
 
 .left-1,
@@ -135,18 +136,32 @@ body.dark table button{
 }
 
 .save-box{
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 10px 10px 0;
   text-align: right;
 }
 
 .save-text{
   font-size: 12px;
+  display: block;
+}
+
+.save-box button{
+  margin-top: 10px;
+}
+
+.btn{
+  display: flex;
+  gap: 10px;
 }
 
 @media screen and (max-width:1000px) {
   .content-1 .left {
     flex-direction: column;
+  }
+
+  .save-box button{
+    display: block;
+    width: 100%;
   }
 }
 

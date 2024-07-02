@@ -97,10 +97,19 @@ body.dark aside{
 @media screen and (max-width: 425px) {
   .bottom-btn,
   .left,
+  .right{
+    flex-direction: column;
+  }
+
+  .bottom-btn,
+  .left,
   .left-1,
+  .left-2,
   .right,
-  .right-1{
+  .right-1,
+  .right-2 {
     align-items: center;
     justify-content: center;
+    flex-wrap: nowrap;
   }
 }
