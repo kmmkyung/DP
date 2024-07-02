@@ -1,8 +1,9 @@
 .subTop-btn {
-  padding: 10px 10px 20px;
+  padding-bottom: 10px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .btn-1,
 .btn-2,
@@ -17,7 +18,19 @@
   .btn-1,
   .btn-2,
   .btn {
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .btn-1,
+  .btn-2,
+  .btn {
+    flex-wrap: nowrap;
+  }
+
+  .btn-2{
+    flex-direction: column;
   }
 }

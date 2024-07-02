@@ -58,6 +58,7 @@ body.dark .sub-title{
   height: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .content-left {
@@ -83,7 +84,6 @@ body.dark .sub-title{
 .content-left .left-3, 
 .content-left .left-4 {
   box-sizing: border-box;
-  padding: 0 20px;
   position: relative;
 }
 
@@ -165,6 +165,19 @@ body.dark .sub-title{
   right: 0;
   margin-top: 10px;
   margin-right: 10px;
+  width: 100px;
+  height: 30px;
+}
+
+.right-top-btn{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.right-btn-wrap{
+  display: flex;
+  gap: 10px;
 }
 
 @media screen and (max-width:1220px){
@@ -184,8 +197,6 @@ body.dark .sub-title{
 
   .close-btn {
     position: static;
-    margin-right: 0;
-    margin-left: 10px;
   }
 }
 
@@ -266,9 +277,18 @@ body.dark .sub-title{
     align-items: center;
   }
 
+  .left-4_content1 ul{
+    flex-wrap: nowrap;
+  }
+
   .right-1{
     display: flex;
     gap: 10px;
+  }
+
+  .right-top-btn{
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
 
   .memo{
@@ -291,5 +311,9 @@ body.dark .sub-title{
 
   .left-4_content1 ul, .right-4_content1 ul {
     justify-content: center;
+  }
+
+  .close-btn{
+    width: 100%;
   }
 }

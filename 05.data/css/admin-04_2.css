@@ -154,6 +154,10 @@ body.dark table button{
   gap: 10px;
 }
 
+.bottom-btn{
+  margin-top: 10px;
+}
+
 @media screen and (max-width:1000px) {
   .content-1 .left {
     flex-direction: column;

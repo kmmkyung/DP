@@ -1,9 +1,9 @@
 .subTop-btn{
-  padding: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .btn-1,
@@ -26,5 +26,9 @@
   .subTop-btn,
   .btn-2{
     justify-content: center;
+  }
+
+  .btn-1, .btn-2 .btn{
+    flex-wrap: nowrap;
   }
 }

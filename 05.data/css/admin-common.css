@@ -456,10 +456,10 @@ header {
 .bottom-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
 .main-content {
@@ -474,7 +474,6 @@ header {
   max-height: 600px;
   width: 100%;
   overflow: auto;
-  padding: 0 10px;
 }
 
 .table {
@@ -518,8 +517,8 @@ table td {
   text-align: right;
   font-size: 12px;
   padding: 10px;
-  margin-bottom: 10px;
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 /* dark */

@@ -1,5 +1,4 @@
 .top-btn_right {
-  padding: 10px 10px 0;
   display: flex;
   gap: 10px;
 }
@@ -8,7 +7,8 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 10px 10px 20px;
+  margin-top: 10px;
+  justify-content: flex-end;
 }
 
 .subTop-btn_text {
@@ -24,6 +24,17 @@
   gap: 10px;
 }
 
+.subTop-btn_text{
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .subTop-btn {
+    justify-content: flex-start;
+  }
+  
+}
+
 @media screen and (max-width: 425px) {
   .subTop-btn {
     justify-content: center;
@@ -31,7 +42,10 @@
   .top-btn_right{
     text-align: center;
   }
-  .top-btn_right button:last-child{
-    margin-top: 5px;
+
+  .subTop-btn {
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
+  
 }

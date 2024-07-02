@@ -501,6 +501,7 @@ table td {
   font-size: 12px;
   padding: 10px;
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 /* dark */

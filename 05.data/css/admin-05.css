@@ -10,8 +10,6 @@
 
 .topSub-btn {
   text-align: right;
-  margin-right: 10px;
-  margin-bottom: 40px;
 }
 
 .topSub-btn2 {
@@ -32,13 +30,18 @@
   height: auto;
 }
 
+.btn-left{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 768px) {
   .bottom-btn {
     justify-content: flex-start;
   }
 
   .topSub-btn1 {
-    margin-left: 10px;
     text-align: left;
   }
 }

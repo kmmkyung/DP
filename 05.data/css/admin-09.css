@@ -16,7 +16,15 @@
   gap: 10px;
 }
 
+.btn-box{
+  display: flex;
+  gap: 10px;
+}
+
 @media screen and (max-width:1200px) {
+  .bottom-btn{
+    justify-content: flex-end;
+  }
   .content {
     flex-direction: column;
   }
@@ -40,4 +48,9 @@
   .bottom-btn{
     justify-content: center;
   }
+
+  .btn{
+    flex-direction: column;
+  }
+
 }
