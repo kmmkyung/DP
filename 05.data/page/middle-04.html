@@ -158,6 +158,9 @@
       <div class="mode-wrap">
         <img src="../images/dark-mode.png" alt="dark-mode" />
       </div>
+      <div class="menu-wrap">
+        <img src="../images/menu_icon.png" alt="menu">
+      </div>
     </div>
     <header>
       <div class="header-wrap">
@@ -165,7 +168,7 @@
         <div class="btn-container">
           <ul class="btn-wrap">
             <li>
-              <button class="btn-1 ">에이전트 현황</button>
+              <button class="btn-1 colorBtn">에이전트 현황</button>
             </li>
             <li>
               <button class="btn-2">유저 현황</button>
@@ -174,7 +177,7 @@
               <button class="btn-3">기간별 수익 현황</button>
             </li>
             <li>
-              <button class="btn-4 colorBtn">유저 수익 현황</button>
+              <button class="btn-4">유저 수익 현황</button>
             </li>
             <li>
               <button class="btn-5">거래내역</button>
@@ -192,11 +195,12 @@
               <button class="btn-9">종료</button>
             </li>
           </ul>
-          <div class="menu-more">▶</div>
         </div>
       </div>
     </header>
-    <div class="menu-bg"></div>
+    <div class="menu-bg">
+      <img class="close-btn" src="../images/close_icon.png" alt="close">
+    </div>
     <div class="top-link">
       <div class="link-wrap1">
         <p>연결된서비스</p>
@@ -215,19 +219,19 @@
         </div>
         <div class="main-content">
           <div class="bottom-btn">
-            <div class="left">
-              <div class="left-1">
-                <p class="leftBtn-1 noBtn">고객유형</p>
-                <select name="people" id="people">
+            <div class="left w100">
+              <div class="left-1 w100">
+                <p class="leftBtn-1 noBtn w50">고객유형</p>
+                <select class="w50" name="people" id="people">
                   <option>고객</option>
                   <option>고객</option>
                   <option>고객</option>
                   <option>고객</option>
                 </select>
               </div>
-              <div class="left-2">
-                <p class="leftBtn-2 noBtn">에이전트</p>
-                <select name="agent" id="agent">
+              <div class="left-2 w100">
+                <p class="leftBtn-2 noBtn w50">에이전트</p>
+                <select class="w50" name="agent" id="agent">
                   <option>전체</option>
                   <option>전체</option>
                   <option>전체</option>
@@ -236,27 +240,27 @@
               </div>
             </div>
             <div class="right">
-              <div class="right-1">
-                <p class="rightBtn-1 noBtn">날짜</p>
-                <div class="btn">
-                  <input type="date" />
-                  <label for="data-last">~</label>
-                  <input type="date" name="data-last" />
-                </div>
+              <div class="right-1 w100">
+                <p class="rightBtn-1 noBtn w30">날짜</p>
+                <!-- <div class="btn"> -->
+                  <input class="w30" type="date" />
+                  <label class="w10 tac" for="data-last">~</label>
+                  <input class="w30" type="date" name="data-last" />
+                <!-- </div> -->
               </div>
               <div class="right-23">
-                <div class="right-2">
-                  <select name="name" id="name">
+                <div class="right-2 w100">
+                  <select class="w50" name="name" id="name">
                     <option>이름</option>
                     <option>이름</option>
                     <option>이름</option>
                     <option>이름</option>
-                    <input type="text" />
+                    <input class="w50" type="text" />
                   </select>
                 </div>
-                <div class="right-3">
-                  <button class="rightBtn-1 colorBtn">검색 및 새로고침</button>
-                  <button class="rightBtn-2 whiteBtn">엑셀로 보기</button>
+                <div class="right-3 w100">
+                  <button class="rightBtn-1 colorBtn w50">검색 및 새로고침</button>
+                  <button class="rightBtn-2 whiteBtn w50">엑셀로 보기</button>
                 </div>
               </div>
             </div>

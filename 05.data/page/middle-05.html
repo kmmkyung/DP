@@ -158,6 +158,9 @@
       <div class="mode-wrap">
         <img src="../images/dark-mode.png" alt="dark-mode" />
       </div>
+      <div class="menu-wrap">
+        <img src="../images/menu_icon.png" alt="menu">
+      </div>
     </div>
     <header>
       <div class="header-wrap">
@@ -165,7 +168,7 @@
         <div class="btn-container">
           <ul class="btn-wrap">
             <li>
-              <button class="btn-1 ">에이전트 현황</button>
+              <button class="btn-1 colorBtn">에이전트 현황</button>
             </li>
             <li>
               <button class="btn-2">유저 현황</button>
@@ -177,7 +180,7 @@
               <button class="btn-4">유저 수익 현황</button>
             </li>
             <li>
-              <button class="btn-5 colorBtn">거래내역</button>
+              <button class="btn-5">거래내역</button>
             </li>
             <li>
               <button class="btn-6">실시간 현황</button>
@@ -192,11 +195,12 @@
               <button class="btn-9">종료</button>
             </li>
           </ul>
-          <div class="menu-more">▶</div>
         </div>
       </div>
     </header>
-    <div class="menu-bg"></div>
+    <div class="menu-bg">
+      <img class="close-btn" src="../images/close_icon.png" alt="close">
+    </div>
     <div class="top-link">
       <div class="link-wrap1">
         <p>연결된서비스</p>
@@ -215,38 +219,38 @@
         </div>
         <div class="main-content">
           <div class="bottom-btn">
-            <div class="left">
-              <div class="left-1">
-                <p class="leftBtn-1 noBtn">종목</p>
-                <select name="list" id="list">
+            <div class="left w100">
+              <div class="left-1 w100">
+                <p class="leftBtn-1 noBtn w50">종목</p>
+                <select class="w50" name="list" id="list">
                   <option>종목</option>
                   <option>종목</option>
                   <option>종목</option>
                   <option>종목</option>
                 </select>
               </div>
-              <div class="left-2">
-                <p class="leftBtn-2 noBtn">날짜</p>
-                <div class="btn">
-                  <input type="date" />
-                  <label for="data-last">~</label>
-                  <input type="date" name="data-last" />
-                </div>
+              <div class="left-2 w100">
+                <p class="leftBtn-2 noBtn w30">날짜</p>
+                <!-- <div class="btn"> -->
+                  <input class="w30" type="date" />
+                  <label class="w10 tac" for="data-last">~</label>
+                  <input class="w30" type="date" name="data-last" />
+                <!-- </div> -->
               </div>
-              <div class="right-1">
-                <select name="name" id="name">
+              <div class="right-1 w100">
+                <select class="w50" name="name" id="name">
                   <option>이름</option>
                   <option>이름</option>
                   <option>이름</option>
                   <option>이름</option>
                 </select>
-                <input type="text" />
+                <input class="w50" type="text" />
               </div>
             </div>
             <div class="right">
-              <div class="right-2">
-                <button class="rightBtn-1 colorBtn">새로고침</button>
-                <button class="rightBtn-2 whiteBtn">액셀로보기</button>
+              <div class="right-2 w100">
+                <button class="rightBtn-1 colorBtn w w50">새로고침</button>
+                <button class="rightBtn-2 whiteBtn w50">액셀로보기</button>
               </div>
             </div>
             <b>매수채결: 0회, 매도채결 0회</b>

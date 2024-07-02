@@ -158,6 +158,9 @@
     <div class="mode-wrap">
       <img src="../images/dark-mode.png" alt="dark-mode" />
     </div>
+    <div class="menu-wrap">
+      <img src="../images/menu_icon.png" alt="menu">
+    </div>
   </div>
   <header>
     <div class="header-wrap">
@@ -192,11 +195,12 @@
             <button class="btn-9">종료</button>
           </li>
         </ul>
-        <div class="menu-more">▶</div>
       </div>
     </div>
   </header>
-  <div class="menu-bg"></div>
+  <div class="menu-bg">
+    <img class="close-btn" src="../images/close_icon.png" alt="close">
+  </div>
   <div class="top-link">
     <div class="link-wrap1">
       <p>연결된서비스</p>
@@ -216,23 +220,21 @@
         </div>
         <div class="main-content">
           <div class="bottom-btn">
-            <div class="left">
-              <div class="left-1">
-                <p class="leftBtn-1 noBtn">신청일</p>
-                <div class="btn">
-                  <input type="date">
-                  <label for="data-last">~</label>
-                  <input type="date" name="data-last">
-                </div>
+            <div class="left w100">
+              <div class="left-1 w100">
+                <p class="leftBtn-1 noBtn w30">신청일</p>
+                <input type="date w30">
+                <span class="w10 tac">~</span>
+                <input class="w30" type="date" name="data-last">
               </div>
-              <div class="left-2">
-                <button class="leftBtn-2 colorBtn">검색</button>
+              <div class="left-2 w100">
+                <button class="leftBtn-2 colorBtn w100">검색</button>
               </div>
             </div>
-            <div class="right">
-              <div class="right-1">
-                <p class="rightBtn-1 noBtn">입금구분 필터</p>
-                <select>
+            <div class="right w100">
+              <div class="right-1 w100">
+                <p class="rightBtn-1 noBtn w50">입금구분 필터</p>
+                <select class="w50">
                   <option>전체</option>
                   <option>전체</option>
                 </select>
@@ -301,9 +303,9 @@
         <div class="main-content">
           <div class="bottom-btn">
             <div class="right">
-              <div class="right-1">
-                <p class="rightBtn-1 noBtn">출금구분 필터</p>
-                <select>
+              <div class="right-1 w100">
+                <p class="rightBtn-1 noBtn w50">출금구분 필터</p>
+                <select class="w50">
                   <option>전체</option>
                   <option>전체</option>
                 </select>
