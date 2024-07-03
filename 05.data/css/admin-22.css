@@ -1,10 +1,9 @@
-
 input[type="checkbox"],
-input[type="radio"]{
+input[type="radio"] {
   width: auto;
 }
 
-label{
+label {
   font-size: 12px;
 }
 
@@ -13,53 +12,80 @@ label{
 .event-3,
 .text-1,
 .text-2,
-.tap-list{
+.tap-list {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.noBtn{
+.noBtn {
   width: 150px;
 }
 
-.box-3{
+.box-3 {
   margin-top: 20px;
 }
 
-.box-4{
+.box-4 {
   display: flex;
   gap: 10px;
   margin: 10px 0;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.btn{
+  display: flex;
+  gap: 10px;
 }
 
 .btn-day,
-.btn-radio{
+.btn-radio {
   display: flex;
   padding-left: 10px;
   align-items: center;
   gap: 10px;
 }
 
-
-span{
+span {
   font-size: 12px;
 }
 
-
-@media screen and (max-width:425px){
-  .event-1, .event-2, .event-3, .text-1, .text-2, .tap-list {
-    justify-content: center;
-}
-
-.box-top{
-  text-align: center;
-}
-
-.box-4{
+.displayFlex{
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 425px) {
+  .event-1,
+  .event-2,
+  .event-3,
+  .text-1,
+  .text-2,
+  .tap-list {
+    justify-content: center;
+  }
+
+  .box-top {
+    text-align: center;
+  }
+
+  .box-4 {
+    justify-content: center;
+  }
+
+  .noBtn {
+    width: 100%;
+  }
+
+  .flex1{
+    flex: 1;
+  }
+
+  .tap-list{
+    flex-wrap: nowrap;
+  }
 
 }

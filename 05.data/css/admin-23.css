@@ -4,7 +4,7 @@ input[type='radio']{
 }
 
 .noBtn{
-  width: 120px;
+  min-width: 120px;
 }
 
 .content-all{
@@ -78,7 +78,8 @@ input[type='radio']{
   gap: 10px;
   justify-content: center;
   padding-bottom: 10px;
-  
+  padding: 10px;
+  background-color: #fff;
 }
 
 .displayFlex{
@@ -88,8 +89,9 @@ input[type='radio']{
 }
 
 .box_5-2 input{
-  width: 200px;
+  min-width: 200px;
 }
+
 
 .sub-title {
   background-color: #f5f5f5;
@@ -110,5 +112,30 @@ body.dark .sub-title {
 @media screen and (max-width:500px) {
   .btn-box{
     flex-direction: column;
+  }
+
+}
+
+@media screen and (max-width:425px) {
+  .link-wrap input {
+    width: auto;
+  }
+
+  .flex1{
+    flex: 1;
+  }
+
+  .box-5_1{
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .ls{
+    letter-spacing: -1px;
+  }
+
+  .box-5_1 .btn{
+    display: flex;
+    align-items: center;
   }
 }

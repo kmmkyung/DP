@@ -89,10 +89,16 @@ input[type="color"]{
 .button-box{
   text-align: center;
   margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .button-box:nth-child(2){
   margin-left: 10px;
+}
+
+.keepAll{
+  word-break: keep-all;
 }
 
 @media screen and (max-width: 500px) {
@@ -109,5 +115,9 @@ input[type="color"]{
 
   .notice-box {
     flex-direction: column;
+  }
+
+  .color-box button{
+    flex: 1;
   }
 }

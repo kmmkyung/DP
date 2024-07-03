@@ -74,13 +74,13 @@
 }
 
 .right-title{
-  width: auto;
-  flex-basis: 30%;
+  width: 30%;
 }
 
 .right-text{
   font-size: 12px;
   white-space: nowrap;
+  width: 30%;
 }
 
 .right-btn{

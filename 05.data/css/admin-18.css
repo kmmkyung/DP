@@ -27,9 +27,22 @@ label{
   margin: 0 auto;
 }
 
-.time-wrap2{
-  margin-top: 10px;
+.time-wrap{
+  width: 100%;
 }
+
+.time-wrap p{
+  width: 100%;
+}
+
+.time-wrap label{
+  width: 10%;
+}
+
+input[type='date']{
+  width: 50%;
+} 
+
 
 .time-1,.time-2{
   display: flex;

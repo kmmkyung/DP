@@ -388,7 +388,6 @@ header {
 }
 
 .link-wrap1 p {
-  line-height: 1.8;
   height: auto;
 }
 
@@ -461,7 +460,8 @@ header {
 
 .table {
   text-align: center;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
   font-size: 12px;
 }
@@ -477,6 +477,10 @@ header {
   bottom: 0;
   background: #f1f1f1;
   height: 30px;
+}
+
+table tbody{
+  margin-top: 1px;
 }
 
 table th {

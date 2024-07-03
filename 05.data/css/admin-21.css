@@ -37,3 +37,10 @@ span{
   width: auto;
   margin-top: 10px;
 }
+
+@media screen and (max-width: 425px) {
+
+  .flex1{
+    flex: 1;
+  }
+}

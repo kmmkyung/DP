@@ -215,23 +215,23 @@
               <p class="noBtn">첫입금이벤트</p>
               <input type="checkbox" id="check-1" />
               <label for="check-1">사용</label>
-              <input type="text" value="3" /><span>%</span>
+              <input class="flex1" type="text" value="3" /><span>%</span>
             </div>
             <div class="event-2 mt10">
               <p class="noBtn">입금무한이벤트</p>
               <input type="checkbox" id="check-1" />
               <label for="check-1">사용</label>
-              <input type="text" value="3" /><span>%</span>
+              <input class="flex1" type="text" value="3" /><span>%</span>
             </div>
             <div class="event-3 mt10">
               <p class="noBtn">특정시간입금이벤트</p>
               <input type="checkbox" id="check-1" />
               <label for="check-1">사용</label>
-              <input type="text" value="5" /><span>%</span>
-              <div class="btn-day">
-                <input type="time" />
+              <input class="flex1" type="text" value="5" /><span>%</span>
+              <div class="btn-day w100">
+                <input class="flex1" type="time" />
                 <span>~</span>
-                <input type="time" />
+                <input class="flex1" type="time" />
               </div>
               <div class="btn-radio">
                 <input type="radio" id="redio-1" />
@@ -247,7 +247,7 @@
                 <p class="noBtn">가입축하이벤트</p>
                 <input type="checkbox" class="check-2" />
                 <label for="check-2">사용</label>
-                <input type="text" /><span>원</span>
+                <input class="flex1" type="text" /><span>원</span>
               </div>
               <div class="text-2 mt10">
                 <p class="noBtn">손실금이벤트</p>
@@ -256,30 +256,32 @@
                 <span>상세설정은 개별설정에서 해주세요.</span>
               </div>
             </div>
-            <button class="colorBtn mt10">이벤트 정보 적용</button>
+            <button class="colorBtn mt10 w100">이벤트 정보 적용</button>
           </div>
         </div>
 
         <div class="box-3">
-          <ul class="tap-list">
-            <li><button class="tapBtn on">손실금 현황</button></li>
-            <li class="list-item">
-              <button class="tapBtn">수익률 현황</button>
+          <ul class="tap-list w100">
+            <li class="w33"><button class="tapBtn on w100">손실금 현황</button></li>
+            <li class="list-item w33">
+              <button class="tapBtn w100">수익률 현황</button>
             </li>
-            <li class="list-item">
-              <button class="tapBtn">수익왕 현황</button>
+            <li class="list-item w33">
+              <button class="tapBtn w100">수익왕 현황</button>
             </li>
           </ul>
         </div>
 
-        <div class="box-4">
-          <p class="noBtn">날짜</p>
-          <select name="" id="">
-            <option value="">2024-05-31</option>
-          </select>
-          <div class="btn-box">
-            <button class="whiteBtn">손실금현황 검색</button>
-            <button class="colorBtn">손실금이벤트 지급</button>
+        <div class="box-4 w100">
+          <div class="btn w100">
+            <p class="noBtn w33">날짜</p>
+            <select class="w100" name="" id="">
+              <option value="">2024-05-31</option>
+            </select>
+            <button class="whiteBtn w100">손실금현황 검색</button>
+          </div>
+          <div class="btn w100">
+            <button class="colorBtn w100">손실금이벤트 지급</button>
           </div>
         </div>
 
@@ -287,10 +289,9 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>
-                    <input type="checkbox" id="check-4" /><label for="check-4"
-                      >순위</label
-                    >
+                  <th class="displayFlex">
+                    <input type="checkbox" id="check-4" />
+                    <label for="check-4">순위</label>
                   </th>
                   <th>아이디</th>
                   <th>이름</th>

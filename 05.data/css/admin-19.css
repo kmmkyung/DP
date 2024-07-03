@@ -19,12 +19,11 @@
 }
 
 .text-wrap{
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
 }
 
 .text-wrap textarea{
-  margin-top: 10px;
   width: 100%;
   height: 100px;
   overflow-y: scroll;
@@ -33,12 +32,11 @@
 .section1 .main-content{
   display: flex;
   gap: 10px;
-  padding-right: 10px;
 }
 
 .section2{
   margin-left: 160px;
-  margin-top: 20px;
+  margin-top: 10px;
 } 
 
 .section2 .main-content{
@@ -46,7 +44,14 @@
 }
 
 .reloadBtn{
-  margin: 10px
+  margin-bottom: 10px
+}
+
+.btn-box{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {

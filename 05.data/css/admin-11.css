@@ -1,6 +1,4 @@
 .tap-list {
-  margin-left: 10px;
-  padding-top: 10px;
   display: flex;
   gap: 10px;
 }
@@ -11,8 +9,23 @@
   margin: 10px;
 }
 
+.btn-box{
+  display: flex;
+  gap: 10px;
+}
+
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
+
+.bottom-btn{
+  margin-top: 10px;
+}
+
 .table-2 {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .bg-red {
@@ -76,5 +89,9 @@ body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(16){
 @media screen and (max-width:425px){
   .tap-list {
     justify-content: center;
+  }
+
+  .btn-box{
+    flex-direction: column;
   }
 } 
