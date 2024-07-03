@@ -4,13 +4,14 @@
 
 .left,
 .left-1,
-.left-2,
-.right-1,
-.right-2,
-.right-3 {
+.right-1{
   display: flex;
   gap: 10px;
-  align-items: center;
+}
+
+.left{
+  justify-content: space-between;
+  width: 100%;
 }
 
 .right {
@@ -25,11 +26,24 @@
   gap: 10px;
 }
 
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
 .section2{
   margin-left: 160px;
   height: 100%;
   margin-top: 50px;
 }
+
+@media screen and (max-width: 800px) {
+  .left {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .section1 .bottom-btn {
@@ -50,9 +64,11 @@
 }
 
 @media screen and (max-width: 425px) {
-  .left{
+  .left,
+  .left-1 {
     flex-direction: column;
   }
+
 
   
 }

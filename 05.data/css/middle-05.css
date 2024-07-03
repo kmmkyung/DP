@@ -1,33 +1,8 @@
-.bottom-btn {
-  align-items: flex-end;
-  flex-direction: column;
-}
-
-.left,
-.left-1,
-.left-2,
-.right-1,
-.right-2,
-.right-3 {
+.btn-box {
   display: flex;
   gap: 10px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.left{
-  justify-content: flex-end;
-}
-
-.right {
-  display: flex;
   align-items: center;
-  justify-content: flex-end;
-}
-
-.right-1 .btn {
-  display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .bottom-btn b{
@@ -67,35 +42,6 @@
   .topBtn-1 {
     display: block;
     margin: 0 auto;
-  }
-
-  .left {
-    display: flex;
-    gap: 10px;
-  }
-
-  .left-1,
-  .left-2,
-  .right-1,
-  .right-2
-  {
-    flex-wrap: nowrap;
-  }
-  
-  .right{
-    width: 100%;
-  }
-
-  .right-1 {
-    align-items: center;
-  }
-
-  .right-23 {
-    align-items: center;
-  }
-
-  .right-3 {
-    flex-direction: column;
   }
 
   .bottom-btn b {
