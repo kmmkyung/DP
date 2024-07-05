@@ -112,7 +112,9 @@ body.dark .sub-title {
 
 .left-4_content1 .content1,
 .right-4_content1 .content1,
-.right-4_content1 .content2
+.right-4_content1 .content2,
+.right-4_content1 .content3,
+.right-4_content1 .content4
  {
   border: 1px solid #eee;
   padding: 10px;
@@ -183,7 +185,11 @@ body.dark .sub-title {
 }
 
 body.dark .left-4_content1 .content1,
-body.dark .right-4_content1 .content1 {
+body.dark .right-4_content1 .content1,
+body.dark .right-4_content1 .content2,
+body.dark .right-4_content1 .content3,
+body.dark .right-4_content1 .content4
+{
   border: 1px solid #333;
 }
 

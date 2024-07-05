@@ -5,6 +5,12 @@ window.addEventListener('DOMContentLoaded',function(){
   
   tapBtn.forEach(function(ele,idx){
     ele.addEventListener('click',function(){
+      for(let i =0; i<tapCon.length; i++){
+        tapBtn[i].classList.remove('on')
+        tapCon[i].classList.add('displayNone')
+      }
+      ele.classList.add('on')
+      tapCon[idx].classList.remove('displayNone')
     })
   })
 })
