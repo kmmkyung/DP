@@ -3,12 +3,13 @@
   gap: 20px;
 }
 
-.content-left{
-  flex-basis: 30%;
+.content-left,
+.content-right{
+  flex: 1;
 }
 
-.content-right{
-  flex-basis: 70%;
+.content-left{
+  max-width: 600px;
 }
 
 .btn{
@@ -22,15 +23,12 @@
 }
 
 @media screen and (max-width:1200px) {
-  .bottom-btn{
-    justify-content: flex-end;
-  }
   .content {
     flex-direction: column;
   }
 
   .content-left{
-    flex-basis: 100%;
+    max-width: 100%;
   }
   
   .content-right{

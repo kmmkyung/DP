@@ -1,3 +1,28 @@
+aside {
+  position: absolute;
+  width: 600px;
+  border: 1px solid #000;
+  top: 20%;
+  left: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 1rem;
+  transform: translateX(-50%);
+  z-index: 77;
+}
+
+.pcW100{
+  width: 100%;
+}
+
+.pcW50{
+  width: 50%;
+}
+
+.pcW33{
+  width: 33.3%;
+}
 
 input[type="checkbox"],
 input[type="radio"]{
@@ -13,16 +38,24 @@ label{
 }
 
 .title-box{
+display: flex;
+gap: 10px;
+flex-direction: column;
+}
+
+.box1{
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 input[type="color"]{
   padding: 0;
-  width: 50px;
+}
+
+.color-box label{
+  white-space: nowrap;
 }
 
 .btn{
@@ -56,6 +89,10 @@ input[type="color"]{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.notice-input label{
+  white-space: nowrap;
 }
 
 .vip-box{
@@ -99,11 +136,40 @@ input[type="color"]{
 
 .keepAll{
   word-break: keep-all;
+  white-space: nowrap;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .day-box{
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  aside{
+    width: 350px;
+  }
+
+  .notice-box{
+    flex-direction: column;
+  }
+
+  .notice-box .noBtn{
+    width: 100%;
+  }
+  
+  .day-box .noBtn{
+    width: 100%;
+  }
+
+  .day-box .btn{
+    width: 100%;
+  }
+  
+  .day-box input[type='date'],
+  .day-box input[type='time']
+  {
+    width: 100%;
   }
 }
 

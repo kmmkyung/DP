@@ -45,6 +45,12 @@ aside {
   height: 300px;
 }
 
+.aside-top-btn{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .aside-table-wrap{
   height: 300px;
 }

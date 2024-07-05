@@ -1,46 +1,58 @@
-input[type='checkbox']{
+input[type="checkbox"] {
   width: auto;
 }
 
-.box-wrap{
+.box-wrap {
   border: 1px solid #000;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   position: relative;
 }
 
-.box-2{
+.box-1,
+.box-2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.box-2 {
   margin-top: 20px;
 }
 
-.reload-btn-wrap{
+.reload-btn-wrap {
   margin-top: 20px;
   margin-bottom: 10px;
-  text-align: right; 
+  text-align: right;
 }
 
-.btn{
+.btn {
   display: flex;
   align-items: center;
   font-size: 12px;
   gap: 10px;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
 
-span{
+span {
+  font-size: 12px;
+
+}
+
+.notice{
+  display: block;
+  padding-top: 10px;
   font-size: 12px;
 }
 
-.button-box{
+.button-box {
   text-align: right;
   width: auto;
   margin-top: 10px;
 }
 
 @media screen and (max-width: 425px) {
-
-  .flex1{
+  .flex1 {
     flex: 1;
   }
 }

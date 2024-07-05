@@ -30,3 +30,12 @@ aside {
 body.dark .subTop-btn {
   background-color: #222327;
 }
+
+@media screen and (max-width:425px) {
+  aside {
+    width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }  
+}

@@ -9,25 +9,24 @@
 }
 
 .topSub-btn {
-  text-align: right;
-}
-
-.topSub-btn2 {
-  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .topSub-btn1{
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
 }
 
-.topSub-btn2 p {
+.topSub-btn2 b {
   width: auto;
   text-align: right;
   word-break: keep-all;
   white-space: wrap;
   height: auto;
+  font-size: 12px;
+  display: block;
 }
 
 .btn-left{
@@ -36,6 +35,19 @@
   flex-wrap: wrap;
 }
 
+.table tbody tr:nth-child(4n-3) td,
+.table tbody tr:nth-child(4n-2) td
+{
+  background-color: lightgoldenrodyellow;
+}
+
+
+body.dark .table tbody tr:nth-child(4n-3) td,
+body.dark .table tbody tr:nth-child(4n-2) td
+{
+  background-color: lightgoldenrodyellow;
+  color: #000;
+}
 @media screen and (max-width: 768px) {
   .bottom-btn {
     justify-content: flex-start;
@@ -62,4 +74,12 @@
   .topSub-btn1{
     text-align: center;
   }
+
+  .topSub-btn {
+    flex-direction: column;
+}
+
+.topSub-btn2{
+  margin-top: 10px;
+}
 }

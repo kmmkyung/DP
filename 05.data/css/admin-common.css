@@ -679,6 +679,10 @@ body.dark .aside-top-btn .title-btn{
   background-color: #222;
 }
 
+body.dark aside{
+  background-color: #222;
+}
+
 @media screen and (max-width: 1621px) {
   .dayData-total {
     margin-right: 10px;

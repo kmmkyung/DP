@@ -3,40 +3,43 @@
   padding-bottom: 10px;
 }
 
-.content-1,
-.btn-1,
-.btn {
+.btn-1{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content:space-between;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display: flex;
+  gap: 10px;
+}
+
+.btn-middle{
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.btn-2 {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-}
-
 .content-1 {
   justify-content: space-between;
+  display: flex;
+  gap: 100px;
+  align-items:end;
 }
 
 .content-2 .btn {
   justify-content: flex-end;
 }
 
-@media screen and (max-width: 1300px) {
-  .content-1,
-  .btn-1 {
-    justify-content: flex-end;
-  }
-}
 
 @media screen and (max-width: 768px) {
-  .content-1,
-  .btn-1 {
-    justify-content: flex-start;
+  .content-1 {
+    gap: 10px;
+    flex-direction: column;
   }
+  
 }
 
 @media screen and (max-width: 425px) {

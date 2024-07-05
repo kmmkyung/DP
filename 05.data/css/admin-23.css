@@ -39,6 +39,18 @@ input[type='radio']{
   font-size: 12px;
   align-items: start;
   flex-wrap: wrap;
+} 
+
+.box-5,
+.box-6{
+  flex-direction: column;
+}
+
+.box-2-wrap,
+.box-3-wrap,
+.box-7-wrap{
+  display: flex;
+  gap: 10px;
 }
 
 .box-4{
@@ -80,6 +92,11 @@ input[type='radio']{
   padding-bottom: 10px;
   padding: 10px;
   background-color: #fff;
+}
+
+body.dark .btn-box{
+  background-color: #222327;
+
 }
 
 .displayFlex{

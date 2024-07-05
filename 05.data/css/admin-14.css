@@ -1,7 +1,16 @@
+.table-all{
+  padding: 10px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+body.dark .table-all{
+border: 1px solid #333;
+}
+
 .btn-box{
   display: flex;
   gap: 10px;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
 
@@ -12,12 +21,21 @@
 
 .tap-list{
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
 }
 
 .table-2{
   margin-top: 20px;
+}
+
+.tap-all{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.tap-btn2{
+  margin-bottom: 10px;
 }
 
 .bg-red {
@@ -85,6 +103,16 @@ body.dark .table-2 .table tr:nth-child(2n-1) td:nth-child(15){
   }
 }
   
+@media screen and (max-width:560px) {
+  .tap-all{
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+
+}
+  
+
 @media screen and (max-width:425px) {
   .bottom-btn{
     justify-content: center;

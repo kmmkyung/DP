@@ -37,12 +37,12 @@ label{
 
 .time-wrap label{
   width: 10%;
+  white-space: nowrap;
 }
 
 input[type='date']{
   width: 50%;
 } 
-
 
 .time-1,.time-2{
   display: flex;
@@ -51,11 +51,24 @@ input[type='date']{
   margin-top: 10px;
 }
 
-.colorBtn{
+.aside-btn{
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin-top: 10px;
-  
+  width: 100%;
+}
+
+.aside-btn button{
+  width: 50%
 }
 
 body.dark .subTop-btn {
   background-color: #222327;
+}
+
+@media screen and (max-width: 425px) {
+  aside {
+    width: 350px;
+  }
 }

@@ -1,12 +1,10 @@
-.tap-list {
-  display: flex;
-  gap: 10px;
+.tap{
+  padding: 10px;
+  border: 1px solid #eee;
 }
 
-.tap-btn {
+.tap-list {
   display: flex;
-  gap: 10px;
-  margin: 10px;
 }
 
 .btn-box{
@@ -17,11 +15,6 @@
 .btn{
   display: flex;
   gap: 10px;
-}
-
-
-.bottom-btn{
-  margin-top: 10px;
 }
 
 .table-2 {
@@ -37,6 +30,29 @@
 .bg-blue {
   background-color: paleturquoise;
 }
+
+body.dark .tap{
+  border: 1px solid #333;
+}
+
+
+
+.table-1 tbody tr:nth-child(4n-3) td{
+  background-color: rgba(250, 250, 210, 0.5);
+}
+
+.table-1 tbody tr:nth-child(4n-2) td{
+  background-color: rgba(250, 250, 210, 0.5);
+}
+
+.table-2 tbody tr:nth-child(4n-3) td{
+  background-color: rgba(250, 250, 210, 0.5);
+}
+
+.table-2 tbody tr:nth-child(4n-2) td{
+  background-color: rgba(250, 250, 210, 0.5);
+}
+
 
 body.dark .table-1 .table tr:nth-child(2n-1) td:nth-child(7) {
   background-color: skyblue;
