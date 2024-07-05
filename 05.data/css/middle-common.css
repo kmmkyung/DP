@@ -9,7 +9,6 @@
   height: 10px;
 }
 
-
 body {
   background-color: #e5e5e5;
   width: 100%;
@@ -42,18 +41,17 @@ header button {
   font-size: 16px;
   font-weight: bold;
   box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.2),
-  1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-button{
+button {
   padding: 0 10px;
   height: 30px;
   white-space: nowrap;
   cursor: pointer;
   font-size: 12px;
-  font-weight: bold; 
+  font-weight: bold;
 }
-
 
 .noBtn {
   background-color: #f5f5f5;
@@ -156,19 +154,19 @@ button{
   cursor: pointer;
 }
 
-.menu-wrap{
+.menu-wrap {
   position: absolute;
   top: 10px;
   left: 20px;
   display: none;
 }
 
-.menu-wrap img{
+.menu-wrap img {
   width: 24px;
   height: 24px;
 }
 
-.close-btn{
+.close-btn {
   display: none;
 }
 
@@ -329,7 +327,7 @@ header {
   line-height: 2;
   padding: 0;
   font-size: 12px;
-  box-shadow: none
+  box-shadow: none;
 }
 
 .text-wrap {
@@ -337,7 +335,7 @@ header {
   flex-wrap: wrap;
 }
 
-.text-wrap .text{
+.text-wrap .text {
   height: 28px;
   line-height: 28px;
 }
@@ -479,7 +477,7 @@ header {
   height: 30px;
 }
 
-table tbody{
+table tbody {
   margin-top: 1px;
 }
 
@@ -656,11 +654,11 @@ body.dark tfoot td {
 }
 
 @media screen and (max-width: 768px) {
-  .menu-wrap{
+  .menu-wrap {
     display: block;
   }
-  
-  .close-btn{
+
+  .close-btn {
     display: block;
     position: absolute;
     top: 10px;
@@ -794,27 +792,27 @@ body.dark tfoot td {
 }
 
 @media screen and (max-width: 425px) {
-  .tac{
+  .tac {
     text-align: center;
   }
 
-  .w10{
+  .w10 {
     width: 10%;
   }
 
-  .w25{
+  .w25 {
     width: 25%;
   }
 
-  .w30{
+  .w30 {
     width: 30%;
   }
 
-  .w50{
+  .w50 {
     width: 50%;
   }
 
-  .w100{
+  .w100 {
     width: 100%;
   }
 
@@ -823,7 +821,7 @@ body.dark tfoot td {
     flex-direction: column;
   }
 
-  .total-list-first{
+  .total-list-first {
     justify-content: center;
   }
 
