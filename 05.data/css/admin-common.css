@@ -551,11 +551,14 @@ body.dark textarea  {
 body.dark .tapBtn{
   color: #e3e3e3;
   box-shadow: none;
+  border: 1px solid #333;
 }
 
 body.dark .tapBtn.on{
   color: #333;
   box-shadow: none;
+  color: #fff;
+  
 }
 
 body.dark .border-gray{
@@ -575,7 +578,6 @@ body.dark .noBtn {
 body.dark .colorBtn {
   background-color: #222327;
   color: #e3e3e3;
-  font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 

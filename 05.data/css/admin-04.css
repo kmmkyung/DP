@@ -179,6 +179,12 @@ body.dark .sub-title {
   gap: 10px;
 }
 
+body.dark .left-4_content1 .content1,
+body.dark .right-4_content1 .content1 {
+  border: 1px solid #333;
+}
+
+
 @media screen and (max-width: 1220px) {
   .content-wrap {
     flex-direction: column;

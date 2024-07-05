@@ -192,6 +192,10 @@ body.dark table button{
   margin-top: 10px;
 }
 
+body.dark .main-content-top {
+  background-color: #222327;
+}
+
 @media screen and (max-width:1000px) {
   .main-content-top{
     flex-direction: column;
