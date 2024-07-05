@@ -1,3 +1,11 @@
+.top-btn {
+  justify-content: start;
+}
+
+.title-notice{
+  font-size: 12px;
+}
+
 .bottom-btn,
 .left,
 .left-1,
@@ -23,6 +31,14 @@
   margin-bottom: 20px;
 }
 
+
+.bg-yellow {
+  background-color: lightgoldenrodyellow;
+}
+
+body.dark .table tr td:nth-child(19){
+  background-color: lightgoldenrodyellow;
+} 
 
 @media screen and (max-width: 768px) {
   .bottom-btn{

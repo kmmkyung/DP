@@ -206,10 +206,17 @@
       <div class="section-wrap">
         <div class="top-btn">
           <p class="title-btn">멤버쉽 관리</p>
+          <span class="color-red title-notice">메모에 [가입매체 : WTS]가 있는 경우 [바탕화면 보기]가 지원되지 않습니다.</span>
         </div>
         <div class="main-content">
           <div class="bottom-btn">
             <div class="left w100">
+              <div class="left-1 w100">
+                <p class="leftBtn-1 noBtn w50">날짜</p>
+                <input class="w30" type="date" />
+                <span class="w10 tac">~</span>
+                <input class="w30" type="date" name="data-last" />
+              </div>
               <div class="left-1 w100">
                 <p class="leftBtn-1 noBtn w50">멤버쉽상태</p>
                 <select class="w50">
@@ -228,15 +235,19 @@
                 <p class="rightBtn-1 noBtn w50">IP</p>
                 <input class="w50" type="text">
               </div>
-            </div>
-            <div class="right w100">
-              <div class="right-2 w100">
-                <button class="colorBtn rightBtn-2 w100">검색 및 새로고침</button>
+              <div class="right w100">
+                <div class="right-2 w100">
+                  <button class="colorBtn rightBtn-2 w100">검색 및 새로고침</button>
+                </div>
               </div>
             </div>
           </div>
           <div class="table-wrap">
             <table class="table">
+              <colgroup>
+                <col span="18" />
+                <col class="bg-yellow"/>
+              </colgroup>
               <thead>
                 <tr>
                   <th>번호</th>
@@ -276,20 +287,19 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td>
                     <select name="" id="">
                       <option>멤버쉽승인</option>
                       <option>멤버쉽거절</option>
                     </select>
                   </td>
+                  <td><button class="whiteBtn">적용하기</button></td>
                   <td></td>
-                  <td></td>
+                  <td><button class="whiteBtn">화면보기</button></td>
                   <td></td>
                 </tr>
               </tbody>
             </table>
-            <span class="caption">메모에 [가입매체 : WTS]가 있는 경우 [바탕화면 보기]가 지원되지 않습니다.</span>
           </div>
         </div>
       </div>

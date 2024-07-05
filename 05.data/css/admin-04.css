@@ -1,5 +1,4 @@
-
-.sub-title{
+.sub-title {
   background-color: #f5f5f5;
   font-size: 14px;
   color: orange;
@@ -7,7 +6,7 @@
   border-radius: 5px;
 }
 
-body.dark .sub-title{
+body.dark .sub-title {
   background-color: #2d2e35;
   font-size: 14px;
   color: orange;
@@ -15,7 +14,7 @@ body.dark .sub-title{
   border-radius: 5px;
 }
 
-.btn{
+.btn {
   display: flex;
   gap: 10px;
 }
@@ -24,8 +23,8 @@ body.dark .sub-title{
   flex: 1;
 }
 
-.flexAuto{
-  flex:0 0 auto;
+.flexAuto {
+  flex: 0 0 auto;
 }
 
 .displayFlex {
@@ -33,22 +32,20 @@ body.dark .sub-title{
   width: 100%;
   gap: 10px;
   justify-content: space-between;
-  margin-top: 10px;
 }
 
 .flexColumn {
   flex-direction: column;
 }
 
-.overflowAuto{
+.overflowAuto {
   overflow: auto;
 }
 
 .bottom-btn,
 .bottom-btn .left,
 .bottom-btn .left-1,
-.bottom-btn .left-2
-{
+.bottom-btn .left-2 {
   display: flex;
   gap: 10px;
 }
@@ -78,10 +75,9 @@ body.dark .sub-title{
   justify-content: space-between;
 }
 
-
 .content-left .left-1,
 .content-left .left-2,
-.content-left .left-3, 
+.content-left .left-3,
 .content-left .left-4 {
   box-sizing: border-box;
   position: relative;
@@ -104,7 +100,7 @@ body.dark .sub-title{
   line-height: 120px;
 }
 
-.memo button{
+.memo button {
   height: 120px;
 }
 
@@ -114,14 +110,17 @@ body.dark .sub-title{
   box-sizing: border-box;
 }
 
+.left-4_content1 .content1,
+.right-4_content1 .content1 {
+  border: 1px solid #f5f5f5;
+  padding: 10px;
+}
+
 .left-4_content1 ul,
 .right-4_content1 ul {
-  margin: 10px 0;
-  padding: 0;
   list-style-type: none;
   display: flex;
   position: relative;
-  gap: 5px;
   flex-wrap: wrap;
 }
 
@@ -130,14 +129,13 @@ body.dark .sub-title{
   white-space: nowrap;
 }
 
-
 .content1-1,
 .content1-2 {
   z-index: 1;
   position: relative;
 }
 
-.right-top-btn{
+.right-top-btn {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
@@ -150,9 +148,10 @@ body.dark .sub-title{
   background-color: #fff;
 }
 
-.right-1{
+.right-1 {
   display: flex;
   gap: 10px;
+  flex-direction: column;
 }
 
 .right-4_content1 .content1 {
@@ -169,18 +168,18 @@ body.dark .sub-title{
   height: 30px;
 }
 
-.right-top-btn{
+.right-top-btn {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.right-btn-wrap{
+.right-btn-wrap {
   display: flex;
   gap: 10px;
 }
 
-@media screen and (max-width:1220px){
+@media screen and (max-width: 1220px) {
   .content-wrap {
     flex-direction: column;
   }
@@ -188,7 +187,7 @@ body.dark .sub-title{
   .content-left {
     width: auto;
   }
-  
+
   .content-right {
     margin: 40px 0;
     width: auto;
@@ -204,18 +203,13 @@ body.dark .sub-title{
   aside {
     width: 350px;
   }
-
-  .bottom-btn{
-    justify-content: flex-start
-  }
 }
 
-
-@media screen and (max-width:620px){
-  .w100p{
+@media screen and (max-width: 620px) {
+  .w100p {
     width: 100%;
   }
-  .wAuto{
+  .wAuto {
     width: auto;
   }
   .btn-wrap {
@@ -226,45 +220,45 @@ body.dark .sub-title{
     flex-direction: column;
   }
 
-  .flexDC{
+  .flexDC {
     flex-direction: column;
   }
   .item {
     width: 100%;
   }
-  textarea{
+  textarea {
     width: 150px;
   }
   .table-wrap {
-      min-width: auto;
-    }
+    min-width: auto;
+  }
 }
-
 
 @media screen and (max-width: 560px) {
   .left-content .top-btn {
     align-items: flex-start;
     flex-direction: column;
   }
- 
+
   .right-content .top-btn {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .bottom-btn .right-1 {
+    flex-direction: row;
+  }
 }
-
-}
-
 
 @media screen and (max-width: 425px) {
-  .text-wrap p{
+  .text-wrap p {
     text-align: left;
   }
 
-  .displayBlock{
+  .displayBlock {
     display: block;
   }
 
-  .top-btn{
+  .top-btn {
     align-items: center;
   }
 
@@ -272,48 +266,49 @@ body.dark .sub-title{
     justify-content: center;
   }
 
-  .left{
+  .left {
     flex-direction: column;
     align-items: center;
   }
 
-  .left-4_content1 ul{
+  .left-4_content1 ul {
     flex-wrap: nowrap;
   }
 
-  .right-1{
+  .right-1 {
     display: flex;
     gap: 10px;
   }
 
-  .right-top-btn{
+  .right-top-btn {
     flex-wrap: nowrap;
     flex-direction: column;
   }
 
-  .memo{
+  .memo {
     flex-direction: column;
   }
 
-  .memo p{
+  .memo p {
     height: auto;
     line-height: 30px;
     width: 100%;
   }
 
-  .memo textarea{
+  .memo textarea {
     width: 100%;
   }
 
-  .memo button{
+  .memo button {
     height: 30px;
   }
 
-  .left-4_content1 ul, .right-4_content1 ul {
-    justify-content: center;
+  .left-4_content1 ul,
+  .right-4_content1 ul {
+    justify-content: start;
   }
 
-  .close-btn{
+  .close-btn {
     width: 100%;
   }
 }
