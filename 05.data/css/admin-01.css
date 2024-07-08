@@ -21,6 +21,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .bottom-btn .right {
@@ -39,6 +41,11 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.right-2-1{
+  display: flex;
+  gap: 10px;
 }
 
 .table button{
@@ -144,7 +151,6 @@ aside .bottom-btn {
   }
 
   .right-2 {
-    justify-content: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
   }
 }

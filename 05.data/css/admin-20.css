@@ -12,17 +12,6 @@ aside {
   z-index: 77;
 }
 
-.pcW100{
-  width: 100%;
-}
-
-.pcW50{
-  width: 50%;
-}
-
-.pcW33{
-  width: 33.3%;
-}
 
 input[type="checkbox"],
 input[type="radio"]{
@@ -50,6 +39,10 @@ flex-direction: column;
   justify-content: center;
 }
 
+.flex1{
+  flex: 1;
+}
+
 input[type="color"]{
   padding: 0;
 }
@@ -72,6 +65,11 @@ input[type="color"]{
   margin-top: 10px;
 }
 
+.content-box-title{
+  height: 300px;
+  line-height: 300px;
+}
+
 .content-box textarea{
   width: 100%;
   height: 300px;
@@ -88,6 +86,7 @@ input[type="color"]{
 .notice-input{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -114,13 +113,20 @@ input[type="color"]{
 .day-box{
   display: flex;
   gap: 10px;
-  justify-content: center;
   margin-top: 10px;
   align-items: center;
 }
 
+.day-box-title{
+  flex: 0 0 auto;
+}
+
 .day-box span{
   font-size: 12px;
+}
+
+.day-box .btn{
+  width: 100%;
 }
 
 .button-box{
@@ -128,6 +134,10 @@ input[type="color"]{
   margin-top: 10px;
   display: flex;
   gap: 10px;
+}
+
+.button-box button{
+  width: 50%;
 }
 
 .button-box:nth-child(2){
@@ -146,12 +156,30 @@ input[type="color"]{
 }
 
 @media screen and (max-width: 600px) {
+
   aside{
     width: 350px;
   }
 
+  .box1{
+    flex-wrap: wrap;
+  }
+
+  .box1 p{
+    width: 100%;
+  } 
+
+  .content-box-title{
+    width: 45px;
+  }
+
   .notice-box{
     flex-direction: column;
+  }
+
+  .notice-input{
+    width: 100%;
+    gap: 5px;
   }
 
   .notice-box .noBtn{
@@ -170,20 +198,5 @@ input[type="color"]{
   .day-box input[type='time']
   {
     width: 100%;
-  }
-}
-
-
-@media screen and (max-width: 425px) {
-  .content-box {
-    flex-direction: column;
-}
-
-  .notice-box {
-    flex-direction: column;
-  }
-
-  .color-box button{
-    flex: 1;
   }
 }
