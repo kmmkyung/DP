@@ -223,19 +223,20 @@ header {
 }
 
 .btn-container {
+  background: #fff;
   margin-top: 5px;
   border-radius: 5px;
   height: 100%;
-  background: #fff;
+  overflow: auto;
 }
 
 .header-wrap .btn-wrap {
+  height: 900px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -312,7 +313,7 @@ header {
   padding-left: 20px;
   overflow: auto;
   height: 110px;
-  align-content: center;
+  align-content: flex-start;
 }
 
 .dayData-total {
