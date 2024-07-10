@@ -25,9 +25,11 @@ header{
   gap: 40px;
 }
 
-.list-item a{
-  font-size: var(--font-size-m);
+.list-item a,
+.list-item span
+{
   color: #fff;
+  font-size: var(--font-size-m);
 }
 
 .list-item:last-child{
@@ -80,4 +82,48 @@ header{
 .section3-wrap{
   max-width: 1600px;
   margin: 0 auto;
+}
+
+.smartBox1-content{
+  display: flex;
+  margin-top: 100px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.smartBox1-text{
+  color: #fff;
+}
+
+.smartBox1-text h2{
+  font-size: var(--font-size-100);
+  font-weight: bold;
+}
+
+.smartBox1-text h6{
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+}
+.smartBox1-text p{
+  font-size: var(--font-size-m);
+  width: 650px;
+  word-break: keep-all;
+  margin-top: 40px;
+}
+
+.smartBox1-table{
+  margin-top: 100px;
+}
+
+.table1-wrap{
+  color: #fff;
+}
+
+table th,
+table td{
+  font-size: var(--font-size-m);
+}
+
+.table1-wrap{
+  
 }
