@@ -1,12 +1,11 @@
 /* header */
-header{
+header {
   width: 100%;
-  height: 100%;
   position: fixed;
   top: 0;
 }
 
-.header-wrap{
+.header-wrap {
   height: 150px;
   max-width: 1600px;
   margin: 0 auto;
@@ -15,29 +14,28 @@ header{
   justify-content: space-between;
 }
 
-.logo img{
+.logo img {
   height: 150px;
   width: auto;
 }
 
-.menu-list{
+.menu-list {
   display: flex;
   gap: 40px;
 }
 
 .list-item a,
-.list-item span
-{
+.list-item span {
   color: #fff;
   font-size: var(--font-size-m);
 }
 
-.list-item:last-child{
+.list-item:last-child {
   margin-left: 60px;
 }
 
 /* section1 */
-.section1{
+.section1 {
   background-image: url(../images/main-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,14 +48,14 @@ header{
 }
 
 /* section2 */
-.section2{
+.section2 {
   width: 100%;
   background: linear-gradient(to bottom, transparent, var(--main-color));
   position: relative;
   z-index: 1;
 }
 
-.main-title{
+.main-title {
   color: #fff;
   max-width: 1600px;
   margin: 0 auto;
@@ -65,65 +63,151 @@ header{
   padding-bottom: 400px;
 }
 
-.main-title h2{
+.main-title h2 {
   font-size: var(--font-size-100);
 }
 
-.main-title p{
+.main-title p {
   font-size: var(--font-size-xl);
   margin-top: 20px;
 }
 
 /* section3 */
-.section3{
+.section3 {
   background-color: var(--main-color);
+  padding-bottom: 200px;
 }
 
-.section3-wrap{
+.section3-wrap {
   max-width: 1600px;
   margin: 0 auto;
 }
 
-.smartBox1-content{
+.smartBox1-content {
   display: flex;
   margin-top: 100px;
   align-items: start;
   justify-content: space-between;
 }
 
-.smartBox1-text{
+.smartBox1-text {
   color: #fff;
 }
 
-.smartBox1-text h2{
+.smartBox1-text h2 {
   font-size: var(--font-size-100);
   font-weight: bold;
 }
 
-.smartBox1-text h6{
+.smartBox1-text h6 {
   font-size: var(--font-size-xl);
   font-weight: bold;
 }
-.smartBox1-text p{
+.smartBox1-text p {
   font-size: var(--font-size-m);
   width: 650px;
   word-break: keep-all;
   margin-top: 40px;
 }
 
-.smartBox1-table{
+.smartBox1-table {
   margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
 }
 
-.table1-wrap{
+.smartBox1-table .table1-wrap,
+.smartBox1-table .table2-wrap,
+.smartBox1-table .table3-wrap {
   color: #fff;
+  position: relative;
+  width: 100%;
+}
+
+table {
+  position: relative;
 }
 
 table th,
-table td{
+table td {
   font-size: var(--font-size-m);
+  text-align: center;
+  padding: 10px 20px;
+  font-weight: normal;
+  white-space: nowrap;
+  position: relative;
 }
 
-.table1-wrap{
+.smartBox1-table table th::after {
+  content: "";
+  width: 1px;
+  height: 110%;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.section4 {
+  padding: 200px 0;
+  background-color: var(--gray-f5);
+}
+
+.section4-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.smartBox2-text h2 {
+  font-size: var(--font-size-100);
+  font-weight: bold;
+}
+
+.smartBox2-text h6 {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+}
+
+.smartBox2-text p {
+  font-size: var(--font-size-m);
+  width: 650px;
+  word-break: keep-all;
+  margin-top: 40px;
+}
+
+.smartBox2-content{
+  display: flex;
+  gap: 70px;
+  align-items: flex-end;
+}
+
+.smartBox2-img{
+  margin-top: 50px;
+}
+
+.smartBox2-table{
+  display: flex;
+  color: #000;
+}
+
+.smartBox2-table table th::after {
+  content: "";
+  width: 1px;
+  height: 110%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.table-left{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;  
+}
   
+  .table2-wrap{
+    margin-left: 44px;
 }
