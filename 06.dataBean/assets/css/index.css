@@ -103,6 +103,7 @@ header {
   font-size: var(--font-size-xl);
   font-weight: bold;
 }
+
 .smartBox1-text p {
   font-size: var(--font-size-m);
   width: 650px;
@@ -150,6 +151,7 @@ table td {
   right: 0;
 }
 
+/* section4 */
 .section4 {
   padding: 200px 0;
   background-color: var(--gray-f5);
@@ -177,17 +179,17 @@ table td {
   margin-top: 40px;
 }
 
-.smartBox2-content{
+.smartBox2-content {
   display: flex;
   gap: 70px;
   align-items: flex-end;
 }
 
-.smartBox2-img{
+.smartBox2-img {
   margin-top: 50px;
 }
 
-.smartBox2-table{
+.smartBox2-table {
   display: flex;
   color: #000;
 }
@@ -202,12 +204,45 @@ table td {
   right: 0;
 }
 
-.table-left{
+.table-left {
   display: flex;
   justify-content: space-between;
-  flex-direction: column;  
+  flex-direction: column;
 }
-  
-  .table2-wrap{
-    margin-left: 44px;
+
+.table2-wrap {
+  margin-left: 44px;
 }
+
+/* section5 */
+.section5 {
+  background-color: #fff;
+  padding: 200px 0;
+}
+
+.section5-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section5 h2 {
+  font-size: var(--font-size-100);
+  font-weight: bold;
+}
+
+.section5-content{
+  margin-top: 100px;
+  background-color: var(--main-color);
+}
+
+.section5-content h6{
+  color: #fff;
+  font-size: var(--font-size-l);
+  font-weight: bold;
+  margin-left: 60px;
+  line-height: 120px;
+}
+
+
+
+
