@@ -1,0 +1,12 @@
+.section6-button button span{
+  animation: buttonAni 0.5s linear infinite alternate;
+}
+
+@keyframes buttonAni {
+  0%{
+    color: red;
+  }
+  100%{
+    color: var(--main-color-blue);
+  }
+}
