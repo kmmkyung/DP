@@ -3,11 +3,12 @@
 :root{
   --gray-f5:#f5f5f5;
   --main-color : #002D57;
-  --font-size-s:2rem;
-  --font-size-m:2.4rem;
-  --font-size-l:4rem;
-  --font-size-xl:5rem;
-  --font-size-100:10rem;
+  --font-size-xs: clamp(1.2rem,2.5vw,1.6rem);
+  --font-size-s: clamp(1.2rem,3vw,2rem);
+  --font-size-m: clamp(1.4rem,3vw,2.4rem);
+  --font-size-l: clamp(1.6rem,4vw,3rem);
+  --font-size-xl: clamp(2rem,4.5vw,5rem);
+  --font-size-100: clamp(3rem,5vw,10rem);
 }
 
 html{
@@ -27,4 +28,24 @@ body{
   height: 1px;
   background-color: #fff;
 }
+
+table {
+  position: relative;
+  width: 100%;
+}
+
+/* table th{
+  width: 40%;
+} */
+
+table th,
+table td {
+  font-size: var(--font-size-s);
+  text-align: center;
+  padding: 5px 20px;
+  font-weight: normal;
+  white-space: nowrap;
+  position: relative;
+}
+
 
