@@ -261,3 +261,18 @@ header {
 
 
 
+#a{
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  stroke-width: 24;
+  animation: hand-writing 0.45s linear forwards 1.8s;
+}
+
+@keyframes hand-writing{
+  100%{
+    stroke-dashoffset: 0;
+  }
+}
