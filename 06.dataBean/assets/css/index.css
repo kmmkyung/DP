@@ -281,21 +281,20 @@ header {
   font-weight: normal;
 }
 
-.section5-content .content-1 .content-1_subTitle{
+.section5-content .content-1_subTitle{
   font-size: var(--font-size-s);
   font-weight: bold;
-  margin-top: x;
   color: #fff;
-  text-align: left;
+  text-align: center;
   max-width: 610px;
   margin: 89px auto 0;
 }
 
-.section5-content .content-1 .content-1_text{
+.section5-content .content-1_text{
   font-size: var(--font-size-s);
   max-width: 610px;
   margin: 20px auto 0;
-  text-align: left;
+  text-align: center;
   color: #fff;
   word-break: keep-all;
 }
@@ -311,11 +310,12 @@ header {
   padding: 100px 0;
 }
 
-.section5-content .content-2 .content-2_title{
+.section5-content .content-2_title{
   color: #fff;
   font-size: var(--font-size-m);
   text-align: center;
   position: relative;
+  font-weight: bold;
 }
 
 .content-2 .content-2_title::after{
@@ -326,4 +326,36 @@ header {
   transform: translateX(-50%);
   font-weight: normal;
   font-size: var(--font-size-xs);
+}
+
+.content2-numBox{
+  padding: 40px 60px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  margin-top: 82px;
+}
+
+.section5-content .numBox-title{
+  font-size: var(--font-size-m);
+  color: #fff;
+  text-align: center;
+}
+
+.numBox-wrap
+
+.section5-content .numBox{
+  
+}
+
+.section5-content .numBox-subTitle{
+  font-size: var(--font-size-m);
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.section5-content .numBox-text{
+  font-size: var(--font-size-s);
+  color: #fff;
+  text-align: center;
 }
