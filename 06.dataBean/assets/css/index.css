@@ -55,6 +55,12 @@ header {
   z-index: 1;
 }
 
+.section2-wrap{
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 .main-title {
   color: #fff;
   max-width: 1280px;
@@ -81,6 +87,7 @@ header {
 .section3-wrap {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .smartBox1-wrap{
@@ -88,6 +95,7 @@ header {
   margin-top: 100px;
   align-items: start;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .smartBox1-text {
@@ -97,17 +105,19 @@ header {
 .smartBox1-text h2 {
   font-size: var(--font-size-xl);
   font-weight: bold;
+  word-break: keep-all;
 }
 
 .smartBox1-text h6 {
   font-size: var(--font-size-m);
   font-weight: bold;
   margin-top: 20px;
+  word-break: keep-all;
 }
 
 .smartBox1-text p {
   font-size: var(--font-size-s);
-  width: 500px;
+  max-width: 500px;
   word-break: keep-all;
   margin-top: 20px;
 }
@@ -117,40 +127,31 @@ header {
 }
 
 .smartBox1-img img{
-  width: 300px;
-  height: 300px;
+  width: 80%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
 }
 
 .smartBox1-table {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: start;
-  gap: 20px;
-}
-
-.smartBox1-table .table1-wrap,
-.smartBox1-table .table2-wrap,
-.smartBox1-table .table3-wrap {
   color: #fff;
-  position: relative;
-  width: 100%;
 }
 
-.smartBox1-table .table1-wrap th,
-.smartBox1-table .table2-wrap th,
-.smartBox1-table .table3-wrap th{
-  width: 120px;
+.none-tr{
+  display: block;
 }
 
 .smartBox1-table table th::after {
   content: "";
   width: 1px;
-  height: 105%;
+  height: 110%;
   background-color: #fff;
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.smartBox1-table table th{
+  width: 40%;
 }
 
 /* section4 */
@@ -161,72 +162,64 @@ header {
 
 .section4-wrap {
   max-width: 1280px;
+  padding: 0 20px;
   margin: 0 auto;
 }
 
 .smartBox2-text h2 {
   font-size: var(--font-size-xl);
   font-weight: bold;
+  word-break: keep-all;
 }
 
 .smartBox2-text h6 {
   font-size: var(--font-size-m);
   font-weight: bold;
+  word-break: keep-all;
 }
 
 .smartBox2-text p {
   font-size: var(--font-size-s);
-  width: 500px;
+  max-width: 500px;
   word-break: keep-all;
   margin-top: 40px;
 }
 
 .smartBox2-img img{
-  width: 300px;
-  height: 300px;
-}
-
-.smartBox2-wrap{
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
+  width:  80%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
 }
 
 .smartBox2-img {
   margin-top: 40px;
 }
 
-.smartBox2-table {
+.smartBox2-wrap{
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 20px;
+  gap: 5px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.smartBox2-table {
   color: #000;
 }
-
-.smartBox2-table .table1-wrap,
-.smartBox2-table .table2-wrap,
-.smartBox2-table .table3-wrap {
-  position: relative;
-  width: 100%;
-}
-
-.smartBox2-table .table1-wrap th,
-.smartBox2-table .table2-wrap th,
-.smartBox2-table .table3-wrap th{
-  width: 200px;
-}
-
 
 .smartBox2-table table th::after {
   content: "";
   width: 1px;
-  height: 105%;
+  height: 110%;
   background-color: #000;
   position: absolute;
   top: 0;
   right: 0;
 }
+
+.smartBox2-table table th{
+  width: 40%;
+}
+
 
 /* section5 */
 .section5 {
@@ -237,6 +230,7 @@ header {
 .section5-wrap {
   max-width: 1520px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .section5 h2 {
@@ -249,6 +243,7 @@ header {
 .section5-content{
   margin-top: 50px;
   background-color: var(--main-color);
+  padding: 0 10px;
 }
 
 .section5-content h3{
@@ -259,19 +254,53 @@ header {
   text-align: center;
 }
 
-
-
-.path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
+.section5-content .content-1{
+  text-align: center;
+  padding: 60px 0;
 }
 
-@keyframes dash {
-  from {
-    stroke-dashoffset: 822;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+.section5-content .content-1 .content-1_title{
+  font-size: var(--font-size-m);
+  color: #fff;
+}
+
+.section5-content .content-1 .caption{
+  background-color: #fff;
+  color: #002D57;
+  position: relative;
+}
+
+.section5-content .content-1 .caption::after{
+  content: '*IT 장비를 비전도성 냉매(액체)에 담가 직접 냉각하는 방식';
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-size: var(--font-size-xs);
+  width: max-content;
+  bottom: -30px;
+  font-weight: normal;
+}
+
+.section5-content .content-1 .content-1_subTitle{
+  font-size: var(--font-size-s);
+  font-weight: bold;
+  margin-top: x;
+  color: #fff;
+  text-align: left;
+  max-width: 610px;
+  margin: 89px auto 0;
+}
+
+.section5-content .content-1 .content-1_text{
+  font-size: var(--font-size-s);
+  max-width: 610px;
+  margin: 20px auto 0;
+  text-align: left;
+  color: #fff;
+}
+
+.section5-content .content-1 img{
+  margin-top: 60px;
+  max-width: 1080px;
+  width: 100%;
 }

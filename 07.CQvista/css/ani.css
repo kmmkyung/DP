@@ -2,6 +2,10 @@
   animation: buttonAni 0.5s linear infinite alternate;
 }
 
+.section5-content .content-1 {
+  animation: circleAni 2s linear infinite alternate;
+}
+
 @keyframes buttonAni {
   0%{
     color: red;
@@ -10,3 +14,13 @@
     color: var(--main-color-blue);
   }
 }
+
+@keyframes circleAni {
+  0%{
+    box-shadow: 0px 0px 10px 5px #fff;
+  }
+  100%{
+    box-shadow: 0px 0px 10px 15px #fff;
+  }
+}
+

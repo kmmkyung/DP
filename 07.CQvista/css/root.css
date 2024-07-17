@@ -8,7 +8,7 @@
   --font-size-xs: clamp(1.2rem,2.5vw,1.6rem);
   --font-size-s: clamp(1.2rem,3vw,2rem);
   --font-size-m: clamp(1.4rem,3vw,2.4rem);
-  --font-size-l: clamp(1.6rem,4vw,3rem);
+  --font-size-l: clamp(1.6rem,3.5vw,3rem);
   --font-size-xl: clamp(2rem,4.5vw,5rem);
   --font-size-100: clamp(3rem,5vw,10rem);
 }
