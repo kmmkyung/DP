@@ -297,10 +297,33 @@ header {
   margin: 20px auto 0;
   text-align: left;
   color: #fff;
+  word-break: keep-all;
 }
 
 .section5-content .content-1 img{
   margin-top: 60px;
   max-width: 1080px;
   width: 100%;
+}
+
+.section5-content .content-2{
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.section5-content .content-2 .content-2_title{
+  color: #fff;
+  font-size: var(--font-size-m);
+  text-align: center;
+  position: relative;
+}
+
+.content-2 .content-2_title::after{
+  content: '*공기냉각대비';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  font-weight: normal;
+  font-size: var(--font-size-xs);
 }
