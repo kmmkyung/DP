@@ -173,7 +173,6 @@
   background-color: var(--main-color);
   padding-bottom: 100px;
 }
-
 .section3-wrap {
   max-width: 1280px;
   margin: 0 auto;
@@ -201,7 +200,6 @@
 .smartBox1-text h6 {
   font-size: var(--font-size-m);
   font-weight: bold;
-  margin-top: 20px;
   word-break: keep-all;
 }
 
@@ -456,6 +454,7 @@
   color: #fff;
   text-align: center;
   margin-top: 20px;
+  word-break: keep-all;
 }
 
 .section5-content .content2-nineEle{
@@ -497,12 +496,112 @@
   text-align: center;
 }
 
+/* section6 */
+.section6{
+  background:  #f5f5f5;
+  height: 100vh;
+}
 
+.section6-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: min(15vw,100px) 20px;
+}
 
+.section6-wrap h2{
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  word-break: keep-all;
+}
 
+.section6-wrap p{
+  font-size: var(--font-size-s);
+  text-align: center;
+  margin: 5vw 0 4vw;
+}
 
+.section6-swiper img{
+  width: 100%;
+}
 
+.swiper-pagination{
+  position: static;
+  margin-top: 40px;
+}
 
+.swiper-pagination-bullet{
+  background-color: #fff;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active{
+  background-color: var(--main-color);
+}
+
+/* section7 */
+.section7{
+  background-color: #fff;
+  height: 100vh;
+}
+
+.section7-wrap{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: min(15vw,100px) 20px;
+}
+
+.section7-title{
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.section7-title h2{
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  word-break: keep-all;
+}
+
+.section7-title .sub-menu{
+  display: flex;
+  gap: 6vw;
+
+}
+
+.section7-title .sub-menu li{
+  font-size: var(--font-size-m);
+  cursor: pointer;
+}
+
+.section7-title .sub-menu li.active{
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.section7-content p{
+  font-size: var(--font-size-s);
+  text-align: center;
+  margin: 5vw 0 4vw;
+  word-break: keep-all;
+  max-width: 1000px;
+}
+
+.content-1_img{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content-1_img img{
+  width: calc(100% / 5);
+  min-width: 200px;
+}
+
+.content-1_img img:not(:first-child){
+  margin-left: max(-2vw, -40px);
+}
 
 @media screen and (max-width:768px) {
   .pc-header{

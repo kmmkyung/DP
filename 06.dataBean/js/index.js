@@ -30,4 +30,23 @@ window.addEventListener('DOMContentLoaded',function(){
     mobileMenuBg.classList.toggle('active')
   })
   
+  // section6-swiper
+  section6Swiper = new Swiper('.section6-swiper', {
+    spaceBetween: 40,
+    slidesPerView: 1,
+    loop:true,
+    autoplay: true,
+    watchSlidesProgress: true,
+    breakpoints: {
+      425: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
 })
