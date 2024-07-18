@@ -3,10 +3,23 @@ header {
   width: 100%;
   position: fixed;
   top: 0;
+  z-index: 2;
+  transition: all 0.5s;
+}
+
+header.active{
+  z-index: 999;
+  transform: translateY(0px);
+}
+
+header.none{
+  z-index: -1;
+  transform: translateY(-150px);
 }
 
 .header-wrap {
   height: 150px;
+  padding: 0 20px;
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
@@ -15,13 +28,14 @@ header {
 }
 
 .logo img {
-  height: 150px;
+  height: min(10vw,150px);
   width: auto;
 }
 
 .menu-list {
   display: flex;
-  gap: 40px;
+  align-items: center;
+  gap: min(5vw,40px);
 }
 
 .list-item a,
@@ -39,12 +53,13 @@ header {
   background-image: url(../images/main-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 150vh;
+  height: 120vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
+  overflow: hidden;
 }
 
 /* section2 */
@@ -318,7 +333,7 @@ header {
   font-weight: bold;
 }
 
-.content-2 .content-2_title::after{
+.section5-content .content-2_title::after{
   content: '*공기냉각대비';
   position: absolute;
   left: 50%;
@@ -332,7 +347,9 @@ header {
   padding: 40px 60px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50px;
-  margin-top: 82px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 82px auto 0;
 }
 
 .section5-content .numBox-title{
@@ -341,10 +358,15 @@ header {
   text-align: center;
 }
 
-.numBox-wrap
+.section5-content .numBox-wrap{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  gap: 20px;
+}
 
-.section5-content .numBox{
-  
+.section5-content .numBox img{
+  width: 100%;
 }
 
 .section5-content .numBox-subTitle{
@@ -357,5 +379,45 @@ header {
 .section5-content .numBox-text{
   font-size: var(--font-size-s);
   color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.section5-content .content2-nineEle{
+  margin-top: 60px;
+}
+
+.section5-content .nineEle-wrap{
+  display: flex;
+  gap: min(4vw,46px);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nineEle-wrap2,
+.nineEle-wrap3{
+  margin-top: 45px;
+}
+
+.content2-nineEle .nineEle{
+  padding: min(2vw,8px) min(4vw,40px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+}
+
+.content2-nineEle .nineEle-number{
+  font-size: var(--font-size-100);
+  font-weight: bold;
+}
+
+.content2-nineEle .nineEle-text{
+  font-size: var(--font-size-s);
+  word-break: keep-all;
   text-align: center;
 }
