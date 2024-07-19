@@ -379,16 +379,28 @@ header .list-item span {
 .section5-content .content-1_text {
   font-size: var(--font-size-s);
   max-width: 610px;
-  margin: 20px auto 0;
+  margin: 20px auto 60px;
   text-align: center;
   color: #fff;
   word-break: keep-all;
 }
 
-.section5-content .content-1 img {
-  margin-top: 60px;
+.section5-content .content-1_img{
+  position: relative;
   max-width: 1080px;
+  margin: 0 auto;
+}
+
+.section5-content .content-1 img {
   width: 100%;
+}
+
+.section5-content .content-1_arrow{
+  width: 80%;
+  position: absolute;
+  top: 53%;
+  left: 45%;
+  transform: translate(-50%,-50%);
 }
 
 .section5-content .content-2 {
@@ -453,6 +465,19 @@ header .list-item span {
   text-align: center;
   margin-top: min(2vw, 20px);
   word-break: keep-all;
+}
+
+svg {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  pointer-events: none;
+  animation: animateDash 3s alternate linear infinite;
+}
+
+@keyframes animateDash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .section5-content .content2-nineEle {

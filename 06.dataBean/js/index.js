@@ -1,3 +1,5 @@
+import svgArrow from '../js/svgArrow.js';
+
 window.addEventListener('DOMContentLoaded',function(){
   //AOS
   AOS.init(); 
@@ -53,11 +55,15 @@ window.addEventListener('DOMContentLoaded',function(){
     movePage(ele,idx)
   })
 
+  // // arrow
+  const arrowBox = document.querySelector('.content-1_arrow');
+  arrowBox.innerHTML = svgArrow;
+  
 
 
 
   // section6-swiper
-  section6Swiper = new Swiper('.section6-swiper', {
+  const section6Swiper = new Swiper('.section6-swiper', {
     spaceBetween: 40,
     slidesPerView: 1,
     loop:true,
@@ -77,11 +83,11 @@ window.addEventListener('DOMContentLoaded',function(){
   });
 
   // section7-swiper
-  section6Swiper = new Swiper('.section7-swiper', {
+  const section7Swiper = new Swiper('.section7-swiper', {
     spaceBetween: 40,
     slidesPerView: 1,
     loop:true,
-    // autoplay: true,
+    autoplay: true,
     watchSlidesProgress: true,
     breakpoints: {
       425: {

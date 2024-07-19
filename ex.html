@@ -1,90 +1,84 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>018.클리핑과 마스킹 기법</title>
+    <title>Document</title>
     <style>
-        html,body{
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-        body{
-            background-image: linear-gradient(to bottom, rgb(223, 219, 255),rgb(255, 204, 247), skyblue);
-        }
 
-        /* 
-            [ CSS Clipping ]
-            - 이미지의 일부영역을 지정하여 부분만 보이게하는
-             display기법
-        */
-        /* 1. 정원클리핑 
-            clip-path: circle(반지름 at x좌표 y좌표);
-            -> 소괄호안의 값을 안쓰면 이미지를 채우는 중심원이 나옴
-        */
-        .clip-circle{
-            clip-path: circle(114px at 127px 142px);
-        }
-        /* 2. 타원클리핑 
-            clip-path: ellipse(가로축 세로축 at x좌표 y좌표)
-            -> 소괄호안의 값을 안쓰면 이미지를 채우는 타원이 나옴
-        */
-        .clip-ellipse{
-            clip-path: ellipse(196px 68px at 198px 155px);
-        }
-        /* 3. 다각형클리핑 
-            clip-path: polygon(x1 y1,x2 y2,...)
-            -> 소괄호안을 비울 수 없다!
-            -> 각 좌표값은 px,%모두 가능
-        */
-        .clip-polygon{
-            clip-path: polygon(60% 1%,78% 0%,77% 73%,44% 100%,30% 100%,18% 80%,2% 57%,46% 34%);
-        }
+svg {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  pointer-events: none;
+  animation: animateDash 2s linear alternate infinite;
+}
 
-        /* 4. svg클리핑 
-            clip-path: url(#아이디명)
-            - 미리 만들어진 아이디명의 svg 요소를 지정하여 
-            그 모양만큼만 이미지가 보임
-        */
-        .clip-svg{
-            clip-path: url(#myClip);
-        }
-
-        /* 
-            [ CSS Masking ] - 아직 웹표준기술아님!
-            - 이미지의 일부를 자연스럽게 감추는 기법
-            - 검정색부분은 보이는 영역, 투명색은 숨기는 영역
-            - 셋팅법이 배경이미지 셋팅과 유사
-            linear-gradient와 같은 그라데이션
-            CSS함수를 이용하여 셋팅함
-        */
-        .masking1{
-            -webkit-mask-image: 
-            linear-gradient(to right,black 30%, transparent 80%);
-
-        }
+@keyframes animateDash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 
     </style>
 </head>
 <body>
-    <!-- 클리핑효과주기 -->
-    <img src="images/img2.jpg" alt="image" class="clip-circle">
-    <img src="images/img1.jpg" alt="image" class="clip-ellipse">
-    <img src="images/img3.jpg" alt="image" class="clip-polygon">
-    <img src="images/img5.jpg" alt="image" class="clip-svg">
-    <svg>
-        <defs>
-            <clippath id="myClip">
-                <circle cx="90" cy="100" r="40"></circle>
-                <circle cx="90" cy="200" r="70"></circle>
-            </clippath>
-        </defs>
+ 
+   
+    <?xml version="1.0" encoding="utf-8"?>
+    <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+         y="0px" viewBox="0 0 853 323" style="enable-background:new 0 0 853 323;" xml:space="preserve">
+    <style type="text/css">
+        .st0{fill:none;stroke:url(#SVGID_1_);stroke-width:5;stroke-linejoin:round;}
+        .st1{fill:none;stroke:#00D1FF;stroke-width:5;stroke-linejoin:round;}
+        .st2{fill:none;stroke:#FF0000;stroke-width:5;}
+        .st3{fill:none;stroke:#00D1FF;stroke-width:5;}
+        .st4{fill:none;stroke:url(#SVGID_00000078745970383371830880000015799944546000549519_);stroke-width:5;stroke-linejoin:round;}
+        .st5{fill:none;stroke:url(#SVGID_00000031921516812807651050000011236540909733463447_);stroke-width:5;stroke-linejoin:round;}
+        .st6{fill:none;stroke:url(#SVGID_00000163755624373245618980000014942200611859979963_);stroke-width:5;stroke-miterlimit:10;}
+        .st7{fill:none;stroke:url(#SVGID_00000103954794970288475940000010766306591908933033_);stroke-width:5;stroke-linejoin:round;}
+    </style>
+    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="451.75" y1="273.881" x2="451.75" y2="163.5902" gradientTransform="matrix(1 0 0 -1 0 323.8898)">
+        <stop  offset="0" style="stop-color:#FF0000"/>
+        <stop  offset="1" style="stop-color:#00D1FF"/>
+    </linearGradient>
+    <path class="st0" d="M510.6,165v-64.3c0-4.7,3.8-8.5,8.5-8.5h52.4c4.7,0,8.5-3.8,8.5-8.5V60.5c0-4.7-3.8-8.5-8.5-8.5H321"/>
+    <path class="st1" d="M829,84.5H694"/>
+    <path class="st2" d="M2,250l11-11l11,11"/>
+    <path class="st3" d="M521.6,154l-11,11l-11-11"/>
+    <path class="st2" d="M113,175l-11-11l11-11"/>
+    <path class="st3" d="M705,95.5l-11-11l11-11"/>
+    <path class="st2" d="M838,2l11,11l-11,11"/>
+    <path class="st2" d="M248,41l11,11l-11,11"/>
+    <path class="st3" d="M293,321l-11-11l11-11"/>
+    <path class="st1" d="M282,310h221.5c4.7,0,8.5-3.8,8.5-8.5V224"/>
+    <linearGradient id="SVGID_00000173147443010365874530000005743594250003013814_" gradientUnits="userSpaceOnUse" x1="10.5" y1="276" x2="223.9368" y2="276">
+        <stop  offset="0" style="stop-color:#FF0000"/>
+        <stop  offset="1" style="stop-color:#00D1FF"/>
+    </linearGradient>
+    <path style="fill:none;stroke:url(#SVGID_00000173147443010365874530000005743594250003013814_);stroke-width:5;stroke-linejoin:round;" d="
+        M13,239v63c0,4.7,3.8,8.5,8.5,8.5h202.4"/>
+    <linearGradient id="SVGID_00000022555086170491573660000003827732728619907472_" gradientUnits="userSpaceOnUse" x1="131.6206" y1="182.4924" x2="131.6206" y2="54.9364">
+        <stop  offset="0" style="stop-color:#15C0EA"/>
+        <stop  offset="1" style="stop-color:#FF0000"/>
+    </linearGradient>
+    <path style="fill:none;stroke:url(#SVGID_00000022555086170491573660000003827732728619907472_);stroke-width:5;stroke-linejoin:round;" d="
+        M257.9,52H16.4c-4.7,0-8.5,3.8-8.5,8.5V183"/>
+    <linearGradient id="SVGID_00000040543016795433871950000009717288356695627960_" gradientUnits="userSpaceOnUse" x1="102" y1="193.4942" x2="290.5" y2="193.4942">
+        <stop  offset="0" style="stop-color:#FF0000"/>
+        <stop  offset="1" style="stop-color:#00D1FF"/>
+    </linearGradient>
+    <path style="fill:none;stroke:url(#SVGID_00000040543016795433871950000009717288356695627960_);stroke-width:5;stroke-miterlimit:10;" d="
+        M102,164h177.5c4.7,0,8.5,3.8,8.5,8.5v53"/>
+    <linearGradient id="SVGID_00000086678869911621083660000006990381111746358712_" gradientUnits="userSpaceOnUse" x1="628" y1="37" x2="849" y2="37">
+        <stop  offset="0" style="stop-color:#00D1FF"/>
+        <stop  offset="1" style="stop-color:#FF0000"/>
+    </linearGradient>
+    <path style="fill:none;stroke:url(#SVGID_00000086678869911621083660000006990381111746358712_);stroke-width:5;stroke-linejoin:round;" d="
+        M849,13H639c-4.7,0-8.5,3.8-8.5,8.5v31c0,4.7,3.8,8.5,8.5,8.5h37.5"/>
     </svg>
-
-    <!-- 마스킹효과주기 -->
-    <img src="images/img4.jpg" alt="image" class="masking1">
+           
+   
 </body>
 </html>
