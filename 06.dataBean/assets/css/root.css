@@ -29,8 +29,20 @@ body{
   background-color: #fff;
 }
 
+.displayNone{
+  display: none !important;
+}
+
 .mt20{
   margin-top: 20px;
+}
+
+.pt20{
+  padding-top: 20px;
+}
+
+.pc-br{
+  display: block;
 }
 
 table {
@@ -42,12 +54,11 @@ table {
 
 table th,
 table td {
-  font-size: clamp(1rem,2vw,2rem);
+  font-size: clamp(1.2rem,2vw,2rem);
   text-align: center;
   padding: 5px 0px;
   font-weight: normal;
   white-space: nowrap;
   position: relative;
 }
-
 
