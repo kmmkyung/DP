@@ -471,7 +471,7 @@ svg {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   pointer-events: none;
-  animation: animateDash 3s alternate linear infinite;
+  animation: animateDash 3s linear infinite;
 }
 
 @keyframes animateDash {
