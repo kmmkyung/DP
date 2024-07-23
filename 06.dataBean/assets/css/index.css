@@ -39,14 +39,16 @@
   gap: min(3vw, 40px);
 }
 
-header .list-item a,
-header .list-item span {
+header .list-item a{
   color: #fff;
   font-size: var(--font-size-m);
 }
 
-header .lang-item a{
+header .lang-item a,
+header .list-item span{
   font-size: var(--font-size-s);
+  color: #fff;
+
 }
 
 .menu-list .lang-item {
@@ -107,6 +109,9 @@ header .lang-item a{
   transform: translateX(100%);
   transition: all 0.5s;
   padding: 100px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mobileMenu-wrap.active {
@@ -184,16 +189,13 @@ header .lang-item a{
   padding: 0 20px;
 }
 
-.section3-wrap .white-line{
-  padding-top: 100px;
-}
-
 .section3-wrap h2{
   margin: 0 auto;
   max-width: 1280px;
   font-size: var(--font-size-xl);
   font-weight: bold;
   color:#fff;
+  padding-top: 100px;
 }
 
 .smartBox1-wrap {
@@ -325,7 +327,8 @@ header .lang-item a{
 
 /* section5 */
 .section5 {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: var(--main-color);
   padding: 100px 0 50px;
 }
 
@@ -340,11 +343,11 @@ header .lang-item a{
   max-width: 1280px;
   font-size: var(--font-size-xl);
   font-weight: bold;
+  color: #fff;
 }
 
 .section5-content {
   margin-top: 50px;
-  background-color: var(--main-color);
   padding: 0 10px;
 }
 
