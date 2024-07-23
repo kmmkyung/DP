@@ -8,6 +8,8 @@ window.addEventListener('DOMContentLoaded',function(){
 			{ opacity: 1 }
 		];
 
+		document.getElementById
+
 		const options = {
 			duration: 1500,
 			iterations: Infinity,
