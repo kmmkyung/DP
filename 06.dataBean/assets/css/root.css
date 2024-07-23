@@ -54,7 +54,7 @@ table {
 
 table th,
 table td {
-  font-size: clamp(1.2rem,2vw,2rem);
+  font-size: clamp(1.2rem,2vw,1.5rem);
   text-align: center;
   padding: 5px 0px;
   font-weight: normal;

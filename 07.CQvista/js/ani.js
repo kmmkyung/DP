@@ -1,5 +1,7 @@
 window.addEventListener('DOMContentLoaded',function(){
 
+  AOS.init(); 
+
     const triangle = document.querySelectorAll('.triangle')
     const keyframes = [
 			{ opacity: 0 },
