@@ -511,11 +511,14 @@ header h1 {
 }
 
 .home-link {
-  font-size: var(--font-size-l);
-  color: #fff;
-  margin-top: 80px;
-  display: block;
+  font-size: var(--font-size-xl);
+  margin-top: 10vw;
   text-decoration: underline;
+  background-color: #fff;
+  display: inline-block;
+  color: #000;
+  padding: 0 10px;
+  font-weight: bold;
 }
 
 .section5-content .content-2 {
