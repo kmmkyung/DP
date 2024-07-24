@@ -874,6 +874,14 @@ footer .contact-box .content-3 button:hover{
   background-color: #fff;
 }
 
+/* iframe */
+footer iframe{
+  min-width: 769px;
+  width: 100%;
+  height: 300px;
+
+}
+
 @media screen and (max-width: 1082px) {
   .section7-content .content-2 {
     display: flex;
@@ -1015,6 +1023,12 @@ footer .contact-box .content-3 button:hover{
 
   footer .contact-box .content-3 button{
     width: 100%;
+  }
+
+  footer iframe{
+    min-width: auto;
+    width: 100%;
+    height: 500px;
   }
 }
 
