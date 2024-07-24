@@ -8,6 +8,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -138,9 +140,11 @@
       <section class="section3">
         <div class="section3-wrap">
           <div class="section3-title">
-            <img src="./asset/images/section3-1.png" alt="">
-            <h6>아시아최대 보안전시회<br>
-              eGISEC 2024에 참가</h6>
+            <div class="title-main">
+              <img src="./asset/images/section3-1.png" alt="">
+              <h6>아시아최대 보안전시회<br>
+                eGISEC 2024에 참가</h6>
+            </div>
               <p>차세대 보안솔루션 패킷사이버V2.5를 공식 선보였습니다.</p>
           </div>
           <div class="section3-content">
@@ -222,30 +226,32 @@
           </div>
         </div>
       </section>
-      <iframe src="https://script.google.com/a/macros/toobplus.com/s/AKfycbzmcnlWj2PlpGLqPQW9wijTmugIva_6qVT-6sRifJ7APCnOeCzfNotU2cMChXAF9Csl/exec" frameborder="0"></iframe>
+      <iframe class="section6-iframe" src="https://script.google.com/a/macros/toobplus.com/s/AKfycby-G2p9magu9eY8lmjORGrrsgzfktDBT7RZ1dUjdh3Ckq97w4jZHs6QAPa0Sg5-8vln/exec" frameborder="0"></iframe>
       <!-- <section class="section6">
         <div class="section6-wrap">
           <div class="section6-input">
-            <div class="input-1">
-              <label for="name">이름</label>
-              <input type="text" id="name" placeholder="이름을 입력해 주세요">
-            </div>
-            <div class="input-2">
-              <label for="tel-1">연락처</label>
-              <input type="text" id="tel-1" placeholder="010">
-            </div>
-            <div class="input-3">
-              <label for="age">나이</label>
-              <input type="text" id="age" placeholder="나이 입력해 주세요">
-            </div>
-            <div class="input-4">
-              <input type="checkbox" id="check">
-              <label for="check">개인정보수집 정책에 동의합니다.</label>
-              <span>[자세히보기]</span>
-            </div>
-          </div>
-          <div class="section6-button">
-            <button><span>상담</span> 받으러 가기</button>
+            <form>
+              <div class="input-1">
+                <label for="mail_name">이름</label>
+                <input type="text" id="mail_name" name="mail_name" placeholder="이름을 입력해 주세요">
+              </div>
+              <div class="input-2">
+                <label for="mail_tel">연락처</label>
+                <input type="text" id="mail_tel" placeholder="010" name="mail_tel">
+              </div>
+              <div class="input-3">
+                <label for="mail_birth">나이</label>
+                <input type="text" id="mail_birth" name="mail_birth" placeholder="나이 입력해 주세요">
+              </div>
+              <div class="input-4">
+                <input type="checkbox" id="check" class="checkboxInput">
+                <label for="check">개인정보수집 정책에 동의합니다.</label>
+                <span>[자세히보기]</span>
+              </div>
+              <div class="section6-button">
+                <button id="submitBtn"><span>상담</span> 받으러 가기</button>
+              </div>
+            </form>
           </div>
         </div>
       </section> -->

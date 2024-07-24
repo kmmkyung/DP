@@ -24,3 +24,10 @@
   }
 }
 
+
+@media screen and (max-width: 425px) {
+
+  .section5-content .content-1{
+    animation: none;
+  }
+}

@@ -18,4 +18,7 @@ window.addEventListener('DOMContentLoaded',function(){
     triangle.forEach(function(ele,idx){
       ele.animate(keyframes,{...options,delay:idx*100})
     })
+
+
+		
 })
