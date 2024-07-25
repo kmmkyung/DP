@@ -568,17 +568,11 @@ header h1 {
   z-index: 1;
   display: inline-block;
   word-break: keep-all;
-}
-
-.section5-content .content-2_text h6::after {
-  content: "";
-  width: 100%;
-  height: 50%;
-  background-color: var(--main-color-blue);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+  display: block;
+  color: #000;
+  margin-top: 10px;
+  background-color: yellow;
+  display: inline-block;
 }
 
 .section5-content .content-2_text p {
@@ -677,7 +671,7 @@ header h1 {
 } */
 
 /* footer */
-footer {
+/* footer {
   background-color: #111;
   color: #fff;
 }
@@ -703,7 +697,16 @@ footer address span {
 
 footer address span:not(:first-child) {
   margin-top: 20px;
+} */
+
+footer{
+  width: 100%;
 }
+
+footer img{
+  width: 100%;
+}
+
 
 @media screen and (max-width: 1450px) {
   .content-1 .content1-text {
@@ -728,9 +731,5 @@ footer address span:not(:first-child) {
     border: none;
   }
 
-  .section5-content .content-2_text h6::after {
-    height: 100%;
-  }
-  
   
 }
