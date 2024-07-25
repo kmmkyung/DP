@@ -876,7 +876,6 @@ footer .contact-box .content-3 button:hover{
 
 /* iframe */
 footer iframe{
-  min-width: 769px;
   width: 100%;
   height: 300px;
 
@@ -1025,11 +1024,7 @@ footer iframe{
     width: 100%;
   }
 
-  footer iframe{
-    min-width: auto;
-    width: 100%;
-    height: 500px;
-  }
+
 }
 
 @media screen and (max-width: 619px) {
@@ -1053,6 +1048,12 @@ footer iframe{
 
   footer .content-wrap {
     flex-direction: column;
+  }
+
+  footer iframe{
+    min-width: auto;
+    width: 100%;
+    height: 450px;
   }
 }
 
@@ -1086,4 +1087,6 @@ footer iframe{
     width: 100%;
     justify-content: center;
   }
+
+
 }
