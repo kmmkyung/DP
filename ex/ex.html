@@ -1,207 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-    body{
-      max-width: 860px;
-      margin: 0 auto;
-    }
+      body {
+        max-width: 860px;
+        margin: 0 auto;
+      }
 
-    .input-wrap{
-      max-width: 1200px;
-      padding: 10px 20px;
-      display: flex;
-      border: 1px solid #166ce7;
-      box-sizing: border-box;
-      border-radius: 50px;
-      margin: 0 20px;
-    }
+      .input-wrap {
+        max-width: 1200px;
+        padding: 10px 20px;
+        display: flex;
+        border: 1px solid #166ce7;
+        box-sizing: border-box;
+        border-radius: 50px;
+        margin: 0 20px;
+      }
 
-    .input-icon{
-      display: flex;
-      gap: min(2vw,20px);
-      align-items: center;
-    }
+      .input-icon {
+        display: flex;
+        gap: min(2vw, 20px);
+        align-items: center;
+      }
 
-    .icon-list{
-      display: flex;
-      gap: min(2vw,20px);
-      align-items: center;
-    }
+      .icon-list {
+        display: flex;
+        gap: min(2vw, 20px);
+        align-items: center;
+      }
 
-    .icon-list p{
-      font-size: min(2vw,20px);
-      font-weight: bold;
-    }
+      .icon-list img{
+        width: 40px;
+        height: 40px;
+      }
 
-    .arrow-icon{
-      fill: #aaa;
-    }
+      .icon-list p {
+        font-size: min(2vw, 20px);
+        font-weight: bold;
+      }
 
-    .input-form{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding-left: 20px;
-    }
+      .arrow-icon {
+        fill: #aaa;
+      }
 
-    .input-form input{
-      width: 100%;
-      height: 100%;
-      border: none;
-      line-height: 2;
-    }
+      .input-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding-left: 20px;
+      }
 
-    .input-form input:focus{
-      border: none;
-    }
+      .input-form input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        line-height: 2;
+      }
 
-    .input-form input::placeholder{
-      font-size: min(2.5vw,20px);
-      color: #aaa;
-      font-weight: bold;
-    }
+      .input-form input:focus {
+        border: none;
+      }
 
-    .input-form button{
-      border: none;
-      background-color: transparent;
-    }
+      .input-form input::placeholder {
+        font-size: min(2.5vw, 20px);
+        color: #aaa;
+        font-weight: bold;
+      }
 
-    .search-icon{
-      fill: #166ce7;
-    }
+      .input-form button {
+        border: none;
+        background-color: transparent;
+      }
 
-    .bit-list{
-      display: flex;
-      gap: 12px;
-      list-style: none;
-      flex-wrap: nowrap;
-      overflow: hidden;
-    }
+      .search-icon {
+        fill: #166ce7;
+      }
 
-    .list-item{
-      display: flex;
-      color: #5c5d5f;
-      gap: 4px;
-      align-items: center;
-      flex-shrink: 0;
-      padding: 8px 12px;
-      background-color: #eaeef4;
-      line-height: 150%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.4s;
-      -webkit-user-select: none;
-			-khtml-user-select: none;
-      -moz-user-select: none;
-      -o-user-select: none;
-      -ms-user-select: none; user-select: none; 
+      .bit-list {
+        display: flex;
+        gap: 12px;
+        list-style: none;
+        flex-wrap: nowrap;
+        overflow: hidden;
+      }
 
-    }
+      .bit-list .list-item {
+        display: flex;
+        color: #5c5d5f;
+        gap: 4px;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 8px 12px;
+        background-color: #eaeef4;
+        line-height: 150%;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.4s;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-    .list-item:hover{
-      background-color: #dce2e8;
-    }
+      .bit-list .list-item:hover {
+        background-color: #dce2e8;
+      }
 
-    .color-red{
-      color: #de4743;
-    }
+      .color-red {
+        color: #de4743;
+      }
 
-    @media screen and (max-width: 768px){
-      .icon-list p{
-        display: none;
-      } 
-    }
+      .event-list {
+        list-style: none;
+        display: flex;
+        gap: 16px;
+        overflow: hidden;
+      }
 
-  </style>
-</head>
-<body>
-  <div class="input-wrap">
-    <div class="input-icon">
-      <div class="icon-list">
-        <img src="./assets/images/bybit.webp" alt="">
-        <p>Bybit</p>
-      </div>
-      <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-360 280-560h400L480-360Z"/></svg>
-    </div>
-    <form class="input-form">
-      <input type="text" placeholder="거래소 UID를 입력해주세요">
-      <button type="submit">
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
-      </button>
-    </form>
-  </div>
+      .item-img {
+        width: 155px;
+        border-radius: 16px;
+        aspect-ratio: 1/1;
+      }
 
-  <div>
-    <ul class="bit-list">
-      <li class="list-item">Bybit <span class="color-red">73만원</span></li>
-      <li class="list-item">BloFin <span class="color-red">164만원</span></li>
-      <li class="list-item">Bitget <span class="color-red">103만원</span></li>
-      <li class="list-item">OKX <span class="color-red">70만원</span></li>
-      <li class="list-item">BingX <span class="color-red">14만원</span></li>
-      <li class="list-item">DeepCoin <span class="color-red">13만원</span></li>
-      <li class="list-item">BitMart <span class="color-red">20만원</span></li>
-      <li class="list-item">CoinCatch <span class="color-red">92만원</span></li>
-      <li class="list-item">BitMEX <span class="color-red">4만원</span></li>
-      <li class="list-item">BVOX <span class="color-red">26만원</span></li>
-      <li class="list-item">HTX <span class="color-red">1만원</span></li>
-    </ul>
-  </div>
-</body>
+      .item-text{
+        margin-top: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
 
-<script>
-  const input = document.querySelector('.input-form input')
-  window.addEventListener('resize',function(){
-    if(window.innerWidth<768){
-      input.setAttribute('placeholder','UID를 입력해주세요')
-    }
-    else{
-      input.setAttribute('placeholder','거래소 UID를 입력해주세요')
-    }
-  })
+      .text-sub{
+        color: #6a7583;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 20px;
+      }
 
-  const bitList = document.querySelector('.bit-list');
-  let isMove = false;
-  let startX = 0;
-  let scrollLeft = 0;
-  
-  bitList.addEventListener('mousedown',function(event){
-    isMove = true;
-    startX = event.pageX - bitList.offsetLeft;
-    scrollLeft = bitList.scrollLeft;
-  })
+      .text-title{
+        color: #222;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: 26px;
+        word-break: keep-all;
+      }
 
-  bitList.addEventListener('mouseleave',function(){
-    isMove = false
-  })
+      .text-day{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
 
-  
-  bitList.addEventListener('mouseup',function(){
-    isMove = false
-  })
+      .item-day_day{
+        color: #5c5d5f;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 20px;
+      }
 
-  bitList.addEventListener('mousemove',function(event){
-    if(isMove){
-      let x = event.pageX - bitList.offsetLeft;
-      let moveX = x - startX;
-      bitList.scrollLeft = scrollLeft - moveX;
-      console.log(bitList.scrollLeft);
+      .blue{
+        color: #166ce7;
+      }
+
+      table{
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table thead th{
+        font-size: 12px;
+        border-bottom: 1px solid #f0f3f9;
+        border-top: 1px solid #f0f3f9;
+        padding: 14px 24px;
+        text-align: right;
+      }
+
+      table thead .th-id{
+        text-align: left;
+      }
+
+      table tbody tr{
+        cursor: pointer;
+      }
       
-    }
+      table tbody tr:hover{
+        background-color: #f0f3f9;
+      }
+
+      table tbody .td-id{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: start;
+      }
+
+      table tbody .td-id img{
+        width: 40px;
+        height: 40px;
+      }
+
+      table tbody .td-id p{
+        font-weight: bold;
+        font-size: 17px;
+        color: #222;
+      }
+
+      table tbody td{
+        border-bottom: 1px solid #f0f3f9;
+        font-weight: bold;
+        text-align: right;
+        font-size: 14px;
+        padding: 16px 24px;
+      }
+
+      .mobile-table-list{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+      }
+      .mobile-table-list .list-item{
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        padding: 14px 24px;
+      }
+
+      .mobile-table-list .list-item .item-left{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 5px;
+      }
+
+      .mobile-table-list .list-item .item-left img{
+        width: 40px;
+        height: 40px;
+      }
+
+      .mobile-table-list .list-item .item-left p{
+        font-weight: bold;
+      }
+
+      .mobile-table-list .list-item .item-right{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .right-text{
+        padding: 5px 6px;
+        border-radius: 8px;
+        background-color: #e9f3ff;
+        color: #6a7583;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+
+      .select-bg{
+        display: none;
+        position: fixed;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+
+      .select-bg.active{
+        display: block;
+      }
+
+      .select-box{
+        position: absolute;
+        left: 50%;
+        bottom: -100%;
+        transform: translateX(-50%);
+        z-index: 3;
+        width: calc(100% - 40px);
+        border-radius: 20px;
+        background-color: #fff;
+        max-width: 500px;
+        box-sizing: border-box;
+        padding: 20px;
+        transition: all 0.4s;
+      }
+
+      .select-box.active{
+        bottom: 50px;
+      }
+
+      .box-line{
+        width: 40px;
+        height: 2px;
+        background-color: #ccc;
+        margin: 0 auto;
+      }
+
+      .box-title{
+        margin: 20px 0;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .select-list{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        justify-content: center;
+        max-height: 600px;
+        overflow-x: auto;
+      }
+
+      .select-list .list-item{
+        display: flex;
+        gap: 10px;
+        cursor: pointer;
+        align-items: center;
+        width: 100%;
+      }
+
+      .select-list .list-item img{
+        width: 40px;
+        height: 40px;
+      }
+
+      .select-list .list-item p{
+        margin: 0;
+        font-weight: bold;
+      }
+
+      @media screen and (max-width: 768px) {
+        .icon-list p {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-wrap">
+      <div class="input-icon">
+        <div class="icon-list">
+          <img src="./assets/images/bybit.webp" alt="" />
+          <p>Bybit</p>
+        </div>
+        <svg
+          class="arrow-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#5f6368"
+        >
+          <path d="M480-360 280-560h400L480-360Z" />
+        </svg>
+      </div>
+      <form class="input-form">
+        <input type="text" placeholder="거래소 UID를 입력해주세요" />
+        <button type="submit">
+          <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#5f6368"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <div>
+      <ul class="bit-list">
+        <li class="list-item">Bybit <span class="color-red">73만원</span></li>
+        <li class="list-item">BloFin <span class="color-red">164만원</span></li>
+        <li class="list-item">Bitget <span class="color-red">103만원</span></li>
+        <li class="list-item">OKX <span class="color-red">70만원</span></li>
+        <li class="list-item">BingX <span class="color-red">14만원</span></li>
+        <li class="list-item">
+          DeepCoin <span class="color-red">13만원</span>
+        </li>
+        <li class="list-item">BitMart <span class="color-red">20만원</span></li>
+        <li class="list-item">
+          CoinCatch <span class="color-red">92만원</span>
+        </li>
+        <li class="list-item">BitMEX <span class="color-red">4만원</span></li>
+        <li class="list-item">BVOX <span class="color-red">26만원</span></li>
+        <li class="list-item">HTX <span class="color-red">1만원</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <ul class="event-list">
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">가입하고 $77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">$77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">가입하고 $77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">$77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">가입하고 $77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <img class="item-img" src="./assets/images/event.png" alt="" />
+          <div class="item-text">
+            <p class="text-sub">8월 코인캐치 이벤트</p>
+            <p class="text-title">$77,977+2M SHIB 받자!</p>
+            <div class="text-day">
+              <svg
+                class="text-day_icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="var(--simentic-on-surface, #121416)"
+              >
+                <path
+                  d="M3 7.024c0-1.5 1.209-2.714 2.7-2.714h12.6c1.491 0 2.7 1.215 2.7 2.714v11.762a2.707 2.707 0 0 1-2.7 2.714H5.7A2.707 2.707 0 0 1 3 18.786V7.024Z"
+                  fill="#E5E9EE"
+                ></path>
+                <path
+                  d="M7.5 3.857c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Zm6.3 0c0-.75.604-1.357 1.35-1.357.746 0 1.35.608 1.35 1.357v1.81c0 .75-.604 1.357-1.35 1.357-.746 0-1.35-.608-1.35-1.357v-1.81Z"
+                  fill="#151E42"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M16.266 10.939a.908.908 0 0 1-.06 1.278l-5.298 4.842a.448.448 0 0 1-.649-.046l-2.55-3.077a.908.908 0 0 1 .115-1.274.897.897 0 0 1 1.267.116l1.348 1.626a.448.448 0 0 0 .649.045l3.907-3.57a.897.897 0 0 1 1.271.06Z"
+                  fill="#0067FF"
+                ></path>
+              </svg>
+              <p class="item-day_day">24.08.01 ~ 24.08.31</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th class="th-id">거래소명</th>
+              <th>페이백율(%)</th>
+              <th>거래 할인율(%)</th>
+              <th>1인 평균 환급금</th>
+              <th>지정가(%)</th>
+              <th>시장가(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-id">
+                <img src="./assets/images/bybit.png" alt="">
+                <p>Bybit</p>
+              </td>
+              <td>
+                <span class="blue">30%</span>페이백
+              </td>
+              <td>
+                <span class="blue">20%</span>할인
+              </td>
+              <td>73만원</td>
+              <td>0.0014%</td>
+              <td>0.031%</td>
+            </tr>
+            <tr>
+              <td class="td-id">
+                <img src="./assets/images/bybit.png" alt="">
+                <p>Bybit</p>
+              </td>
+              <td>
+                <span class="blue">30%</span>페이백
+              </td>
+              <td>
+                <span class="blue">20%</span>할인
+              </td>
+              <td>73만원</td>
+              <td>0.0014%</td>
+              <td>0.031%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <ul class="mobile-table-list">
+          <li class="list-item">
+            <div class="item-left">
+              <img src="./assets/images/bingx.png" alt="">
+              <p>bingx</p>
+            </div>
+            <div class="item-right">
+              <span class="right-text"><span class="blue">30%</span> 페이백 + <span class="blue">20%</span> 할인</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" color="#82879B"><path d="M7.864 18.557a1.158 1.158 0 0 0 1.608 1.668l8.052-7.766a.638.638 0 0 0 0-.918L9.472 3.775a1.158 1.158 0 0 0-1.608 1.668l6.8 6.557-6.8 6.557Z" fill="#82879B"></path></svg>
+            </div>
+          </li>
+          <li class="list-item">
+            <div class="item-left">
+              <img src="./assets/images/bingx.png" alt="">
+              <p>bingx</p>
+            </div>
+            <div class="item-right">
+              <span class="right-text"><span class="blue">30%</span> 페이백 + <span class="blue">20%</span> 할인</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" color="#82879B"><path d="M7.864 18.557a1.158 1.158 0 0 0 1.608 1.668l8.052-7.766a.638.638 0 0 0 0-.918L9.472 3.775a1.158 1.158 0 0 0-1.608 1.668l6.8 6.557-6.8 6.557Z" fill="#82879B"></path></svg>
+            </div>
+          </li>
+          <li class="list-item">
+            <div class="item-left">
+              <img src="./assets/images/bingx.png" alt="">
+              <p>bingx</p>
+            </div>
+            <div class="item-right">
+              <span class="right-text"><span class="blue">30%</span> 페이백 + <span class="blue">20%</span> 할인</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" color="#82879B"><path d="M7.864 18.557a1.158 1.158 0 0 0 1.608 1.668l8.052-7.766a.638.638 0 0 0 0-.918L9.472 3.775a1.158 1.158 0 0 0-1.608 1.668l6.8 6.557-6.8 6.557Z" fill="#82879B"></path></svg>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="select-bg"></div>
+      <div class="select-box">
+        <div class="box-line"></div>
+        <div class="box-title">
+          <p>거래소 선택</p>
+        </div>
+        <ul class="select-list">
+          <li class="list-item">
+            <img src="./assets/images/bybit.png" alt="">
+            <p>aaa</p>
+          </li>
+          <li class="list-item">
+            <img src="./assets/images/binance.png" alt="">
+            <p>bbb</p>
+          </li>
+          <li class="list-item">
+            <img src="./assets/images/bitget.png" alt="">
+            <p>ccc</p>
+          </li>
+          <li class="list-item">
+            <img src="./assets/images/okx.png" alt="">
+            <p>ddd</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const input = document.querySelector(".input-form input");
+    window.addEventListener("resize", function () {
+      if (window.innerWidth < 768) {
+        input.setAttribute("placeholder", "UID를 입력해주세요");
+      } else {
+        input.setAttribute("placeholder", "거래소 UID를 입력해주세요")
+      }
+    });
+
+    const bitList = document.querySelector(".bit-list");
+    const eventList = document.querySelector('.event-list')
+    let isMove = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    bitList.addEventListener("mousedown", function (event) {
+      isMove = true;
+      startX = event.pageX - bitList.offsetLeft;
+      scrollLeft = bitList.scrollLeft;
+    });
+
+    bitList.addEventListener("mouseleave", function () {
+      isMove = false;
+    });
+
+    bitList.addEventListener("mouseup", function () {
+      isMove = false;
+    });
+
+    bitList.addEventListener("mousemove", function (event) {
+      if (isMove) {
+        let x = event.pageX - bitList.offsetLeft;
+        let moveX = x - startX;
+        bitList.scrollLeft = scrollLeft - moveX;
+        console.log(bitList.scrollLeft);
+      }
+    });
+
+    	
+	// Touch events
+bitList.addEventListener('touchstart', function(event) {
+  isMove = true;
+  startX = event.touches[0].pageX - bitList.offsetLeft;
+  scrollLeft = bitList.scrollLeft;
+});
+
+bitList.addEventListener('touchend', function() {
+  isMove = false;
+});
+
+bitList.addEventListener('touchmove', function(event) {
+  if (isMove) {
+    let x = event.touches[0].pageX - bitList.offsetLeft;
+    let moveX = x - startX;
+    bitList.scrollLeft = scrollLeft - moveX;
+    console.log(bitList.scrollLeft);
+  }
+})
+
+const selectBg = document.querySelector('.select-bg')
+const selectBox = document.querySelector('.select-box')
+const selectItem = document.querySelectorAll('.select-list .list-item')
+const selectIcon = document.querySelector('.input-wrap .input-icon')
+const selectIconImg = document.querySelector('.input-wrap .icon-list img')
+const selectIconText = document.querySelector('.input-wrap .icon-list p')
+
+selectIcon.addEventListener('click',function(){
+  selectBg.classList.add('active')
+  selectBox.classList.add('active')
+})
+
+selectBg.addEventListener('click',function(){
+  selectBg.classList.remove('active')
+  selectBox.classList.remove('active')
+})
+
+selectItem.forEach(function(ele,idx){
+  ele.addEventListener('click',function(event){
+    const li = event.target.closest('.list-item');
+    let selectText = li.children[1].textContent
+
+    selectIconImg.setAttribute('src',li.children[0].src)
+    selectIconText.textContent = selectText;
+    selectBg.classList.remove('active')
+    selectBox.classList.remove('active')
   })
-
-
-  
-</script>
-
+})
+  </script>
 </html>
-
