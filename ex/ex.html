@@ -351,6 +351,9 @@
       @media screen and (max-width: 768px) {
         .icon-list p {
           display: none;
+          position: absolute;
+          transform: translateX(-50%);
+          left: 50%;
         }
       }
     </style>
@@ -397,18 +400,7 @@
         <li class="list-item">Bybit <span class="color-red">73만원</span></li>
         <li class="list-item">BloFin <span class="color-red">164만원</span></li>
         <li class="list-item">Bitget <span class="color-red">103만원</span></li>
-        <li class="list-item">OKX <span class="color-red">70만원</span></li>
-        <li class="list-item">BingX <span class="color-red">14만원</span></li>
-        <li class="list-item">
-          DeepCoin <span class="color-red">13만원</span>
-        </li>
-        <li class="list-item">BitMart <span class="color-red">20만원</span></li>
-        <li class="list-item">
-          CoinCatch <span class="color-red">92만원</span>
-        </li>
-        <li class="list-item">BitMEX <span class="color-red">4만원</span></li>
-        <li class="list-item">BVOX <span class="color-red">26만원</span></li>
-        <li class="list-item">HTX <span class="color-red">1만원</span></li>
+        <li class="list-item">Bitget <span class="color-red">103만원</span></li>
       </ul>
     </div>
 
@@ -759,30 +751,27 @@
         let x = event.pageX - bitList.offsetLeft;
         let moveX = x - startX;
         bitList.scrollLeft = scrollLeft - moveX;
-        console.log(bitList.scrollLeft);
       }
     });
 
-    	
-	// Touch events
-bitList.addEventListener('touchstart', function(event) {
-  isMove = true;
-  startX = event.touches[0].pageX - bitList.offsetLeft;
-  scrollLeft = bitList.scrollLeft;
-});
+      // Touch events
+    bitList.addEventListener('touchstart', function(event) {
+      isMove = true;
+      startX = event.touches[0].pageX - bitList.offsetLeft;
+      scrollLeft = bitList.scrollLeft;
+    });
 
-bitList.addEventListener('touchend', function() {
-  isMove = false;
-});
+    bitList.addEventListener('touchend', function() {
+      isMove = false;
+    });
 
-bitList.addEventListener('touchmove', function(event) {
-  if (isMove) {
-    let x = event.touches[0].pageX - bitList.offsetLeft;
-    let moveX = x - startX;
-    bitList.scrollLeft = scrollLeft - moveX;
-    console.log(bitList.scrollLeft);
-  }
-})
+    bitList.addEventListener('touchmove', function(event) {
+      if (isMove) {
+        let x = event.touches[0].pageX - bitList.offsetLeft;
+        let moveX = x - startX;
+        bitList.scrollLeft = scrollLeft - moveX;
+      }
+    })
 
 const selectBg = document.querySelector('.select-bg')
 const selectBox = document.querySelector('.select-box')
@@ -810,6 +799,18 @@ selectItem.forEach(function(ele,idx){
     selectIconText.textContent = selectText;
     selectBg.classList.remove('active')
     selectBox.classList.remove('active')
+  })
+})
+
+const bitListItem = document.querySelectorAll(".bit-list .list-item");
+
+bitListItem.forEach(function(ele,idx){
+  ele.addEventListener('click',function(){
+    let selectText = selectItem[idx].children[1].textContent
+
+    selectIconImg.setAttribute('src',selectItem[idx].children[0].src)
+    selectIconText.textContent = selectText;
+
   })
 })
   </script>
