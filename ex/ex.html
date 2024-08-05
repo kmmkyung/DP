@@ -288,7 +288,7 @@
       }
 
       .select-box{
-        position: absolute;
+        position: fixed;
         left: 50%;
         bottom: -100%;
         transform: translateX(-50%);
@@ -348,14 +348,526 @@
         font-weight: bold;
       }
 
-      @media screen and (max-width: 768px) {
-        .icon-list p {
-          display: none;
-          position: absolute;
-          transform: translateX(-50%);
-          left: 50%;
-        }
-      }
+.service{
+  display: flex;
+  gap: 16px;
+  padding: 0 25px;
+}
+
+.img-box{
+  display: flex;
+  position: relative;
+  height: auto;
+  width: 100%;
+  min-height: 445px;
+  border-radius: 32px;
+  background: #1f2024;
+  padding: 34px 22px 32px;
+  box-sizing: border-box;
+  max-width: 521px;
+  max-height: 450px;
+}
+
+.img-box_wrap{
+  position: relative;
+  width: min(80%, 261px);
+  margin: 0 auto;
+}
+
+.img-box img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 261px;
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+.img-box img.active{
+  opacity: 1;
+}
+
+.text-box{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  flex: 1 1 auto;
+}
+
+.text-box li{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #a0a9b9;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #222;
+  background: #1f2024;
+  word-break: keep-all;
+  cursor: pointer;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  transition: all 0.4s;
+  text-align: center;
+
+}
+
+.text-box li.active{
+  color: #166ce7;
+  border: 1px solid #166ce7;
+}
+
+
+.graph-box{
+  max-width: 790px;
+  width: 100%;
+  padding: 0 25px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.graph-list{
+  height: 395px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.graph-list .item-1{
+  max-width: 40px;
+  width: 100%;
+  background-color: #166ce7;
+  border-radius: 10px;
+  position: relative;
+  height: 0;
+  transition: all 2s;
+}
+
+.graph-list .item-1.active{
+  height: 300px;
+}
+
+.graph-list .item-1::before{
+  content: '3468 USDT';
+  color: #fff;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-1::after{
+  content: '상위 5%';
+  color: #166ce7;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-2{
+  max-width: 40px;
+  width: 100%;
+  background-color: #166ce7;
+  height: 0;
+  border-radius: 10px;
+  position: relative;
+  transition: all 2s;
+}
+
+.graph-list .item-2.active{
+  height: 100px;
+}
+
+.graph-list .item-2::before{
+  content: '934 USDT';
+  color: #fff;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-2::after{
+  content: '5-20%';
+  color: #166ce7;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-3{
+  max-width: 40px;
+  width: 100%;
+  background-color: #166ce7;
+  height: 0;
+  border-radius: 10px;
+  position: relative;
+  transition: all 2s;
+}
+
+.graph-list .item-3.active{
+  height: 30px;
+}
+
+.graph-list .item-3::before{
+  content: '229 USDT';
+  color: #fff;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-3::after{
+  content: '25-50%';
+  color: #166ce7;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-4{
+  max-width: 40px;
+  width: 100%;
+  background-color: #a0a9b9;
+  height: 0;
+  border-radius: 10px;
+  position: relative;
+  transition: all 2s;
+}
+
+.graph-list .item-4.active{
+  height: 20px;
+}
+
+.graph-list .item-4::before{
+  content: '64 USDT';
+  color: #a0a9b9;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-4::after{
+  content: '50-75%';
+  color: #a0a9b9;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-5{
+  max-width: 40px;
+  width: 100%;
+  background-color: #a0a9b9;
+  height: 0;
+  border-radius: 10px;
+  position: relative;
+  transition: all 2s;
+}
+
+.graph-list .item-5.active{
+  height: 10px;
+}
+
+.graph-list .item-5::before{
+  content: '15 USDT';
+  color: #a0a9b9;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-5::after{
+  content: '75-100%';
+  color: #a0a9b9;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-6{
+  max-width: 40px;
+  width: 100%;
+  background-color: #a0a9b9;
+  height: 0;
+  border-radius: 10px;
+  position: relative;
+  transition: all 2s;
+}
+
+.graph-list .item-6.active{
+  height: 50px;
+}
+
+.graph-list .item-6::before{
+  content: '370 USDT';
+  color: #a0a9b9;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.graph-list .item-6::after{
+  content: '전체평균';
+  color: #a0a9b9;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+.graphUser-box{
+  box-sizing: border-box;
+  padding: 0 25px;
+}
+
+.user-box{
+  border-radius: 32px;
+  background: #1f2024;
+  margin-top: 40px;
+  padding: 100px 25px;
+} 
+
+.user-text{
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.user-caption{
+  display: block;
+  margin-top: 10px;
+  color: #5c5d5f;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.user-graph{
+  border-bottom: 1px solid #111;
+  max-width: 390px;
+  margin: 66px auto auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+.user-graph .metaPay{
+  background-color: #166ce7;
+  width: 80px;
+  height: 150px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.user-graph .metaPay::after{
+  content: '메타페이';
+  position: absolute;
+  color: #fff;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.user-graph .noMetaPay{
+  background-color: #a0a9b9;
+  width: 80px;
+  height: 37px;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.4s;
+}
+
+.user-graph .noMetaPay::after{
+  content: '일반기업';
+  color: #a0a9b9;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.product-list{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.product-list li{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.product-list img{
+  border-radius: 50%;
+  width: 80%;
+  aspect-ratio: 1/1;
+  border: 2px solid #a0a9b9;
+  padding: 5px;
+  pointer-events: none;
+}
+
+.product-list li.active img{
+  border: 2px solid #166ce7;
+}
+
+.bar{
+  width: 100%;
+  height: 5px;
+  background-color: #eaeef4;
+  border-radius: 5px;
+  position: relative;
+}
+
+.bar-inner{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 5px;
+  background-color: #0067FF;
+  width: 80%;
+  border-radius: 5px;
+  transition: all 0.4s;
+}
+
+.bar-text{
+  position: absolute;
+  right: 0;
+  top: -40px;
+  background-color: #eaeef4;
+  border-radius: 12px;
+  padding: 6px 8px;
+}
+
+
+.bar-text p{
+  color: #6a7583;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.bar-text p::after{
+  content: '';
+  position: absolute;
+  border-top: 10px solid #eaeef4;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0 solid transparent;
+  top: 25px;
+  left: 70%;
+}
+
+.payback{
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.paybackNum{
+  color: #0067FF;
+}
+
+
+  @media screen and (max-width: 768px) {
+    .icon-list p {
+      display: none;
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+
+    .service{
+      flex-direction: column;
+    }
+
+    .img-box
+    {
+      max-width: none;
+    }
+
+    .text-box{
+      flex-wrap: wrap;
+      gap: 9px;
+      flex-direction: row;
+    }
+
+    .text-box li{
+      flex: 1 1 48%;
+      padding: 38px 20px;
+    }
+    
+    .product-list img{
+      width: 60px;
+    }
+  }
     </style>
   </head>
   <body>
@@ -715,6 +1227,86 @@
         </ul>
       </div>
     </div>
+    
+    <div class="service">
+      <div class="img-box">
+        <div class="img-box_wrap">
+          <img class="active" src="./assets/images/binance.png" alt="">
+          <img src="./assets/images/bingx.png" alt="">
+          <img src="./assets/images/bitget.png" alt="">
+          <img src="./assets/images/event.png" alt="">
+        </div>
+      </div>
+      <ol class="text-box">
+        <li class="active">1. 메타페이 코드로 거래소 가입하기</li>
+        <li>2.메타페이에 UID 연결하기</li>
+        <li>3. 트레이딩 마음껏 즐기기</li>
+        <li>4. 페이백 환불받기!</li>
+      </ol>
+    </div>
+
+    <div class="graph-box">
+      <ol class="graph-list">
+        <li class="item-1 entry"></li>
+        <li class="item-2 entry"></li>
+        <li class="item-3 entry"></li>
+        <li class="item-4 entry"></li>
+        <li class="item-5 entry"></li>
+        <li class="item-6 entry"></li>
+      </ol>
+    </div>
+
+
+    <div class="graphUser-box">
+      <div class="user-box">
+        <p class="user-text">
+          <span class="list-name">Bybit</span> 유저시군요!<br>
+          메타페이를 사용할때,<br>
+          <span class="blue list-money">22만원</span> 더 아낄 수 있어요
+          <span class="user-caption">*시드 500만원, 한 달 평균 수수료 계산 기준</span>
+        </p>
+        <div class="user-graph">
+          <div class="metaPay"></div>
+          <div class="noMetaPay"></div>
+        </div>
+      </div>
+      <ul class="product-list">
+        <li>
+          <img src="./assets/images/binance.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/bingx.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/bitget.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/bybit.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/huobi.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/mexc.png" alt="">
+        </li>
+        <li>
+          <img src="./assets/images/okx.png" alt="">
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="payback">수수료 페이백 <span class="paybackNum"></span></p>
+      <div class="bar">
+        <div class="bar-inner">
+          <div class="bar-text">
+            <p>마감률<span class="text-number"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 
   <script>
@@ -813,5 +1405,153 @@ bitListItem.forEach(function(ele,idx){
 
   })
 })
+
+const serviceBoxLi = document.querySelectorAll('.text-box li');
+const serviceBoxImg =document.querySelectorAll('.img-box img')
+console.log(serviceBoxLi);
+
+serviceBoxLi.forEach(function(ele,idx){
+  ele.addEventListener('click',function(event){
+    for (let i = 0; i < serviceBoxLi.length; i++) {
+      serviceBoxLi[i].classList.remove('active')
+      serviceBoxImg[i].classList.remove('active')
+    }
+    ele.classList.add('active')
+    serviceBoxImg[idx].classList.add('active')
+  })
+})
+
+
+let io = new IntersectionObserver(function(entries){
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('active')
+      }
+      else{
+        entry.target.classList.remove('active')
+      }
+    })
+  })
+  
+  const entry = document.querySelectorAll('.entry')
+    entry.forEach (ele => io.observe(ele))  
+
+
+    const productData = [
+      {name: 'BINANCE', money:'37만원', height: 150-37},
+      {name: 'BingX', money:'52만원', height: 150-52},
+      {name: 'Bitget', money:'22만원', height: 150-22},
+      {name: 'BYBIT', money:'30만원', height: 150-30},
+      {name: 'Huobi', money:'40만원', height: 150-40},
+      {name: 'MEXC', money:'37만원', height: 150-37},
+      {name: 'OKX', money:'66만원', height: 150-66},
+    ]
+
+    const productName = document.querySelector('.graphUser-box .list-name')
+    const productMoney = document.querySelector('.graphUser-box .list-money')
+    const productList = document.querySelector('.graphUser-box .product-list')
+    const productItems = document.querySelectorAll('.product-list li')
+    const noMetaPayGraph = document.querySelector('.user-graph .noMetaPay')
+
+    productItems.forEach(function(ele,idx){
+      ele.addEventListener('click',function(){
+        for( let i = 0; i<productItems.length; i++){
+          productItems[i].classList.remove('active')
+        }
+        ele.classList.add('active')
+      productName.textContent = productData[idx].name
+      productMoney.textContent = productData[idx].money
+      noMetaPayGraph.style.height = productData[idx].height+'px'
+      })
+    })
+
+    let isMove3 = false;
+    let startX3 = 0;
+    let scrollLeft3 = 0;
+
+    productList.addEventListener("mousedown", function (event) {
+      isMove3 = true;
+      startX3 = event.pageX - productList.offsetLeft;
+      scrollLeft3 = productList.scrollLeft;
+    });
+
+    productList.addEventListener("mouseleave", function () {
+      isMove3 = false;
+    });
+
+    productList.addEventListener("mouseup", function () {
+      isMove3 = false;
+    });
+
+    productList.addEventListener("mousemove", function (event) {
+      if (isMove3) {
+        x3 = event.pageX - productList.offsetLeft;
+        moveX3 = x3 - startX3;
+        productList.scrollLeft = scrollLeft3 - moveX3;
+      }
+    });
+
+    productList.addEventListener('touchstart',function(event){
+      isMove3 = true;
+      startX3 = event.touches[0].pageX - productList.offsetLeft
+      scrollLeft3 = productList.scrollLeft
+      
+    })
+    productList.addEventListener('touchend',function(){
+      isMove3 = false;
+    })
+    productList.addEventListener('touchmove',function(event){
+      if(isMove3){
+        let x3 = event.touches[0].pageX - productList.offsetLeft;
+        let moveX3 = x3 - startX3;
+        productList.scrollLeft = scrollLeft3 - moveX3
+      }
+    })
+    
+
+    let exchange_binance = {  /* Binance */
+	'money'  : '184만원',
+	'payback': '30%',
+	'rate'   : '100%'
+  }
+  let exchange_bybit = {  /* Bybit */
+	'money'   : '207만원',
+	'payback' : '25%',
+	'payback2': '20%',
+	'rate'    : '98%'
+  }
+  let exchange_bitget = {  /* Btiget */
+	'money'  : '294만원',
+	'payback': '55%',
+	'rate'   : '87%'
+  }
+  let exchange_mexc = {  /* MEXC */
+	'money'  : '237만원',
+	'payback': '45%',
+	'rate'   : '66%'
+  }
+  let exchange_bingx = { /* BingX */
+	'money'  : '140만원',
+	'payback': '55%',
+	'rate'   : '72%'
+  }
+  let exchange_okx = {  /* OKX */
+	'money'  : '73만원',
+	'payback': '55%',
+	'rate'   : '37%'
+  }
+  let exchange_huobi = {  /* Huobi */
+	'money'  : '5만원',
+	'payback': '55%',
+	'rate'   : '2%'
+  }
+
+  const barNum = document.querySelector('.bar .text-number')
+  const barInner = document.querySelector('.bar .bar-inner')
+  const paybackNum = document.querySelector('.paybackNum')
+  barNum.textContent = exchange_binance.rate;
+  paybackNum.textContent = exchange_binance.payback;
+  barInner.style.width = exchange_binance.rate;
+  
   </script>
 </html>
