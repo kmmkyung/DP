@@ -2159,6 +2159,24 @@ let io = new IntersectionObserver(function(entries){
   })
 
 
+  const sec1 = document.querySelector('#s202408061025deb577569');
+  const sec2 = document.querySelector('#s20240806e48b147e37345');
+  const sec2Item = document.querySelector('#s20240806e48b147e37345 .submenu-list li');
+  const sec3 = document.querySelector('#s20240806bdcfb3ebaf3a3');
+  const sec3Item = document.querySelector('#s20240806bdcfb3ebaf3a3 .submenu-list li');
+  const sec4 = document.querySelector('#s20240806194193099dc87');
+  const sec4Item = document.querySelector('#s20240806194193099dc87 .submenu-list li');
+  console.log(sec2);
+  
+  window.addEventListener('scroll',function(){
+    const scrollPosition = window.scrollY;
+    if (scrollPosition >= sec2.offsetTop && scrollPosition < sec2.offsetTop + sec2.offsetHeight) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
+  })
+
   </script>
 </html>
 
