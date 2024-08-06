@@ -1229,11 +1229,17 @@
   position: fixed;
   bottom: 0;
   height: 200px;
+  box-sizing: border-box;
+  max-width: 860px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .last-btn p{
   font-size: 12px;
   color: #aaa;
+  margin-top: 90px;
 }
 
 .button-wrap{
@@ -2155,3 +2161,5 @@ let io = new IntersectionObserver(function(entries){
 
   </script>
 </html>
+
+
