@@ -64,17 +64,20 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // section6-swiper
   const section6Swiper = new Swiper('.section6-swiper', {
-    spaceBetween: 40,
     slidesPerView: 1,
     loop:true,
-    autoplay: true,
-    watchSlidesProgress: true,
+    autoplay: {
+      stopOnLastSlide:true
+    },
+    // centeredSlides:true,
+    spaceBetween: 40,
     breakpoints: {
-      425: {
+      768: {
         slidesPerView: 2,
       },
       1024: {
         slidesPerView: 3,
+        // centeredSlides:true,
       },
     },
     pagination: {
