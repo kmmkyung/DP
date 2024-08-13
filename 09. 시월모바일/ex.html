@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  
+  <style>
+    .ex-mobile{
+      display: none;
+    }
+
+    .section{
+      width: 100%;
+      height: 100%;
+    }
+    
+    .ex-pc{
+      width: 100%;
+      height: auto;
+    }
+
+    @media screen and (max-width:450px) {
+      .ex-pc{
+        display: none;
+      }
+
+      .ex-mobile{
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="section">
+    <div class="section-wrap">
+      <img class="ex-pc" src="./assets/images/ex-pc.png">
+      <img class="ex-mobile" src="./assets/images/ex-mobile.png">
+    </div>
+  </div>
+</body>
+</html>
