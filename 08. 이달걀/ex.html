@@ -1897,6 +1897,38 @@
       }
     });
 
+
+    const uidList = { // <-- 건드리지 않기
+      'Bitget@8000000000' : '6240.51@2145.51',
+      'Bitget@8008883020' : '50.63@50.63',
+      'Bitget@3136404948' : '50@50',
+      'Bitget@3914206549' : '50@50',
+      'Bitget@3914206549' : '50@50',
+      'Bitget@3914206549' : '50@50',
+      'Bybit@103631725' : '50@50',
+      'Bitget@4315068736' : '0@0',
+      'Bitget@4748752393' : '20@20',
+      'Bitget@3477027688' : '20@20',
+      'Bitget@8717046075' : '20@20',
+      'Bitget@6850716694' : '300.618@100.618'
+      }  
+    const inputBtn = document.querySelector('.input-form button')
+    inputBtn.addEventListener('click',function(event){
+      event.preventDefault()
+      const inputListItemPValue = document.querySelector('.input-icon .icon-list p').textContent;
+      let inputValue = document.querySelector(".input-form input").value;
+
+      // UID 값 조회
+      let uidValue = uidList[inputListItemPValue + '@' + inputValue]
+      if(uidValue === undefined){
+        console.log('no');
+        
+      }else{
+        console.log('yes');
+        
+      }
+    })
+
     const bitList = document.querySelector(".bit-list");
     const eventList = document.querySelector('.event-list')
     let isMove = false;
@@ -2179,5 +2211,9 @@ let io = new IntersectionObserver(function(entries){
 
   </script>
 </html>
+
+
+
+
 
 
