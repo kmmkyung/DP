@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: hanna11;
+  src: url(../assets/font/BMHANNA_11yrs.ttf);
+}
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 :root {
   --font-size-xs: clamp(1.2rem,2.5vw,1.6rem);
   --font-size-s: clamp(1.2rem,3vw,2rem);
-  --font-size-m: clamp(1.4rem,3vw,2.4rem);
-  --font-size-l: clamp(2rem,3.5vw,4rem);
+  --font-size-m: clamp(2rem,3.5vw,4rem);
+  --font-size-l: clamp(2.4rem,3.5vw,5rem);
   --font-size-xl: clamp(2.4rem,4vw,8rem);
 }
 
@@ -20,15 +23,3 @@ html {
 body {
   font-family: "Noto Sans KR", sans-serif;
 }
-
-.white-line {
-  width: 100%;
-  height: 1px;
-  background-color: #fff;
-}
-
-.mt80{
-  margin-top: 80px;
-}
-
-
