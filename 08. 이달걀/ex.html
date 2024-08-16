@@ -1278,6 +1278,49 @@
   font-weight: bold;
 }
 
+.bar{
+  width: 100%;
+  height: 3px;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.bar::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 3px;
+  background-color: #0067FF;
+  animation: loading 1s forwards;
+}
+
+@keyframes loading {
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 25%;
+  }
+}
+
+.exchange-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exchange-flex .left{
+  display: flex;
+  gap: 10px;
+}
+
+.exchange-flex .left div{
+  display: flex;
+  flex-direction: column;
+}
+
+
 
   @media screen and (max-width: 768px) {
     .icon-list p {
@@ -1607,6 +1650,7 @@
         </table>
       </div>
 
+   
       <div>
         <ul class="mobile-table-list">
           <li class="list-item">
@@ -1670,6 +1714,17 @@
         </ul>
       </div>
     </div>
+
+    <div class="submenu">
+      <ol class="submenu-list">
+        <li class="active">정책</li>
+        <li>통계</li>
+        <li>방법</li>
+        <li>이벤트</li>
+      </ol>
+    </div>
+
+
     
     <div class="service">
       <div class="img-box">
@@ -1758,14 +1813,6 @@
       </div>
     </div>
 
-    <div class="submenu">
-      <ol class="submenu-list">
-        <li class="active">정책</li>
-        <li>통계</li>
-        <li>방법</li>
-        <li>이벤트</li>
-      </ol>
-    </div>
 
     <div>
       <div class="payback-policy_1">
@@ -1885,6 +1932,118 @@
     </div>
   </div>
 
+
+
+
+<div class="exchange Binance exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/7e1e955ee46a3.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+<div class="exchange Binance exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/3cab5fb57afce.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+<div class="exchange Bitget exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/72e735f41ae73.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+
+<div class="exchange Mexc exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/b83bf6d950aba.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+<div class="exchange OKX exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/9e80d16d9b3e5.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+<div class="exchange Huobi exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/3d520b8c1a10e.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+<div class="exchange BingX exchange-flex">
+  <div class="left">
+    <div class="left-img">
+      <img src="https://cdn.imweb.me/upload/S2023070425880091e2075/3813b88ef1dbf.png" class="fr-fin fr-dib" style="max-height: 25px;">
+    </div>
+    <div>
+      <span>116,713명</span>
+      <p>BINANCE</p>
+    </div>
+  </div>
+  <div>
+    <strong>90%</strong><img src="https://cdn.imweb.me/upload/S2023070425880091e2075/83aec27ad2b2e.png" class="fr-fic fr-dii" style="max-height: 20px; margin-top:-2px;">
+  </div>
+</div>
+
+
+
+  
   </body>
 
   <script>
@@ -2208,6 +2367,27 @@ let io = new IntersectionObserver(function(entries){
             section.classList.remove('active');
         }
   })
+
+console.log('');
+
+
+  const yesBtn = document.querySelector('.yes')
+  const noBtn = document.querySelector('.no')
+  
+    yesBtn.addEventListener('click',function(){
+      SITE.openModalMenu('m2024081465eb5432ce22c');
+    })
+  
+    noBtn.addEventListener('click',function(){
+      SITE.openModalMenu('m20240814d8d04f123ce05');
+    })
+
+    const sectionPosition1 = sec1.getBoundingClientRect().top + window.pageYOffset - 50;
+            window.scrollTo({
+                top: sectionPosition1,
+                behavior: 'smooth'
+            });
+
 
   </script>
 </html>
