@@ -158,7 +158,7 @@ body{
 }
 
 .bottom-btn{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -171,6 +171,7 @@ body{
   border-top-right-radius: 40px;
   z-index: 2;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .bottom-btn:hover{
@@ -215,6 +216,15 @@ body{
 
 .red-title{
   margin-top: min(10vw,80px);
+}
+
+.wifi{
+  animation: wifi 1s linear infinite;
+}
+
+@keyframes wifi {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
 }
 
 .p-2{
@@ -297,23 +307,30 @@ body{
   width: 100%;
   height: 500px;
   background-color: #F5D8E7;
-  border-radius: 100px;
+  border-radius: 50px;
   margin-top: 160px;
   position: relative;
   box-sizing: border-box;
-  padding: min(5vw,140px);
+}
+
+.pink-box-wrap{
+  padding: 5vw 5vw 50px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .pink-box_top{
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%,-55%);
+  transform: translate(-50%,-60%);
 }
 
 .icon-money{
   width: 200px;
   height: 200px;
+  transform: translateY(10px);
 }
 
 .pink-box h6{
@@ -342,8 +359,7 @@ body{
 .input-box label{
   font-size: var(--font-size-s);
   font-weight: bold;
-  min-width: 100px;
-
+  min-width: 110px;
 }
 
 .input-box input,
@@ -385,6 +401,10 @@ body{
   width: auto;
 }
 
+.input-checkBox span{
+  cursor: pointer;
+}
+
 .input-box button{
   line-height: 2.5;
   font-size: var(--font-size-s);
@@ -397,12 +417,23 @@ body{
   bottom: 50px;
 }
 
+.pink-iframe{
+  width: 100%;
+  height: 100%;
+  background-color: #F5D8E7 ;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
 .pink-line-box{
   margin-top: 60px;
   width: 100%;
   height: 500px;
   border: 10px solid #F5D8E7;
-  border-radius: 100px;
+  border-radius: 50px;
   padding: 50px min(5vw,140px);
   display: flex;
   flex-direction: column;
@@ -495,8 +526,69 @@ footer{
   margin-top: 180px;
   background-color: #9D1E33;
   height: 400px;
+  width: 100%;
   text-align: center;
 }
+
+footer img{
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-width: 400px;
+}
+
+.checkBox-bg{
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.checkBox-bg.active{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.checkBox-ex{
+  transition: all 0.2s;
+  display: none;
+}
+
+.checkBox-ex.active{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  width: 500px;
+  padding: 100px 50px;
+  background-color: #fff;
+  border-radius: 50px;
+}
+
+.checkBox-ex button{
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pink-box span{
+  font-size: clamp(1.2rem,2.5vw,1.6rem);
+  position: absolute;
+  bottom: 30%;
+  left: 40%;
+  
+}
+
 
 @media screen and (max-width:500px) {
   .main-title .title-1::after{
@@ -510,6 +602,14 @@ footer{
   .main-title .point-title::after{
     -webkit-text-stroke: 4px #fff;
   }
+
+  
+.input-box label{
+  font-size: var(--font-size-s);
+  font-weight: bold;
+  min-width: 80px;
+}
+
 
   footer{
     margin-top: 120px;
