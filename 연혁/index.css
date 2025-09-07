@@ -3,7 +3,7 @@ body{
 }
 
 .page {
-  /* overflow: hidden; */
+  overflow: hidden;
   width: 100%;
 }
 
@@ -39,6 +39,9 @@ body{
   position: relative;
   background-color: #fff;
   z-index: 9;
+
+  position: sticky;
+  top: 0;
 }
 
 .year-list {
@@ -78,6 +81,7 @@ body{
   font-size: 14px;
   position: relative;
   color: #eee;
+  cursor: pointer;
 }
 
 .year-list .list-item.on {
@@ -116,11 +120,11 @@ body{
 
 .history-content__text dd {
   margin-top: 60px;
-  margin-bottom: 130px;
+  padding-bottom: 130px;
 }
 
 .history-content__text dd:last-child{
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .history-content__text ul li {
