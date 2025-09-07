@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+  <script src="./index.js"></script>
+
+</head>
+<body>
+  <div class="page" data-scroll-container>
+    <div class="section1">
+      <div class="innerwrap">
+        <h3 class="pagetitle1">오시는 길 <span class="dot">.</span></h3>
+
+        <!-- 연혁 만들기 -->
+        <div class="history" >
+          <div class="history-wrap" data-scroll-section>
+            <div class="history-year"
+            data-scroll
+            data-scroll-sticky
+            data-scroll-target=".history-wrap"
+            data-scroll-offset="0,0">
+              <div class="year-line"></div>
+              <ol class="year-list">
+                <li class="list-item on" data-year="2025">2025</li>
+                <li class="list-item" data-year="2024">2024</li>
+                <li class="list-item" data-year="2023">2023</li>
+                <li class="list-item" data-year="2022">2022</li>
+                <li class="list-item" data-year="2021">2021</li>
+                <li class="list-item" data-year="2020">2020</li>
+                <li class="list-item" data-year="2019">2019</li>
+                <li class="list-item" data-year="2018">2018</li>
+                <li class="list-item" data-year="2017">2017</li>
+                <li class="list-item" data-year="2016">2016</li>
+                <li class="list-item" data-year="2015">2015</li>
+                <li class="list-item" data-year="2014">2014</li>
+                <li class="list-item" data-year="2012">2012</li>
+              </ol>
+            </div>
+            <div class="history-content">
+              <div class="history-content__text">
+                <div class="text-wrap" data-scroll data-scroll-speed="0.5" data-scroll-position="top">
+                  <dl>
+                    <dt data-year="2025">2025</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2024">2024</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>CABEI 프로젝트 수주</strong>
+                          <p>치난데가 하수관로, 니카라과</p>
+                        </li>
+                        <li>
+                          <strong>수소 분야 수주</strong>
+                          <p>김천 태양광 그린수소사업(민관 최대 규모, 10MW)</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2023">2023</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>CABEI 프로젝트 수주</strong>
+                          <p>치난데가 하수관로, 니카라과</p>
+                        </li>
+                        <li>
+                          <strong>수소 분야 수주</strong>
+                          <p>김천 태양광 그린수소사업(민관 최대 규모, 10MW)</p>
+                        </li>
+                        <li>
+                          <strong>수소 분야 수주</strong>
+                          <p>김천 태양광 그린수소사업(민관 최대 규모, 10MW)</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2022">2022</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2021">2021</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2020">2020</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2019">2019</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2018">2018</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2017">2017</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2016">2016</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2015">2015</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2014">2014</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                    <dt data-year="2012">2012</dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <strong>방산 분야 수주</strong>
+                          <p>한화에어로스페이스 여수사업장</p>
+                        </li>
+                        <li>
+                          <p>2030 비전선포식 개최</p>
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="history-content__img">
+                <div class="img-wrap" data-scroll data-scroll-speed="-1.5" data-scroll-position="top">
+                  <ul class="img-list">
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>00</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                    <li class="list-item">
+                      <div></div>
+                      <!-- <img src="" alt=""> -->
+                      <p>
+                        <strong>2024</strong>
+                        <span>수소 분야 수주</span>
+                        김천 태양광 그린수소사업 (민관 최대 규묘, 10MW)
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
