@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- css -->
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./index.css">
+  <!-- js -->
+  <script src="./index.js"></script>
+  <title>Form</title>
+</head>
+<body>
+  <form action="#" method="post">
+
+    <!-- 이름 / required -->
+    <div class="form-box form-required">
+      <label for="name" class="input-title">이름</label>
+      <input id="name" name="name" type="text" inputmode="text" required minlength="1" placeholder="이름을 입력해 주세요">
+      <p class="error err-name"></p>
+    </div>
+
+    <!-- 이메일 / required -->
+    <div class="form-box form-required">
+      <label class="input-title" for="email">이메일</label>
+      <input id="email" name="email" type="email" inputmode="email" required placeholder="이메일을 입력해 주세요">
+      <p class="error err-email"></p>
+    </div>
+
+      <!-- 전화번호 / required -->
+    <div class="form-box form-required">
+      <label class="input-title" for="phone">전화번호</label>
+      <input id="phone" name="phone" type="text" inputmode="tel" required placeholder="010-0000-0000">
+      <p class="error err-phone"></p>
+    </div>
+    
+    <!-- 내용 -->
+    <div class="form-box">
+      <label class="input-title" for="message">내용</label>
+      <textarea id="message" name="message" required placeholder="내용을 입력해 주세요"></textarea>
+      <p class="error err-message"></p>
+    </div>
+
+    <!-- 파일첨부 -->
+    <div class="form-box">
+      <span class="input-title">첨부파일</span>
+      <input type="text" class="upload-file" value="선택된 파일 없음" readonly>
+      <label for="file" class="file-label">파일첨부</label>
+      <input type="file" id="file" class="file-input">
+    </div>
+
+    <!-- select -->
+    <div class="form-box">
+      <label class="input-title" for="category">문의 유형</label>
+      <select id="category" name="category" required
+              data-msg-required="문의 유형을 선택해주세요.">
+        <option value="">선택하세요</option>
+        <option value="product">제품 문의</option>
+        <option value="service">서비스 문의</option>
+        <option value="support">A/S / 기술 지원</option>
+        <option value="etc">기타</option>
+      </select>
+      <p class="error err-category"></p>
+    </div>
+
+    <!-- checkBox -->
+    <div class="form-box">
+      <span class="input-title">관심 분야</span>
+      <label>
+        <input type="checkbox" name="interest" value="frontend">
+        프론트엔드
+      </label>
+      <label>
+        <input type="checkbox" name="interest" value="backend">
+        백엔드
+      </label>
+      <label>
+        <input type="checkbox" name="interest" value="design">
+        디자인
+      </label>
+    </div>
+
+    <!-- radio / required -->
+    <div class="form-box form-required">
+      <span class="input-title">연락 방법</span>
+      <label>
+        <input type="radio" name="contact" value="email" required>이메일
+      </label>
+      <label>
+        <input type="radio" name="contact" value="phone">전화
+      </label>
+      <label>
+        <input type="radio" name="contact" value="kakao">카카오톡
+      </label>
+      <p class="error err-contact"></p>
+    </div>
+
+    <!-- 개인정보 -->
+    <div class="form-box">
+      <label>
+        <input type="checkbox" name="agree" required >
+        개인정보 수집 및 이용에 동의합니다.
+      </label>
+      <p class="error err-agree"></p>
+    </div>
+
+    <button type="submit">문의하기</button>
+  </form>
+</body>
+</html>

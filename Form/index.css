@@ -1,0 +1,169 @@
+/* 1) 리셋 & 토큰 */
+:root{
+  --text-color:#111;
+  --border-color:#eee;
+  --placeholder-color:#aaa;
+  --primary-color:#2d6cdf;
+  --primary-color-dark:#1f4ea5;
+  --error-color:#e04444;
+  --radius:8px;
+  --gap:14px;
+  --margin: 14px;
+  --font-size:14px;
+  --padding: 12px 14px;
+}
+
+*{box-sizing:border-box}
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-box{
+  display:flex;
+  gap: var(--gap);
+  margin-bottom: var(--margin);
+  align-items: center;
+}
+
+.form-box:last-child{
+  margin-bottom: 0;
+}
+
+.form-box > .input-title{
+  color: var(--text-color);
+  position: relative;
+  flex-basis: 160px;
+}
+
+.form-required > .input-title::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  background-color:var(--primary-color);
+  margin-left:10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  width:100%;
+  padding: var(--padding);
+  border:1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size:var(--font-size);
+  color:var(--text-color);
+  background:#fff;
+  transition: border-color .2s;
+}
+
+textarea{ min-height:140px; resize: vertical; }
+
+/* 포커스 */
+input:focus,
+textarea:focus,
+select:focus{
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* 플레이스홀더 컬러 */
+::placeholder{
+  color: var(--placeholder-color);
+}
+
+.form-box input[type="checkbox"],
+.form-box input[type="radio"]{
+  accent-color: var(--primary-color);
+}
+
+.form-box label > input[type="checkbox"],
+.form-box label > input[type="radio"]{
+  /* 라벨 내부에 있을 때 간격 확보 */
+  margin-right:var(--margin);
+}
+
+/* file */
+.file-input{
+  display:none;
+}
+
+input[type="text"].upload-file {
+  width: calc(100% - 120px);
+}
+
+.file-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: var(--padding);
+  border-radius: var(--radius);
+  background: var(--primary-color);
+  color:#fff;
+  font-size:var(--font-size);
+  cursor:pointer;
+  transition: all 0.2s;
+  white-space:nowrap;
+}
+
+.file-label:hover{
+  background: var(--primary-color-dark);
+  border-color:var(--border-color);
+}
+
+.file-label:active{
+  transform: translateY(1px);
+}
+
+button[type="submit"]{
+  width:100%;
+  margin-top: var(--margin);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  background: var(--primary-color);
+  color:#fff;
+  font-size:var(--font-size);
+  border:1px solid var(--primary-color);
+  cursor:pointer;
+  transition: background .2s, border-color .2s, transform .02s;
+}
+
+button[type="submit"]:hover{ background: var(--primary-color-dark);}
+button[type="submit"]:active{ transform: translateY(1px); }
+
+/* 에러 */
+
+.error{
+  font-size: var(--font-size);
+  color: var(--error-color);
+}
+
+.error:empty{
+  display:none;
+}
+
+
+@media (max-width: 720px){
+
+  .form-box{
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--gap);
+  }
+
+  /* 제목(라벨) 고정폭 해제 */
+  .form-box > .input-title{
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  input[type="text"].upload-file {
+    width: 100%;
+  }
+}
