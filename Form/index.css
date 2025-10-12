@@ -138,15 +138,8 @@ button[type="submit"]:hover{ background: var(--primary-color-dark);}
 button[type="submit"]:active{ transform: translateY(1px); }
 
 /* 에러 */
-
-.error{
-  font-size: var(--font-size);
-  color: var(--error-color);
-}
-
-.error:empty{
-  display:none;
-}
+[aria-invalid="true"] { border: 2px solid #e11d48 !important; }
+[aria-invalid="true"]::placeholder { color: #e11d48; opacity: .7; }
 
 
 @media (max-width: 720px){
