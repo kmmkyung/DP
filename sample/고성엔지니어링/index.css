@@ -22,39 +22,124 @@ a {
 
 .section3 .content2 {
   position: relative;
-}
-.section3 .content2 .content-wrap {
-  position: relative;
-  min-height: 500px; /* 실제 높이에 맞게 */
-}
-
-/* 박스들 겹치기 */
-.section3 .box {
-  position: absolute;
-  inset: 0;
-}
-
-/* 처음엔 다 닫힘 (아래에서 위로 열리는 느낌) */
-.section3 .box-content {
-  height: 100%;
-  clip-path: inset(0 0 100% 0); /* 아래 100% 가려짐 */
+  width: 100%;
   overflow: hidden;
 }
 
-/* 배경 약간 패럴럭스용 */
-.section3 .box-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: translateY(0%);
+.section3 .content2 .content-wrap {
+  height: 400vh;
 }
+
+.section3 .content2 .box {
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100vh;
+clip-path: inset(100% 0 0 0);
+}
+
+.section3 .content2 .box1 {
+  clip-path: inset(0% 0 0 0);
+}
+
+.section3 .content2 .box-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.section3 .box1 .box-bg{
+background: url(assets/images/main/sec3_bg1.png) no-repeat center/cover;
+}
+
+.section3 .box2 .box-bg{
+background: url(assets/images/main/sec3_bg2.png) no-repeat center/cover;
+}
+
+.section3 .box3 .box-bg{
+background: url(assets/images/main/sec3_bg3.png) no-repeat center/cover;
+}
+
+.section3 .box4 .box-bg{
+background: url(assets/images/main/sec3_bg4.png) no-repeat center/cover;
+}
+
+.section3 .box-content {
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100vh;
+}
+
+.section3 .content2 .box-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.section3 .content2 .box-title {
+  font-size: 30px;
+  color: #fff;
+}
+
+.section3 .content2 .box-textWrap {
+  font-size: 30px;
+  color: #fff;
+}
+
+.section3 .content2 .box-text {
+  font-size: 18px;
+  color: #fff;
+}
+
+.section3 .content2 .box-text + .box-text {
+margin-top: 10px;
+}
+
+.section3 .content2 .box-link {}
+
+.section3 .content2 .box-link a {}
+
+.section3 .content2 .box-imgArea {
+  overflow: hidden;
+  width: 40%;
+  height: 31.5vw;
+  border-radius: 20px;
+}
+
+.section3 .content2 .box-img {
+  width: 100%;
+  height: 100%;
+}
+
+.section3 .box1 .box-img{
+background: url(assets/images/main/sec3_bg1.png) no-repeat center/cover;
+}
+
+.section3 .box2 .box-img{
+background: url(assets/images/main/sec3_bg2.png) no-repeat center/cover;
+}
+
+.section3 .box3 .box-img{
+background: url(assets/images/main/sec3_bg3.png) no-repeat center/cover;
+}
+
+.section3 .box4 .box-img{
+background: url(assets/images/main/sec3_bg4.png) no-repeat center/cover;
+}
+
 
 /* 하단 네비 */
 .section3 .box-nav {
   position: absolute;
   left: 50%;
-  bottom: 40px;
+  top: 40px;
   transform: translateX(-50%);
   display: flex;
   gap: 40px;
@@ -92,4 +177,11 @@ a {
   width: 100%;
   height: 1px;
   background: #fff;
+}
+
+.section4 {
+width: 100%;
+height: 100vh;
+background-color: #000;
+
 }
