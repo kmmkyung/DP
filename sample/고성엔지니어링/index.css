@@ -1,0 +1,95 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.section3 .content2 {
+  position: relative;
+}
+.section3 .content2 .content-wrap {
+  position: relative;
+  min-height: 500px; /* 실제 높이에 맞게 */
+}
+
+/* 박스들 겹치기 */
+.section3 .box {
+  position: absolute;
+  inset: 0;
+}
+
+/* 처음엔 다 닫힘 (아래에서 위로 열리는 느낌) */
+.section3 .box-content {
+  height: 100%;
+  clip-path: inset(0 0 100% 0); /* 아래 100% 가려짐 */
+  overflow: hidden;
+}
+
+/* 배경 약간 패럴럭스용 */
+.section3 .box-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: translateY(0%);
+}
+
+/* 하단 네비 */
+.section3 .box-nav {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 16px;
+  font-size: 14px;
+}
+
+.section3 .box-nav .nav-item {
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.section3 .box-nav .nav-item .num {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.section3 .box-nav .nav-item.on {
+  color: #fff;
+}
+
+.section3 .box-nav .nav-item.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
