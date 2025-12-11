@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function () {
     scrollTrigger: {
       trigger: ".section3 .content2 .content-wrap",
       start: "top top",
-      end: "+=400%",
+      end: "+=300%",
       scrub: true,
       pin: true,
       pinSpacing: false,
@@ -88,4 +88,33 @@ window.addEventListener("DOMContentLoaded", function () {
       tl.tweenTo(targetLabel);
     });
   });
+
+  ScrollTrigger.matchMedia({
+    "(min-width: 812px)": function () {
+      const sec4 = document.querySelector(".section4");
+      const contentWrap = sec4.querySelector(".content2 .content-wrap");
+  
+      let tl4 = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".section4 .content-container",
+          start: "top top",
+          end: "+=100%",
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+          markers: true,
+        },
+      });
+  
+      tl4.fromTo(
+        contentWrap,
+        { yPercent: 0 },
+        {
+          yPercent: -50, // 오른쪽 요소 전체를 위로 100% 올리기
+          duration: 2,
+        }
+      );
+    },
+  });
+    
 });
