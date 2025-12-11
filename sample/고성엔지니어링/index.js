@@ -1,8 +1,11 @@
+/** @format */
+
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("DOMContentLoaded", function () {
-
-  const navItems = document.querySelectorAll(".section3 .box-nav .nav-item");
+  const navItems = document.querySelectorAll(
+    ".section3 .content-nav .nav-item"
+  );
   const boxCount = 4;
 
   const tl = gsap.timeline({
@@ -22,48 +25,60 @@ window.addEventListener("DOMContentLoaded", function () {
         navItems.forEach((btn, i) => {
           btn.classList.toggle("on", i === idx);
         });
-      }
-    }
+      },
+    },
   });
 
   // === step1 : box1 (이미 열려있긴 하지만 진행 구간 라벨용) ===
-    // === step2 : box2 열리고 box1 닫힘 ===
+  // === step2 : box2 열리고 box1 닫힘 ===
   tl.addLabel("step1")
     .to(".section3 .box2", {
       clipPath: "inset(0% 0 0 0)",
       duration: 0.5,
-      ease: "none"
+      ease: "none",
     })
-    .to(".section3 .box1 .box-bg", {
-      y: "-30%",
-      duration: 0.5,
-      ease: "none"
-    }, "<")
+    .to(
+      ".section3 .box1 .box-bg",
+      {
+        y: "-30%",
+        duration: 0.5,
+        ease: "none",
+      },
+      "<"
+    );
   // === step3 : box3 열리고 box2 닫힘 ===
   tl.addLabel("step2")
     .to(".section3 .box3", {
       clipPath: "inset(0% 0 0 0)",
       duration: 0.5,
-      ease: "none"
+      ease: "none",
     })
-    .to(".section3 .box2 .box-bg", {
-      y: "-30%",
-      duration: 0.5,
-      ease: "none"
-    }, "<")
+    .to(
+      ".section3 .box2 .box-bg",
+      {
+        y: "-30%",
+        duration: 0.5,
+        ease: "none",
+      },
+      "<"
+    );
   // === step4 : box4 열리고 box3 닫힘 ===
   tl.addLabel("step3")
     .to(".section3 .box4", {
       clipPath: "inset(0% 0 0 0)",
       duration: 0.5,
-      ease: "none"
+      ease: "none",
     })
-    .to(".section3 .box3 .box-bg", {
-      y: "-30%",
-      duration: 0.5,
-      ease: "none"
-    }, "<")
-    tl.addLabel("step4")
+    .to(
+      ".section3 .box3 .box-bg",
+      {
+        y: "-30%",
+        duration: 0.5,
+        ease: "none",
+      },
+      "<"
+    );
+  tl.addLabel("step4");
 
   // === 하단 네비 클릭 시 해당 step으로 이동 ===
   navItems.forEach((btn) => {
@@ -73,5 +88,4 @@ window.addEventListener("DOMContentLoaded", function () {
       tl.tweenTo(targetLabel);
     });
   });
-
 });
