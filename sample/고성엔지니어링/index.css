@@ -1,5 +1,4 @@
 /** @format */
-
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +18,85 @@ a {
   text-decoration: none;
   color: #000;
 }
+
+.content-link{}
+.content-link a {
+  display: inline-block;
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px 20px;
+  transition: color 0.2s;
+}
+.content-link a::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #dd8383;
+  transition: clip-path 0.2s;
+  clip-path: inset(100% 100% 0% 0%);
+  z-index: -1;
+}
+.content-link .icon-arr {
+  position: relative;
+  margin-left: 8px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  transition: all 0.2s;
+}
+.content-link .icon-arr::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 1px),
+    #000 calc(50% - 1px),
+    #000 50%,
+    transparent 50%
+  );
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.content-link .icon-arr::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 1px),
+    #fff calc(50% - 1px),
+    #fff 50%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.content-link a:hover {
+  color: #fff;
+}
+.content-link a:hover::before{
+  clip-path: inset(0% 0% 0% 0%);
+}
+.content-link a:hover .icon-arr {
+  border-top: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+.content-link a:hover .icon-arr::before {
+  opacity: 0;
+}
+
+.content-link a:hover .icon-arr::after {
+  opacity: 1;
+}
+
 
 .section3 .content2 {
   position: relative;
@@ -181,13 +259,65 @@ a {
 }
 
 .section4 {
-  width: 100%;
+  background: url(/images/main/sec4_bg.png) no-repeat left bottom/contain;
+}
+
+.section4 .innerwrap {
+  margin-top: 200px;
+}
+.section4 .content-container {
+  display: flex;
+  align-items: flex-start;
+  border-top: 1px solid #000;
+  position: relative;
   height: 100vh;
+  overflow: hidden;
+}
+.section4 .content-container::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
   background-color: #000;
 }
+.section4 .content-container .content {
+  width: 50%;
+}
+.section4 .content-container .content1 {}
+.section4 .content-container .content2 {
+  padding: 35px 0 35px 35px;
+
+}
+.section4 .content2 .content-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.section4 .content2 .box-textArea {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #000;
+}
+.section4 .content2 .box-number {
+  border-right: 1px solid #000;
+}
+.section4 .content2 .box-title {}
+.section4 .content2 .box-content {
+  padding: 40px;
+  height: 400px;
+}
+.section4 .content2 .box {
+  width: 100%;
+  background-color: #ccc;
+}
+
 
 .section5 {
   width: 100%;
   height: 100vh;
-  background-color: #000;
+  background-color: red;
 }
