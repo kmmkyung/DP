@@ -158,7 +158,9 @@
         const opacity = maxOpacity + (minOpacity - maxOpacity) * t;
 
         // 꼬리 transform 적용 (rotate + scaleY)
-        tail.style.transform = `translateX(-50%) rotate(${deg}deg) scaleY(${lenScale})`;
+        tail.style.transform = `translateX(-50%) rotate(${deg}deg) scaleY(${
+          lenScale * 1.4
+        })`;
         tail.style.opacity = opacity.toFixed(2);
 
         // 코어: 정면(12시)일 때 살짝 크고 진해지게 → 더 동그래 보이게
