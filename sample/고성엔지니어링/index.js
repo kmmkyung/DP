@@ -117,4 +117,77 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   });
     
+
+
+
+
+
+
+  const head = document.getElementById('head');
+  const pcNav = document.getElementById('pcNav');
+  const subBg = document.getElementById('subBg');
+
+  const sloganSub = head.querySelector('h1 .subMenu[data-type="slogan"]') || head.querySelector('h1 .subMenu');
+  const liSubs = [...pcNav.querySelectorAll(':scope > ul > li > .subMenu')];
+
+  const setH = (el, h) => { if (el) el.style.height = (h || 0) + 'px'; };
+
+  function openAll() {
+    head.classList.add('on');
+
+    // 1) 로고 아래 문구 열기
+    let sloganH = 0;
+    if (sloganSub) {
+      const wrap = sloganSub.firstElementChild;
+      sloganH = wrap ? wrap.scrollHeight : 0;
+      setH(sloganSub, sloganH);
+    }
+
+    // 2) 모든 li 서브메뉴 열기
+    let maxSubH = 0;
+    liSubs.forEach(sm => {
+      const wrap = sm.firstElementChild;
+      const h = wrap ? wrap.scrollHeight : 0;
+      setH(sm, h);
+      if (h > maxSubH) maxSubH = h;
+    });
+
+    // 3) 배경 높이 = (문구/서브 중 큰 값)
+    setH(subBg, Math.max(sloganH, maxSubH));
+  }
+
+  function closeAll() {
+    head.classList.remove('on');
+    setH(subBg, 0);
+    setH(sloganSub, 0);
+    liSubs.forEach(sm => setH(sm, 0));
+  }
+
+  // ✅ 올메뉴 버튼 = 토글
+  const allBtn = head.querySelector('.allMenu-btn');
+  allBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    head.classList.contains('on') ? closeAll() : openAll();
+  });
+
+  // ✅ 헤더에 마우스 올리면 전체 열기 (원하면 유지)
+  head.addEventListener('mouseenter', openAll);
+
+  // ✅ 헤더에서 마우스 나가면 닫기 (원하면 유지)
+  head.addEventListener('mouseleave', closeAll);
+
+  // 리사이즈 시 열려있으면 높이 재계산
+  window.addEventListener('resize', () => {
+    if (head.classList.contains('on')) openAll();
+  });
+
+  // 초기 닫힘
+  closeAll();
+
+  
 });
+
+
+(() => {
+  
+})();
