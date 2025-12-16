@@ -164,13 +164,13 @@
         tail.style.opacity = opacity.toFixed(2);
 
         // 코어: 정면(12시)일 때 살짝 크고 진해지게 → 더 동그래 보이게
-        const coreScale = 1 + t * 0.2; // 1 → 1.2
-        const coreOpacity = 0.75 + t * 0.15; // 0.75 → 0.9
+        // const coreScale = 1 + t * 0.2; // 1 → 1.2
+        // const coreOpacity = 0.75 + t * 0.15; // 0.75 → 0.9
 
-        core.style.transform = `translateX(-50%) scaleX(${coreScale}) scaleY(${
-          coreScale * 0.9
-        })`;
-        core.style.opacity = coreOpacity.toFixed(2);
+        // core.style.transform = `translateX(-50%) scaleX(${coreScale}) scaleY(${
+        //   coreScale * 0.9
+        // })`;
+        // core.style.opacity = coreOpacity.toFixed(2);
       }
 
       window.addEventListener("scroll", updateShadow);
