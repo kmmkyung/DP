@@ -116,5 +116,39 @@ window.addEventListener("DOMContentLoaded", function () {
       );
     },
   });
-    
+
+
+
+
+  const head = document.getElementById('head');
+  const sloganSubMenu = head.querySelector('h1 .subMenu[data-type="slogan"]');
+  const allPCNavSubMenus = head.querySelectorAll('.pcNav .subMenu');
+  
+  const targetHeight = '332px';
+
+  function handleMouseEnter() {
+      head.classList.add('on'); 
+
+      if (sloganSubMenu) {
+          sloganSubMenu.style.height = targetHeight;
+      }
+
+      allPCNavSubMenus.forEach(subMenu => {
+          subMenu.style.height = targetHeight;
+      });
+  }
+
+  function handleMouseLeave() {
+      head.classList.remove('on');
+
+      if (sloganSubMenu) {
+          sloganSubMenu.style.height = '0';
+      }
+      
+      allPCNavSubMenus.forEach(subMenu => {
+          subMenu.style.height = '0';
+      });
+  }
+pcNav.addEventListener('mouseenter', handleMouseEnter);
+head.addEventListener('mouseleave', handleMouseLeave);
 });
