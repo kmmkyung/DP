@@ -1,0 +1,150 @@
+body{
+  font-family: "Noto Sans KR", "돋움", dotum, sans-serif;
+}
+.innerwrap {
+  max-width: 1570px;
+  width: 94%;
+  margin: 0 auto;
+}
+.a{
+height: 800px;
+background-color: #eee;
+}
+
+.m13{}
+.m13 .container{
+display: flex;
+align-items: flex-start;
+padding-top: 10.5vw;
+}
+.m13 .content{
+width: 50%;
+}
+.m13 .year-content {
+padding-right: 6.15vw;
+}
+.m13 .year-content .year-list{
+position: relative;
+width: calc(100% - 6.5vw);
+}
+.m13 .year-content .year-list .list-item{
+position: absolute;
+width: 100%;
+opacity: 0;
+transition: all 0.4s;
+}
+.m13 .year-content .year-list .list-item.active{
+opacity: 1;
+}
+.m13 .year-content .year-list .list-item .year-title {
+font-size: var(--font-size-68);
+font-weight: 700;
+line-height: 1;
+}
+.m13 .year-content .year-list .list-item .year-thumb {
+margin-top: 50px;
+width: 100%;
+border-radius: 70px;
+aspect-ratio: 636 / 400;
+}
+.m13 .year-content .year-list .list-item:nth-child(1) .year-thumb{
+background: #aaa url(/images/page/m13_img3.png) no-repeat center / cover;
+}
+.m13 .year-content .year-list .list-item:nth-child(2) .year-thumb{
+background: #092243 url(/images/page/m13_img2.png) no-repeat center / cover;
+}
+.m13 .year-content .year-list .list-item:nth-child(3) .year-thumb{
+background: #aaa url(/images/page/m13_img1.png) no-repeat center / cover;
+}
+.m13 .month-content{position: relative;}
+.m13 .month-content::before{
+  content:'';
+  position: absolute;
+  width: 1px;
+  height: calc(100% + 10.5vw);
+  background-color: #ccc;
+  top:-10.5vw;
+  left:0%;
+  }
+.m13 .month-content .content-wrap{
+padding: 0 0 10.5vw 6.15vw;
+}
+.m13 .month-content .month-item{
+display: flex;
+align-items: flex-start;
+gap:30px;
+position: relative;
+transform: translateY(10%);
+opacity: 0;
+transition: all 0.6s;
+}
+.m13 .month-content .month-item.active {
+opacity: 1;
+transform: translateY(0%);
+}
+.month-box:first-child .month-item:first-child{
+padding-top: 0;
+}
+.m13 .month-content .month-item{
+padding: 3.1vw 0;
+}
+.m13 .month-content .month-item::after{
+content:'';
+position: absolute;
+width: calc(100% - 6.15vw);
+height: 1px;
+background-color: #D9D9D9;
+bottom: 0;
+}
+.m13 .month-content .month-item .item-month{
+color: #2A2D64;
+font-size: var(--font-size-40);
+font-weight: 700;
+position: relative;
+}
+.m13 .month-content .month-item .item-month::before{
+content:'';
+position: absolute;
+width: 12px;
+height: 12px;
+background-color: #2A2D64;
+border-radius: 50%;
+left: calc(-6.15vw - 6px);
+top:50%;
+transform: translateY(-50%);
+z-index: 1;
+}
+.m13 .month-content .month-item .item-month::after{
+content:'';
+position: absolute;
+width: 40px;
+height: 40px;
+background-color: #2A2D64;
+border-radius: 50%;
+left: calc(-6.15vw - 20px);
+top:50%;
+z-index: 2;
+opacity: 0;
+transition: all 0.8s 0.6s;
+transform-origin: center;
+transform: translateY(-50%) scale(0);
+}
+.m13 .month-content .month-item .item-text{
+margin-top: 1%;
+}
+.m13 .month-content .month-item .item-text p{
+color: #525252;
+font-size: var(--font-size-20);
+}
+.m13 .month-content .month-item .item-text p + p{
+margin-top: 14px;
+}
+.m13 .month-content .month-item.active {
+opacity: 1;
+transform: translateY(0%)
+}
+.m13 .month-content .month-item.active .item-month::after{
+opacity: 0.2;
+transform: translateY(-50%) scale(1);
+}
+
