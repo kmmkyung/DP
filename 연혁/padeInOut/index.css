@@ -37,7 +37,7 @@ transition: all 0.4s;
 opacity: 1;
 }
 .m13 .year-content .year-list .list-item .year-title {
-font-size: var(--font-size-68);
+font-size: var(--fz-68);
 font-weight: 700;
 line-height: 1;
 }
@@ -98,7 +98,7 @@ bottom: 0;
 }
 .m13 .month-content .month-item .item-month{
 color: #2A2D64;
-font-size: var(--font-size-40);
+font-size: var(--fz-40);
 font-weight: 700;
 position: relative;
 }
@@ -134,7 +134,7 @@ margin-top: 1%;
 }
 .m13 .month-content .month-item .item-text p{
 color: #525252;
-font-size: var(--font-size-20);
+font-size: var(--fz-20);
 }
 .m13 .month-content .month-item .item-text p + p{
 margin-top: 14px;
@@ -147,4 +147,3 @@ transform: translateY(0%)
 opacity: 0.2;
 transform: translateY(-50%) scale(1);
 }
-

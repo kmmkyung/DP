@@ -1,9 +1,8 @@
 window.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
+	const header = document.querySelector("#header");
   const section = document.querySelector(".m13 .section1");
-  if (!section) return;
-
   const yearsWrap = section.querySelector(".year-content");
   const years = gsap.utils.toArray(section.querySelectorAll(".year-list .list-item"));
   const boxes = gsap.utils.toArray(section.querySelectorAll(".month-box"));
@@ -28,6 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
       scrub: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
+      onEnter: function(){ header.style.transform = "translateY(-110px)";},
+			onEnterBack: function(){ header.style.transform = "translateY(-110px)";},
+			onLeave: function(){ header.style.transform = "translateY(0px)";},
+			onLeaveBack: function(){ header.style.transform = "translateY(0px)";}
     });
 
     items.forEach((item) => {
