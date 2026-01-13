@@ -1,0 +1,5 @@
+{
+  "colorize.decoration_type": "background",
+  "prettier.bracketSpacing": false,
+  "prettier.bracketSameLine": true
+}
