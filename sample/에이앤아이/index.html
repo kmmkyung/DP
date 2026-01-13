@@ -7,172 +7,173 @@
     <script src="index.js"></script>
   </head>
   <body>
-    <form action="submit" method="post" novalidate="">
-			<!-- 기본정보 -->
-			<div class="content content-1"><!--content-inputs-->
-			  <h6>기본 정보</h6>
-			  <div class="content-inputs">
-				<div class="input-box">
-				  <label for="content-1__1">기업명</label>
-				  <input type="text" name="content-1__1" id="content-1__1" placeholder="기업명을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__2">사업자등록번호</label>
-				  <input type="text" name="content-1__2" id="content-1__2" placeholder="사업자등록번호를 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__3">대표자명</label>
-				  <input type="text" name="content-1__3" id="content-1__3" placeholder="대표자명을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__4">업태</label>
-				  <input type="text" name="content-1__4" id="content-1__4" placeholder="업태를 작성해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__5">종목</label>
-				  <input type="text" name="content-1__5" id="content-1__5" placeholder="종목을 작성해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__6">회사 연락처</label>
-				  <input type="tel" name="content-1__6" id="content-1__6" placeholder="연락처를 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__7">담당자명</label>
-				  <input type="text" name="content-1__7" id="content-1__7" placeholder="담당자명을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__8">담당자 직책(직위)</label>
-				  <input type="text" name="content-1__8" id="content-1__8" placeholder="담당자 직책을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__9">담당자 연락처</label>
-				  <input type="tel" name="content-1__9" id="content-1__9" placeholder="연락처를 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__10">담당자 E-mail</label>
-				  <input type="email" name="content-1__10" id="content-1__10" placeholder="E-mail을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__11">홈페이지 주소</label>
-				  <input type="url" pattern="https://.*" name="content-1__11" id="content-1__11" placeholder="홈페이지 주소를 입력해 주세요.">
-				</div>
-				<div class="input-box">
-				  <label for="content-1__12">사업장 소재지</label>
-				  <input type="text" name="content-1__12" id="content-1__12" placeholder="사업장 소재지를 입력해 주세요." required="">
-				</div>
-			  </div><!--content-inputs-->
-			</div>
+    <main class="m92">
+      <section class="section section1 ani">
+        <div class="innerwrap">
+          <form class="form" method="post" enctype="multipart/form-data">
+            <!-- 기본정보 -->
+            <div class="container container1">
+              <h6 class="containerTitle">기본 정보</h6>
+              <div class="content content1">
+                <div class="inputBox requiredBox">
+                  <label for="f_companyName">기업명</label>
+                  <input type="text" name="n_companyName" id="f_companyName" placeholder="기업명을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyNumber">사업자등록번호</label>
+                  <input type="number" name="n_companyNumber" id="f_companyNumber" placeholder="사업자등록번호를 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyCeoName">대표자명</label>
+                  <input type="text" name="n_companyCeoName" id="f_companyCeoName" placeholder="대표자명을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyBusiness">업태</label>
+                  <input type="text" name="n_companyBusiness" id="f_companyBusiness" placeholder="업태를 작성해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyType">종목</label>
+                  <input type="text" name="n_companyType" id="f_companyType" placeholder="종목을 작성해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyTel">회사 연락처</label>
+                  <input type="tel" name="f_companyTel" id="f_companyTel" placeholder="연락처를 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyManagerName">담당자명</label>
+                  <input type="text" name="n_companyManagerName" id="f_companyManagerName" placeholder="담당자명을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyPosition">담당자 직책(직위)</label>
+                  <input type="text" name="n_companyPosition" id="f_companyPosition" placeholder="담당자 직책을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyManagerTel">담당자 연락처</label>
+                  <input type="tel" name="n_companyManagerTel" id="f_companyManagerTel" placeholder="연락처를 입력해 주세요." required maxlength="11" />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyManagerEmail">담당자 E-mail</label>
+                  <input type="email" name="n_companyManagerEmail" id="f_companyManagerEmail" placeholder="E-mail을 입력해 주세요." required />
+                </div>
+                <div class="inputBox">
+                  <label for="f_companyHomePage">홈페이지 주소</label>
+                  <input type="url" pattern="https://.*" name="n_companyHomePage" id="f_companyHomePage" placeholder="홈페이지 주소를 입력해 주세요." />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyArea">사업장 소재지</label>
+                  <input type="text" name="n_companyArea" id="f_companyArea" placeholder="사업장 소재지를 입력해 주세요." required />
+                </div>
+              </div>
+            </div>
 
-			<!-- 기업현황 -->
-			<div class="content content-2">
-			  <h6>기업 현황</h6>
-			  <div class="content-inputs">
-				<div class="input-box">
-				  <label for="content-2__1">전체 임직원 수</label>
-				  <input type="text" name="content-2__1" id="content-2__1" placeholder="전체 임직원 수를 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__2">기업신용등급</label>
-				  <input type="text" name="content-2__2" id="content-2__2" placeholder="기업신용등급을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__3">현금흐름등급</label>
-				  <input type="text" name="content-2__3" id="content-2__3" placeholder="현금흐름등급을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__4">직전년도 매출액</label>
-				  <input type="text" name="content-2__4" id="content-2__4" placeholder="직전년도 매출액을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__5">2년전 매출액</label>
-				  <input type="text" name="content-2__5" id="content-2__5" placeholder="2년전 매출액을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__6">3년전 매출액</label>
-				  <input type="text" name="content-2__6" id="content-2__6" placeholder="3년전 매출액을 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__7">주요거래처 1순위</label>
-				  <input type="text" name="content-2__7" id="content-2__7" placeholder="주요거래처 1순위를 입력해 주세요." required="">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__8">주요거래처 2순위</label>
-				  <input type="text" name="content-2__8" id="content-2__8" placeholder="주요거래처 2순위를 입력해 주세요.">
-				</div>
-				<div class="input-box">
-				  <label for="content-2__9">주요거래처 3순위</label>
-				  <input type="text" name="content-2__9" id="content-2__9" placeholder="주요거래처 3순위를 입력해 주세요.">
-				</div>
-			  </div>
-			</div>
+            <!-- 기업현황 -->
+            <div class="container container2">
+              <h6 class="containerTitle">기업 현황</h6>
+              <div class="content content1">
+                <div class="inputBox requiredBox">
+                  <label for="f_employeeCount">전체 임직원 수</label>
+                  <input type="number" name="n_employeeCount" id="f_employeeCount" placeholder="전체 임직원 수를 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_companyCreditGrade">기업신용등급</label>
+                  <input type="text" name="n_companyCreditGrade" id="f_companyCreditGrade" placeholder="기업신용등급을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_cashFlowGrade">현금흐름등급</label>
+                  <input type="text" name="n_cashFlowGrade" id="f_cashFlowGrade" placeholder="현금흐름등급을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_revenueLastYear">직전년도 매출액</label>
+                  <input type="number" name="n_revenueLastYear" id="f_revenueLastYear" placeholder="직전년도 매출액을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_revenueTwoYearsAgo">2년전 매출액</label>
+                  <input type="number" name="n_revenueTwoYearsAgo" id="f_revenueTwoYearsAgo" placeholder="2년전 매출액을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_revenueThreeYearsAgo">3년전 매출액</label>
+                  <input type="number" name="n_revenueThreeYearsAgo" id="f_revenueThreeYearsAgo" placeholder="3년전 매출액을 입력해 주세요." required />
+                </div>
+                <div class="inputBox requiredBox">
+                  <label for="f_mainClientFirst">주요거래처 1순위</label>
+                  <input type="text" name="n_mainClientFirst" id="f_mainClientFirst" placeholder="주요거래처 1순위를 입력해 주세요." required />
+                </div>
+                <div class="inputBox">
+                  <label for="f_mainClientSecond">주요거래처 2순위</label>
+                  <input type="text" name="n_mainClientSecond" id="f_mainClientSecond" placeholder="주요거래처 2순위를 입력해 주세요." />
+                </div>
+                <div class="inputBox">
+                  <label for="f_mainClientThird">주요거래처 3순위</label>
+                  <input type="text" name="n_mainClientThird" id="f_mainClientThird" placeholder="주요거래처 3순위를 입력해 주세요." />
+                </div>
+              </div>
+            </div>
 
-			<!-- 인증 보유 현황 -->
-			<div class="content content-3">
-			  <h6>인증 보유 현황</h6>
-			  <div class="content-inputs">
-				<div class="input-box">
-				  <label for="content-3__1">ISO 인증 현황</label>
-				  <input type="text" name="content-3__1" id="content-3__1" placeholder="ISO 인증 현황을 입력해 주세요.">
-				</div>
-				<div class="input-box">
-				  <label for="content-3__2">기타 인증 현황</label>
-				  <input type="text" name="content-3__2" id="content-3__2" placeholder="기타 인증 현황을 입력해 주세요.">
-				</div>
-				<div class="input-box">
-				  <label for="content-3__3">기업 특허 현황</label>
-				  <input type="text" name="content-3__3" id="content-3__3" placeholder="기업 특허현황을 입력해 주세요.">
-				</div>
-			  </div>
-			</div>
+            <!-- 인증 보유 현황 -->
+            <div class="container container3">
+              <h6 class="containerTitle">인증 보유 현황</h6>
+              <div class="content content1">
+                <div class="inputBox">
+                  <label for="f_isoCertificationStatus">ISO 인증 현황</label>
+                  <input type="text" name="n_isoCertificationStatus" id="f_isoCertificationStatus" placeholder="ISO 인증 현황을 입력해 주세요." />
+                </div>
+                <div class="inputBox">
+                  <label for="f_otherCertificationStatus">기타 인증 현황</label>
+                  <input type="text" name="n_otherCertificationStatus" id="f_otherCertificationStatus" placeholder="기타 인증 현황을 입력해 주세요." />
+                </div>
+                <div class="inputBox">
+                  <label for="f_companyPatentStatus">기업 특허 현황</label>
+                  <input type="text" name="n_companyPatentStatus" id="f_companyPatentStatus" placeholder="기업 특허현황을 입력해 주세요." />
+                </div>
+              </div>
+            </div>
 
-			<!-- 신규거래 제안내용 -->
-			<div class="content content-4">
-			  <h6>신규거래 제안내용</h6>
-			  <div class="content-inputs">
-				<div class="input-box">
-				  <label for="content-4__1">제안 유형</label>
-				  <div class="select-box">
-					  <select name="content-4__1" id="content-4__1" required="">
-						<option value="">선택해주세요</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-					  </select>
-				  </div>
-				</div>
-				<div class="input-box">
-				  <label for="content-4__2">내용</label>
-				  <textarea name="content-4__2" id="content-4__2" placeholder="제안내용을 작성해 주세요." required=""></textarea>
-				</div>
-				<strong>첨부 파일</strong>
-				<div class="input-box file-box">
-				  <span class="input-title">파일첨부</span>
-				  <div class="input-wrap">
-					  <input type="text" class="upload-file" placeholder="파일을 첨부해주세요." readonly="">
-					  <label for="file" class="file-label">파일찾기</label>
-					  <input type="file" name="file" id="file" class="file-input" required="">	
-				  </div>
-				</div>
-				<ul class="content-4-listText">
-				  <li class="listText-item">* 파일첨부 용량은 최대 10M로 제한됩니다. [용량 초과시 별도 pu@anieng.com으로 메일 송부요망]</li>
-				  <li class="listText-item">* 첨부파일 2개 이상일경우 압축하여 업로드 부탁드립니다.</li>
-				</ul>
-			  </div>
-			</div>
+            <!-- 신규거래 제안내용 -->
+            <div class="container container4">
+              <h6 class="containerTitle">신규거래 제안내용</h6>
+              <div class="content content1">
+                <div class="inputBox requiredBox">
+                  <label for="f_proposalType">제안 유형</label>
+                  <div class="selectBox">
+                    <select name="n_proposalType" id="f_proposalType" required>
+                      <option value="" disabled selected hidden>선택해주세요</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="inputBox requiredBox">
+                  <label class="labelText" for="f_content">내용</label>
+                  <textarea name="n_content" id="f_content" placeholder="제안내용을 작성해 주세요." required></textarea>
+                </div>
+                <div class="content content2">
+                  <strong class="contentTitle">첨부 파일</strong>
+                  <div class="inputBox requiredBox">
+                    <label for="f_uploadFileName">파일첨부</label>
+                    <div class="inputFileBox">
+                      <input type="text" id="f_uploadFileName" name="n_uploadFileName" placeholder="파일을 첨부해주세요." readonly />
+                      <label for="f_file">파일찾기</label>
+                      <input type="file" name="n_file" id="f_file" required />
+                    </div>
+                  </div>
+                  <ul class="fileInfoList">
+                    <li class="listItem">* 파일첨부 용량은 최대 10M로 제한됩니다. [용량 초과시 별도 pu@anieng.com으로 메일 송부요망]</li>
+                    <li class="listItem">* 첨부파일 2개 이상일경우 압축하여 업로드 부탁드립니다.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-			<!-- 보내기 -->
-			<div class="button-box">
-			  <button type="submit">
-				  <div class="button-wrap">
-						<span class="button-icon"></span>
-						<span class="button-text">제출하기</span>
-					</div>
-			  </button>
-			  <button type="button">
-				  <div class="button-wrap">
-					<span class="button-text">창 닫기</span>
-					</div>
-			  </button>
-			</div>
-		  </form>
+            <!-- button -->
+            <div class="buttonBox">
+              <button type="submit">
+                <span class="buttonIcon"></span>
+                <span class="buttonText">제출하기</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

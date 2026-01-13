@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.innerwrap {
+  width: 96%;
+  max-width: 1470px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.m92 {
+}
+/* form 공용 */
+.m92 label {
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+}
+.m92 input {
+  margin-top: 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  padding: 19.5px 25px;
+  font-size: 18px;
+  width: 100%;
+  color: #333;
+}
+.m92 select {
+  margin-top: 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  padding: 19.5px 25px;
+  font-size: 18px;
+  width: 100%;
+  width: 50%;
+  border-right: 20px solid transparent;
+  color: #bfbfbf;
+}
+.m92 select:valid {
+  color: #333;
+}
+.m92 textarea {
+  margin-top: 14px;
+  border: 1px solid transparent;
+  height: 235px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  padding: 20px 25px;
+  font-size: 18px;
+  width: 100%;
+  color: #333;
+}
+.m92 ::placeholder {
+  color: #bfbfbf;
+  font-size: 16px;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+.m92 input:not(:focus):not(:placeholder-shown):invalid {
+  border: 1px solid red;
+}
+.m92 .requiredBox label {
+  position: relative;
+}
+.m92 .requiredBox label:not(label[for="f_file"]):after {
+  content: "*";
+  color: #e3637e;
+  margin-left: 2px;
+}
+
+.m92 .form {
+  margin-top: 100px;
+}
+.m92 .form .container {
+  padding: 100px 0;
+  border-bottom: 1px solid #bfbfbf;
+}
+.m92 .form .containerTitle {
+  font-size: 48px;
+  font-weight: 700;
+}
+.m92 .form .contentTitle {
+  display: block;
+  font-size: 26px;
+}
+.m92 .form .container .content {
+  margin-top: 80px;
+}
+.m92 .form .container1 .content1,
+.m92 .form .container2 .content1 {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  column-gap: 45px;
+}
+.m92 .form .container1 .content1 .inputBox:not(:last-child) {
+  width: calc((100% - 45px * 2) / 3);
+}
+.m92 .form .container1 .content1 .inputBox:last-child {
+  width: 100%;
+}
+.m92 .form .container2 .content1 .inputBox {
+  width: calc((100% - 45px * 2) / 3);
+}
+.m92 .form .container3 .content1 .inputBox + .inputBox,
+.m92 .form .container4 .content1 .inputBox + .inputBox {
+  margin-top: 40px;
+}
+.m92 .form .container4 .content2 .inputBox {
+  margin-top: 80px;
+}
+.m92 .form .container4 .content2 input[type="text"][name="n_uploadFileName"] {
+  flex: 1;
+}
+.m92 .form .container4 .content2 .inputFileBox {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.m92 .form .container4 .content2 input[type="file"][name="n_file"] {
+  display: none;
+}
+.m92 .form .container4 .content2 label[for="f_file"] {
+  display: block;
+  margin-top: 14px;
+  padding: 19.5px 1vw;
+  max-width: 185px;
+  width: 100%;
+  background-color: #00508f;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+}
+.m92 .form .container4 .content2 .fileInfoList {
+  margin-top: 32px;
+}
+.m92 .form .container4 .content2 .fileInfoList .listItem {
+  color: #999;
+  font-size: 16px;
+  margin-top: 7px;
+}
+.m92 .form .buttonBox {
+  text-align: center;
+  margin-top: 120px;
+}
+.m92 .buttonBox button {
+  position: relative;
+  font-size: 18px;
+  border: 1px solid #b7b7b7;
+  padding: 15px;
+  width: 210px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: transparent;
+}
+.m92 .buttonBox button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  aspect-ratio: 1 / 1;
+  z-index: 1;
+  border-radius: 50%;
+  clip-path: circle(0%);
+  transition: all 0.6s;
+  background: #00508f;
+}
+.m92 .buttonBox button:hover::before {
+  clip-path: circle(100%);
+}
+.m92 .buttonBox button .buttonText {
+  font-size: 18px;
+  margin-left: 8px;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+}
+.m92 .buttonBox .buttonIcon {
+  width: 13px;
+  height: 12px;
+  display: inline-block;
+  background: url("/images/page/m91_page_button_img2.png") no-repeat center;
+  transition: all 0.2s;
+}
+.m92 .buttonBox button:hover .buttonText {
+  color: #fff;
+}
+.m92 .buttonBox button:hover .buttonIcon {
+  background: url("/images/page/m91_page_button_img.png") no-repeat center;
+}
