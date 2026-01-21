@@ -1,0 +1,59 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 92%;
+        max-width: 1650px;
+      }
+      .box {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 70px;
+      }
+      .parent {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+      }
+
+      .em {
+        font-style: italic;
+        margin-left: 10px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p class="parent" style="background-color: antiquewhite">
+        <span>!!총 4줄!!</span>
+        <span class="em">안녕하세요 2줄입니다</span>
+        <span>안녕하세요 3줄입니다</span>
+        <span class="em">여기부터는 글씨가 가려집니다</span>
+      </p>
+      <p class="parent" style="background-color: antiquewhite">
+        <span>!!총 3줄!!</span>
+        <span class="em">안녕하세요 2줄입니다</span>
+        <span>안녕하세요 3줄입니다</span>
+      </p>
+      <p class="parent" style="background-color: antiquewhite">
+        <span>!!총 4줄!!</span>
+        <span class="em">2줄입니다</span>
+        <span>3줄입니다</span>
+        <span class="em">여기부터는 글씨가 가려집니다</span>
+      </p>
+      <p class="parent" style="background-color: antiquewhite">
+        <span>!!총 2줄!! 안녕하세요안녕하세요</span>
+        <span class="em">안녕하세요 2줄입니다 안녕하세요</span>
+      </p>
+    </div>
+  </body>
+</html>
