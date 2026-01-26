@@ -1,1078 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITAS Scroll Animation</title>
+    <style>
+        body { margin: 0; background-color: #000; color: #fff; font-family: sans-serif; }
+        
+        /* 1. 핀 효과를 위한 핵심 레이아웃 */
+        .citas {
+            position: relative;
+            height: 1000vh; /* 스크롤 길이를 충분히 확보 (캔버스 5개 분량) */
+            background: #0e0e0e;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. 각 장면(Scene) 설정 */
+        .scene {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            opacity: 0; /* 기본적으로 숨김 */
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .scene.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .text_scene {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .left_section { width: 40%; }
+        .right_section { width: 50%; display: flex; justify-content: center; }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            background: rgba(255,255,255,0.02); /* 위치 확인용 미세 배경 */
+        }
+
+        .title_wrap p:first-child { color: #00ffb4; font-size: 1.2rem; }
+        .title_wrap p:last-child { font-size: 3rem; font-weight: bold; margin: 10px 0; }
+        
+        /* 설명 텍스트 */
+        .scene_title { font-size: 2.5rem; text-align: center; width: 100%; margin-top: 20vh; }
+    </style>
+</head>
+<body>
+
+<section class="citas">
+    <div class="sticky">
+        <div class="scene scene01 active">
+            <p class="scene_title">전문직의, 전문직에 의한, 전문직을 위한.</p>
+        </div>
+
+        <div class="scene text_scene scene02" id="sec_c">
+            <div class="left_section">
+                <div class="title_wrap">
+                    <p>For your business</p>
+                    <p>Consulting</p>
+                </div>
+                <div class="content_wrap">
+                    <p>CITAS Project.</p>
+                    <ul><li>토요특강, 전문직 COS-MBA 등</li></ul>
+                </div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_c"></canvas>
+            </div>
+        </div>
+
+        <div class="scene text_scene scene03" id="sec_i">
+            <div class="left_section">
+                <div class="title_wrap"><p>For your Technology</p><p>IT</p></div>
+                <div class="content_wrap"><p>CITAS Project.</p><ul><li>AI Consulting, AI 경정청구 등</li></ul></div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_i"></canvas>
+            </div>
+        </div>
+
+        <div class="scene text_scene scene06" id="sec_s">
+            <div class="left_section">
+                <div class="title_wrap"><p>For your Business</p><p>Sales</p></div>
+                <div class="content_wrap"><p>CITAS Project.</p><ul><li>S7 Training, A-MBA 등</li></ul></div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_s"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script>
-  const textFiller = fillTextAnimation()
+    // --- 1. Pixel Map 데이터 (예시: 1은 색상, 0은 빈칸) ---
+    // 실제 사용하시는 긴 배열 데이터를 각 ID에 맞게 넣으세요.
+    const PIXEL_MAPS = {
+        '#citas_c': [[0,0,0,0,0],[0,1,1,1,0],[0,1,0,1,0],[0,1,1,1,0],[0,0,0,0,0]], // 임시 데이터
+        '#citas_i': [[0,1,0,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0]],
+        '#citas_s': [[1,1,1,1,1],[1,0,0,0,0],[1,1,1,1,1],[0,0,0,0,1],[1,1,1,1,1]]
+    };
 
-  const subVisualText = document.querySelector('.sub_visual p');
-  textFiller.set(subVisualText)
+    const ACTIVE_COLOR = '0, 255, 180';
 
-  const subVisualText2 = document.querySelector('.sub_visual.last p');
-  textFiller.set(subVisualText2)
-
-  const subVisualLast = sectionScroll('.sub_visual.last', {
-    duration: window.innerHeight * 2,
-    on: {
-      progress: (i) => {
-        subVisualText2.style.opacity = (i * 10)
-        fillTextAnimation().play(subVisualText2, i * 2)
-      }
-    }
-  })
-  window.addEventListener('scroll', subVisualLast.event);
-
-  const introAni = (currentTime) => {
-    if (currentTime >= 2000) {
-      subVisualText.style.opacity = 5
-      textFiller.play(subVisualText, 2)
-      return;
-    }
-    requestAnimationFrame(introAni)
-    const progress = currentTime / 2000 % 1
-    subVisualText.style.opacity = (progress * 5)
-    textFiller.play(subVisualText, progress)
-  }
-
-  requestAnimationFrame(introAni)
-
-
-  const new_marketText = document.querySelector('.new_market .scene_desc');
-  textFiller.set(new_marketText)
-
-  const new_market = sectionScroll('.new_market', {
-    duration: window.innerHeight,
-    trigger: 'bottom',
-    offsetY: 480,
-    on: {
-      progress: (i) => {
-        textFiller.play(new_marketText, i * 2)
-      }
-    }
-  })
-  window.addEventListener('scroll', new_market.event);
-
-  const citasSection = document.querySelector('.citas')
-  const citasFillText01 = citasSection.querySelector('.fill_text01')
-  const citasFillText02 = citasSection.querySelector('.fill_text02')
-  const citasFillText03 = citasSection.querySelector('.scene07 .scene_title')
-  const citasFillText04 = citasSection.querySelector('.scene08 .scene_title')
-  textFiller.set(citasFillText01)
-  textFiller.set(citasFillText02)
-  textFiller.set(citasFillText03)
-  textFiller.set(citasFillText04)
-
-  const citasSticky = citasSection.querySelector('.sticky')
-
-  const citasScene01 = citasSection.querySelector('.scene01')
-  const citasScene01Background = citasSection.querySelector('.scene01 .scene_background');
-
-  const citasScene02 = citasSection.querySelector('.scene02')
-  const citasC = pixelCanvas('#citas_c', '26, 74, 156');
-
-  const citasScene03 = citasSection.querySelector('.scene03')
-  const citasI = pixelCanvas('#citas_i', '147, 42, 202');
-
-  const citasScene04 = citasSection.querySelector('.scene04')
-  const citasT = pixelCanvas('#citas_t', '201, 43, 65');
-
-  const citasScene05 = citasSection.querySelector('.scene05')
-  const citasA = pixelCanvas('#citas_a', '229, 223, 76');
-
-  const citasScene06 = citasSection.querySelector('.scene06')
-  const citasS = pixelCanvas('#citas_s', '75, 185, 33');
-
-  const citasScene07 = citasSection.querySelector('.scene07')
-  const citasScene08 = citasSection.querySelector('.scene08')
-
-  const citasScene09 = citasSection.querySelector('.scene09')
-
-  const citasSceneProgress = citasSection.querySelector('.numberProgress')
-
-  const scene02Start = 0.1;
-  const scene02Duration = 0.1;
-
-  const scene03Start = 0.2;
-  const scene03Duration = 0.1;
-
-  const scene04Start = 0.3;
-  const scene04Duration = 0.1;
-
-  const scene05Start = 0.4;
-  const scene05Duration = 0.1;
-
-  const scene06Start = 0.5;
-  const scene06Duration = 0.1;
-
-  const scene07Start = 0.6;
-  const scene07Duration = 0.1;
-
-  const scene08Start = 0.7;
-  const scene08Duration = 0.1;
-
-  const scene09Start = 0.8;
-  const scene09Duration = 0.2;
-
-  const sceneNumberProgressStart = scene02Start;
-  const sceneNumberProgressDuration = scene07Start - (0.08 * 0.9);
-
-  const numberProgressCanvas = document.querySelector('#numberProgress');
-  /** @type {CanvasRenderingContext2D}*/
-  const numberProgressCtx = numberProgressCanvas.getContext('2d');
-
-  numberProgressCanvas.width = numberProgressCanvas.getBoundingClientRect().width * 2;
-  numberProgressCanvas.height = numberProgressCanvas.getBoundingClientRect().height * 2;
-  numberProgressCtx.scale(2, 2);
-
-  const sceneFadeInProgress = (target) => getProgress(target, {
-    start: 0,
-    duration: 0.2
-  })
-  const sceneFadeOutProgress = (target) => getProgress(target, {
-    start: 0.8,
-    duration: 0.2
-  })
-
-  const sceneTextInProgress = (target) => getProgress(target, {
-    start: 0,
-    duration: 0.3
-  })
-  const sceneTextOutProgress = (target) => getProgress(target, {
-    start: 0.7,
-    duration: 0.3
-  })
-
-  const createSnapPoint = (snapTarget, {
-    start,
-    end,
-    snapTo
-  }) => {
-    let snapped = false;
-    return {
-      snapped,
-      checkSnap: (i) => {
-        if (!snapped && i > start && i < end) {
-          snapped = true;
-          lenis.scrollTo(snapTarget.offsetTop + snapTarget.offsetHeight * snapTo, {
-            duration: 0.5,
-            easing: (t) => 1 - Math.pow(1 - t, 3)
-          });
-
-          setTimeout(() => snapped = false, 1500);
+    // --- 2. 캔버스 애니메이션 클래스 ---
+    class CitasCanvas {
+        constructor(id, map) {
+            this.canvas = document.querySelector(id);
+            if (!this.canvas) return;
+            this.ctx = this.canvas.getContext('2d');
+            this.pixelMap = map;
+            this.dpr = 2;
+            this.colCount = 44; // 고정 그리드 수
+            this.rowCount = 33;
+            this.cellArr = Array.from({ length: 44 }, () => 
+                Array.from({ length: 33 }, () => Math.random() * 1.5)
+            );
+            this.init();
         }
-      }
-    }
-  }
 
-  const citas = sectionScroll('.citas', {
-    duration: citasSection.getBoundingClientRect().height,
-    trigger: 'bottom',
-    offsetY: 400,
-    on: {
-      progress: (i) => {
-        // sectionConfig
-        //scene02
-        const scene02Progress = getProgress(i, {
-          start: scene02Start,
-          duration: scene02Duration
-        });
-        //scene03
-        const scene03Progress = getProgress(i, {
-          start: scene03Start,
-          duration: scene03Duration
-        });
-        //scene04
-        const scene04Progress = getProgress(i, {
-          start: scene04Start,
-          duration: scene04Duration
-        });
-        //scene05
-        const scene05Progress = getProgress(i, {
-          start: scene05Start,
-          duration: scene05Duration
-        });
-        //scene06
-        const scene06Progress = getProgress(i, {
-          start: scene06Start,
-          duration: scene06Duration
-        });
-        //scene07
-        const scene07Progress = getProgress(i, {
-          start: scene07Start,
-          duration: scene07Duration
-        });
+        init() {
+            window.addEventListener('resize', () => this.resize());
+            this.resize();
+        }
 
-        //scene08
-        const scene08Progress = getProgress(i, {
-          start: scene08Start,
-          duration: scene08Duration
-        });
+        resize() {
+            const size = Math.min(window.innerWidth * 0.4, 500);
+            this.canvas.style.width = `${size}px`;
+            this.canvas.style.height = `${size * 0.8}px`;
+            this.canvas.width = size * this.dpr;
+            this.canvas.height = size * 0.8 * this.dpr;
+            this.ctx.scale(this.dpr, this.dpr);
+            this.cellWidth = size / this.colCount * 0.8;
+            this.cellHeight = this.cellWidth * 3;
+            this.gap = this.cellWidth * 0.2;
+        }
 
-        //scene09
-        const scene09Progress = getProgress(i, {
-          start: scene09Start,
-          duration: scene09Duration
-        });
+        render(progress) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for (let i = 0; i < this.rowCount; i++) {
+                for (let j = 0; j < this.colCount; j++) {
+                    const delay = this.cellArr[j][i];
+                    const p = Math.max(0, Math.min(1, progress - delay));
+                    if (p <= 0) continue;
 
-        //scene - progress
-        const sceneProgressProgress = getProgress(i, {
-          start: sceneNumberProgressStart,
-          duration: sceneNumberProgressDuration
-        });
-
-
-        //scene01
-        const scene01InProgress = Math.max(0, i / 0.08)
-        const scene01Text01Progress = scene01InProgress / 0.45
-        const scene01Text02Progress = Math.max(0, (scene01InProgress - 0.45) / 0.2)
-        const sceme01FadeOutProgress = 1 - ((scene01InProgress - 0.95) / 0.1);
-
-        textFiller.play(citasFillText01, scene01Text01Progress)
-        textFiller.play(citasFillText02, scene01Text02Progress)
-        citasScene01Background.style.opacity = (scene01InProgress);
-        citasScene01.style.opacity = sceme01FadeOutProgress;
-
-        //scene - progress
-        const sceneProgressFadeInProgress = sceneFadeInProgress(sceneProgressProgress);
-        const sceneProgressFadeOutProgress = sceneFadeOutProgress(sceneProgressProgress);
-
-        const cSectionProgress = getProgress(sceneProgressProgress, {
-          start: 0,
-          duration: 0.2
-        }) / 0.25
-        const iSectionProgress = getProgress(sceneProgressProgress, {
-          start: 0.2,
-          duration: 0.2
-        }) / 0.25
-        const tSectionProgress = getProgress(sceneProgressProgress, {
-          start: 0.4,
-          duration: 0.2
-        }) / 0.25
-        const aSectionProgress = getProgress(sceneProgressProgress, {
-          start: 0.6,
-          duration: 0.2
-        }) / 0.25
-        const sSectionProgress = getProgress(sceneProgressProgress, {
-          start: 0.8,
-          duration: 0.2
-        }) / 0.25
-
-        const ctxWidth = numberProgressCanvas.width / 2;
-        const ctxHeight = numberProgressCanvas.height / 2;
-
-        numberProgressCtx.clearRect(0, 0, ctxWidth, ctxHeight)
-
-        numberProgressCtx.fillStyle = '#fff';
-        numberProgressCtx.fillText('05', ctxWidth - 20, 20);
-        numberProgressCtx.fillStyle = '#fff33'
-        numberProgressCtx.font = "700 16px 'SF Pro Display', sans-serif";
-
-
-        if (sceneProgressProgress > 0 && sceneProgressProgress < 0.2) {
-          numberProgressCtx.save()
-          for (let i = 0; i < 34; i++) {
-            if ((i / 34) < cSectionProgress) {
-              numberProgressCtx.fillStyle = 'rgba(26, 74, 156, 1)';
-            } else {
-              numberProgressCtx.fillStyle = 'rgba(26, 74, 156, 0.3)';
+                    const isHighlight = this.pixelMap[i] && this.pixelMap[i][j] === 1;
+                    this.ctx.fillStyle = isHighlight ? `rgba(${ACTIVE_COLOR}, ${p})` : `rgba(40, 40, 40, ${p * 0.2})`;
+                    this.ctx.fillRect(j * (this.cellWidth + this.gap), i * (this.cellHeight + this.gap), this.cellWidth, this.cellHeight);
+                }
             }
-            numberProgressCtx.fillRect(27 + (6 * i), 11.5, 2, 8)
-          }
-          numberProgressCtx.restore()
+        }
+    }
 
-          numberProgressCtx.fillStyle = '#fff';
-          numberProgressCtx.fillText('01', 0, 20);
-          numberProgressCtx.fillRect(Math.min(227, 27 + (cSectionProgress * 200)), 9, 2, 13);
-        };
-        if (sceneProgressProgress > 0.2 && sceneProgressProgress < 0.4) {
-          numberProgressCtx.save()
-          for (let i = 0; i < 34; i++) {
-            if ((i / 34) < iSectionProgress) {
-              numberProgressCtx.fillStyle = 'rgba(147, 42, 202, 1)';
+    // --- 3. 초기화 및 스크롤 제어 ---
+    const instances = {};
+    Object.entries(PIXEL_MAPS).forEach(([id, map]) => {
+        instances[id] = new CitasCanvas(id, map);
+    });
+
+    const scenes = document.querySelectorAll('.scene');
+
+    window.addEventListener('scroll', () => {
+        const section = document.querySelector('.citas');
+        const scrollY = window.pageYOffset;
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        // 전체 진행도 (0 ~ 1)
+        let totalP = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+        totalP = Math.max(0, Math.min(1, totalP));
+
+        // 각 장면의 활성화 및 캔버스 재생 (구간 분할)
+        // 0.0~0.2: Intro, 0.2~0.4: Consulting, 0.4~0.6: IT ...
+        const step = 1 / scenes.length;
+
+        scenes.forEach((scene, idx) => {
+            const start = idx * step;
+            const end = (idx + 1) * step;
+
+            if (totalP >= start && totalP < end) {
+                scene.classList.add('active');
+                // 해당 구간 내에서의 진행도 (0 ~ 3)
+                const localP = (totalP - start) / (end - start) * 3;
+                
+                const canvas = scene.querySelector('canvas');
+                if (canvas && instances[`#${canvas.id}`]) {
+                    instances[`#${canvas.id}`].render(localP);
+                }
             } else {
-              numberProgressCtx.fillStyle = 'rgba(147, 42, 202, 0.3)';
+                scene.classList.remove('active');
             }
-            numberProgressCtx.fillRect(27 + (6 * i), 11.5, 2, 8)
-          }
-          numberProgressCtx.restore()
-
-
-          numberProgressCtx.fillStyle = '#fff';
-          numberProgressCtx.fillText('02', 0, 20);
-          numberProgressCtx.fillRect(Math.min(227, 27 + (iSectionProgress * 200)), 9, 2, 13);
-        };
-        if (sceneProgressProgress > 0.4 && sceneProgressProgress < 0.6) {
-          numberProgressCtx.save()
-          for (let i = 0; i < 34; i++) {
-            if ((i / 34) < tSectionProgress) {
-              numberProgressCtx.fillStyle = 'rgba(201, 43, 65, 1)';
-            } else {
-              numberProgressCtx.fillStyle = 'rgba(201, 43, 65, 0.3)';
-            }
-            numberProgressCtx.fillRect(27 + (6 * i), 11.5, 2, 8)
-          }
-          numberProgressCtx.restore()
-
-
-          numberProgressCtx.fillStyle = '#fff';
-          numberProgressCtx.fillText('03', 0, 20);
-          numberProgressCtx.fillRect(Math.min(227, 27 + (tSectionProgress * 200)), 9, 2, 13);
-        };
-        if (sceneProgressProgress > 0.6 && sceneProgressProgress < 0.8) {
-          numberProgressCtx.save()
-          for (let i = 0; i < 34; i++) {
-            if ((i / 34) < aSectionProgress) {
-              numberProgressCtx.fillStyle = 'rgba(229, 223, 76, 1)';
-            } else {
-              numberProgressCtx.fillStyle = 'rgba(229, 223, 76, 0.3)';
-            }
-            numberProgressCtx.fillRect(27 + (6 * i), 11.5, 2, 8)
-          }
-          numberProgressCtx.restore()
-
-
-          numberProgressCtx.fillStyle = '#fff';
-          numberProgressCtx.fillText('04', 0, 20);
-          numberProgressCtx.fillRect(Math.min(227, 27 + (aSectionProgress * 200)), 9, 2, 13);
-
-        };
-        if (sceneProgressProgress > 0.8 && sceneProgressProgress < 1) {
-          numberProgressCtx.save()
-          for (let i = 0; i < 34; i++) {
-            if ((i / 34) < sSectionProgress) {
-              numberProgressCtx.fillStyle = 'rgba(75, 185, 33, 1)';
-            } else {
-              numberProgressCtx.fillStyle = 'rgba(75, 185, 33, 0.3)';
-            }
-            numberProgressCtx.fillRect(27 + (6 * i), 11.5, 2, 8)
-          }
-          numberProgressCtx.restore()
-
-
-          numberProgressCtx.fillStyle = '#fff';
-          numberProgressCtx.fillText('05', 0, 20);
-          numberProgressCtx.fillRect(Math.min(227, 27 + (sSectionProgress * 200)), 9, 2, 13);
-        };
-
-        if (sceneProgressProgress < 0.5) citasSceneProgress.style.opacity = getProgress(sceneProgressProgress, {
-          start: 0,
-          duration: 0.05
         });
-        else citasSceneProgress.style.opacity = 1 - sceneProgressFadeOutProgress;
-
-        //scene02
-        const scene02FadeInProgress = sceneFadeInProgress(scene02Progress);
-        const scene02FadeOutProgress = sceneFadeOutProgress(scene02Progress);
-        const scene02TextInProgress = sceneTextInProgress(scene02Progress)
-        const scene02TextOutProgress = sceneTextOutProgress(scene02Progress)
-
-        if (scene02Progress < 0.5) {
-          citasScene02.style.opacity = scene02FadeInProgress;
-          citasScene02.querySelector('.title_wrap').style.transform = `translateY(${scene02FadeInProgress * -5}px)`;
-          citasScene02.querySelector('.content_wrap').style.transform = `translateY(${scene02FadeInProgress * -10}px)`;
-          citasC.play(scene02TextInProgress)
-        } else {
-          citasScene02.style.opacity = 1 - scene02FadeOutProgress;
-          citasScene02.querySelector('.title_wrap').style.transform = `translateY(${(1 - scene02FadeOutProgress) * -5}px)`;
-          citasScene02.querySelector('.content_wrap').style.transform = `translateY(${(1 - scene02FadeOutProgress) * -10}px)`;
-          citasC.play(1 - scene02TextOutProgress)
-        }
-        citasScene02.querySelector('.list_dimmed').style.opacity = 1 - scene02TextInProgress;
-
-        //scene03
-        const scene03FadeInProgress = sceneFadeInProgress(scene03Progress);
-        const scene03FadeOutProgress = sceneFadeOutProgress(scene03Progress);
-        const scene03TextInProgress = sceneTextInProgress(scene03Progress)
-        const scene03TextOutProgress = sceneTextOutProgress(scene03Progress)
-
-        if (scene03Progress < 0.5) {
-          citasScene03.style.opacity = scene03FadeInProgress;
-          citasScene03.querySelector('.title_wrap').style.transform = `translateY(${scene03FadeInProgress * -5}px)`;
-          citasScene03.querySelector('.content_wrap').style.transform = `translateY(${scene03FadeInProgress * -10}px)`;
-          citasI.play(scene03TextInProgress)
-        } else {
-          citasScene03.style.opacity = 1 - scene03FadeOutProgress;
-          citasScene03.querySelector('.title_wrap').style.transform = `translateY(${(1 - scene03FadeOutProgress) * -5}px)`;
-          citasScene03.querySelector('.content_wrap').style.transform = `translateY(${(1 - scene03FadeOutProgress) * -10}px)`;
-          citasI.play(1 - scene03TextOutProgress)
-        }
-        citasScene03.querySelector('.list_dimmed').style.opacity = 1 - scene03TextInProgress;
-
-        // scene03Snap.checkSnap(i);
-
-        //scene04
-        const scene04FadeInProgress = sceneFadeInProgress(scene04Progress);
-        const scene04FadeOutProgress = sceneFadeOutProgress(scene04Progress);
-        const scene04TextInProgress = sceneTextInProgress(scene04Progress)
-        const scene04TextOutProgress = sceneTextOutProgress(scene04Progress)
-
-        if (scene04Progress < 0.5) {
-          citasScene04.style.opacity = scene04FadeInProgress;
-          citasScene04.querySelector('.title_wrap').style.transform = `translateY(${scene04FadeInProgress * -5}px)`;
-          citasScene04.querySelector('.content_wrap').style.transform = `translateY(${scene04FadeInProgress * -10}px)`;
-          citasT.play(scene04TextInProgress)
-        } else {
-          citasScene04.style.opacity = 1 - scene04FadeOutProgress;
-          citasScene04.querySelector('.title_wrap').style.transform = `translateY(${(1 - scene04FadeOutProgress) * -5}px)`;
-          citasScene04.querySelector('.content_wrap').style.transform = `translateY(${(1 - scene04FadeOutProgress) * -10}px)`;
-          citasT.play(1 - scene04TextOutProgress)
-        }
-        citasScene04.querySelector('.list_dimmed').style.opacity = 1 - scene04TextInProgress;
-
-        // scene04Snap.checkSnap(i);
-
-        //scene05
-        const scene05FadeInProgress = sceneFadeInProgress(scene05Progress);
-        const scene05FadeOutProgress = sceneFadeOutProgress(scene05Progress);
-        const scene05TextInProgress = sceneTextInProgress(scene05Progress)
-        const scene05TextOutProgress = sceneTextOutProgress(scene05Progress)
-
-        if (scene05Progress < 0.5) {
-          citasScene05.style.opacity = scene05FadeInProgress;
-          citasScene05.querySelector('.title_wrap').style.transform = `translateY(${scene05FadeInProgress * -5}px)`;
-          citasScene05.querySelector('.content_wrap').style.transform = `translateY(${scene05FadeInProgress * -10}px)`;
-          citasA.play(scene05TextInProgress)
-        } else {
-          citasScene05.style.opacity = 1 - scene05FadeOutProgress;
-          citasScene05.querySelector('.title_wrap').style.transform = `translateY(${(1 - scene05FadeOutProgress) * -5}px)`;
-          citasScene05.querySelector('.content_wrap').style.transform = `translateY(${(1 - scene05FadeOutProgress) * -10}px)`;
-          citasA.play(1 - scene05TextOutProgress)
-        }
-        citasScene05.querySelector('.list_dimmed').style.opacity = 1 - scene05TextInProgress;
-
-        // scene05Snap.checkSnap(i);
-
-        //scene06
-        const scene06FadeInProgress = sceneFadeInProgress(scene06Progress);
-        const scene06FadeOutProgress = sceneFadeOutProgress(scene06Progress);
-        const scene06TextInProgress = sceneTextInProgress(scene06Progress)
-        const scene06TextOutProgress = sceneTextOutProgress(scene06Progress)
-
-        if (scene06Progress < 0.5) {
-          citasScene06.style.opacity = scene06FadeInProgress;
-          citasScene06.querySelector('.title_wrap').style.transform = `translateY(${scene06FadeInProgress * -5}px)`;
-          citasScene06.querySelector('.content_wrap').style.transform = `translateY(${scene06FadeInProgress * -10}px)`;
-          citasS.play(scene06TextInProgress)
-        } else {
-          citasScene06.style.opacity = 1 - scene06FadeOutProgress;
-          citasScene06.querySelector('.title_wrap').style.transform = `translateY(${(1 - scene06FadeOutProgress) * -5}px)`;
-          citasScene06.querySelector('.content_wrap').style.transform = `translateY(${(1 - scene06FadeOutProgress) * -10}px)`;
-          citasS.play(1 - scene06TextOutProgress)
-        }
-        citasScene06.querySelector('.list_dimmed').style.opacity = 1 - scene06TextInProgress;
-
-        // scene06Snap.checkSnap(i);
-
-        //scene07
-        const scene07FadeInProgress = sceneFadeInProgress(scene07Progress);
-        const scene07FadeOutProgress = sceneFadeOutProgress(scene07Progress);
-        const scene07TextInProgress = sceneTextInProgress(scene07Progress)
-        const scene07TextOutProgress = sceneTextOutProgress(scene07Progress)
-
-        textFiller.play(citasFillText03, scene07TextInProgress)
-        if (scene07Progress < 0.5) {
-          citasScene07.style.opacity = scene07FadeInProgress;
-          citasScene07.style.transform = `translateY(${scene07FadeInProgress * -10}px)`;
-        } else {
-          citasScene07.style.opacity = 1 - scene07FadeOutProgress;
-        }
-
-        //scene08
-        const scene08FadeInProgress = sceneFadeInProgress(scene08Progress);
-        const scene08FadeOutProgress = getProgress(scene08Progress, {
-          start: 0.7,
-          duration: 0.3
-        });
-        const scene08TextInProgress = sceneTextInProgress(scene08Progress)
-        const scene08TextOutProgress = sceneTextOutProgress(scene08Progress)
-
-        const TextFillProgress = getProgress(scene08Progress, {
-          start: 0.1,
-          duration: 0.2
-        })
-
-        const circleFadeInProgress = getProgress(scene08Progress, {
-          start: 0.1,
-          duration: 0.1
-        })
-
-        const circleSpreadProgress = getProgress(scene08Progress, {
-          start: 0.3,
-          duration: 0.3
-        })
-
-        textFiller.play(citasFillText04, TextFillProgress)
-        citasScene08.querySelector('.scene_background').style.clipPath = `circle(${(((1 - circleSpreadProgress)/2) * 2480) + 160}px at 50% 50%)`;
-        if (scene08Progress < 0.5) {
-          citasScene08.querySelector('.scene_background').style.opacity = circleFadeInProgress;
-          citasScene08.style.opacity = scene08FadeInProgress;
-          citasScene08.style.transform = `translateY(${scene08FadeInProgress * -10}px)`;
-          citasScene08.querySelector('.scene_background').style.backgroundColor = `rgba(88, 137, ${(scene08FadeInProgress) * 200}, ${(circleSpreadProgress) * 0.6})`;
-          citasScene08.querySelector('.scene_background').style.backgroundSize = `${1920 + (circleSpreadProgress * 10)}px 100%`
-        } else {
-          citasScene08.style.opacity = 1 - scene08FadeOutProgress;
-        }
-
-        //scene09
-        const scene09FadeInProgress = sceneFadeInProgress(scene09Progress);
-        const scene09FadeOutProgress = sceneFadeOutProgress(scene09Progress);
-        const scene09TextInProgress = sceneTextInProgress(scene09Progress)
-        const scene09TextOutProgress = sceneTextOutProgress(scene09Progress)
-
-        citasScene09.style.opacity = scene08FadeOutProgress;
-
-        const circleSwiperProgress = getProgress(scene09Progress, {
-          start: 0,
-          duration: 1
-        })
-
-        citasScene09.querySelector('ul').style.transform = `translateX(${100 * -circleSwiperProgress}%)`
-
-        if (circleSwiperProgress > 0 && circleSwiperProgress < 0.2) citasScene09.querySelectorAll('ul li').forEach(li => {
-          li.classList.remove('active')
-          citasScene09.querySelector('ul li:nth-of-type(1)').classList.add('active')
-          // citasScene09.querySelector('ul').style.transform = `translateX(${0}%)`
-        })
-        else if (circleSwiperProgress > 0 && circleSwiperProgress < 0.35) citasScene09.querySelectorAll('ul li').forEach(li => {
-          li.classList.remove('active')
-          citasScene09.querySelector('ul li:nth-of-type(2)').classList.add('active')
-          // citasScene09.querySelector('ul').style.transform = `translateX(${-20}%)`
-        })
-        else if (circleSwiperProgress > 0 && circleSwiperProgress < 0.5) citasScene09.querySelectorAll('ul li').forEach(li => {
-          li.classList.remove('active')
-          citasScene09.querySelector('ul li:nth-of-type(3)').classList.add('active')
-          // citasScene09.querySelector('ul').style.transform = `translateX(${-40}%)`
-        })
-        else if (circleSwiperProgress > 0 && circleSwiperProgress < 0.65) citasScene09.querySelectorAll('ul li').forEach(li => {
-          li.classList.remove('active')
-          citasScene09.querySelector('ul li:nth-of-type(4)').classList.add('active')
-          // citasScene09.querySelector('ul').style.transform = `translateX(${-60}%)`
-        })
-        else if (circleSwiperProgress > 0 && circleSwiperProgress < 0.8) citasScene09.querySelectorAll('ul li').forEach(li => {
-          li.classList.remove('active')
-          citasScene09.querySelector('ul li:nth-of-type(5)').classList.add('active')
-          // citasScene09.querySelector('ul').style.transform = `translateX(${-80}%)`
-        })
-        else citasScene09.querySelectorAll('ul li').forEach(li => li.classList.remove('active'));
-      }
-    }
-  })
-  window.addEventListener('scroll', citas.event);
-
-  const processSection = document.querySelector('.process');
-
-  const animationProcess = () => {
-    let isAnimating = false;
-    const steps = document.querySelectorAll('.progress_wrap li');
-    for (let step of steps) {
-      step.ballAni = step.querySelector('.ball').animate([{
-          background: '#505050'
-        },
-        {
-          background: '#ffffff'
-        }
-      ], {
-        delay: 300,
-        duration: 600,
-        fill: 'both'
-      })
-
-      step.lineAni = step.querySelector('.inner_line').animate([{
-          transform: 'scaleX(0)'
-        },
-        {
-          transform: 'scaleX(1)'
-        }
-      ], {
-        duration: 600,
-        fill: 'both'
-      })
-
-      step.ballAni.pause();
-      step.lineAni.pause();
-    }
-
-    return {
-      reset: function() {
-        for (let step of steps) {
-          step.classList.remove('active');
-          step.ballAni.cancel();
-          step.lineAni.cancel();
-          this.isAnimating = false;
-        }
-      },
-      play: async function() {
-        if (this.isAnimating) return;
-        this.reset();
-        this.isAnimating = true;
-        for (let step of steps) {
-          step.classList.add('active');
-          step.ballAni.play();
-          step.lineAni.play();
-          await step.lineAni.finished;
-        }
-      }
-    }
-  }
-
-  const stepAnime = animationProcess();
-
-  const tableAnimation = async () => {
-    const depth01 = [
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(2) li')].slice(0, 5),
-      ...[...processSection.querySelectorAll('.table_wrap > div li:nth-of-type(5)')].slice(1),
-    ]
-    const depth02 = [
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(3) li')].slice(0, 4),
-      ...[...processSection.querySelectorAll('.table_wrap > div li:nth-of-type(4)')].slice(2)
-    ]
-    const depth03 = [
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(4) li')].slice(0, 3),
-      ...[...processSection.querySelectorAll('.table_wrap > div li:nth-of-type(3)')].slice(3)
-    ]
-    const depth04 = [
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(5) li')].slice(0, 2),
-      ...[...processSection.querySelectorAll('.table_wrap > div li:nth-of-type(2)')].slice(4),
-      processSection.querySelector('.table_wrap > div:nth-of-type(6) li')
-    ]
-    const depth05 = [
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(1) li')].slice(5, 6),
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(2) li')].slice(4, 5),
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(3) li')].slice(3, 4),
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(4) li')].slice(2, 3),
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(5) li')].slice(1, 2),
-      ...[...processSection.querySelectorAll('.table_wrap > div:nth-of-type(6) li')].slice(0, 1),
-    ]
-
-    depth05[0].classList.add('highlight');
-    await new Promise(rsv => setTimeout(() => rsv(), 300));
-
-    for (let item of depth01) item.classList.add('dp2');
-    depth05[1].classList.add('highlight');
-    await new Promise(rsv => setTimeout(() => rsv(), 300));
-
-    for (let item of depth02) item.classList.add('dp3');
-    depth05[2].classList.add('highlight');
-    await new Promise(rsv => setTimeout(() => rsv(), 300));
-
-    for (let item of depth03) item.classList.add('dp4');
-    depth05[3].classList.add('highlight');
-    await new Promise(rsv => setTimeout(() => rsv(), 300));
-
-    for (let item of depth04) item.classList.add('dp5');
-    depth05[4].classList.add('highlight');
-    await new Promise(rsv => setTimeout(() => rsv(), 300));
-
-    depth05[5].classList.add('highlight');
-  }
-
-
-  const processScroll = sectionScroll('.process', {
-    duration: processSection.offsetHeight,
-    trigger: 'bottom',
-    on: {
-      progress: (i) => {
-        if (i > 0.2) stepAnime.play();
-        if (i > 0.35) tableAnimation();
-      }
-    }
-  })
-  window.addEventListener('scroll', processScroll.event);
-
-  const vipDBSection = document.querySelector('.vip_db')
-  const vipDBScroll = sectionScroll('.vip_db', {
-    duration: vipDBSection.offsetHeight,
-    trigger: 'bottom',
-    on: {
-      progress: (i) => {
-        vipDBSection.querySelector('.scene_background').style.opacity = getProgress(i, {
-          start: 0.3,
-          duration: 0.6
-        });
-
-        const outer = getProgress(i, {
-          start: 0.55,
-          duration: 0.35
-        })
-        const inner = getProgress(i, {
-          start: 0.6,
-          duration: 0.35
-        })
-        const center = getProgress(i, {
-          start: 0.65,
-          duration: 0.35
-        })
-
-        const [card01, card02, card03, card04, card05] = vipDBSection.querySelectorAll('li');
-
-        if (window.innerWidth > 768) {
-          card01.style.transform = `rotateX(${15 * (1 - outer)}deg)`
-          card05.style.transform = `rotateX(${15 * (1 - outer)}deg)`
-
-          card02.style.transform = `rotateX(${15 * (1 - inner)}deg)`
-          card02.style.top = `${70 * (1 - inner)}px`
-
-          card04.style.transform = `rotateX(${15 * (1 - inner)}deg)`
-          card04.style.top = `${70 * (1 - inner)}px`
-
-          card03.style.transform = `rotateX(${15 * (1 - center)}deg)`;
-          card03.style.top = `${150 * (1 - center)}px`
-        } else {
-          card01.style.transform = `rotateX(${15 * (1 - outer)}deg)`
-          card02.style.transform = `rotateX(${15 * (1 - outer)}deg)`
-          card01.style.top = `${40 * (1 - outer)}px`
-          card02.style.top = `${40 * (1 - outer)}px`
-
-          card03.style.transform = `rotateX(${15 * (1 - inner)}deg)`;
-          card04.style.transform = `rotateX(${15 * (1 - inner)}deg)`
-          card03.style.top = `${40 * (1 - outer)}px`
-          card04.style.top = `${40 * (1 - outer)}px`
-
-          card05.style.transform = `rotateX(${15 * (1 - center)}deg)`
-          card05.style.top = `${40 * (1 - outer)}px`
-        }
-      }
-    }
-  });
-  window.addEventListener('scroll', vipDBScroll.event);
-
-  new Lenis({
-    wrapper: document.querySelector('.modal_container .content_area'),
-    autoRaf: true,
-  })
-
-  document.querySelector('.scene03 .modal_button').addEventListener('click', () => {
-    if (window.lenis) window.lenis.stop();
-    document.querySelector('.modal_container').classList.remove('hide');
-  })
-
-  document.querySelector('.scene03 .close_button').addEventListener('click', () => {
-    document.querySelector('.modal_container').classList.add('hide');
-    if (window.lenis) window.lenis.start();
-  })
-
-  document.querySelector('.scene03 .modal_container').addEventListener('click', e => {
-    if (e.target.closest('.modal_wrapper')) return;
-    document.querySelector('.modal_container').classList.add('hide');
-    if (window.lenis) window.lenis.start();
-  })
-
-  let sectionChart = [];
-  document.querySelectorAll('.user_example .content > ul > li').forEach((li, idx) => {
-    const targetSection = document.querySelector(`.user_example .content > ul > li:nth-of-type(${idx + 1})`);
-
-    const canvas = targetSection.querySelector('canvas')
-    const parent = canvas.parentElement;
-    /** @type {CanvasRenderingContext2D}*/
-    const ctx = canvas.getContext('2d');
-
-    const w = parent.offsetWidth;
-    const h = parent.offsetHeight;
-
-    const dpr = 2;
-
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    canvas.style.width = `${w}px`
-    canvas.style.height = `${h}px`
-
-    ctx.scale(dpr, dpr);
-
-    const wS = (value) => (canvas.width * (value / 680)) / dpr
-    const hS = (value) => (canvas.height * (value / 262)) / dpr
-
-    const mT = (text) => {
-      const textInfo = ctx.measureText(text);
-      return {
-        width: textInfo.width,
-        height: textInfo.actualBoundingBoxAscent - textInfo.actualBoundingBoxDescent
-      }
-    }
-
-    if (idx === 0) {
-      const drawLine = () => {
-        ctx.save();
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-        ctx.fillStyle = `rgba(255, 255, 255, 0.4)`;
-        const txtInfo = ctx.measureText('단위: 억원');
-        txtInfo.height = txtInfo.actualBoundingBoxAscent - txtInfo.actualBoundingBoxDescent;
-        ctx.fillText('단위: 억원', wS(680) - txtInfo.width, hS(10 + txtInfo.height))
-        ctx.restore();
-
-        ctx.fillStyle = `rgba(255, 255, 255, 1)`;
-        ctx.fillText('0', 0, hS(224))
-        ctx.fillText('1', 0, hS(144))
-        ctx.fillText('2', 0, hS(70))
-
-        ctx.strokeStyle = '#fff'
-
-        ctx.beginPath();
-        ctx.moveTo(wS(14), hS(232));
-        ctx.lineTo(wS(680), hS(232));
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-
-        for (let i = 0; i < 12; i++) {
-          const iTxt = ctx.measureText(`${i + 1}월`);
-          ctx.fillText(`${i + 1}월`, wS(57 + 53 * i) - iTxt.width / 2, hS(250))
-          ctx.beginPath();
-          ctx.moveTo(wS(57 + 53 * i), hS(232));
-          ctx.lineTo(wS(57 + 53 * i), hS(238));
-          ctx.stroke();
-          ctx.closePath();
-        }
-        ctx.beginPath();
-        ctx.moveTo(wS(20), hS(232));
-        ctx.lineTo(wS(20), hS(32));
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS(14), hS(142));
-        ctx.lineTo(wS(20), hS(142));
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS(14), hS(66));
-        ctx.lineTo(wS(20), hS(66));
-        ctx.stroke();
-        ctx.closePath();
-      }
-
-      const lineHeight = [
-        [1, 1.5],
-        [1, 2],
-        [1, 1.5],
-        [1, 1],
-        [1, 1.5],
-        [1, 2],
-        [2, 2],
-        [1, 1],
-        [1.5, 1.5],
-        [2, 1],
-        [1, 1.5],
-        [2, 1]
-      ]
-
-      const render = (progress) => {
-        ctx.clearRect(0, 0, wS(680), hS(262));
-
-        drawLine();
-        for (let i = 0; i < 12; i++) {
-          const offset = [lineHeight[i][0] * 85 * progress, lineHeight[i][1] * 85 * progress];
-          ctx.save();
-          ctx.fillStyle = '#283A52';
-          ctx.fillRect(wS(35 + (i * 53)), hS((180 - offset[0]) + 51), wS(18), hS(offset[0]))
-
-          ctx.fillStyle = '#2C64AF';
-          ctx.fillRect(wS(60 + (i * 53)), hS((180 - offset[1]) + 51), wS(18), hS(offset[1]))
-
-          if (i === 11) {
-            ctx.fillStyle = 'rgb(255, 255, 255)'
-            ctx.fillText('1.7억', 33 + (i * 53), (180 - offset[0]) + 41)
-            ctx.fillText('1.2억', 59 + (i * 53), (180 - offset[1]) + 41)
-          }
-
-          ctx.restore();
-        }
-      }
-      sectionChart.push(render);
-    }
-
-    if (idx === 1) {
-      const drawLine = () => {
-        ctx.save();
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-        ctx.fillStyle = `rgba(255, 255, 255, 0.4)`;
-        const txtInfo = ctx.measureText('단위: 억원');
-        txtInfo.height = txtInfo.actualBoundingBoxAscent - txtInfo.actualBoundingBoxDescent;
-        ctx.fillText('단위: 억원', wS(680) - txtInfo.width, hS(10 + txtInfo.height))
-        ctx.restore();
-
-        ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.strokeStyle = '#fff';
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-
-        if(window.innerHeight < 425) ctx.fillText('Before', 0, hS(116));
-        ctx.beginPath();
-        ctx.moveTo(wS(51), hS(111));
-        ctx.lineTo(wS(46), hS(111));
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('After', 0, hS(174));
-        ctx.beginPath();
-        ctx.moveTo(wS(51), hS(170));
-        ctx.lineTo(wS(46), hS(170));
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS(51), hS(71));
-        ctx.lineTo(wS(51), hS(212));
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS(380), hS(71));
-        ctx.lineTo(wS(380), hS(212));
-        ctx.stroke();
-        ctx.closePath();
-      }
-
-      const render = (progress) => {
-        ctx.clearRect(0, 0, wS(680), hS(262));
-        drawLine();
-
-        ctx.fillStyle = '#2C64AF';
-        ctx.fillRect(wS(52), hS(102), wS(246 * progress), hS(18))
-        ctx.fillRect(wS(381), hS(102), wS(209 * progress), hS(18))
-
-        ctx.fillStyle = '#fff'
-        ctx.fillText('46%', wS(256 * progress + 52), hS(116))
-        ctx.fillText('39%', wS(219 * progress + 381), hS(116))
-
-        ctx.fillStyle = '#283A52';
-        ctx.fillRect(wS(52), hS(161), wS(98 * progress), hS(18));
-        ctx.fillRect(wS(381), hS(161), wS(65 * progress), hS(18));
-
-        ctx.fillStyle = '#fff'
-        ctx.fillText('15%', wS(108 * progress + 52), hS(175))
-        ctx.fillText('9%', wS(75 * progress + 381), hS(175))
-      }
-
-      sectionChart.push(render);
-    }
-
-    if (idx === 2) {
-      const drawLine = () => {
-        ctx.save();
-        ctx.strokeStyle = '#fff';
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-
-        ctx.fillStyle = `rgba(255, 255, 255, 0.4)`;
-        const txtInfo = ctx.measureText('단위: 억원');
-        txtInfo.height = txtInfo.actualBoundingBoxAscent - txtInfo.actualBoundingBoxDescent;
-        ctx.fillText('단위: 억원', wS(680) - txtInfo.width, hS(10 + txtInfo.height))
-
-        ctx.fillStyle = 'rgb(255, 255, 255)';
-
-        ctx.beginPath();
-        ctx.moveTo(wS(18), hS(232))
-        ctx.lineTo(wS(198), hS(232))
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 1 / 3), hS(232))
-        ctx.lineTo(wS((198 + 18) * 1 / 3), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('Before', wS((198 + 18) * 1 / 3) - (mT('Before').width / 2), hS(258))
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 2 / 3), hS(232))
-        ctx.lineTo(wS((198 + 18) * 2 / 3), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('After', wS((198 + 18) * 2 / 3) - (mT('After').width / 2), hS(258))
-
-        ctx.beginPath();
-        ctx.moveTo(wS(250), hS(232))
-        ctx.lineTo(wS(430), hS(232))
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 1 / 3 + 235), hS(232))
-        ctx.lineTo(wS((198 + 18) * 1 / 3 + 235), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('Before', wS((198 + 18) * 1 / 3 + 235) - (mT('Before').width / 2), hS(258))
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 2 / 3 + 235), hS(232))
-        ctx.lineTo(wS((198 + 18) * 2 / 3 + 235), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('After', wS((198 + 18) * 2 / 3 + 235) - (mT('After').width / 2), hS(258))
-
-        ctx.beginPath();
-        ctx.moveTo(wS(480), hS(232))
-        ctx.lineTo(wS(660), hS(232))
-        ctx.stroke();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 1 / 3 + 470), hS(232))
-        ctx.lineTo(wS((198 + 18) * 1 / 3 + 470), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('Before', wS((198 + 18) * 1 / 3 + 470) - (mT('Before').width / 2), hS(258))
-
-        ctx.beginPath();
-        ctx.moveTo(wS((198 + 18) * 2 / 3 + 470), hS(232))
-        ctx.lineTo(wS((198 + 18) * 2 / 3 + 470), hS(238))
-        ctx.stroke();
-        ctx.closePath();
-        if(window.innerHeight < 425) ctx.fillText('After', wS((198 + 18) * 2 / 3 + 470) - (mT('Before').width / 2), hS(258))
-      }
-
-      ctx.font = `600 ${window.innerHeight > 768 ? 10 : 2}px 'Inter', sans-serif`;
-      const render = (progress) => {
-        ctx.clearRect(0, 0, 680, 262);
-        drawLine();
-
-        ctx.fillStyle = '#283A52';
-        ctx.fillRect(wS((198 + 18) * 1 / 3 - 9), hS(231 - (137 * progress)), wS(18), hS(137 * progress));
-        ctx.fillRect(wS((198 + 18) * 1 / 3 - 9 + 235), hS(231 - (143 * progress)), wS(18), hS(143 * progress));
-        ctx.fillRect(wS((198 + 18) * 1 / 3 - 9 + 470), hS(231 - (109 * progress)), wS(18), hS(109 * progress));
-
-        ctx.fillStyle = '#2C64AF';
-        ctx.fillRect(wS((198 + 18) * 2 / 3 - 9), hS(231 - (114 * progress)), wS(18), hS(114 * progress));
-        ctx.fillRect(wS((198 + 18) * 2 / 3 - 9 + 235), hS(231 - (134 * progress)), wS(18), hS(134 * progress));
-        ctx.fillRect(wS((198 + 18) * 2 / 3 - 9 + 470), hS(231 - (83 * progress)), wS(18), hS(83 * progress));
-
-        ctx.fillStyle = '#fff';
-        ctx.fillText('7.5', wS((198 + 18) * 1 / 3) - (mT('7.5').width / 2), hS(231 - (137 * progress) - 5));
-        ctx.fillText('6.1', wS((198 + 18) * 2 / 3) - (mT('6.1').width / 2), hS(231 - (114 * progress) - 5));
-        ctx.fillText('8', wS((198 + 18) * 1 / 3 + 235) - (mT('8').width / 2), hS(231 - (143 * progress) - 5));
-        ctx.fillText('7.1', wS((198 + 18) * 2 / 3 + 235) - (mT('7.1').width / 2), hS(231 - (134 * progress) - 5));
-        ctx.fillText('6', wS((198 + 18) * 1 / 3 + 470) - (mT('6').width / 2), hS(231 - (109 * progress) - 5));
-        ctx.fillText('4.2', wS((198 + 18) * 2 / 3 + 470) - (mT('4.2').width / 2), hS(231 - (83 * progress) - 5));
-
-      }
-      sectionChart.push(render);
-    }
-
-
-    let isPlay = false;
-    const counters = [...targetSection.querySelectorAll('[data-value]')].map(el => countUp(el));
-    const userExampleScroll = sectionScroll(`.user_example .content > ul > li:nth-of-type(${idx + 1})`, {
-      duration: targetSection.offsetHeight,
-      trigger: 'bottom',
-      on: {
-        progress: (i) => {
-          if (i >= 0.5) {
-            counters.forEach(count => count.play());
-
-            const leftIn = targetSection.querySelector('.left_area .left_area_body div:last-of-type div div')
-            const leftInProgress = getProgress(i, {
-              start: 0.3,
-              duration: 0.2
-            })
-            if (sectionChart[idx]) sectionChart[idx](i);
-
-            if (window.innerWidth <= 425) return;
-            leftIn.style.transform = `translateX(-${40 * (1-i)}%)`
-
-          }
-        }
-      }
-    })
-    window.addEventListener('scroll', userExampleScroll.event);
-  })
-
-  const aosElement = document.querySelectorAll('[data-fade-up]');
-  aosElement.forEach((el) => aosObserver.observe(el));
+    });
 </script>
+
+</body>
+</html>
