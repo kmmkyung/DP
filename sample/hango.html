@@ -57,3 +57,116 @@
     </div>
   </body>
 </html>
+
+<script>
+  const formContents = document.querySelectorAll(".formContent");
+
+  formContents.forEach(function (form) {
+    const numberInputs = form.querySelectorAll("input[type=number]");
+    const totalMoneyElem = form.querySelector(".totalMoney");
+
+    numberInputs.forEach(function (input) {
+      input.addEventListener("input", function () {
+        let total = 0;
+
+        numberInputs.forEach((i) => {
+          total += parseFloat(i.value) || 0;
+        });
+
+        totalMoneyElem.textContent = total.toLocaleString();
+      });
+    });
+  });
+
+  const heirAddBtn = document.querySelector(".heirContent .heirAddBtn");
+  heirAddBtn.addEventListener("click", function () {});
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ===============================
+     totalMoney 계산
+  =============================== */
+  const formContents = document.querySelectorAll(".formContent");
+
+  function updateTotal(form) {
+    let total = 0;
+    form.querySelectorAll("input[type=number]").forEach(i => {
+      total += i.valueAsNumber || 0;
+    });
+    const totalMoneyElem = form.querySelector(".totalMoney");
+    if (totalMoneyElem) {
+      totalMoneyElem.textContent = total.toLocaleString();
+    }
+  }
+
+  formContents.forEach(form => {
+    // 이벤트 위임 (동적 input 포함)
+    form.addEventListener("input", e => {
+      if (e.target.matches("input[type=number]")) {
+        updateTotal(form);
+      }
+    });
+  });
+
+
+  /* ===============================
+     heir Add / Delete
+  =============================== */
+  const heirContent = document.querySelector(".heirContent");
+  if (!heirContent) return;
+
+  const addBtn = heirContent.querySelector(".heirAddBtn");
+
+  // 상속인 추가
+  addBtn.addEventListener("click", () => {
+    const count = heirContent.querySelectorAll(".heirAddBox").length + 1;
+
+    const newBox = document.createElement("div");
+    newBox.className = "heirAddBox";
+    newBox.innerHTML = `
+      <div class="heirLeftWrap">
+        <button type="button" class="heirDeleteBtn">삭제</button>
+        <b class="heirTitle">상속인 <span class="heirNumber">${count}</span></b>
+      </div>
+      <div class="heirInputWrap">
+        <input type="number" min="0" step="1" placeholder="0" required>
+        <label>원</label>
+      </div>
+    `;
+
+    heirContent.insertBefore(newBox, addBtn);
+
+    // 추가 후 total 다시 계산
+    const parentForm = heirContent.closest(".formContent");
+    if (parentForm) updateTotal(parentForm);
+  });
+
+  // 상속인 삭제
+  heirContent.addEventListener("click", e => {
+    if (e.target.classList.contains("heirDeleteBtn")) {
+      const box = e.target.closest(".heirAddBox");
+      if (box) box.remove();
+      updateHeirNumbers();
+
+      const parentForm = heirContent.closest(".formContent");
+      if (parentForm) updateTotal(parentForm);
+    }
+  });
+
+  // 번호 재정렬
+  function updateHeirNumbers() {
+    heirContent.querySelectorAll(".heirAddBox").forEach((box, idx) => {
+      const num = box.querySelector(".heirNumber");
+      if (num) num.textContent = idx + 1;
+    });
+  }
+
+});
+</script>
+
+  });
+</script>
