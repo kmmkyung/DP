@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITAS Scroll Animation</title>
+    <style>
+        body { margin: 0; background-color: #000; color: #fff; font-family: sans-serif; }
+        
+        /* 1. 핀 효과를 위한 핵심 레이아웃 */
+        .citas {
+            position: relative;
+            height: 1000vh; /* 스크롤 길이를 충분히 확보 (캔버스 5개 분량) */
+            background: #0e0e0e;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. 각 장면(Scene) 설정 */
+        .scene {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            opacity: 0; /* 기본적으로 숨김 */
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .scene.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .text_scene {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .left_section { width: 40%; }
+        .right_section { width: 50%; display: flex; justify-content: center; }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            background: rgba(255,255,255,0.02); /* 위치 확인용 미세 배경 */
+        }
+
+        .title_wrap p:first-child { color: #00ffb4; font-size: 1.2rem; }
+        .title_wrap p:last-child { font-size: 3rem; font-weight: bold; margin: 10px 0; }
+        
+        /* 설명 텍스트 */
+        .scene_title { font-size: 2.5rem; text-align: center; width: 100%; margin-top: 20vh; }
+    </style>
+</head>
+<body>
+
+<section class="citas">
+    <div class="sticky">
+        <div class="scene scene01 active">
+            <p class="scene_title">전문직의, 전문직에 의한, 전문직을 위한.</p>
+        </div>
+
+        <div class="scene text_scene scene02" id="sec_c">
+            <div class="left_section">
+                <div class="title_wrap">
+                    <p>For your business</p>
+                    <p>Consulting</p>
+                </div>
+                <div class="content_wrap">
+                    <p>CITAS Project.</p>
+                    <ul><li>토요특강, 전문직 COS-MBA 등</li></ul>
+                </div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_c"></canvas>
+            </div>
+        </div>
+
+        <div class="scene text_scene scene03" id="sec_i">
+            <div class="left_section">
+                <div class="title_wrap"><p>For your Technology</p><p>IT</p></div>
+                <div class="content_wrap"><p>CITAS Project.</p><ul><li>AI Consulting, AI 경정청구 등</li></ul></div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_i"></canvas>
+            </div>
+        </div>
+
+        <div class="scene text_scene scene06" id="sec_s">
+            <div class="left_section">
+                <div class="title_wrap"><p>For your Business</p><p>Sales</p></div>
+                <div class="content_wrap"><p>CITAS Project.</p><ul><li>S7 Training, A-MBA 등</li></ul></div>
+            </div>
+            <div class="right_section">
+                <canvas id="citas_s"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // --- 1. Pixel Map 데이터 (예시: 1은 색상, 0은 빈칸) ---
+    // 실제 사용하시는 긴 배열 데이터를 각 ID에 맞게 넣으세요.
+    const PIXEL_MAPS = {
+        '#citas_c': [[0,0,0,0,0],[0,1,1,1,0],[0,1,0,1,0],[0,1,1,1,0],[0,0,0,0,0]], // 임시 데이터
+        '#citas_i': [[0,1,0,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0]],
+        '#citas_s': [[1,1,1,1,1],[1,0,0,0,0],[1,1,1,1,1],[0,0,0,0,1],[1,1,1,1,1]]
+    };
+
+    const ACTIVE_COLOR = '0, 255, 180';
+
+    // --- 2. 캔버스 애니메이션 클래스 ---
+    class CitasCanvas {
+        constructor(id, map) {
+            this.canvas = document.querySelector(id);
+            if (!this.canvas) return;
+            this.ctx = this.canvas.getContext('2d');
+            this.pixelMap = map;
+            this.dpr = 2;
+            this.colCount = 44; // 고정 그리드 수
+            this.rowCount = 33;
+            this.cellArr = Array.from({ length: 44 }, () => 
+                Array.from({ length: 33 }, () => Math.random() * 1.5)
+            );
+            this.init();
+        }
+
+        init() {
+            window.addEventListener('resize', () => this.resize());
+            this.resize();
+        }
+
+        resize() {
+            const size = Math.min(window.innerWidth * 0.4, 500);
+            this.canvas.style.width = `${size}px`;
+            this.canvas.style.height = `${size * 0.8}px`;
+            this.canvas.width = size * this.dpr;
+            this.canvas.height = size * 0.8 * this.dpr;
+            this.ctx.scale(this.dpr, this.dpr);
+            this.cellWidth = size / this.colCount * 0.8;
+            this.cellHeight = this.cellWidth * 3;
+            this.gap = this.cellWidth * 0.2;
+        }
+
+        render(progress) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for (let i = 0; i < this.rowCount; i++) {
+                for (let j = 0; j < this.colCount; j++) {
+                    const delay = this.cellArr[j][i];
+                    const p = Math.max(0, Math.min(1, progress - delay));
+                    if (p <= 0) continue;
+
+                    const isHighlight = this.pixelMap[i] && this.pixelMap[i][j] === 1;
+                    this.ctx.fillStyle = isHighlight ? `rgba(${ACTIVE_COLOR}, ${p})` : `rgba(40, 40, 40, ${p * 0.2})`;
+                    this.ctx.fillRect(j * (this.cellWidth + this.gap), i * (this.cellHeight + this.gap), this.cellWidth, this.cellHeight);
+                }
+            }
+        }
+    }
+
+    // --- 3. 초기화 및 스크롤 제어 ---
+    const instances = {};
+    Object.entries(PIXEL_MAPS).forEach(([id, map]) => {
+        instances[id] = new CitasCanvas(id, map);
+    });
+
+    const scenes = document.querySelectorAll('.scene');
+
+    window.addEventListener('scroll', () => {
+        const section = document.querySelector('.citas');
+        const scrollY = window.pageYOffset;
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        // 전체 진행도 (0 ~ 1)
+        let totalP = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+        totalP = Math.max(0, Math.min(1, totalP));
+
+        // 각 장면의 활성화 및 캔버스 재생 (구간 분할)
+        // 0.0~0.2: Intro, 0.2~0.4: Consulting, 0.4~0.6: IT ...
+        const step = 1 / scenes.length;
+
+        scenes.forEach((scene, idx) => {
+            const start = idx * step;
+            const end = (idx + 1) * step;
+
+            if (totalP >= start && totalP < end) {
+                scene.classList.add('active');
+                // 해당 구간 내에서의 진행도 (0 ~ 3)
+                const localP = (totalP - start) / (end - start) * 3;
+                
+                const canvas = scene.querySelector('canvas');
+                if (canvas && instances[`#${canvas.id}`]) {
+                    instances[`#${canvas.id}`].render(localP);
+                }
+            } else {
+                scene.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
