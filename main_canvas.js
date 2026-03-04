@@ -1,0 +1,142 @@
+/** @format */
+
+(function () {
+  const pi = Math.PI;
+  const pi2 = pi * 2;
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  let W, H, radius, centerX, centerY;
+  const scale = window.devicePixelRatio || 1;
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+
+    canvas.width = W * scale;
+    canvas.height = H * scale;
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
+
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+
+    radius = Math.sqrt(W * W + H * H) / 2;
+    centerX = W / 2;
+    centerY = H / 2;
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+
+  const options = {
+    waves: 3,
+    width: 200,
+    amplitude: 0.5,
+    rotation: 45,
+    speed: [0.004, 0.008],
+  };
+
+  let hue = 11;
+  let hueFw = true;
+
+  function updateColor() {
+    hue += hueFw ? 0.01 : -0.01;
+
+    if (hue > 14) hueFw = false;
+    if (hue < 11) hueFw = true;
+
+    const a = Math.floor(127 * Math.sin(0.3 * hue + 0) + 128);
+    const b = Math.floor(127 * Math.sin(0.3 * hue + 2) + 128);
+    const c = Math.floor(127 * Math.sin(0.3 * hue + 4) + 128);
+
+    return `rgba(${a},${b},${c},0.1)`;
+  }
+
+  function rnd(a, b) {
+    if (b === undefined) return Math.random() * a;
+    return a + Math.random() * (b - a);
+  }
+
+  function rndSign() {
+    return Math.random() > 0.5 ? 1 : -1;
+  }
+
+  function Wave() {
+    this.lines = [];
+    this.angle = [rnd(pi2), rnd(pi2), rnd(pi2), rnd(pi2)];
+    this.speed = [
+      rnd(...options.speed) * rndSign(),
+      rnd(...options.speed) * rndSign(),
+      rnd(...options.speed) * rndSign(),
+      rnd(...options.speed) * rndSign(),
+    ];
+  }
+
+  Wave.prototype.update = function (color) {
+    this.lines.push(new Line(this, color));
+    if (this.lines.length > options.width) this.lines.shift();
+  };
+
+  Wave.prototype.draw = function () {
+    const rotation = (options.rotation * pi) / 180;
+    const amplitude = options.amplitude;
+    const r3 = radius / 3;
+
+    this.lines.forEach((line) => {
+      const a = line.angle;
+
+      const x1 = centerX - radius * Math.cos(a[0] * amplitude + rotation);
+      const y1 = centerY - radius * Math.sin(a[0] * amplitude + rotation);
+      const x2 = centerX + radius * Math.cos(a[3] * amplitude + rotation);
+      const y2 = centerY + radius * Math.sin(a[3] * amplitude + rotation);
+
+      const cpx1 = centerX - r3 * Math.cos(a[1] * amplitude * 2);
+      const cpy1 = centerY - r3 * Math.sin(a[1] * amplitude * 2);
+      const cpx2 = centerX + r3 * Math.cos(a[2] * amplitude * 2);
+      const cpy2 = centerY + r3 * Math.sin(a[2] * amplitude * 2);
+
+      ctx.strokeStyle = line.color;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.bezierCurveTo(cpx1, cpy1, cpx2, cpy2, x2, y2);
+      ctx.stroke();
+    });
+  };
+
+  function Line(wave, color) {
+    this.angle = [
+      Math.sin((wave.angle[0] += wave.speed[0])),
+      Math.sin((wave.angle[1] += wave.speed[1])),
+      Math.sin((wave.angle[2] += wave.speed[2])),
+      Math.sin((wave.angle[3] += wave.speed[3])),
+    ];
+    this.color = color;
+  }
+
+  const waves = [];
+  for (let i = 0; i < options.waves; i++) waves.push(new Wave());
+
+  function background(color) {
+    const gradient = ctx.createLinearGradient(0, 0, 0, H);
+    gradient.addColorStop(0, "#000");
+    gradient.addColorStop(1, color);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  function animate() {
+    const color = updateColor();
+    ctx.clearRect(0, 0, W, H);
+    background(color);
+
+    waves.forEach((w) => {
+      w.update(color);
+      w.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
