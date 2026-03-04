@@ -1,0 +1,226 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>좌/우 등장 모션 예시</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f0f0f0;
+        padding: 50px;
+      }
+      .video {
+        width: 300px;
+        height: 180px;
+        margin: 50px auto;
+        background: #333;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0; /* 처음은 안보이게 */
+      }
+
+      /* ----- 좌/우 모션 키프레임 ----- */
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          transform: translateX(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeInRight {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounceInLeft {
+        0% {
+          transform: translateX(-300%) scale(0.5);
+          opacity: 0;
+        }
+        60% {
+          transform: translateX(30px) scale(1.1);
+          opacity: 1;
+        }
+        80% {
+          transform: translateX(-10px) scale(0.95);
+        }
+        100% {
+          transform: translateX(0) scale(1);
+        }
+      }
+      @keyframes bounceInRight {
+        0% {
+          transform: translateX(300%) scale(0.5);
+          opacity: 0;
+        }
+        60% {
+          transform: translateX(-30px) scale(1.1);
+          opacity: 1;
+        }
+        80% {
+          transform: translateX(10px) scale(0.95);
+        }
+        100% {
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      @keyframes rotateInLeft {
+        from {
+          transform: translateX(-100%) rotate(-45deg);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) rotate(0);
+          opacity: 1;
+        }
+      }
+      @keyframes rotateInRight {
+        from {
+          transform: translateX(100%) rotate(45deg);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes zoomInLeft {
+        from {
+          transform: translateX(-100%) scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes zoomInRight {
+        from {
+          transform: translateX(100%) scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* ----- 클래스에 애니메이션 연결 ----- */
+      .left-slide {
+        animation: slideInLeft 1s forwards;
+      }
+      .right-slide {
+        animation: slideInRight 1s forwards;
+      }
+
+      .left-fade {
+        animation: fadeInLeft 0.8s forwards;
+      }
+      .right-fade {
+        animation: fadeInRight 0.8s forwards;
+      }
+
+      .left-bounce {
+        animation: bounceInLeft 1.2s forwards;
+      }
+      .right-bounce {
+        animation: bounceInRight 1.2s forwards;
+      }
+
+      .left-rotate {
+        animation: rotateInLeft 1s forwards;
+      }
+      .right-rotate {
+        animation: rotateInRight 1s forwards;
+      }
+
+      .left-zoom {
+        animation: zoomInLeft 1s forwards;
+      }
+      .right-zoom {
+        animation: zoomInRight 1s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>좌/우 등장 모션 예시</h1>
+
+    <div class="video">영상1</div>
+    <div class="video">영상2</div>
+    <div class="video">영상3</div>
+    <div class="video">영상4</div>
+    <div class="video">영상5</div>
+    <div class="video">영상6</div>
+    <div class="video">영상7</div>
+    <div class="video">영상8</div>
+
+    <script>
+      // 스크롤 시 등장 + 랜덤 모션 적용
+      const videos = document.querySelectorAll(".video");
+      const motions = [
+        "left-slide",
+        "right-slide",
+        "left-fade",
+        "right-fade",
+        "left-bounce",
+        "right-bounce",
+        "left-rotate",
+        "right-rotate",
+        "left-zoom",
+        "right-zoom",
+      ];
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const randomMotion =
+                motions[Math.floor(Math.random() * motions.length)];
+              entry.target.classList.add(randomMotion);
+            }
+          });
+        },
+        {threshold: 0.5},
+      );
+
+      videos.forEach((v) => observer.observe(v));
+    </script>
+  </body>
+</html>
