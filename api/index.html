@@ -14,9 +14,9 @@
   </head>
   <body>
     <h3>API 호출 링크</h3>
-    <a href="#" class="apiLink" data-code="a">code=a 호출</a><br />
-    <a href="#" class="apiLink" data-code="b">code=b 호출</a><br />
-    <a href="#" class="apiLink" data-code="c">code=c 호출</a><br />
+    <a href="#" class="apiLink">code=a 호출</a><br />
+    <a href="#" class="apiLink">code=b 호출</a><br />
+    <a href="#" class="apiLink">code=c 호출</a><br />
 
     <pre id="result"></pre>
 
@@ -27,8 +27,6 @@
       links.forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault(); // 링크 이동 막기
-
-          const codeValue = link.dataset.code; // 각 a태그 data-code 읽기
           const url = "https://kmmkyung.github.io/DP/api/text.json";
 
           const apiUrl = fetch(url)
@@ -39,11 +37,10 @@
             })
             .then((data) => {
               console.log(data);
-              resultEl.textContent = JSON.stringify(data, null, 2);
+              resultEl.textContent = JSON.stringify(data);
             })
             .catch((error) => {
               console.error("API 호출 실패:", error);
-              resultEl.textContent = "API 호출 실패: " + error;
             });
         });
       });

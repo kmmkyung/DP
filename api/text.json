@@ -8,5 +8,50 @@
         "imageUrl": "이미지링크"
       }
     ]
+  },
+  "CATE_1_NEWS,CATE_1_CARD,CATE_1_VIDEO": {
+    "main": [
+      {
+        "ordIdx": 1,
+        "resvDate": "2026.02.03 10:03:00",
+        "imageUrl": "이미지링크",
+        "altTitle": "불공정 조달행위 근절 및 건전한 ",
+        "mainLink": "불공정 조달행위",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "기사제목"
+      },
+      {
+        "ordIdx": 2,
+        "resvDate": "2026.02.03 10:03:00",
+        "imageUrl": "이미지링크",
+        "altTitle": "불공정 조달행위 근절 및 건전한 ",
+        "mainLink": "불공정 조달행위",
+        "mainCode": "CATE_1_NEWS",
+        "mainTitle": "기사제목"
+      },
+      {
+        "ordIdx": 3,
+        "resvDate": "2026.02.03 10:03:00",
+        "imageUrl": "이미지링크",
+        "altTitle": "불공정 조달행위 근절 및 건전한 ",
+        "mainLink": "불공정 조달행위",
+        "mainCode": "CATE_1_VIDEO",
+        "mainTitle": "기사제목"
+      }
+    ]
+  },
+  "GOV_VISION_DEPT": {
+    "main": [
+      {
+        "summary": "설명입니다.",
+        "ordIdx": 1,
+        "mainLink": "링크입니다.&call_form=GOV_VISION_DEPT",
+        "fileRegiDate": "2026.03.03",
+        "subTitle": "제목입니다.",
+        "mainTitle": "개인정보보호위원회",
+        "imageUrl": "https://www.korea.kr/newsWeb/resources/attaches/2026.03/03/011c0ac9e82d2325b4f48354c702cb45.jpg",
+        "altTitle": "개인정보보호위원회"
+      }
+    ]
   }
 }
