@@ -1,0 +1,12 @@
+{
+  "GOV_VISION_CATE": {
+    "main": [
+      {
+        "ordIdx": 1,
+        "mainLink": "CATE_1_NEWS,CATE_1_CARD,CATE_1_VIDEO&call_form=GOV_VISION_CATE",
+        "mainTitle": "카테고리제목",
+        "imageUrl": "이미지링크"
+      }
+    ]
+  }
+}
