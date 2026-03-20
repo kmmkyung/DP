@@ -64,7 +64,7 @@
         "imageUrl": "/newsWeb/resources/attaches/2026.01/30/2(18).jpg",
         "altTitle": "'버스 카드 단말기에 부착된 '모두의 카드' 홍보물",
         "mainLink": "/news/reporterView.do?newsId=148958828",
-        "mainCode": "CATE_1_CARD",
+        "mainCode": "CATE_1_NEWS",
         "mainTitle": "'K-패스'보다 더 좋아졌다! '모두의 카드'로 대중교통비 부담 줄었어요"
       },
       {
@@ -98,14 +98,84 @@
         "mainTitle": "대중교통비 무제한 환급…K-패스 '모두의 카드' 도입"
       },
       {
-        "ordIdx": 41111111111111111111111111,
+        "ordIdx": 6,
         "codeIdx": 1,
-        "resvDate": "2026.02.03",
-        "imageUrl": "이미지링크",
-        "altTitle": "불공정 조달행위 근절 및 건전한 ",
+        "resvDate": "2026.02.04",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/04/0204-3.jpg",
+        "altTitle": "전국 229개 지방정부 모두가 참여하는 모두의 카드(K-패스)",
+        "mainLink": "/multi/visualNewsView.do?newsId=148959042&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "전국 229개 지방정부 모두가 참여하는 '모두의 카드(K-패스)’"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 2,
+        "resvDate": "2026.02.02",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-10.jpg",
+        "altTitle": "'저소득층'을 위한 모두의 카드",
+        "mainLink": "/multi/visualNewsView.do?newsId=148958941&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "'저소득층'을 위한 모두의 카드"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 3,
+        "resvDate": "2026.02.02",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-9(1)(0).jpg",
+        "altTitle": "다둥이(3자녀 이상)를 위한 모두의 카드",
+        "mainLink": "/multi/visualNewsView.do?newsId=148958938&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "다둥이(3자녀 이상)를 위한 모두의 카드"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 4,
+        "resvDate": "2026.02.02",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-8(1)(0).jpg",
+        "altTitle": "'다둥이(2자녀)'를 위한 모두의 카드",
+        "mainLink": "/multi/visualNewsView.do?newsId=148959042&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "다둥이(2자녀)'를 위한 모두의 카드"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 5,
+        "resvDate": "2026.02.04",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-7.jpg",
+        "altTitle": "'어르신'을 위한 모두의 카드",
         "mainLink": "/multi/visualNewsView.do?newsId=148958936&cateId=graphic_news",
-        "mainCode": "CATE_1_NEWS",
-        "mainTitle": "기사제목"
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "'어르신'을 위한 모두의 카드"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 6,
+        "resvDate": "2026.02.02",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-6.jpg",
+        "altTitle": "'청년'을 위한 모두의 카드",
+        "mainLink": "/multi/visualNewsView.do?newsId=148958934&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "'청년'을 위한 모두의 카드"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 7,
+        "resvDate": "2026.02.02",
+        "imageUrl": "/newsWeb/resources/attaches/2026.02/02/0202-4.jpg",
+        "altTitle": "K-패스 '모두의 카드', 이렇게 달라집니다!",
+        "mainLink": "/multi/visualNewsView.do?newsId=148958906&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "K-패스 '모두의 카드', 이렇게 달라집니다!"
+      },
+      {
+        "ordIdx": 6,
+        "codeIdx": 8,
+        "resvDate": "2026.01.21",
+        "imageUrl": "/newsWeb/resources/attaches/2026.01/21/0121-4.jpg",
+        "altTitle": "K-패스, 모두의 카드 주관 카드사 7곳 추가",
+        "mainLink": "/multi/visualNewsView.do?newsId=148959042&cateId=graphic_news",
+        "mainCode": "CATE_1_CARD",
+        "mainTitle": "K-패스, 모두의 카드 주관 카드사 7곳 추가"
       },
       {
         "ordIdx": 3,
