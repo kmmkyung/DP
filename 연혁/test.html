@@ -1,0 +1,293 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CITAS GSAP Scroll Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background-color: #050505;
+        color: #fff;
+        font-family: sans-serif;
+        overflow-x: hidden;
+      }
+
+      .citas {
+        position: relative;
+        width: 100%;
+        /* 스크롤 길이는 GSAP ScrollTrigger에서 end: "+=5000" 등으로 결정됩니다 */
+      }
+
+      .sticky {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* GSAP autoAlpha를 위해 초기값 설정 */
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .text_scene {
+        padding: 0 10%;
+        justify-content: space-between;
+      }
+
+      .left_section {
+        width: 40%;
+      }
+      .right_section {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        width: 100%;
+        max-width: 600px; /* 캔버스 최대 크기 */
+        height: auto;
+      }
+
+      .title_wrap p:first-child {
+        color: #00ffb4;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+      .title_wrap p:last-child {
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 0;
+      }
+      .content_wrap {
+        margin-top: 20px;
+        color: #ccc;
+        line-height: 1.6;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="citas">
+      <div class="sticky">
+        <div class="scene scene01">
+          <div style="text-align: center">
+            <h1 style="font-size: 3rem; line-height: 1.4">
+              전문직의, 전문직에 의한,<br />전문직을 위한.
+            </h1>
+          </div>
+        </div>
+
+        <div class="scene text_scene scene02" data-canvas="#citas_c">
+          <div class="left_section">
+            <div class="title_wrap">
+              <p>For your business</p>
+              <p>Consulting</p>
+            </div>
+            <div class="content_wrap">
+              <p>CITAS Project.</p>
+              <ul>
+                <li>· 토요특강 (매월 최신 무기 업데이트)</li>
+                <li>· 전문직 COS-MBA (국내 최초 컨설팅 세일즈)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="right_section">
+            <canvas id="citas_c"></canvas>
+          </div>
+        </div>
+
+        <div class="scene text_scene scene03" data-canvas="#citas_i">
+          <div class="left_section">
+            <div class="title_wrap">
+              <p>For your Technology</p>
+              <p>IT</p>
+            </div>
+            <div class="content_wrap">
+              <p>CITAS Project.</p>
+              <ul>
+                <li>· VIT Day (최신 IT 시스템 활용)</li>
+                <li>· AI 경정청구 Auto Tool</li>
+              </ul>
+            </div>
+          </div>
+          <div class="right_section">
+            <canvas id="citas_i"></canvas>
+          </div>
+        </div>
+
+        <div class="scene text_scene scene04" data-canvas="#citas_t">
+          <div class="left_section">
+            <div class="title_wrap">
+              <p>For your Skill</p>
+              <p>Training</p>
+            </div>
+            <div class="content_wrap">
+              <p>CITAS Project.</p>
+              <ul>
+                <li>· MRT 실전 과정</li>
+                <li>· Rookie & Review Day</li>
+              </ul>
+            </div>
+          </div>
+          <div class="right_section">
+            <canvas id="citas_t"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. Pixel Map 데이터 관리
+      const PIXEL_MAPS_DATA = {
+        "#citas_c": [
+          [0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 1, 1, 1, 0],
+          [0, 0, 0, 1, 0, 0, 0, 1],
+          [0, 0, 0, 1, 1, 1, 1, 1],
+          [0, 0, 0, 1, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0, 1, 0, 0],
+        ],
+        "#citas_i": [
+          [0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 1, 0, 0],
+        ],
+        "#citas_t": [
+          [0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 1, 1, 1, 1, 1],
+          [0, 0, 0, 1, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 1, 0, 0],
+        ],
+      };
+
+      // 2. 캔버스 픽셀 애니메이션 클래스
+      class PixelCanvas {
+        constructor(id, map) {
+          this.canvas = document.querySelector(id);
+          if (!this.canvas) return;
+          this.ctx = this.canvas.getContext("2d");
+          this.pixelMap = map || [];
+          this.colCount = 44;
+          this.rowCount = 33;
+          // 각 픽셀별 고유 지연값 생성
+          this.cellArr = Array.from({length: this.colCount}, () =>
+            Array.from({length: this.rowCount}, () => Math.random() * 1.5)
+          );
+          this.resize();
+          window.addEventListener("resize", () => this.resize());
+        }
+
+        resize() {
+          const displayWidth = this.canvas.clientWidth || 500;
+          this.canvas.width = displayWidth * 2; // DPR 대응
+          this.canvas.height = displayWidth * 0.8 * 2;
+          this.ctx.scale(2, 2);
+          this.cellW = (displayWidth / this.colCount) * 0.8;
+          this.cellH = this.cellW * 3;
+          this.gap = this.cellW * 0.2;
+        }
+
+        render(p) {
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          for (let i = 0; i < this.rowCount; i++) {
+            for (let j = 0; j < this.colCount; j++) {
+              const delay = this.cellArr[j][i];
+              const progress = Math.max(0, Math.min(1, p - delay));
+              if (progress <= 0) continue;
+
+              const isHighlight = this.pixelMap[i] && this.pixelMap[i][j] === 1;
+              this.ctx.fillStyle = isHighlight
+                ? `rgba(0, 255, 180, ${progress})`
+                : `rgba(40, 40, 40, ${progress * 0.2})`;
+
+              this.ctx.fillRect(
+                j * (this.cellW + this.gap),
+                i * (this.cellH + this.gap),
+                this.cellW,
+                this.cellH
+              );
+            }
+          }
+        }
+      }
+
+      // 3. 인스턴스 생성
+      const instances = {};
+      Object.entries(PIXEL_MAPS_DATA).forEach(([id, map]) => {
+        instances[id] = new PixelCanvas(id, map);
+      });
+
+      // 4. GSAP 타임라인 구성
+      const mainTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".citas",
+          start: "top top",
+          end: "+=6000", // 전체 스크롤 길이 (조절 가능)
+          scrub: 1, // 스크롤 속도에 부드럽게 반응
+          pin: true, // 섹션 고정
+          anticipatePin: 1,
+        },
+      });
+
+      const scenes = gsap.utils.toArray(".scene");
+
+      scenes.forEach((scene, i) => {
+        // [A] 장면 나타나기
+        mainTl.to(scene, {autoAlpha: 1, duration: 1});
+
+        // [B] 캔버스 애니메이션 수행 (해당 장면에 canvas가 있는 경우)
+        const canvasId = scene.dataset.canvas;
+        if (canvasId && instances[canvasId]) {
+          mainTl.to(
+            {val: 0},
+            {
+              val: 3, // 애니메이션 진행도 (0 ~ 3)
+              duration: 2,
+              onUpdate: function () {
+                instances[canvasId].render(this.targets()[0].val);
+              },
+            }
+          );
+        } else {
+          // 캔버스 없는 장면(인트로 등)은 잠시 대기
+          mainTl.to({}, {duration: 1});
+        }
+
+        // [C] 장면 사라지기 (마지막 장면은 남겨둠)
+        if (i < scenes.length - 1) {
+          mainTl.to(scene, {autoAlpha: 0, duration: 1});
+        }
+      });
+    </script>
+  </body>
+</html>

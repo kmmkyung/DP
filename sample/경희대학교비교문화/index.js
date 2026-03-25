@@ -1,6 +1,4 @@
-/** @format */
 
-<script>
 window.addEventListener('DOMContentLoaded', function() {
   gsap.registerPlugin(ScrollTrigger);
   // m11
@@ -11,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function() {
   const sec2Content2 = sec2.querySelector(".content2"); // right (triggers)
   const visionListItems = sec2.querySelectorAll(".visionList .listItem"); // left
   // HTML class has a typo: listItme
-  const visionContentItems = sec2.querySelectorAll(".visionContentList .listItme, .visionContentList .listItem"); // right
+  const visionContentItems = sec2.querySelectorAll(".visionContentList .listItem, .visionContentList .listItem"); // right
 
   const setActiveVision = (index) => {
     visionListItems.forEach((el, i) => {
@@ -72,4 +70,3 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
 }); // DOMContentLoaded
-</script>
