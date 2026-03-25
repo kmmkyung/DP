@@ -1,0 +1,160 @@
+/** @format */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+.m11 {
+  padding: 200px 0 160px;
+}
+.m11 .sec .containrTitle {
+  color: #000;
+  font-size: var(--fz-46);
+  font-weight: 500;
+}
+.m11 .sec1 {
+  position: relative;
+  margin-bottom: 200px;
+}
+.m11 .sec1 .container {
+  position: absolute;
+  bottom: 0;
+  right: 4%;
+}
+.m11 .sec1 .container .content1 {
+  width: 470px;
+  aspect-ratio: 470/240;
+  background: url(/images/page/m11_sec1_img1.png) no-repeat center / cover;
+}
+.m11 .sec1 .container .content1 .textArea {
+  text-align: right;
+  position: absolute;
+  right: 4%;
+  bottom: 160px;
+  height: 0;
+  overflow: hidden;
+}
+.m11 .sec1 .container .content1 .contentTitle {
+  color: #fff;
+  font-size: var(--fz-32);
+  font-weight: 500;
+}
+.m11 .sec1 .container .content1 .contentText {
+  color: #fff;
+  margin-top: 22px;
+  font-size: var(--fz-18);
+}
+.m11 .sec2 {
+  background-color: #d8d8d8;
+  padding: 160px 0;
+}
+.m11 .sec2 .container1 {
+  padding-top: 130px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10vw;
+}
+.m11 .sec2 .container1 .content1 {
+  width: 24%;
+  position: relative;
+  height: 80vh;
+}
+.m11 .sec2 .container1 .content1 .visionList {
+}
+.m11 .sec2 .container1 .content1 .visionList .listItem {
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #a2a2a2;
+  transition: all 0.2s;
+}
+.m11 .sec2 .container1 .content1 .visionList .listItem + .listItem {
+  margin-top: 40px;
+}
+.m11 .sec2 .container1 .content1 .visionList .itemNumber {
+  font-size: var(--fz-20);
+  color: #a2a2a2;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.m11 .sec2 .container1 .content1 .visionList .itemTitle {
+  margin-top: 20px;
+  font-size: var(--fz-32);
+  color: #a2a2a2;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.m11 .sec2 .container1 .content1 .visionList .listItem.active {
+  border-color: #000;
+}
+.m11 .sec2 .container1 .content1 .visionList .listItem.active .itemNumber,
+.m11 .sec2 .container1 .content1 .visionList .listItem.active .itemTitle {
+  color: #000;
+}
+.m11 .sec2 .container1 .content2 {
+  flex: 1;
+}
+.m11 .sec2 .container1 .content2 .visionContentList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 148px;
+}
+.m11 .sec2 .container1 .content2 .visionContentList .listItme:nth-child(even) {
+  margin-left: auto;
+}
+.m11 .sec2 .container1 .content2 .visionContentList {
+}
+.m11 .sec2 .container1 .content2 .visionContentList .listItme .itemTitle {
+  font-size: var(--fz-32);
+  font-weight: 500;
+  color: #1e1e1e;
+}
+.m11 .sec2 .container1 .content2 .visionContentList .listItme .itemText {
+  margin-top: 24px;
+  font-size: var(--fz-20);
+  color: #666;
+}
+.m11 .sec2 .container1 .content2 .visionContentList .listItme .imgBox {
+  margin-top: 48px;
+}
+.m11 .sec2 .container1 .content2 .visionContentList .listItme .imgBox img {
+  width: 100%;
+}
+.m11 .sec3 {
+  padding-top: 160px;
+}
+.m11 .sec3 .container1 .content1 {
+  margin-top: 80px;
+  border-top: 1px solid #acacac;
+  border-bottom: 1px solid #acacac;
+  padding: 56px 0;
+}
+.m11 .sec3 .container1 .content1 .keyWordList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+}
+.m11 .sec3 .container1 .content1 .keyWordList .listItem {
+  color: #111;
+  font-size: var(--fz-24);
+  padding: 25px 27px;
+  border-radius: 50px;
+  background-color: #fff;
+}
