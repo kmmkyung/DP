@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>CJ Level Clone</title>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<style>
+body { margin:0; height:500vh; background:#000; }
+canvas { position:fixed; top:0; left:0; }
+.hero {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:64px;
+  z-index:2;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">CJ STYLE</div>
+
+<script>
+// ==========================
+// THREE 기본
+// ==========================
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+
+const renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// ==========================
+// texture
+// ==========================
+const loader = new THREE.TextureLoader();
+const tex1 = loader.load("https://picsum.photos/800?1");
+const tex2 = loader.load("https://picsum.photos/800?2");
+
+// ==========================
+// geometry
+// ==========================
+const geo = new THREE.PlaneGeometry(2,2,200,200);
+
+// ==========================
+// shader
+// ==========================
+const material = new THREE.ShaderMaterial({
+uniforms:{
+  uProgress:{value:0},
+  uTex1:{value:tex1},
+  uTex2:{value:tex2}
+},
+
+vertexShader:`
+varying vec2 vUv;
+uniform float uProgress;
+
+float noise(vec2 p){
+  return sin(p.x*4.0)*sin(p.y*4.0);
+}
+
+void main(){
+  vUv = uv;
+  vec3 pos = position;
+
+  float p = uProgress;
+
+  // section split
+  float s1 = smoothstep(0.0,0.33,p);
+  float s2 = smoothstep(0.33,0.66,p);
+  float s3 = smoothstep(0.66,1.0,p);
+
+  float n1 = noise(pos.xy + p*2.0);
+  float n2 = noise(pos.xy*2.0 - p*3.0);
+  float n3 = noise(pos.xy*3.0 + p*5.0);
+
+  // multi layer mix
+  float displacement =
+    n1 * s1 * 0.2 +
+    n2 * s2 * 0.3 +
+    n3 * s3 * 0.4;
+
+  pos.z += displacement;
+
+  // scale 변화
+  pos.xy *= 1.0 + p*0.8;
+
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+}
+`,
+
+fragmentShader:`
+varying vec2 vUv;
+uniform sampler2D uTex1;
+uniform sampler2D uTex2;
+uniform float uProgress;
+
+void main(){
+  float p = uProgress;
+  vec2 uv = vUv;
+
+  // distortion
+  uv += sin(uv.y*12.0 + p*8.0)*0.03;
+
+  // texture mix
+  vec4 t1 = texture2D(uTex1, uv);
+  vec4 t2 = texture2D(uTex2, uv);
+
+  float mixVal = smoothstep(0.3,0.7,p);
+  vec4 base = mix(t1, t2, mixVal);
+
+  // RGB split
+  float offset = 0.01 * p;
+
+  float r = texture2D(uTex1, uv + vec2(offset,0.0)).r;
+  float g = base.g;
+  float b = texture2D(uTex1, uv - vec2(offset,0.0)).b;
+
+  vec3 color = vec3(r,g,b);
+
+  // mask
+  float dist = distance(vUv, vec2(0.5));
+  float mask = smoothstep(0.5, 0.2, dist + p*0.4);
+
+  gl_FragColor = vec4(color, mask);
+}
+`,
+transparent:true
+});
+
+const mesh = new THREE.Mesh(geo, material);
+scene.add(mesh);
+
+// ==========================
+// ScrollTrigger
+// ==========================
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(material.uniforms.uProgress,{
+value:1,
+scrollTrigger:{
+  trigger:document.body,
+  start:"top top",
+  end:"bottom bottom",
+  scrub:1
+}
+});
+
+// ==========================
+// render
+// ==========================
+function render(){
+  requestAnimationFrame(render);
+  renderer.render(scene,camera);
+}
+render();
+
+</script>
+</body>
+</html>
