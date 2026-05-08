@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>SVG Morph + 3 Layers</title>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<style>
+body {
+  margin:0;
+  height:1000vh;
+  background:#111;
+}
+canvas {
+  position:fixed;
+  top:0;
+  left:0;
+}
+.hero {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:60px;
+  z-index:2;
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<div class="hero">:3</div>
+
+<script>
+// =========================
+// Canvas 셋팅 & 사이즈
+// =========================
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+// =========================
+// STATE (스크롤 진행률)
+// =========================
+const state = { progress: 0 };
+
+// =========================
+// GSAP
+// =========================
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(state, {
+  progress: 1,
+  scrollTrigger: {
+    trigger: document.body,
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1,
+  }
+});
+
+// =========================
+// SVG paths
+// =========================
+const paths = [
+"M167.699 4.16192C140.499 -14.2381 77.6986 41.1619 49.6986 71.1619C-51.3014 173.162 22.6986 267.162 97.6986 276.162C172.699 285.162 230.699 181.162 232.699 113.162C234.699 45.1619 201.699 27.1619 167.699 4.16192Z",
+
+"M122.519 6.82993C96.7343 -16.0326 58.5438 28.5028 42.6717 53.6283C5.69096 134.162 25.6617 67.9054 2.42262 221.306C-20.8164 374.707 173.226 281.755 224.797 266.135C276.367 250.514 225.399 155.576 232.086 117.067C238.773 78.5594 231.426 50.623 197.611 53.0516C163.795 55.4802 154.749 35.4081 122.519 6.82993Z",
+
+"M138.826 5.67369C95.3319 -12.9665 65.4731 23.2208 55.9804 43.6445C32.5469 73.4661 6.79086 82.4783 22.3244 122.175C37.8579 161.872 -7.01671 116.134 1.61302 224.006C10.2428 331.878 208.727 277.51 222.534 251.621C236.342 225.732 198.371 238.676 222.534 205.883C246.698 173.09 242.383 80.7523 217.356 82.4783C192.33 84.2042 193.193 28.974 138.826 5.67369Z",
+
+"M157.919 11.4757C102.309 -22.287 66.5606 31.3361 56.6304 45.2384C-58.5603 249.801 28.8258 329.243 94.3652 333.215C159.905 337.187 88.4071 305.41 223.458 271.648C358.509 237.885 287.012 73.0431 269.137 45.2384C251.263 17.4338 213.528 45.2384 157.919 11.4757Z",
+
+"M167.069 4.9002C94.6611 -15.4645 29.4186 39.7841 5.84835 69.954C-8.2938 135.008 5.84835 160.464 45.4464 205.719C85.0444 250.974 107.672 327.341 189.696 310.371C271.721 293.4 300.005 188.748 268.892 160.464C237.78 132.18 257.579 30.356 167.069 4.9002Z",
+
+"M167.699 4.16192C140.499 -14.2381 77.6986 41.1619 49.6986 71.1619C-51.3014 173.162 22.6986 267.162 97.6986 276.162C172.699 285.162 230.699 181.162 232.699 113.162C234.699 45.1619 201.699 27.1619 167.699 4.16192Z"
+
+];
+
+// =========================
+// path → points
+// =========================
+function pathToPoints(d, count=120){
+  const svgNS = "http://www.w3.org/2000/svg";
+  const path = document.createElementNS(svgNS,"path");
+  path.setAttribute("d", d);
+  document.body.appendChild(path);
+
+  const length = path.getTotalLength();
+  const pts = [];
+
+  for(let i=0;i<count;i++){
+    const p = path.getPointAtLength((i/count)*length);
+    pts.push({x:p.x, y:p.y});
+  }
+
+  document.body.removeChild(path);
+  return pts;
+}
+
+// =========================
+// normalize
+// =========================
+function normalize(points){
+  let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+
+  points.forEach(p=>{
+    minX=Math.min(minX,p.x);
+    minY=Math.min(minY,p.y);
+    maxX=Math.max(maxX,p.x);
+    maxY=Math.max(maxY,p.y);
+  });
+
+  const w=maxX-minX;
+  const h=maxY-minY;
+
+  return points.map(p=>({
+    x:(p.x-minX)/w,
+    y:(p.y-minY)/h
+  }));
+}
+
+// =========================
+// shapes 생성
+// =========================
+const shapes = paths.map(d =>
+  normalize(pathToPoints(d,120))
+);
+
+// =========================
+// utils
+// =========================
+function lerp(a,b,t){
+  return a + (b-a)*t;
+}
+
+// =========================
+// morph
+// =========================
+function getShape(p){
+  const total = shapes.length;
+  const scaled = p * (total-1);
+
+  const i = Math.floor(scaled);
+  const next = Math.min(i+1,total-1);
+  const t = scaled - i;
+
+  return shapes[i].map((pt,idx)=>({
+    x: lerp(pt.x, shapes[next][idx].x, t),
+    y: lerp(pt.y, shapes[next][idx].y, t)
+  }));
+}
+
+// =========================
+// draw layer
+// =========================
+function draw(points,cx,cy,size,t,color,ox,oy){
+  ctx.beginPath();
+
+  points.forEach((p,i)=>{
+    let x = cx + (p.x-0.5)*size + ox;
+    let y = cy + (p.y-0.5)*size + oy;
+
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// =========================
+// render
+// =========================
+function render(){
+  requestAnimationFrame(render);
+
+  ctx.clearRect(0,0,w,h);
+
+  const cx = w/2;
+  const cy = h/2;
+
+  const p = state.progress;
+  const shape = getShape(p);
+
+  ctx.globalCompositeOperation = "lighter";
+
+  draw(shape,cx,cy,420,p*5,"rgba(255,80,120,0.45)",Math.sin(p*5)*20,Math.cos(p*5)*20);
+  draw(shape,cx,cy,300,p*5+2,"rgba(0,200,255,0.45)",Math.sin(p*5+2)*20,Math.cos(p*5+2)*20);
+  draw(shape,cx,cy,380,p*5+4,"rgba(0,255,180,0.45)",Math.sin(p*5+4)*20,Math.cos(p*5+4)*20);
+
+  ctx.globalCompositeOperation = "source-over";
+}
+
+render();
+</script>
+
+</body>
+</html>
