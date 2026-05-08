@@ -1,0 +1,301 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="root.css" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <header>
+        <div class="headerInnerWrap innerWrap">
+          <div class="headerLogo">
+            <a href="/">
+              <?php include $_SERVER['DOCUMENT_ROOT'] .
+              "images/common/logo_w.svg"; ?>
+            </a>
+          </div>
+          <div class="headerGnb">
+            <ul class="headerGnbList">
+              <li class="headerGnbItem languageItem">
+                <button class="languageBtn">
+                  <img src="images/common/icon_language.png" alt="언어 선택" />
+                </button>
+              </li>
+              <li class="headerGnbItem allMenuItem">
+                <button class="allMenuBtn" aria-label="전체 메뉴 열기">
+                  <i class="icon" aria-hidden="true">
+                    <span class="iconLine lineTop"></span>
+                    <span class="iconLine lineMiddle"></span>
+                    <span class="iconLine lineBottom"></span>
+                  </i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- //header -->
+
+    <div id="container">
+      <div id="contents">
+        <main class="main">
+          <aside class="sectionNav">
+            <ol class="sectionNavList">
+              <li class="sectionNavItem">
+                <a>
+                  <i class="icon"></i>
+                  <span>MAIN</span>
+                </a>
+              </li>
+              <li class="sectionNavItem">
+                <a>
+                  <i class="icon"></i>
+                  <span>OVERVIEW</span>
+                </a>
+              </li>
+              <li class="sectionNavItem">
+                <a>
+                  <i class="icon"></i>
+                  <span>BUSINESS</span>
+                </a>
+              </li>
+              <li class="sectionNavItem">
+                <a>
+                  <i class="icon"></i>
+                  <span>NEWS ROOM</span>
+                </a>
+              </li>
+            </ol>
+          </aside>
+          <div id="track">
+            <section id="sec1" class="sec sec1">
+              <div class="innerWrap"></div>
+            </section>
+            <section id="sec2" class="sec sec2">
+              <div class="sec2Pin">
+                <div class="container">
+                  <div class="innerWrap">
+                    <div class="secBg"></div>
+                    <div class="content content1">
+                      <h4 class="title poppins">COASIA GROUP</h4>
+                      <div class="textBox textBox1">
+                        <p class="text textKr notoSanskr">
+                          경계를 넘어 아이디어를<br />
+                          <b>세상의 힘</b>으로
+                        </p>
+                        <p class="text textEn popcpins">
+                          Beyond boundaries, ideas into impact
+                        </p>
+                      </div>
+                      <div class="textBox textBox2">
+                        <p class="text textKr notoSanskr">
+                          코아시아 그룹은<br />
+                          내일의 가능성을 이끄는<br />
+                          <b>‘창의적 기술 파트너’</b>로 함께 합니다.
+                        </p>
+                        <p class="text textEn popcpins">
+                          The creative technology partner<br />
+                          that drives tomorrow’s possibilities.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="sec3" class="sec sec3">
+              <div class="container container1">
+                <div class="content content1">
+                  <h5 class="contentTitle">미래전략 부문</h5>
+                  <p class="contentText">
+                    고부가가치 산업을 중심으로 그룹의 경쟁력을
+                    <br class="pcbr" />
+                    강화하고 미래 성장 동력을 구축합니다.
+                  </p>
+                  <div class="linkBox">
+                    <a href=""><span>View More</span></a>
+                  </div>
+                </div>
+                <div class="content content2">
+                  <h5 class="contentTitle">반도체 / AI 부문</h5>
+                  <p class="contentText">
+                    반도체 생태계의 중심에서 지능형 산업 환경
+                    <br class="pcbr" />
+                    흐름에 부합하는 신뢰도 높은 기술 가치를 제공합니다.
+                  </p>
+                  <div class="linkBox">
+                    <a href=""><span>View More</span></a>
+                  </div>
+                </div>
+                <div class="content content3">
+                  <h5 class="contentTitle">테크 부문</h5>
+                  <p class="contentText">
+                    고도화되는 어플리케이션별로 <br class="pcbr" />
+                    특화된 핵심 기술 가치를 창출합니다.
+                  </p>
+                  <div class="linkBox">
+                    <a href=""><span>View More</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="contentNav">
+                <ol class="contentNavList">
+                  <li class="contentNavItem">
+                    <a href="">
+                      <span>미래전략 부문</span>
+                    </a>
+                  </li>
+                  <li class="contentNavItem">
+                    <a href="">
+                      <span>반도체 / AI 부문</span>
+                    </a>
+                  </li>
+                  <li class="contentNavItem">
+                    <a href="">
+                      <span>테크 부문</span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </section>
+            <section id="sec4" class="sec sec4">
+              <div class="innerWrap">
+                <div class="container1">
+                  <div class="containerTitleArea">
+                    <h4 class="title poppins">NEWS ROOM</h4>
+                    <p class="text notoSanskr">
+                      내일을 만드는 ‘코아시아 그룹’의 최신 소식을 확인하세요.
+                    </p>
+                  </div>
+                  <div class="content">
+                    <ul class="newsViewList">
+                      <li class="newsViewItem">
+                        <div class="itemThumb">
+                          <img src="" alt="" />
+                        </div>
+                        <div class="itemContent">
+                          <div class="itemTextArea">
+                            <h6 class="itemTitle"></h6>
+                            <p class="itemText"></p>
+                            <span class="itemDate"></span>
+                          </div>
+                          <div class="itemBtnBox">
+                            <button class="prevBtn">
+                              <i class="icon"></i>
+                            </button>
+                            <button class="nextBtn">
+                              <i class="icon"></i>
+                            </button>
+                          </div>
+                          <div class="linkBox">
+                            <a href=""><span>View More</span></a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="swiper">
+                      <ul class="newsList">
+                        <li class="newsItem">
+                          <div class="itemThumb">
+                            <img src="" alt="" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+      <!-- //contents -->
+    </div>
+    <!-- //container -->
+    <div id="footer">
+      <footer class="footer">
+        <div class="footerTop">
+          <div class="footerInnerWrap innerWrap">
+            <div class="footerBrand">
+              <div class="logo">
+                <img src="images/common/logo_w.png" alt="코아시아" />
+              </div>
+              <ul class="snsList">
+                <li class="snsItem">
+                  <a href="#" aria-label="코아시아 페이스북 바로가기">
+                    <img
+                      src="images/common/icon_facebook.png"
+                      alt="코아시아 페이스북 바로가기" />
+                  </a>
+                </li>
+                <li class="snsItem">
+                  <a href="#" aria-label="코아시아 인스타그램 바로가기">
+                    <img
+                      src="images/common/icon_instagram.png"
+                      alt="코아시아 인스타그램 바로가기" />
+                  </a>
+                </li>
+                <li class="snsItem">
+                  <a href="#" aria-label="코아시아 링크드인 바로가기">
+                    <img
+                      src="images/common/icon_linkedIn.png"
+                      alt="코아시아 링크드인 바로가기" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footerInfo">
+              <div class="infoGroup">
+                <p class="infoTitle">Company</p>
+                <p class="infoText">(주)코아시아</p>
+              </div>
+
+              <address class="infoGroup">
+                <p class="infoTitle">한국 본사</p>
+                <p class="infoText">인천광역시 남동구 남동서로 193</p>
+                <p class="infoText">Tel. 032) 813-2002</p>
+                <p class="infoText">FAX. 032) 816-1900</p>
+              </address>
+
+              <address class="infoGroup">
+                <p class="infoTitle">서울 지점</p>
+                <p class="infoText">
+                  서울시 송파구 중대로 135 (IT벤처타워 동관 16층)
+                </p>
+                <p class="infoText">Tel. 02) 6985-6099</p>
+                <p class="infoText">FAX. 031) 723-0336</p>
+              </address>
+            </div>
+          </div>
+        </div>
+
+        <div class="footerBottom">
+          <div class="footerBottomInner innerWrap">
+            <a href="#" class="footerActionLink">코아시아 채용사이트</a>
+            <button type="button" class="footerFamilySiteBtn">
+              Family Site <i class="icon" aria-hidden="true"></i>
+            </button>
+            <small class="copyright"
+              >Copyright ⓒ 2026 COASIA CORP. ALL RIGHTS RESERVED. Designed by
+              DESIGNPIXEL</small
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

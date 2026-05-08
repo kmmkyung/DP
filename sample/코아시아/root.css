@@ -1,0 +1,130 @@
+/**
+ * 스크롤바
+ *
+ * @format
+ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #656565;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--main-color);
+}
+::-webkit-scrollbar-track {
+  background-color: #e6e6e6;
+}
+
+:root {
+  --delay: 0;
+  --main-colorR: #e60012;
+  --main-colorB: #000;
+  --brus-14: 14px;
+  --brus-12: 12px;
+  --brus-10: 10px;
+  --m40: clamp(1.8rem, 2vw, 4rem);
+  --m60: clamp(2.2rem, 3vw, 6rem);
+  --m80: clamp(2.5rem, 4vw, 8rem);
+  --m90: clamp(3.5rem, 4.5vw, 9rem);
+  --m100: clamp(4rem, 5vw, 10rem);
+  --m110: clamp(5rem, 5.5vw, 11rem);
+  --m120: clamp(6rem, 6vw, 12rem);
+  --m140: clamp(6.5rem, 8vw, 14rem);
+  --m160: clamp(7rem, 10vw, 16rem);
+  --m180: clamp(8rem, 12vw, 18rem);
+  --m200: clamp(12rem, 14vw, 20rem);
+  --m240: clamp(14rem, 16vw, 24rem);
+  --m260: clamp(16rem, 18vw, 26rem);
+  --m300: clamp(19rem, 24vw, 30rem);
+  --fz-12: clamp(1rem, 0.857vw, 1.2rem);
+  --fz-13: clamp(1.1rem, 0.929vw, 1.3rem);
+  --fz-14: clamp(1.2rem, 1vw, 1.4rem);
+  --fz-15: clamp(1.3rem, 1.071vw, 1.5rem);
+  --fz-16: clamp(1.4rem, 1.143vw, 1.6rem);
+  --fz-17: clamp(1.4rem, 1.214vw, 1.7rem);
+  --fz-18: clamp(1.5rem, 1.286vw, 1.8rem);
+  --fz-19: clamp(1.6rem, 1.357vw, 1.9rem);
+  --fz-20: clamp(1.7rem, 1.429vw, 2rem);
+  --fz-21: clamp(1.8rem, 1.5vw, 2.1rem);
+  --fz-22: clamp(1.8rem, 1.571vw, 2.2rem);
+  --fz-23: clamp(1.9rem, 1.643vw, 2.3rem);
+  --fz-24: clamp(2rem, 1.714vw, 2.4rem);
+  --fz-25: clamp(2.1rem, 1.786vw, 2.5rem);
+  --fz-26: clamp(2.1rem, 1.857vw, 2.6rem);
+  --fz-27: clamp(2.2rem, 1.929vw, 2.7rem);
+  --fz-28: clamp(2.2rem, 2vw, 2.8rem);
+  --fz-29: clamp(2.3rem, 2.071vw, 2.9rem);
+  --fz-30: clamp(2.4rem, 2.143vw, 3rem);
+  --fz-31: clamp(2.4rem, 2.214vw, 3.1rem);
+  --fz-32: clamp(2.5rem, 2.286vw, 3.2rem);
+  --fz-33: clamp(2.6rem, 2.357vw, 3.3rem);
+  --fz-34: clamp(2.6rem, 2.429vw, 3.4rem);
+  --fz-35: clamp(27rem, 2.5vw, 35rem);
+  --fz-36: clamp(2.8rem, 2.571vw, 3.6rem);
+  --fz-37: clamp(2.8rem, 2.643vw, 3.7rem);
+  --fz-38: clamp(2.9rem, 2.714vw, 3.8rem);
+  --fz-39: clamp(3rem, 2.786vw, 3.9rem);
+  --fz-40: clamp(3rem, 2.857vw, 4rem);
+  --fz-41: clamp(3.1rem, 2.929vw, 4.1rem);
+  --fz-42: clamp(3.2rem, 3vw, 4.2rem);
+  --fz-43: clamp(3.2rem, 3.071vw, 4.3rem);
+  --fz-44: clamp(3.3rem, 3.143vw, 4.4rem);
+  --fz-45: clamp(3.4rem, 3.214vw, 4.5rem);
+  --fz-46: clamp(3.4rem, 3.286vw, 4.6rem);
+  --fz-47: clamp(3.5rem, 3.357vw, 4.7rem);
+  --fz-48: clamp(3.6rem, 3.429vw, 4.8rem);
+  --fz-49: clamp(3.7rem, 3.5vw, 4.9rem);
+  --fz-50: clamp(3.8rem, 3.571vw, 5rem);
+  --fz-51: clamp(3.8rem, 3.643vw, 5.1rem);
+  --fz-52: clamp(3.9rem, 3.714vw, 5.2rem);
+  --fz-53: clamp(4rem, 3.786vw, 5.3rem);
+  --fz-54: clamp(4.1rem, 3.857vw, 5.4rem);
+  --fz-55: clamp(4.1rem, 3.929vw, 5.5rem);
+  --fz-56: clamp(3.2rem, 4vw, 5.6rem);
+  --fz-57: clamp(4.2rem, 4.071vw, 5.7rem);
+  --fz-58: clamp(3.2rem, 4.143vw, 5.8rem);
+  --fz-59: clamp(4.4rem, 4.214vw, 5.9rem);
+  --fz-60: clamp(4.5rem, 4.286vw, 6rem);
+  --fz-61: clamp(4.6rem, 4.357vw, 6.1rem);
+  --fz-62: clamp(4.7rem, 4.429vw, 6.2rem);
+  --fz-63: clamp(4.7rem, 4.5vw, 6.3rem);
+  --fz-64: clamp(4.8rem, 4.571vw, 6.4rem);
+  --fz-65: clamp(4.9rem, 4.643vw, 6.5rem);
+  --fz-66: clamp(5rem, 4.714vw, 6.6rem);
+  --fz-67: clamp(5rem, 4.786vw, 6.7rem);
+  --fz-68: clamp(5.1rem, 4.857vw, 6.8rem);
+  --fz-69: clamp(5.2rem, 4.929vw, 6.9rem);
+  --fz-70: clamp(5.3rem, 5vw, 7rem);
+  --fz-71: clamp(5.3rem, 5.071vw, 7.1rem);
+  --fz-72: clamp(5.4rem, 5.143vw, 7.2rem);
+  --fz-73: clamp(5.5rem, 5.214vw, 7.3rem);
+  --fz-74: clamp(5.6rem, 5.286vw, 7.4rem);
+  --fz-75: clamp(5.6rem, 5.357vw, 7.5rem);
+  --fz-76: clamp(5.7rem, 5.429vw, 7.6rem);
+  --fz-77: clamp(5.8rem, 5.5vw, 7.7rem);
+  --fz-78: clamp(5.9rem, 5.571vw, 7.8rem);
+  --fz-79: clamp(5.9rem, 5.643vw, 7.9rem);
+  --fz-80: clamp(6rem, 5.714vw, 8rem);
+  --fz-81: clamp(6.1rem, 5.786vw, 8.1rem);
+  --fz-82: clamp(6.2rem, 5.857vw, 8.2rem);
+  --fz-83: clamp(6.2rem, 5.929vw, 8.3rem);
+  --fz-84: clamp(6.3rem, 6vw, 8.4rem);
+  --fz-85: clamp(6.4rem, 6.071vw, 8.5rem);
+  --fz-86: clamp(5rem, 6.143vw, 8.6rem);
+  --fz-87: clamp(6.5rem, 6.214vw, 8.7rem);
+  --fz-88: clamp(6.6rem, 6.286vw, 8.8rem);
+  --fz-89: clamp(6.7rem, 6.357vw, 8.9rem);
+  --fz-90: clamp(6.8rem, 6.429vw, 9rem);
+  --fz-91: clamp(6.8rem, 6.5vw, 9.1rem);
+  --fz-92: clamp(6.9rem, 6.571vw, 9.2rem);
+  --fz-93: clamp(7rem, 6.643vw, 9.3rem);
+  --fz-110: clamp(8rem, 8vw, 11rem);
+  --fz-130: clamp(8rem, 8vw, 13rem);
+  --fz-186: clamp(8rem, 9vw, 18.6rem);
+}
