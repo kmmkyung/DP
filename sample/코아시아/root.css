@@ -29,6 +29,7 @@
   --brus-12: 12px;
   --brus-10: 10px;
   --m40: clamp(1.8rem, 2vw, 4rem);
+  --m50: clamp(2rem, 2.5vw, 5rem);
   --m60: clamp(2.2rem, 3vw, 6rem);
   --m80: clamp(2.5rem, 4vw, 8rem);
   --m90: clamp(3.5rem, 4.5vw, 9rem);
