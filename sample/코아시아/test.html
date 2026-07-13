@@ -1,0 +1,747 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fullpage + Scrub Timeline</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0a0a;
+        --fg: #f0ede6;
+        --muted: #3a3a3a;
+        --muted2: #666;
+        --accent: #c8f550;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+      }
+
+      /* ── LAYOUT ── */
+      #wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      #track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        will-change: transform;
+      }
+
+      .section {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── SIDE NAV ── */
+      #nav {
+        position: fixed;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 50;
+      }
+      .nd {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        transition:
+          background 0.3s,
+          transform 0.3s;
+        cursor: pointer;
+      }
+      .nd.on {
+        background: var(--fg);
+        transform: scale(1.5);
+      }
+
+      /* ── PROGRESS BAR ── */
+      #bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--accent);
+        width: 0%;
+        z-index: 100;
+        transition: width 0.6s ease;
+      }
+
+      /* ── S1 ── */
+      #s1 {
+        background: #0a0a0a;
+        flex-direction: column;
+      }
+      .s1h {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.5rem, 9vw, 8rem);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        text-align: center;
+      }
+      .s1sub {
+        margin-top: 1.5rem;
+        font-size: 11px;
+        color: var(--muted2);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+      .hint {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--muted2);
+      }
+      .hint b {
+        display: block;
+        width: 1px;
+        height: 36px;
+        background: linear-gradient(to bottom, transparent, var(--muted2));
+        animation: drip 1.8s ease-in-out infinite;
+      }
+      @keyframes drip {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(0.5);
+          transform-origin: top;
+        }
+        60% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+      /* ── S2 — PIN SECTION ── */
+      #s2 {
+        background: #111;
+        align-items: flex-start;
+      }
+
+      .pin-scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* IMG placeholder — simulates the .slgWrap .img */
+      .img-wrap {
+        position: absolute;
+        width: min(520px, 80vw);
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+      .img-wrap .img {
+        width: 100%;
+        height: 100%;
+        background: #1d1d1d;
+        transform: translateY(100%); /* starts hidden below */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .img-wrap .img .img-label {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #333;
+      }
+
+      /* overlay fades the img-wrap out */
+      .slg-wrap {
+        position: absolute;
+        width: min(520px, 80vw);
+        aspect-ratio: 16/9;
+      }
+
+      /* TXT content */
+      .txt-wrap {
+        position: absolute;
+        width: min(680px, 88vw);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .txt-wrap .tit {
+        font-family: Georgia, serif;
+        font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        transform: translateY(30px); /* initial state per user's fromTo */
+      }
+      .txt-wrap .desc {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--muted2);
+        max-width: 460px;
+        opacity: 0;
+      }
+
+      /* step counter */
+      .step-counter {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-counter .pips {
+        display: flex;
+        gap: 6px;
+      }
+      .pip {
+        width: 24px;
+        height: 2px;
+        background: var(--muted);
+        transition:
+          background 0.3s,
+          transform 0.3s;
+      }
+      .pip.done {
+        background: var(--accent);
+      }
+
+      /* scrub progress (bottom of s2) */
+      #scrub-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--muted);
+      }
+      #scrub-fill {
+        height: 100%;
+        background: var(--accent);
+        width: 0%;
+        transition: none; /* driven directly */
+      }
+
+      /* ── S3 ── */
+      #s3 {
+        background: #0d0d0d;
+        flex-direction: column;
+      }
+      .s3h {
+        font-family: Georgia, serif;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        font-weight: 400;
+        text-align: center;
+        line-height: 1.1;
+      }
+      .s3h em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      /* ── S4 ── */
+      #s4 {
+        background: var(--accent);
+        flex-direction: column;
+      }
+      .s4h {
+        font-family: Georgia, serif;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        font-weight: 400;
+        color: #0a0a0a;
+        text-align: center;
+        line-height: 1.1;
+      }
+
+      .stag {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--muted2);
+      }
+      #s4 .stag {
+        color: rgba(0, 0, 0, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bar"></div>
+
+    <div id="nav">
+      <div class="nd on" data-i="0"></div>
+      <div class="nd" data-i="1"></div>
+      <div class="nd" data-i="2"></div>
+      <div class="nd" data-i="3"></div>
+    </div>
+
+    <div id="wrapper">
+      <div id="track">
+        <!-- S1 -->
+        <section class="section" id="s1">
+          <div class="s1h" id="s1h">Scroll<br />Experience</div>
+          <div class="s1sub">Fullpage · Pin · Scrub Timeline</div>
+          <div class="hint">Scroll<b></b></div>
+        </section>
+
+        <!-- S2 : PINNED + SCRUB TIMELINE -->
+        <section class="section" id="s2">
+          <div class="pin-scene">
+            <!-- .slgWrap .img  (user's first anim target) -->
+            <div class="slg-wrap" id="slgWrap">
+              <div class="img-wrap">
+                <div class="img" id="slgImg">
+                  <span class="img-label">Visual / Image</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- .txtWrap  (user's second anim target) -->
+            <div class="txt-wrap" id="txtWrap">
+              <div class="tit" id="tit1">첫 번째<br />타이틀입니다</div>
+              <div class="desc" id="desc1">
+                스크롤을 내리면 이미지가 올라오고, 사라진 뒤 텍스트가
+                등장합니다.
+              </div>
+
+              <div class="tit" id="tit2" style="margin-top: 2rem">
+                두 번째<br />타이틀입니다
+              </div>
+              <div class="desc" id="desc2">
+                타임라인이 순서대로 흘러가며 각 요소가 자연스럽게 전환됩니다.
+              </div>
+
+              <div class="tit" id="tit3" style="margin-top: 2rem">
+                마지막<br />타이틀입니다
+              </div>
+              <div class="desc" id="desc3">
+                여기까지 스크롤하면 다음 섹션으로 자동 이동합니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-counter">
+            <div class="pips">
+              <div class="pip" id="pip0"></div>
+              <div class="pip" id="pip1"></div>
+              <div class="pip" id="pip2"></div>
+            </div>
+            <span id="counter-label">01 / 03</span>
+          </div>
+
+          <div id="scrub-bar"><div id="scrub-fill"></div></div>
+        </section>
+
+        <!-- S3 -->
+        <section class="section" id="s3">
+          <div class="s3h">핀 해제 후<br /><em>다음 섹션</em></div>
+          <div class="stag">Section 03</div>
+        </section>
+
+        <!-- S4 -->
+        <section class="section" id="s4">
+          <div class="s4h">마지막<br />섹션입니다</div>
+          <div class="stag">Section 04</div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      /* ═══════════════════════════════════════════════
+   CONFIG
+═══════════════════════════════════════════════ */
+      const TOTAL_SECTIONS = 4;
+      const PIN_IDX = 1;
+      const DUR_SECTION = 0.85;
+      const EASE_S = "power2.inOut";
+      const COOLDOWN_MS = 950;
+
+      // How much accumulated deltaY = full timeline (tune this)
+      const SCRUB_TOTAL = 1800;
+      // Scrub smoothing duration
+      const SCRUB_DUR = 0.6;
+
+      /* ═══════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════ */
+      let current = 0;
+      let busy = false;
+      let lastWheel = 0;
+
+      let pinAcc = 0; // accumulated deltaY inside pin section (0 → SCRUB_TOTAL)
+      let pinExiting = false;
+
+      /* ═══════════════════════════════════════════════
+   ELEMENTS
+═══════════════════════════════════════════════ */
+      const track = document.getElementById("track");
+      const progBar = document.getElementById("bar");
+      const scrubFill = document.getElementById("scrub-fill");
+      const navDots = document.querySelectorAll(".nd");
+      const pips = [0, 1, 2].map((i) => document.getElementById("pip" + i));
+      const label = document.getElementById("counter-label");
+
+      /* ═══════════════════════════════════════════════
+   BUILD THE SCRUB TIMELINE
+   mirrors the user's pattern:
+   tl.to(img, { y:0 })
+   tl.to(slgWrap, { opacity:0 })
+   tl.fromTo(tit, { opacity:0, y:30 }, { opacity:1, y:0 })
+═══════════════════════════════════════════════ */
+      const pinTl = gsap.timeline({paused: true});
+
+      pinTl
+        // ① img slides up into view  (.slgWrap .img → y: 0)
+        .to("#slgImg", {y: "0%", duration: 1, ease: "power3.out"})
+
+        // ② slgWrap fades out  (.slgWrap → opacity:0)
+        .to("#slgWrap", {opacity: 0, duration: 0.8, ease: "power2.in"})
+
+        // ③ first title appears  (.txtWrap .tit → fromTo)
+        .fromTo(
+          "#tit1",
+          {opacity: 0, y: 30},
+          {opacity: 1, y: 0, duration: 0.8, ease: "power3.out"},
+        )
+        .fromTo(
+          "#desc1",
+          {opacity: 0, y: 20},
+          {opacity: 1, y: 0, duration: 0.7, ease: "power3.out"},
+          "<0.15",
+        )
+
+        // ④ first title fades out
+        .to(
+          ["#tit1", "#desc1"],
+          {opacity: 0, y: -25, duration: 0.6, ease: "power2.in"},
+          "+=0.2",
+        )
+
+        // ⑤ second title
+        .fromTo(
+          "#tit2",
+          {opacity: 0, y: 30},
+          {opacity: 1, y: 0, duration: 0.8, ease: "power3.out"},
+        )
+        .fromTo(
+          "#desc2",
+          {opacity: 0, y: 20},
+          {opacity: 1, y: 0, duration: 0.7, ease: "power3.out"},
+          "<0.15",
+        )
+
+        // ⑥ second title fades out
+        .to(
+          ["#tit2", "#desc2"],
+          {opacity: 0, y: -25, duration: 0.6, ease: "power2.in"},
+          "+=0.2",
+        )
+
+        // ⑦ third title
+        .fromTo(
+          "#tit3",
+          {opacity: 0, y: 30},
+          {opacity: 1, y: 0, duration: 0.8, ease: "power3.out"},
+        )
+        .fromTo(
+          "#desc3",
+          {opacity: 0, y: 20},
+          {opacity: 1, y: 0, duration: 0.7, ease: "power3.out"},
+          "<0.15",
+        );
+
+      const TL_DURATION = pinTl.duration();
+
+      /* ═══════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════ */
+      function setProg(idx) {
+        progBar.style.width = (idx / (TOTAL_SECTIONS - 1)) * 100 + "%";
+      }
+      function setNav(idx) {
+        navDots.forEach((d, i) => d.classList.toggle("on", i === idx));
+      }
+      function updatePips(progress) {
+        // 3 equal bands
+        const band = 1 / 3;
+        pips.forEach((p, i) =>
+          p.classList.toggle("done", progress >= (i + 1) * band),
+        );
+        const step = Math.min(Math.floor(progress * 3), 2) + 1;
+        label.textContent = `0${step} / 03`;
+      }
+
+      /* ═══════════════════════════════════════════════
+   SECTION TRANSITION
+═══════════════════════════════════════════════ */
+      function gotoSection(idx) {
+        if (idx < 0 || idx >= TOTAL_SECTIONS) {
+          busy = false;
+          pinExiting = false;
+          return;
+        }
+
+        gsap.to(track, {
+          y: -(idx * 100) + "vh",
+          duration: DUR_SECTION,
+          ease: EASE_S,
+          onComplete() {
+            current = idx;
+            setProg(idx);
+            setNav(idx);
+            pinExiting = false;
+
+            if (idx === PIN_IDX) {
+              // reset timeline
+              pinAcc = 0;
+              pinTl.progress(0);
+              scrubFill.style.width = "0%";
+              updatePips(0);
+              // reset element states
+              gsap.set("#slgImg", {y: "100%"});
+              gsap.set("#slgWrap", {opacity: 1});
+              gsap.set(
+                ["#tit1", "#desc1", "#tit2", "#desc2", "#tit3", "#desc3"],
+                {opacity: 0, y: 30},
+              );
+            }
+
+            busy = false;
+          },
+        });
+      }
+
+      /* ═══════════════════════════════════════════════
+   SCRUB INSIDE PIN SECTION
+═══════════════════════════════════════════════ */
+      function scrubPin(deltaY) {
+        if (pinExiting) return;
+
+        pinAcc += deltaY;
+
+        if (pinAcc <= 0) {
+          // exit backwards
+          pinAcc = 0;
+          pinExiting = true;
+          busy = true;
+          lastWheel = Date.now();
+          gsap.to(pinTl, {
+            progress: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => gotoSection(current - 1),
+          });
+          return;
+        }
+
+        if (pinAcc >= SCRUB_TOTAL) {
+          // exit forwards
+          pinAcc = SCRUB_TOTAL;
+          pinExiting = true;
+          busy = true;
+          lastWheel = Date.now();
+          gsap.to(pinTl, {
+            progress: 1,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => gotoSection(current + 1),
+          });
+          return;
+        }
+
+        const p = pinAcc / SCRUB_TOTAL;
+        scrubFill.style.width = p * 100 + "%";
+        updatePips(p);
+
+        // smooth scrub — same feel as ScrollTrigger scrub
+        gsap.to(pinTl, {
+          progress: p,
+          duration: SCRUB_DUR,
+          ease: "power2.out",
+          overwrite: true,
+        });
+      }
+
+      /* ═══════════════════════════════════════════════
+   WHEEL
+═══════════════════════════════════════════════ */
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+
+          if (current === PIN_IDX) {
+            scrubPin(e.deltaY);
+            return;
+          }
+
+          // fullpage behavior for other sections
+          if (busy) return;
+          const now = Date.now();
+          if (now - lastWheel < COOLDOWN_MS) return;
+          lastWheel = now;
+          busy = true;
+          gotoSection(current + (e.deltaY > 0 ? 1 : -1));
+        },
+        {passive: false},
+      );
+
+      /* ═══════════════════════════════════════════════
+   TOUCH
+═══════════════════════════════════════════════ */
+      let ty0 = null;
+      window.addEventListener(
+        "touchstart",
+        (e) => {
+          ty0 = e.touches[0].clientY;
+        },
+        {passive: true},
+      );
+      window.addEventListener(
+        "touchmove",
+        (e) => {
+          if (current === PIN_IDX && ty0 !== null) {
+            scrubPin(ty0 - e.touches[0].clientY);
+            ty0 = e.touches[0].clientY;
+          }
+        },
+        {passive: true},
+      );
+      window.addEventListener(
+        "touchend",
+        (e) => {
+          if (current !== PIN_IDX && ty0 !== null) {
+            const dy = ty0 - e.changedTouches[0].clientY;
+            if (Math.abs(dy) > 40 && !busy) {
+              const now = Date.now();
+              if (now - lastWheel >= COOLDOWN_MS) {
+                lastWheel = now;
+                busy = true;
+                gotoSection(current + (dy > 0 ? 1 : -1));
+              }
+            }
+          }
+          ty0 = null;
+        },
+        {passive: true},
+      );
+
+      /* ═══════════════════════════════════════════════
+   KEYBOARD
+═══════════════════════════════════════════════ */
+      window.addEventListener("keydown", (e) => {
+        if (["ArrowDown", "PageDown"].includes(e.key)) {
+          e.preventDefault();
+          if (current === PIN_IDX) {
+            scrubPin(200);
+            return;
+          }
+          if (busy) return;
+          const now = Date.now();
+          if (now - lastWheel < COOLDOWN_MS) return;
+          lastWheel = now;
+          busy = true;
+          gotoSection(current + 1);
+        }
+        if (["ArrowUp", "PageUp"].includes(e.key)) {
+          e.preventDefault();
+          if (current === PIN_IDX) {
+            scrubPin(-200);
+            return;
+          }
+          if (busy) return;
+          const now = Date.now();
+          if (now - lastWheel < COOLDOWN_MS) return;
+          lastWheel = now;
+          busy = true;
+          gotoSection(current - 1);
+        }
+      });
+
+      /* ═══════════════════════════════════════════════
+   NAV DOTS
+═══════════════════════════════════════════════ */
+      navDots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = +dot.dataset.i;
+          if (busy || idx === current) return;
+          const now = Date.now();
+          if (now - lastWheel < 300) return;
+          lastWheel = now;
+          busy = true;
+          gotoSection(idx);
+        });
+      });
+
+      /* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+      gsap.set(track, {y: 0});
+      gsap.set("#slgImg", {y: "100%"});
+      gsap.set(["#tit1", "#desc1", "#tit2", "#desc2", "#tit3", "#desc3"], {
+        opacity: 0,
+        y: 30,
+      });
+
+      setProg(0);
+      setNav(0);
+
+      gsap.from("#s1h", {
+        opacity: 0,
+        y: 60,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.15,
+      });
+      gsap.from(".s1sub", {opacity: 0, duration: 1, delay: 0.45});
+      gsap.from(".hint", {opacity: 0, duration: 1, delay: 0.7});
+    </script>
+  </body>
+</html>
