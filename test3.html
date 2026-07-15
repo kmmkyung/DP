@@ -153,8 +153,12 @@ canvas {
 </body>
 
 <script type="module" >
+// Three.js는 화면 렌더링에, Tweakpane은 실시간 설정 패널에 사용한다.
 import * as THREE from "https://esm.sh/three@0.177.0";
 import { Pane } from "https://esm.sh/tweakpane@4.0.4";
+
+// 화면 전체를 덮는 평면 하나를 정사영 카메라로 렌더링한다.
+// 실제 원형 패턴과 물결 표현은 평면의 fragment shader에서 픽셀 단위로 계산된다.
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
 const renderer = new THREE.WebGLRenderer({
@@ -165,6 +169,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.getElementById("container").appendChild(renderer.domElement);
 
 
+// CPU에서 실행하는 물결 시뮬레이션의 기본값.
+// resolution²개의 격자점마다 높이와 속도를 계산한 뒤 GPU 텍스처로 전달한다.
 const waterSettings = {
   resolution: 256,
   damping: 0.913,
@@ -183,6 +189,10 @@ const waterSettings = {
   displacementScale: 0.01
 };
 const resolution = waterSettings.resolution;
+
+// current/previous: 현재·직전 프레임의 물 높이
+// velocity: 각 격자점의 x/y 유체 속도
+// vorticity: 유체의 회전량, pressure: 압력용 버퍼(현재 계산에서는 사용하지 않음)
 let waterBuffers = {
   current: new Float32Array(resolution * resolution),
   previous: new Float32Array(resolution * resolution),
@@ -190,6 +200,8 @@ let waterBuffers = {
   vorticity: new Float32Array(resolution * resolution),
   pressure: new Float32Array(resolution * resolution)
 };
+
+// 시뮬레이션 버퍼를 정지 상태(0)로 초기화한다.
 for (let i = 0; i < resolution * resolution; i++) {
   waterBuffers.current[i] = 0.0;
   waterBuffers.previous[i] = 0.0;
@@ -198,6 +210,8 @@ for (let i = 0; i < resolution * resolution; i++) {
   waterBuffers.vorticity[i] = 0.0;
   waterBuffers.pressure[i] = 0.0;
 }
+
+// 높이 배열을 단일 채널 부동소수점 텍스처로 만들어 shader가 읽을 수 있게 한다.
 const waterTexture = new THREE.DataTexture(
   waterBuffers.current,
   waterSettings.resolution,
@@ -209,11 +223,13 @@ waterTexture.minFilter = THREE.LinearFilter;
 waterTexture.magFilter = THREE.LinearFilter;
 waterTexture.needsUpdate = true;
 
+// 화면 크기의 2D 캔버스에 문구를 그려 Three.js 텍스처의 원본으로 사용한다.
 function createTextTexture() {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   const width = window.innerWidth;
   const height = window.innerHeight;
+  // 고해상도 화면에서도 글자가 선명하도록 DPR을 적용하되 성능을 위해 최대 2로 제한한다.
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = width * dpr;
   canvas.height = height * dpr;
@@ -222,6 +238,7 @@ function createTextTexture() {
   ctx.textRenderingOptimization = "optimizeQuality";
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = "high";
+  // 화면 폭에 맞춰 글자 크기를 조절하되 지나치게 작거나 커지지 않게 제한한다.
   const scale = Math.max(0.4, Math.min(1.2, width / 1920));
   const paragraphSize = Math.max(16, Math.min(28, 22 * scale));
   const paragraphText =
@@ -240,6 +257,9 @@ function createTextTexture() {
   });
   return canvas;
 }
+
+// 패턴의 RGB 채널별 색상과 배경색 프리셋.
+// 각 배열 값은 Three.js/GLSL에서 사용하는 0~1 범위의 RGB 값이다.
 const colorPresets = {
   "Electric Blue": {
     color1: [0.0, 0.5, 1.0],
@@ -284,6 +304,8 @@ const colorPresets = {
     background: [0.0, 0.0, 0.0]
   }
 };
+
+// 정점 shader: PlaneGeometry의 UV를 fragment shader로 넘기고 정점을 화면에 배치한다.
 const vertexShader = `
       varying vec2 vUv;
       void main() {
@@ -291,6 +313,8 @@ const vertexShader = `
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }
     `;
+
+// fragment shader: 모든 픽셀에서 원형 패턴, 물결 왜곡, 텍스트 합성을 계산한다.
 const fragmentShader = `
       uniform float u_time;
       uniform vec2 u_resolution;
@@ -313,9 +337,14 @@ const fragmentShader = `
       void main() {
         vec2 r = u_resolution;
         vec2 FC = gl_FragCoord.xy;
+        // 텍스트 텍스처는 위에서 아래로 향하도록 y축을 뒤집은 UV를 사용한다.
         vec2 uv = vec2(FC.x / r.x, 1.0 - FC.y / r.y);
-        vec2 screenP = (FC.xy * 2.0 - r) / r.y;
+        // 화면 중심이 (0, 0)이 되도록 좌표를 변환하고 세로 길이로 종횡비를 보정한다.
+        // vec2 screenP = (FC.xy * 2.0 - r) / r.y;
+        float minSide = min(r.x, r.y);
+        vec2 screenP = (FC.xy * 2.0 - r) / minSide;
         
+        // CPU 물결 시뮬레이션의 현재 높이를 읽어 shader 효과의 변형량으로 사용한다.
         vec2 wCoord = vec2(FC.x / r.x, FC.y / r.y);
         float waterHeight = texture2D(u_waterTexture, wCoord).r;
         float waterInfluence = clamp(waterHeight * u_waterStrength, -0.5, 0.5);
@@ -325,6 +354,7 @@ const fragmentShader = `
         float waterPulse = waterInfluence * 0.3;
         float circleRadius = baseRadius + audioPulse + waterPulse;
         
+        // 원 경계에 smoothstep을 적용해 가장자리를 부드럽게 만든다.
         float distFromCenter = length(screenP);
         float inCircle = smoothstep(circleRadius + 0.1, circleRadius - 0.1, distFromCenter);
         
@@ -333,6 +363,7 @@ const fragmentShader = `
         if (inCircle > 0.0) {
           vec2 p = screenP * 1.1;
           
+          // 최근 클릭 위치에서 3초 동안 바깥으로 퍼지는 추가 원형 파동을 만든다.
           float rippleTime = u_time - u_ripple_time;
           vec2 ripplePos = u_ripple_position * r;
           float rippleDist = distance(FC.xy, ripplePos);
@@ -348,6 +379,7 @@ const fragmentShader = `
           float totalWaterInfluence = clamp((waterInfluence + clickRipple * 0.1) * u_waterStrength, -0.8, 0.8);
           float audioInfluence = 0.0;
 
+          // 중심에서의 거리에 비례해 좌표를 회전시켜 소용돌이 형태를 만든다.
           float angle = length(p) * 4.0 + audioInfluence * 2.0;
           mat2 R = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
           p *= R;
@@ -356,12 +388,14 @@ const fragmentShader = `
           float t = u_time * u_speed + totalWaterInfluence * 2.0 + audioInfluence * 1.5;
           float enhancedY = p.y + totalWaterInfluence * 0.3 + audioInfluence * 0.2;
           
+          // 위상이 다른 세 패턴을 계산해 각각 R/G/B 채널에 대응시킨다.
           float pattern1 = 0.5 + 0.5 * tanh(0.1 / max(l / 0.1, -l) - sin(l + enhancedY * max(1.0, -l / 0.1) + t));
           float pattern2 = 0.5 + 0.5 * tanh(0.1 / max(l / 0.1, -l) - sin(l + enhancedY * max(1.0, -l / 0.1) + t + 1.0));
           float pattern3 = 0.5 + 0.5 * tanh(0.1 / max(l / 0.1, -l) - sin(l + enhancedY * max(1.0, -l / 0.1) + t + 2.0));
           
           float intensity = 1.0 + totalWaterInfluence * 0.5 + audioInfluence * 0.3;
           
+          // 흑백 프리셋은 세 패턴의 평균 밝기를 사용하고, 그 외에는 RGB를 따로 조합한다.
           if (u_isMonochrome) {
             float mono = (pattern1 + pattern2 + pattern3) / 3.0 * intensity;
             o = vec4(mono, mono, mono, inCircle);
@@ -376,9 +410,11 @@ const fragmentShader = `
         vec3 bgColor = u_isMonochrome ? vec3(0.0) : u_background;
         vec3 finalColor = bgColor;
         
+        // 원의 알파값으로 배경과 패턴을 합성한다.
         finalColor = mix(finalColor, o.rgb, o.a);
         
         if (u_showText) {
+          // 물 높이의 좌우·상하 차이(gradient)를 구해 텍스트 UV를 굴절시킨다.
           vec2 waterCoords = vec2(FC.x / r.x, FC.y / r.y);
           float step = 1.0 / r.x;
           vec2 waterGrad = clamp(vec2(
@@ -399,9 +435,12 @@ const fragmentShader = `
           finalColor = mix(finalColor, textColor.rgb, textColor.a);
         }
         
+        // 최종 화면은 불투명하게 출력한다.
         gl_FragColor = vec4(finalColor, 1.0);
       }
     `;
+
+// JavaScript에서 shader로 전달할 uniform과 초기값을 정의한다.
 const material = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
@@ -453,12 +492,17 @@ const material = new THREE.ShaderMaterial({
     }
   }
 });
+
+// 클립 공간 전체(-1~1)를 채우는 평면 하나에 shader 재질을 적용한다.
 const geometry = new THREE.PlaneGeometry(2, 2);
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 camera.position.z = 1;
+
+// Tweakpane에서 조작하는 공개 설정값.
+// 일부 값은 shader uniform으로, 일부는 CPU 물결 계산값으로 연결된다.
 const settings = {
-  preset: "Ice White",
+  preset: "Golden Hour",
   animationSpeed: 1.3,
   waterStrength: 0.55,
   mouseIntensity: 1.2,
@@ -477,6 +521,7 @@ const settings = {
 };
 
 
+// 웹폰트 로드가 끝난 뒤 글자 캔버스를 GPU용 CanvasTexture로 변환한다.
 function setupTextTexture() {
   const waitForFonts = () => {
     Promise.all([
@@ -494,6 +539,7 @@ function setupTextTexture() {
           material.uniforms.u_textTexture.value = textTexture;
         }, 100);
       })
+      // 폰트 로드에 실패해도 브라우저 대체 폰트로 텍스처를 생성해 화면이 멈추지 않게 한다.
       .catch(() => {
         setTimeout(() => {
           const textCanvas = createTextTexture();
@@ -509,6 +555,7 @@ function setupTextTexture() {
   waitForFonts();
 }
 
+// 한 프레임만큼 2차원 물결 격자를 갱신한다.
 function updateWaterSimulation() {
   const { current, previous, velocity, vorticity } = waterBuffers;
   const { damping, resolution } = waterSettings;
@@ -519,11 +566,11 @@ function updateWaterSimulation() {
     Math.max(settings.swirlingMotion, 0.0),
     0.5
   );
-  // Apply velocity dissipation
+  // 시간이 지나면 유체 속도가 자연스럽게 줄어들도록 감쇠한다.
   for (let i = 0; i < resolution * resolution * 2; i++) {
     velocity[i] *= 1.0 - velocityDissipation;
   }
-  // Calculate vorticity with proper edge handling
+  // 인접 셀의 속도 차이로 각 셀의 와도(회전량)를 계산한다.
   for (let i = 1; i < resolution - 1; i++) {
     for (let j = 1; j < resolution - 1; j++) {
       const index = i * resolution + j;
@@ -534,7 +581,7 @@ function updateWaterSimulation() {
       vorticity[index] = (right - left - (top - bottom)) * 0.5;
     }
   }
-  // Apply vorticity forces
+  // 와도 구속(vorticity confinement)을 적용해 소용돌이가 너무 빨리 사라지지 않게 한다.
   if (vorticityInfluence > 0.001) {
     for (let i = 1; i < resolution - 1; i++) {
       for (let j = 1; j < resolution - 1; j++) {
@@ -557,7 +604,7 @@ function updateWaterSimulation() {
       }
     }
   }
-  // Water simulation with proper edge boundaries (no wrapping)
+  // 직전 프레임의 상하좌우 높이를 이용한 파동 방정식으로 새 높이를 계산한다.
   for (let i = 1; i < resolution - 1; i++) {
     for (let j = 1; j < resolution - 1; j++) {
       const index = i * resolution + j;
@@ -566,6 +613,7 @@ function updateWaterSimulation() {
       const bottom = previous[index + resolution];
       const left = previous[index - 1];
       const right = previous[index + 1];
+      // 주변 높이의 평균에서 현재 높이를 빼 파동이 반대편으로 전파되게 한다.
       current[index] = (top + bottom + left + right) / 2 - current[index];
       current[index] =
         current[index] * damping + previous[index] * (1 - damping);
@@ -583,16 +631,16 @@ function updateWaterSimulation() {
       current[index] = Math.max(-2.0, Math.min(2.0, current[index]));
     }
   }
-  // Apply zero boundary conditions to prevent edge wrapping
+  // 가장자리 높이와 속도를 0으로 고정해 파동이 반대편 경계로 이어지는 현상을 막는다.
   for (let i = 0; i < resolution; i++) {
-    // Top and bottom edges
+    // 위·아래 경계
     current[i] = 0;
     current[(resolution - 1) * resolution + i] = 0;
     velocity[i * 2] = 0;
     velocity[i * 2 + 1] = 0;
     velocity[((resolution - 1) * resolution + i) * 2] = 0;
     velocity[((resolution - 1) * resolution + i) * 2 + 1] = 0;
-    // Left and right edges
+    // 왼쪽·오른쪽 경계
     current[i * resolution] = 0;
     current[i * resolution + (resolution - 1)] = 0;
     velocity[i * resolution * 2] = 0;
@@ -600,14 +648,17 @@ function updateWaterSimulation() {
     velocity[(i * resolution + (resolution - 1)) * 2] = 0;
     velocity[(i * resolution + (resolution - 1)) * 2 + 1] = 0;
   }
+  // double buffering: 계산이 끝난 배열을 다음 프레임의 이전 상태로 교환한다.
   [waterBuffers.current, waterBuffers.previous] = [
     waterBuffers.previous,
     waterBuffers.current
   ];
+  // 갱신된 높이 배열을 GPU 텍스처에 다시 업로드한다.
   waterTexture.image.data = waterBuffers.current;
   waterTexture.needsUpdate = true;
 }
 
+// 화면 좌표 (x, y)를 물결 격자 좌표로 바꿔 원형 충격을 추가한다.
 function addRipple(x, y, strength = 1.0) {
   const { resolution, rippleRadius } = waterSettings;
   const normalizedX = x / window.innerWidth;
@@ -620,6 +671,7 @@ function addRipple(x, y, strength = 1.0) {
   );
   const rippleStrength = strength * (settings.impactForce / 100000);
   const radiusSquared = radius * radius;
+  // 반경 안의 모든 셀에 중심에서 멀어질수록 약해지는 파동을 기록한다.
   for (let i = -radius; i <= radius; i++) {
     for (let j = -radius; j <= radius; j++) {
       const distanceSquared = i * i + j * j;
@@ -636,11 +688,15 @@ function addRipple(x, y, strength = 1.0) {
             rippleStrength *
             falloff;
           waterBuffers.previous[index] += rippleValue;
+
+          // 방사 방향 속도를 더해 물결이 충격점 바깥쪽으로 퍼지게 한다.
           const angle = Math.atan2(j, i);
           const velocityStrength = rippleValue * settings.spiralIntensity;
           waterBuffers.velocity[velIndex] += Math.cos(angle) * velocityStrength;
           waterBuffers.velocity[velIndex + 1] +=
             Math.sin(angle) * velocityStrength;
+
+          // 방사 방향과 직각인 속도를 조금 더해 회전하는 흐름을 만든다.
           const swirlAngle = angle + Math.PI * 0.5;
           const swirlStrength = Math.min(velocityStrength * 0.3, 0.1);
           waterBuffers.velocity[velIndex] +=
@@ -652,22 +708,21 @@ function addRipple(x, y, strength = 1.0) {
     }
   }
 }
+
+// 우측 Tweakpane 패널을 생성한다.
 const pane = new Pane({
   title: "Audio-Reactive Water Shader"
 });
 
-document.addEventListener("keydown", (event) => {
-  if (event.key.toLowerCase() === "h") {
-    togglePanel();
-  }
-});
 const presetBinding = pane.addBinding(settings, "preset", {
+  // 프리셋 이름 배열을 Tweakpane의 {표시명: 값} 옵션 객체로 변환한다.
   options: Object.keys(colorPresets).reduce((acc, key) => {
     acc[key] = key;
     return acc;
   }, {})
 });
 presetBinding.on("change", (ev) => {
+  // 선택한 프리셋의 색상을 즉시 shader uniform에 반영한다.
   const preset = colorPresets[ev.value];
   material.uniforms.u_color1.value.fromArray(preset.color1);
   material.uniforms.u_color2.value.fromArray(preset.color2);
@@ -686,8 +741,8 @@ animFolder
     step: 0.1
   })
   .on("change", (ev) => (material.uniforms.u_speed.value = ev.value));
-// Add live audio level monitors
 
+// 물결 강도, 마우스/클릭 충격량을 조절하는 패널 항목.
 const waterFolder = pane.addFolder({
   title: "Water Settings"
 });
@@ -735,11 +790,13 @@ let lastMousePosition = {
 };
 let mouseThrottleTime = 0;
 
+// 마우스 이동 거리와 속도가 클수록 강한 물결을 만든다.
 function onMouseMove(event) {
   const rect = renderer.domElement.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
   const now = performance.now();
+  // 최대 약 125회/초만 처리해 지나친 CPU 연산을 방지한다.
   if (now - mouseThrottleTime < 8) return;
   mouseThrottleTime = now;
   const dx = x - lastMousePosition.x;
@@ -751,6 +808,7 @@ function onMouseMove(event) {
     const baseIntensity = Math.min(distance / 20, 1.0);
     const fluidIntensity =
       baseIntensity * velocityInfluence * waterSettings.mouseIntensity;
+    // 일정한 기계적 모양을 피하도록 세기와 위치에 작은 무작위 변화를 준다.
     const variation = Math.random() * 0.3 + 0.7;
     const finalIntensity = fluidIntensity * variation;
     const jitterX = x + (Math.random() - 0.5) * 3;
@@ -761,6 +819,7 @@ function onMouseMove(event) {
   }
 }
 
+// 클릭 지점에 CPU 물결과 shader 전용 3초짜리 원형 파동을 동시에 만든다.
 function onMouseClick(event) {
   const rect = renderer.domElement.getBoundingClientRect();
   const x = event.clientX - rect.left;
@@ -772,6 +831,7 @@ function onMouseClick(event) {
   material.uniforms.u_ripple_time.value = clock.getElapsedTime();
 }
 
+// 터치 이동은 마우스 이동과 같은 방식으로 연속 물결을 만든다.
 function onTouchMove(event) {
   event.preventDefault();
   const rect = renderer.domElement.getBoundingClientRect();
@@ -800,6 +860,7 @@ function onTouchMove(event) {
   }
 }
 
+// 터치 시작은 클릭과 같은 강한 단일 파동을 만든다.
 function onTouchStart(event) {
   event.preventDefault();
   const rect = renderer.domElement.getBoundingClientRect();
@@ -820,8 +881,11 @@ window.addEventListener("touchmove", onTouchMove, {
 window.addEventListener("touchstart", onTouchStart, {
   passive: false
 });
+
+// 애니메이션 경과 시간을 shader에 전달하기 위한 시계.
 const clock = new THREE.Clock();
 
+// 매 프레임 시간 → 물결 시뮬레이션 → 화면 렌더링 순서로 실행한다.
 function animate() {
     requestAnimationFrame(animate);
 
@@ -832,6 +896,7 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+// 창 크기가 바뀌면 렌더러, shader 해상도, 글자 텍스처를 새 크기로 갱신한다.
 function onWindowResize() {
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -842,6 +907,8 @@ function onWindowResize() {
 window.addEventListener("resize", onWindowResize);
 setupTextTexture();
 animate();
+
+// 패널의 초기 설정값을 shader uniform에 동기화한다.
 const initialPreset = colorPresets[settings.preset];
 material.uniforms.u_color1.value.fromArray(initialPreset.color1);
 material.uniforms.u_color2.value.fromArray(initialPreset.color2);
@@ -850,7 +917,11 @@ material.uniforms.u_background.value.fromArray(initialPreset.background);
 material.uniforms.u_ripple_strength.value = settings.rippleStrength;
 material.uniforms.u_waterStrength.value = settings.waterStrength;
 material.uniforms.u_speed.value = settings.animationSpeed;
-material.uniforms.u_isMonochrome.value = false;
+material.uniforms.u_isMonochrome.value = "true";
+// material.uniforms.u_isMonochrome.value =
+//   settings.preset === "Pure Monochrome";
+
+// 시작 직후 화면 중앙에 한 번 물결을 만들어 정적인 첫 화면을 피한다.
 setTimeout(() => {
   addRipple(window.innerWidth / 2, window.innerHeight / 2, 1.5);
 }, 500);
