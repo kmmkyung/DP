@@ -1,0 +1,221 @@
+<!-- @format -->
+
+@format
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .popup .mt16 {
+    margin-top: 16px;
+  }
+  .popup .mt28 {
+    margin-top: 28px;
+  }
+  .popup .bge5f1f3 {
+    background-color: #e5f1f3;
+  }
+  .popup .bgfff {
+    background-color: #fff;
+  }
+  .popup .bg0080AE {
+    background-color: #0080ae;
+  }
+  .popup .colorfff {
+    color: #fff;
+  }
+  .popup {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    max-width: 500px;
+  }
+  .popup--container {
+    padding: 24px 40px;
+  }
+  .popup .logo--area {
+    max-width: 160px;
+    width: 90%;
+    aspect-ratio: 160/31;
+  }
+  .popup .logo--area img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .popup .title--area {
+    margin-top: 16px;
+  }
+  .popup .title--area .popup__title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+  }
+  .popup .title--area .popup__subtitle {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #555;
+  }
+  .popup .text--area {
+    padding: 16px 20px;
+    border-radius: 12px;
+  }
+  .popup .content--list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1vw;
+  }
+  .popup .content--list + .content--list {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #dfdfdf;
+  }
+  .popup .content__title {
+    font-size: 15px;
+    width: 20%;
+    flex-shrink: 0;
+  }
+  .popup .content__text {
+    font-size: 15px;
+    color: #666;
+    flex: 1;
+  }
+  .popup .link--area a {
+    display: block;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-radius: 16px;
+  }
+  .popup .link--area a > span {
+    font-size: 18px;
+  }
+  .popup .link--area a > .icon__arr {
+    flex-shrink: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+  .popup .link--area a > .icon__arr::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .popup .link--area a + a {
+    margin-top: 14px;
+  }
+  .popup .popup__close {
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .popup .popup__close button {
+    background-color: transparent;
+    border: none;
+  }
+  .popup .close__today {
+    padding-left: 24px;
+    font-size: 18px;
+    position: relative;
+  }
+  .popup .close__today::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: url(/images/popup/icon_check.png) no-repeat center / cover;
+  }
+  .popup .close__one {
+    width: 40px;
+    height: 40px;
+    position: relative;
+  }
+  .popup .close__one::before {
+    content: "";
+    width: 1px;
+    height: 80%;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .popup .close__one::after {
+    content: "";
+    width: 1px;
+    height: 80%;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+</style>
+
+<aside class="popup">
+  <div class="popup--container bge5f1f3">
+    <div class="popupwrap">
+      <div class="logo--area">
+        <img src="/images/popup/logo.png" alt="logo" />
+      </div>
+      <div class="title--area mt16">
+        <h6 class="popup__title">주주간담회</h6>
+        <p class="popup__subtitle">주주여러분께 아래 일정을 안내드립니다.</p>
+      </div>
+      <div class="content--area mt28">
+        <div class="text--area bgfff">
+          <dl class="content--list">
+            <dt class="content__title">구분</dt>
+            <dd class="content__text">
+              <p>주주간담회</p>
+            </dd>
+          </dl>
+          <dl class="content--list">
+            <dt class="content__title">개최일시</dt>
+            <dd class="content__text">
+              <p>(1차) 2026. 09. 10 (목) 오전 10시</p>
+              <p>(2차) 2026. 09. 18 (금) 오후 2시</p>
+            </dd>
+          </dl>
+          <dl class="content--list">
+            <dt class="content__title">개최장소</dt>
+            <dd class="content__text">
+              <p>(1차) 천안 본사 회의실</p>
+              <p>(2차) 서울 NH증권본사 4층 Grand hall2</p>
+            </dd>
+          </dl>
+        </div>
+        <div class="link--area mt28">
+          <a href="" class="bg0080AE">
+            <span class="colorfff">주주서한/이사회 의견서 바로가기</span>
+            <i class="icon__arr"></i>
+          </a>
+          <a href="" class="bg0080AE">
+            <span class="colorfff">주주간담회 신청 바로가기</span>
+            <i class="icon__arr"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup__close bgfff">
+    <button class="close__today">
+      <i class="icon__check #000"></i>오늘 하루 보지 않기
+    </button>
+    <button class="close__one"><i class="icon__close"></i></button>
+  </div>
+</aside>
