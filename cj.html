@@ -1,209 +1,227 @@
-<!DOCTYPE html>
+<!-- @format -->
+
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>SVG Morph + 3 Layers</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SVG Morph + 3 Layers</title>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
-<style>
-body {
-  margin:0;
-  height:1000vh;
-  background:#111;
-}
-canvas {
-  position:fixed;
-  top:0;
-  left:0;
-}
-.hero {
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  color:#fff;
-  font-size:60px;
-  z-index:2;
-}
-</style>
-</head>
-<body>
+    <style>
+      body {
+        margin: 0;
+        height: 1000vh;
+        background: #111;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .hero {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 60px;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div class="hero">:3</div>
 
-<canvas id="canvas"></canvas>
-<div class="hero">:3</div>
+    <script>
+      // =========================
+      // Canvas 셋팅 & 사이즈
+      // =========================
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
 
-<script>
-// =========================
-// Canvas 셋팅 & 사이즈
-// =========================
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+      let w, h;
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
 
-let w, h;
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
+      // =========================
+      // STATE (스크롤 진행률)
+      // =========================
+      const state = {progress: 0};
 
-// =========================
-// STATE (스크롤 진행률)
-// =========================
-const state = { progress: 0 };
+      // =========================
+      // GSAP
+      // =========================
+      gsap.registerPlugin(ScrollTrigger);
 
-// =========================
-// GSAP
-// =========================
-gsap.registerPlugin(ScrollTrigger);
+      gsap.to(state, {
+        progress: 1,
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+      });
 
-gsap.to(state, {
-  progress: 1,
-  scrollTrigger: {
-    trigger: document.body,
-    start: "top top",
-    end: "bottom bottom",
-    scrub: 1,
-  }
-});
+      // =========================
+      // SVG paths
+      // =========================
+      const paths = [
+        "M146.661 481.437C177.213 484.647 208.616 484.829 234.724 483.707C278.926 481.803 321.431 477.288 363.902 465.724L365.925 465.168C443.266 443.736 509.498 396.935 531.516 317.685C539.769 288.001 543.573 258.192 541.585 227.302L541.485 225.83C538.69 186.557 529.96 148.877 514.571 112.993C503.986 88.3167 488.669 68.7821 467.609 51.0947H467.575L467.437 50.9775C424.586 15.0562 370.976 -1.5994 315.455 0.710938C247.235 3.59587 185.232 36.9874 135.937 83.2979L133.599 85.5127C75.0895 141.398 32.4944 211.47 10.1611 289.309C0.413293 323.314 -2.88546 358.174 4.60254 388.561C12.0855 418.926 30.3434 444.846 63.7715 461.019C86.4333 471.988 116.102 478.225 146.661 481.437Z",
+        "M142.696 485.452C208.021 501.915 274.987 507.56 342.024 499.971C371.3 496.66 397.754 488.705 424.271 475.264L424.268 475.251C492.74 440.481 507.77 370.159 494.792 298.255C489.793 270.671 480.761 245.773 473.332 218.785C471.176 210.947 470.658 202.294 470.834 192.914C471.01 183.539 471.882 173.388 472.519 162.58C473.795 140.943 474.142 116.555 466.194 89.877C451.77 41.4346 412.361 15.6368 363.637 6.72175C300.939 -4.75754 211.553 -0.381104 151.392 20.0869C75.872 45.7843 28.1435 96.3304 8.88185 173.926C-5.59913 232.224 -0.895723 291.562 19.744 347.982C30.0669 376.2 45.1913 406.639 65.5502 431.99C85.9092 457.341 111.481 477.578 142.696 485.452Z",
+      ];
 
-// =========================
-// SVG paths
-// =========================
-const paths = [
-"M167.699 4.16192C140.499 -14.2381 77.6986 41.1619 49.6986 71.1619C-51.3014 173.162 22.6986 267.162 97.6986 276.162C172.699 285.162 230.699 181.162 232.699 113.162C234.699 45.1619 201.699 27.1619 167.699 4.16192Z",
+      // =========================
+      // path → points
+      // =========================
+      function pathToPoints(d, count = 120) {
+        const svgNS = "http://www.w3.org/2000/svg";
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute("d", d);
+        document.body.appendChild(path);
 
-"M122.519 6.82993C96.7343 -16.0326 58.5438 28.5028 42.6717 53.6283C5.69096 134.162 25.6617 67.9054 2.42262 221.306C-20.8164 374.707 173.226 281.755 224.797 266.135C276.367 250.514 225.399 155.576 232.086 117.067C238.773 78.5594 231.426 50.623 197.611 53.0516C163.795 55.4802 154.749 35.4081 122.519 6.82993Z",
+        const length = path.getTotalLength();
+        const pts = [];
 
-"M138.826 5.67369C95.3319 -12.9665 65.4731 23.2208 55.9804 43.6445C32.5469 73.4661 6.79086 82.4783 22.3244 122.175C37.8579 161.872 -7.01671 116.134 1.61302 224.006C10.2428 331.878 208.727 277.51 222.534 251.621C236.342 225.732 198.371 238.676 222.534 205.883C246.698 173.09 242.383 80.7523 217.356 82.4783C192.33 84.2042 193.193 28.974 138.826 5.67369Z",
+        for (let i = 0; i < count; i++) {
+          const p = path.getPointAtLength((i / count) * length);
+          pts.push({x: p.x, y: p.y});
+        }
 
-"M157.919 11.4757C102.309 -22.287 66.5606 31.3361 56.6304 45.2384C-58.5603 249.801 28.8258 329.243 94.3652 333.215C159.905 337.187 88.4071 305.41 223.458 271.648C358.509 237.885 287.012 73.0431 269.137 45.2384C251.263 17.4338 213.528 45.2384 157.919 11.4757Z",
+        document.body.removeChild(path);
+        return pts;
+      }
 
-"M167.069 4.9002C94.6611 -15.4645 29.4186 39.7841 5.84835 69.954C-8.2938 135.008 5.84835 160.464 45.4464 205.719C85.0444 250.974 107.672 327.341 189.696 310.371C271.721 293.4 300.005 188.748 268.892 160.464C237.78 132.18 257.579 30.356 167.069 4.9002Z",
+      // =========================
+      // normalize
+      // =========================
+      function normalize(points) {
+        let minX = Infinity,
+          minY = Infinity,
+          maxX = -Infinity,
+          maxY = -Infinity;
 
-"M167.699 4.16192C140.499 -14.2381 77.6986 41.1619 49.6986 71.1619C-51.3014 173.162 22.6986 267.162 97.6986 276.162C172.699 285.162 230.699 181.162 232.699 113.162C234.699 45.1619 201.699 27.1619 167.699 4.16192Z"
+        points.forEach((p) => {
+          minX = Math.min(minX, p.x);
+          minY = Math.min(minY, p.y);
+          maxX = Math.max(maxX, p.x);
+          maxY = Math.max(maxY, p.y);
+        });
 
-];
+        const w = maxX - minX;
+        const h = maxY - minY;
 
-// =========================
-// path → points
-// =========================
-function pathToPoints(d, count=120){
-  const svgNS = "http://www.w3.org/2000/svg";
-  const path = document.createElementNS(svgNS,"path");
-  path.setAttribute("d", d);
-  document.body.appendChild(path);
+        return points.map((p) => ({
+          x: (p.x - minX) / w,
+          y: (p.y - minY) / h,
+        }));
+      }
 
-  const length = path.getTotalLength();
-  const pts = [];
+      // =========================
+      // shapes 생성
+      // =========================
+      const shapes = paths.map((d) => normalize(pathToPoints(d, 120)));
 
-  for(let i=0;i<count;i++){
-    const p = path.getPointAtLength((i/count)*length);
-    pts.push({x:p.x, y:p.y});
-  }
+      // =========================
+      // utils
+      // =========================
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
 
-  document.body.removeChild(path);
-  return pts;
-}
+      // =========================
+      // morph
+      // =========================
+      function getShape(p) {
+        const total = shapes.length;
+        const scaled = p * (total - 1);
 
-// =========================
-// normalize
-// =========================
-function normalize(points){
-  let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+        const i = Math.floor(scaled);
+        const next = Math.min(i + 1, total - 1);
+        const t = scaled - i;
 
-  points.forEach(p=>{
-    minX=Math.min(minX,p.x);
-    minY=Math.min(minY,p.y);
-    maxX=Math.max(maxX,p.x);
-    maxY=Math.max(maxY,p.y);
-  });
+        return shapes[i].map((pt, idx) => ({
+          x: lerp(pt.x, shapes[next][idx].x, t),
+          y: lerp(pt.y, shapes[next][idx].y, t),
+        }));
+      }
 
-  const w=maxX-minX;
-  const h=maxY-minY;
+      // =========================
+      // draw layer
+      // =========================
+      function draw(points, cx, cy, size, t, color, ox, oy) {
+        ctx.beginPath();
 
-  return points.map(p=>({
-    x:(p.x-minX)/w,
-    y:(p.y-minY)/h
-  }));
-}
+        points.forEach((p, i) => {
+          let x = cx + (p.x - 0.5) * size + ox;
+          let y = cy + (p.y - 0.5) * size + oy;
 
-// =========================
-// shapes 생성
-// =========================
-const shapes = paths.map(d =>
-  normalize(pathToPoints(d,120))
-);
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        });
 
-// =========================
-// utils
-// =========================
-function lerp(a,b,t){
-  return a + (b-a)*t;
-}
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
 
-// =========================
-// morph
-// =========================
-function getShape(p){
-  const total = shapes.length;
-  const scaled = p * (total-1);
+      // =========================
+      // render
+      // =========================
+      function render() {
+        requestAnimationFrame(render);
 
-  const i = Math.floor(scaled);
-  const next = Math.min(i+1,total-1);
-  const t = scaled - i;
+        ctx.clearRect(0, 0, w, h);
 
-  return shapes[i].map((pt,idx)=>({
-    x: lerp(pt.x, shapes[next][idx].x, t),
-    y: lerp(pt.y, shapes[next][idx].y, t)
-  }));
-}
+        const cx = w / 2;
+        const cy = h / 2;
 
-// =========================
-// draw layer
-// =========================
-function draw(points,cx,cy,size,t,color,ox,oy){
-  ctx.beginPath();
+        const p = state.progress;
+        const shape = getShape(p);
 
-  points.forEach((p,i)=>{
-    let x = cx + (p.x-0.5)*size + ox;
-    let y = cy + (p.y-0.5)*size + oy;
+        ctx.globalCompositeOperation = "lighter";
 
-    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
-  });
+        draw(
+          shape,
+          cx,
+          cy,
+          420,
+          p * 5,
+          "rgba(255,80,120,0.45)",
+          Math.sin(p * 5) * 20,
+          Math.cos(p * 5) * 20,
+        );
+        // draw(
+        //   shape,
+        //   cx,
+        //   cy,
+        //   300,
+        //   p * 5 + 2,
+        //   "rgba(0,200,255,0.45)",
+        //   Math.sin(p * 5 + 2) * 20,
+        //   Math.cos(p * 5 + 2) * 20,
+        // );
+        // draw(
+        //   shape,
+        //   cx,
+        //   cy,
+        //   380,
+        //   p * 5 + 4,
+        //   "rgba(0,255,180,0.45)",
+        //   Math.sin(p * 5 + 4) * 20,
+        //   Math.cos(p * 5 + 4) * 20,
+        // );
 
-  ctx.closePath();
-  ctx.fillStyle = color;
-  ctx.fill();
-}
+        ctx.globalCompositeOperation = "source-over";
+      }
 
-// =========================
-// render
-// =========================
-function render(){
-  requestAnimationFrame(render);
-
-  ctx.clearRect(0,0,w,h);
-
-  const cx = w/2;
-  const cy = h/2;
-
-  const p = state.progress;
-  const shape = getShape(p);
-
-  ctx.globalCompositeOperation = "lighter";
-
-  draw(shape,cx,cy,420,p*5,"rgba(255,80,120,0.45)",Math.sin(p*5)*20,Math.cos(p*5)*20);
-  draw(shape,cx,cy,300,p*5+2,"rgba(0,200,255,0.45)",Math.sin(p*5+2)*20,Math.cos(p*5+2)*20);
-  draw(shape,cx,cy,380,p*5+4,"rgba(0,255,180,0.45)",Math.sin(p*5+4)*20,Math.cos(p*5+4)*20);
-
-  ctx.globalCompositeOperation = "source-over";
-}
-
-render();
-</script>
-
-</body>
+      render();
+    </script>
+  </body>
 </html>

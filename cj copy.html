@@ -1,0 +1,385 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인재상 - Blob Morph</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #f5f5f7;
+        font-family: "Pretendard", sans-serif;
+        color: #111;
+      }
+      .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.6;
+        padding: 120px 0 120px;
+      }
+      .list {
+        max-width: 1350px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        padding-bottom: 200px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+      .row.rev .visual {
+        order: 2;
+      }
+      .row.rev .text {
+        text-align: right;
+      }
+      .visual svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+      .text h3 {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+      .text p {
+        font-size: 20px;
+        line-height: 1.6;
+        color: #555;
+      }
+      .badge {
+        display: inline-block;
+        font-size: 64px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 30px;
+      }
+      .badge span {
+        display: table;
+        padding: 0 8px;
+        background: var(--c);
+      }
+      .row.rev .badge span {
+        margin-left: auto;
+      }
+      @media (max-width: 768px) {
+        .title {
+          font-size: 28px;
+          padding: 60px 16px;
+        }
+        .list {
+          padding: 0 16px 100px;
+        }
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .row.rev .visual {
+          order: 0;
+        }
+        .row.rev .text {
+          text-align: left;
+        }
+        .row.rev .badge span {
+          margin-left: 0;
+        }
+        .badge {
+          font-size: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="title">함께 성장하는 사람들,<br />우리가 만들어가는 내일</h2>
+
+    <div class="list">
+      <!-- data-from / data-to : 0 또는 1 (아래 PATHS 번호) -->
+      <section
+        class="row"
+        data-from="0"
+        data-to="1"
+        data-color="#e0262b"
+        data-img="images/talent01.jpg">
+        <div class="visual"></div>
+        <div class="text">
+          <div class="badge" style="--c: #e0262b">
+            <span>Design</span><span>Tomorrow</span>
+          </div>
+          <h3>미래를 먼저 설계하는 사람</h3>
+          <p>
+            현재의 방식에 머무르지 않고 기술과 시장의 다음 변화를 먼저
+            바라봅니다.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="row rev"
+        data-from="1"
+        data-to="0"
+        data-color="#3cbf8a"
+        data-img="images/talent02.jpg">
+        <div class="visual"></div>
+        <div class="text">
+          <div class="badge" style="--c: #3cbf8a">
+            <span>Find a</span><span>Better</span><span>Way</span>
+          </div>
+          <h3>더 나은 해법을 찾는 사람</h3>
+          <p>익숙한 답을 그대로 따르기보다 문제의 본질을 깊이 파고듭니다.</p>
+        </div>
+      </section>
+
+      <section
+        class="row"
+        data-from="0"
+        data-to="1"
+        data-color="#2f7ad6"
+        data-img="images/talent03.jpg">
+        <div class="visual"></div>
+        <div class="text">
+          <div class="badge" style="--c: #2f7ad6">
+            <span>Make It</span><span>Happen</span>
+          </div>
+          <h3>끝까지 결과를 만드는 사람</h3>
+          <p>좋은 아이디어에 머무르지 않고 실행하여 결과로 완성합니다.</p>
+        </div>
+      </section>
+
+      <section
+        class="row rev"
+        data-from="1"
+        data-to="0"
+        data-color="#f3923a"
+        data-img="images/talent04.jpg">
+        <div class="visual"></div>
+        <div class="text">
+          <div class="badge" style="--c: #f3923a">
+            <span>Create</span><span>Impact</span><span>Together</span>
+          </div>
+          <h3>함께 더 큰 가치를 만드는 사람</h3>
+          <p>서로 다른 기술과 경험, 관점을 존중하고 적극적으로 연결합니다.</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      const NS = "http://www.w3.org/2000/svg";
+      const W = 670,
+        H = 505; // Figma 이미지 프레임 크기
+      const N = 160; // 샘플링 점 개수
+
+      // =========================
+      // 원본 path 2개 + Figma에서 적용된 변형(회전/반전)과 최종 위치
+      // =========================
+      const PATHS = [
+        {
+          // 0 : 2·4번째 줄 모양
+          d: "M146.661 481.437C177.213 484.647 208.616 484.829 234.724 483.707C278.926 481.803 321.431 477.288 363.902 465.724L365.925 465.168C443.266 443.736 509.498 396.935 531.516 317.685C539.769 288.001 543.573 258.192 541.585 227.302L541.485 225.83C538.69 186.557 529.96 148.877 514.571 112.993C503.986 88.3167 488.669 68.7821 467.609 51.0947H467.575L467.437 50.9775C424.586 15.0562 370.976 -1.5994 315.455 0.710938C247.235 3.59587 185.232 36.9874 135.937 83.2979L133.599 85.5127C75.0895 141.398 32.4944 211.47 10.1611 289.309C0.413293 323.314 -2.88546 358.174 4.60254 388.561C12.0855 418.926 30.3434 444.846 63.7715 461.019C86.4333 471.988 116.102 478.225 146.661 481.437Z",
+          rotate: 180,
+          flipX: true,
+          rect: {x: 76.02, y: 0, w: 542.6, h: 484.83},
+        },
+        {
+          // 1 : 1·3번째 줄 모양
+          d: "M363.637 6.72175C300.939 -4.75754 211.553 -0.381104 151.392 20.0869C75.872 45.7843 28.1435 96.3304 8.88185 173.926C-5.59913 232.224 -0.895723 291.562 19.744 347.982C30.0669 376.2 45.1913 406.639 65.5502 431.99C85.9092 457.341 111.481 477.578 142.696 485.452C208.021 501.915 274.987 507.56 342.024 499.971C371.3 496.66 397.754 488.705 424.271 475.264L424.268 475.251C492.74 440.481 507.77 370.159 494.792 298.255C489.793 270.671 480.761 245.773 473.332 218.785C471.176 210.947 470.658 202.294 470.834 192.914C471.01 183.539 471.882 173.388 472.519 162.58C473.795 140.943 474.142 116.555 466.194 89.877C451.77 41.4346 412.361 15.6368 363.637 6.72175Z",
+          rotate: 176.29,
+          flipY: true,
+          rect: {x: 67.55, y: -15.41, w: 524.63, h: 535.45},
+        },
+      ];
+
+      // =========================
+      // path → 점 배열
+      // =========================
+      function sample(d) {
+        const svg = document.createElementNS(NS, "svg");
+        svg.style.cssText =
+          "position:absolute;width:0;height:0;visibility:hidden";
+        const p = document.createElementNS(NS, "path");
+        p.setAttribute("d", d);
+        svg.appendChild(p);
+        document.body.appendChild(svg);
+        const len = p.getTotalLength();
+        const pts = [];
+        for (let i = 0; i < N; i++) {
+          const pt = p.getPointAtLength((len * i) / N);
+          pts.push({x: pt.x, y: pt.y});
+        }
+        svg.remove();
+        return pts;
+      }
+
+      // Figma 변형(반전 → 회전) 적용 후 최종 위치(rect)에 맞춤
+      function place(pts, {rotate = 0, flipX, flipY, rect}) {
+        const r = (rotate * Math.PI) / 180,
+          c = Math.cos(r),
+          s = Math.sin(r);
+        const t = pts.map(({x, y}) => {
+          if (flipX) x = -x;
+          if (flipY) y = -y;
+          return {x: x * c - y * s, y: x * s + y * c};
+        });
+        const xs = t.map((p) => p.x),
+          ys = t.map((p) => p.y);
+        const minX = Math.min(...xs),
+          minY = Math.min(...ys);
+        const sx = rect.w / (Math.max(...xs) - minX);
+        const sy = rect.h / (Math.max(...ys) - minY);
+        return t.map((p) => ({
+          x: rect.x + (p.x - minX) * sx,
+          y: rect.y + (p.y - minY) * sy,
+        }));
+      }
+
+      // =========================
+      // 방향 + 시작점 정렬 (뒤집힘 방지)
+      // =========================
+      function area(pts) {
+        let s = 0;
+        for (let i = 0; i < pts.length; i++) {
+          const a = pts[i],
+            b = pts[(i + 1) % pts.length];
+          s += a.x * b.y - b.x * a.y;
+        }
+        return s;
+      }
+      function alignTo(ref, pts) {
+        if (Math.sign(area(ref)) !== Math.sign(area(pts)))
+          pts = [...pts].reverse();
+        let best = 0,
+          min = Infinity;
+        for (let k = 0; k < N; k++) {
+          let sum = 0;
+          for (let i = 0; i < N; i++) {
+            const p = pts[(i + k) % N];
+            sum += (ref[i].x - p.x) ** 2 + (ref[i].y - p.y) ** 2;
+          }
+          if (sum < min) {
+            min = sum;
+            best = k;
+          }
+        }
+        return pts.map((_, i) => pts[(i + best) % N]);
+      }
+
+      // 점 배열 → 부드러운 곡선 path (Catmull-Rom)
+      function toPath(pts) {
+        let d = `M${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+        for (let i = 0; i < N; i++) {
+          const p0 = pts[(i - 1 + N) % N],
+            p1 = pts[i],
+            p2 = pts[(i + 1) % N],
+            p3 = pts[(i + 2) % N];
+          const c1x = p1.x + (p2.x - p0.x) / 6,
+            c1y = p1.y + (p2.y - p0.y) / 6;
+          const c2x = p2.x - (p3.x - p1.x) / 6,
+            c2y = p2.y - (p3.y - p1.y) / 6;
+          d += `C${c1x.toFixed(2)} ${c1y.toFixed(2)} ${c2x.toFixed(2)} ${c2y.toFixed(2)} ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+        }
+        return d + "Z";
+      }
+
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const clamp = (v) => Math.max(0, Math.min(1, v));
+      const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+      // 두 도형 미리 계산
+      const SHAPES = PATHS.map((cfg) => place(sample(cfg.d), cfg));
+      SHAPES[1] = alignTo(SHAPES[0], SHAPES[1]);
+
+      function morphAt(from, to, t) {
+        const a = SHAPES[from],
+          b = SHAPES[to];
+        return toPath(
+          a.map((p, i) => ({x: lerp(p.x, b[i].x, t), y: lerp(p.y, b[i].y, t)})),
+        );
+      }
+
+      // =========================
+      // 레이어 3개 설정 (시작 시 흩어진 상태 → 끝에서 하나로)
+      // =========================
+      const LAYERS = [
+        {x: -70, y: 40, rot: -14, scale: 0.82, delay: 0.0}, // 색 레이어 1
+        {x: 60, y: -45, rot: 12, scale: 0.88, delay: 0.08}, // 색 레이어 2
+        {x: 0, y: 25, rot: -5, scale: 0.92, delay: 0.16}, // 이미지 레이어
+      ];
+
+      document.querySelectorAll(".row").forEach((row, idx) => {
+        const from = +row.dataset.from,
+          to = +row.dataset.to;
+        const color = row.dataset.color;
+
+        const svg = document.createElementNS(NS, "svg");
+        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+        svg.innerHTML = `
+    <defs><clipPath id="clip${idx}"><path/></clipPath></defs>
+    <path class="l0" fill="${color}" opacity=".45" style="mix-blend-mode:multiply"/>
+    <path class="l1" fill="${color}" opacity=".25" style="mix-blend-mode:multiply"/>
+    <g class="l2" clip-path="url(#clip${idx})">
+      <rect width="${W}" height="${H + 40}" y="-20" fill="#ddd"/>
+      <image href="${row.dataset.img}" x="0" y="-20" width="${W}" height="${H + 40}" preserveAspectRatio="xMidYMid slice"/>
+    </g>`;
+        row.querySelector(".visual").appendChild(svg);
+
+        const els = [
+          svg.querySelector(".l0"),
+          svg.querySelector(".l1"),
+          svg.querySelector(".l2"),
+        ];
+        const clipPath = svg.querySelector(`#clip${idx} path`);
+        const cx = W / 2,
+          cy = H / 2;
+
+        function update(p) {
+          LAYERS.forEach((L, i) => {
+            // 레이어마다 약간씩 늦게 따라와서 끝(p=1)에서 동시에 합쳐짐
+            const t = ease(clamp((p - L.delay) / (1 - L.delay)));
+            const d = morphAt(from, to, t);
+            const k = 1 - t;
+            const tf =
+              `translate(${L.x * k} ${L.y * k}) rotate(${L.rot * k} ${cx} ${cy}) ` +
+              `translate(${cx} ${cy}) scale(${lerp(L.scale, 1, t)}) translate(${-cx} ${-cy})`;
+            if (i < 2) {
+              els[i].setAttribute("d", d);
+              els[i].setAttribute("transform", tf);
+              els[i].style.opacity = (i === 0 ? 0.45 : 0.25) * (1 - t * t); // 합쳐지면서 사라짐
+            } else {
+              clipPath.setAttribute("d", d);
+              clipPath.setAttribute("transform", tf);
+            }
+          });
+        }
+        update(0);
+
+        const state = {p: 0};
+        gsap.to(state, {
+          p: 1,
+          ease: "none",
+          onUpdate: () => update(state.p),
+          scrollTrigger: {
+            trigger: row,
+            start: "top 90%",
+            end: "center 55%",
+            scrub: 1,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
