@@ -90,38 +90,45 @@ function extractSiteInfoInPage() {
   };
 
   // --- GNB 메뉴 ---
+  // 헤더/내비 영역의 모든 목록(ul)을 후보로 모은 뒤 점수가 가장 높은 것을 고른다.
+  // (처음 찾은 목록을 쓰면 .gnb 안의 언어 선택 KOR/ENG 같은 것을 메뉴로 오인할 수 있음)
   function extractMenu() {
     const roots = ['#gnb', '.gnb', '#gnb_wrap', '.gnb_wrap', '#nav', '.nav', '#menu', 'header nav', 'nav', '#header', 'header', '#hd', '.header'];
+    const LANG = /^(kor?|kr|eng?|en|chn?|cn|jpn?|jp|한국어|english|中文|日本語)$/i;
+    const candidates = new Set();
     for (const sel of roots) {
       for (const root of document.querySelectorAll(sel)) {
-        const uls = [...(root.matches('ul') ? [root] : []), ...root.querySelectorAll('ul')];
-        let best = null;
-        let bestScore = 0;
-        for (const ul of uls) {
-          const lis = [...ul.children].filter((li) => li.tagName === 'LI' && li.querySelector('a'));
-          if (lis.length < 2) continue;
-          // 하위 메뉴(ul)를 가진 li가 있으면 GNB일 가능성이 높다
-          const nested = lis.filter((li) => li.querySelector('ul')).length;
-          const score = lis.length + nested * 3;
-          if (score > bestScore) {
-            best = lis;
-            bestScore = score;
-          }
-        }
-        if (!best) continue;
-        const items = best.map((li) => {
-          const links = [...li.querySelectorAll('a')];
-          const top = li.querySelector(':scope > a, :scope > * > a') || links[0];
-          return {
-            name: clean(top.textContent),
-            href: top.href,
-            subs: links.filter((a) => a !== top).map((a) => ({ name: clean(a.textContent), href: a.href })).filter((s) => s.name),
-          };
-        }).filter((i) => i.name);
-        if (items.length >= 2) return items;
+        if (root.matches('ul')) candidates.add(root);
+        root.querySelectorAll('ul').forEach((ul) => candidates.add(ul));
       }
     }
-    return [];
+    let best = null;
+    let bestScore = 0;
+    const ordered = [...candidates].sort((x, y) => (x.compareDocumentPosition(y) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+    for (const ul of ordered) {
+      if (ul.closest('[class*="lang" i], [id*="lang" i]')) continue;
+      const lis = [...ul.children].filter((li) => li.tagName === 'LI' && li.querySelector('a'));
+      if (lis.length < 2) continue;
+      const names = lis.map((li) => clean((li.querySelector('a') || li).textContent));
+      if (names.every((n) => LANG.test(n))) continue; // 언어 선택 목록
+      // 하위 메뉴(ul)를 가진 li가 있으면 GNB일 가능성이 높다
+      const nested = lis.filter((li) => li.querySelector('ul')).length;
+      const score = lis.length + nested * 3;
+      if (score > bestScore) { // 동점이면 문서에서 먼저 나온(=헤더 쪽) 목록 유지
+        best = lis;
+        bestScore = score;
+      }
+    }
+    if (!best) return [];
+    return best.map((li) => {
+      const links = [...li.querySelectorAll('a')];
+      const top = li.querySelector(':scope > a, :scope > * > a') || links[0];
+      return {
+        name: clean(top.textContent),
+        href: top.href,
+        subs: links.filter((a) => a !== top).map((a) => ({ name: clean(a.textContent), href: a.href })).filter((s) => s.name),
+      };
+    }).filter((i) => i.name);
   }
 
   // --- 첫 화면에서 글자가 가장 큰 문구 = 슬로건 후보 ---
@@ -243,6 +250,9 @@ async function openPage(page, url) {
     await page.goto(url, { waitUntil: 'load', timeout: NAV_TIMEOUT });
   }
   await page.waitForTimeout(1500); // 메인 비주얼 애니메이션 대기
+  // 배경 동영상(video, Vimeo/YouTube iframe)이 있으면 첫 프레임이 뜰 때까지 조금 더 기다린다
+  const hasVideo = await page.evaluate(() => !!document.querySelector('video, iframe[src*="vimeo"], iframe[src*="youtube"]'));
+  if (hasVideo) await page.waitForTimeout(3500);
   await page.evaluate(hidePopupsInPage);
 }
 
@@ -299,9 +309,23 @@ function buildPageList(homeUrl, menu, maxPages) {
  * @param {string} outDir 스크린샷 저장 폴더
  * @param {{maxPages?: number, onProgress?: (msg: string) => void}} options
  */
+// PC에 설치된 Google Chrome을 우선 사용한다.
+// 번들 Chromium에는 H.264 등 일부 코덱이 없어 배경 동영상이 빈 화면으로 찍힐 수 있기 때문
+// (Playwright 문서 browsers.md "Media codecs" 참고). Chrome이 없으면 번들 Chromium 사용.
+async function launchBrowser(onProgress) {
+  try {
+    const browser = await chromium.launch({ channel: 'chrome' });
+    onProgress('설치된 Google Chrome으로 캡처합니다');
+    return browser;
+  } catch {
+    onProgress('Google Chrome이 없어 내장 Chromium으로 캡처합니다 (배경 동영상이 안 보일 수 있음)');
+    return chromium.launch();
+  }
+}
+
 async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = () => {} } = {}) {
   fs.mkdirSync(outDir, { recursive: true });
-  const browser = await chromium.launch();
+  const browser = await launchBrowser(onProgress);
   try {
     const context = await browser.newContext({
       viewport: VIEWPORT,

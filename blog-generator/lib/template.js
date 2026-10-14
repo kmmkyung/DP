@@ -31,7 +31,7 @@ const CATEGORIES = [
   },
   {
     key: 'business',
-    test: /business|service|solution|tec|technology|r&d|사업|서비스|솔루션|분야|기술|연구/i,
+    test: /business|service|solution|tec|technology|r&d|automation|robot|사업|서비스|솔루션|분야|기술|연구|자동화|제어|로봇/i,
     emoji: '💡',
     title: (c, n) => `${n} 중심의 콘텐츠 구성`,
     body: (c, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 핵심 사업 영역을 소개하는 페이지입니다.\n설명은 간결하게 정리하고 이미지를 중심으로 배치해\n${c}의 전문성을 직관적으로 전달하도록 설계했습니다.`,
@@ -52,7 +52,7 @@ const CATEGORIES = [
   },
   {
     key: 'news',
-    test: /\bpr\b|news|notice|board|media|press|community|공지|소식|홍보|게시판|고객센터|커뮤니티/i,
+    test: /\bpr\b|\bir\b|news|notice|board|media|press|community|공지|소식|홍보|게시판|고객센터|커뮤니티|투자/i,
     emoji: '📰',
     title: (c, n) => `${c}의 소식을 전하는 ${n} 페이지`,
     body: (c, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 새로운 소식을 전하는 페이지입니다.\n게시물을 깔끔한 목록 형태로 정리해\n방문자가 최신 소식을 쉽게 확인할 수 있도록 구성했습니다.`,
@@ -139,8 +139,12 @@ function buildManuscript(site) {
   text(`기업 홈페이지는 브랜드의 첫인상을 결정하는 중요한 공간입니다.\n이번 ${client} 프로젝트는 【핵심 강점: 예) 40년 이상의 역사와 전문성】을 효과적으로 전달하면서,\n【강조 포인트: 예) 프로젝트 중심의 브랜드 이미지】를 구축하는 데 중점을 두고 제작했습니다.`);
 
   // 2. 프로젝트 소개
-  const intro = site.description
-    ? `${site.description}\n홈페이지 역시 ${client}의 전문성과 강점을 효과적으로 보여줄 수 있도록 기획했습니다.`
+  // meta description이 회사명과 같거나 너무 짧으면 쓸모가 없으므로, 메인 페이지 본문의 첫 소개 문장으로 대체
+  const usefulDesc = site.description && site.description !== client && site.description.length >= 15 ? site.description : '';
+  const homeIntro = home ? (home.paragraphs || []).find((t) => t.length >= 30 && t.includes(client)) : '';
+  const description = usefulDesc || homeIntro;
+  const intro = description
+    ? `${description}\n홈페이지 역시 ${client}의 전문성과 강점을 효과적으로 보여줄 수 있도록 기획했습니다.`
     : `${josa(client, '은', '는')} 【업종/주요 사업을 1~2줄로 입력】 기업입니다.\n홈페이지 역시 ${client}의 전문성과 강점을 효과적으로 보여줄 수 있도록 기획했습니다.`;
   text(`👉 프로젝트 소개\n\n${intro}`);
 
