@@ -1,0 +1,17 @@
+{
+  "name": "blog-generator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "홈페이지 URL을 넣으면 네이버 블로그 홍보 원고 + PC 스크린샷을 만들어 주는 도구",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "setup": "npm install && npx playwright install chromium"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright": "1.56.1"
+  }
+}
