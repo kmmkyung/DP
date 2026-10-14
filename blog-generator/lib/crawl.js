@@ -11,6 +11,7 @@ const { chromium } = require('playwright');
 const VIEWPORT = { width: 1920, height: 1080 };
 const FULLPAGE_MAX_HEIGHT = 15000; // 너무 긴 페이지는 위에서부터 이 높이까지만 캡처
 const NAV_TIMEOUT = 30000;
+const MAX_SUBPAGES_PER_MENU = 4; // 메뉴당 캡처 없이 내용만 읽어 올 하위 페이지 수
 
 // 메뉴 중 원고에 넣을 필요가 없는 링크
 const EXCLUDE_LINK = /login|logout|admin|sitemap|privacy|policy|개인정보|이용약관|로그인|로그아웃|회원가입|사이트맵/i;
@@ -217,26 +218,94 @@ function extractSiteInfoInPage() {
   };
 }
 
-// 각 페이지의 제목/소제목/본문 문구 추출 (기획자 참고용)
+// 각 페이지의 제목/본문 문구 + 페이지 구성 요소(연혁, 수치, 지도, 폼, 슬라이드 등) 추출
+// 원고에서 "이 페이지에 실제로 무엇이 있는지"를 문장으로 만들기 위한 재료
 function extractPageInfoInPage() {
   const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
-  const skip = (el) => el.closest('header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft');
+  const LAYOUT = 'header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft, .allMenu';
+  const skip = (el) => el.closest(LAYOUT);
   const visible = (el) => {
     const r = el.getBoundingClientRect();
     const cs = getComputedStyle(el);
-    return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden';
+    return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none';
   };
   const uniq = (arr) => [...new Set(arr)];
+  const ownText = (el, min) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length >= min);
+  const absTop = (el) => el.getBoundingClientRect().top + window.scrollY;
+
   const headings = uniq([...document.querySelectorAll('h1, h2, h3, h4')]
     .filter((el) => !skip(el) && visible(el))
     .map((el) => clean(el.innerText))
-    .filter((t) => t.length >= 2 && t.length <= 80)).slice(0, 8);
-  const paragraphs = uniq([...document.querySelectorAll('p, dd, li, div')]
-    .filter((el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length >= 20))
-    .filter((el) => !skip(el) && visible(el))
+    .filter((t) => t.length >= 2 && t.length <= 80)).slice(0, 12);
+  const paragraphs = uniq([...document.querySelectorAll('p, dd, li, div, span')]
+    .filter((el) => ownText(el, 20) && !skip(el) && visible(el))
     .map((el) => clean(el.innerText))
-    .filter((t) => t.length >= 20 && t.length <= 300)).slice(0, 6);
-  return { title: clean(document.title), headings, paragraphs };
+    .filter((t) => t.length >= 20 && t.length <= 300)).slice(0, 12);
+
+  // 상단 비주얼: 페이지 맨 위(900px 안)에서 글자가 가장 큰 문구 + 그 다음 문구
+  const topTexts = [...document.querySelectorAll('h1, h2, h3, p, strong, span, div')]
+    .filter((el) => ownText(el, 2) && !skip(el) && visible(el) && absTop(el) < 900)
+    .map((el) => ({ text: clean(el.innerText), size: parseFloat(getComputedStyle(el).fontSize) || 0, top: absTop(el) }))
+    .filter((x) => x.text.length >= 2 && x.text.length <= 100);
+  const heroTitle = topTexts.slice().sort((a, b) => b.size - a.size)[0];
+  const heroSub = heroTitle && topTexts
+    .filter((x) => x.top > heroTitle.top && x.text !== heroTitle.text && x.text.length >= 8 && x.size >= 15)
+    .sort((a, b) => a.top - b.top)[0];
+
+  const bodyText = clean([...document.querySelectorAll('body *')]
+    .filter((el) => !skip(el) && ownText(el, 1))
+    .map((el) => el.innerText).join(' '));
+
+  // 연혁: 본문에 등장하는 연도(1950~2039)
+  const years = uniq((bodyText.match(/\b(19[5-9]\d|20[0-3]\d)(?=\s*[년.\-~]|\s|$)/g) || []).map(Number)).sort((a, b) => a - b);
+
+  // 수치: "200억 원", "36억", "32.4%", "20년" 같은 표현이 들어간 짧은 문구
+  const stats = uniq([...document.querySelectorAll('p, li, dd, dt, strong, span, em, h3, h4, div')]
+    .filter((el) => ownText(el, 2) && !skip(el) && visible(el))
+    .map((el) => clean(el.innerText))
+    .filter((t) => t.length <= 60 && /\d[\d,.]*\s?(조|억|만|천)?\s?(원|달러|%|년|개국|건|명|개사|배|대)/.test(t))).slice(0, 5);
+
+  const count = (sel) => [...document.querySelectorAll(sel)].filter((el) => !skip(el) && visible(el)).length;
+  const bigImages = [...document.querySelectorAll('img')].filter((img) => !skip(img) && img.getBoundingClientRect().width >= 300).length;
+
+  // 카드형 목록: 이미지를 가진 형제 요소가 3개 이상 반복되는 목록
+  let cards = 0;
+  for (const list of document.querySelectorAll('ul, ol, div')) {
+    if (skip(list)) continue;
+    const kids = [...list.children].filter((c) => visible(c) && c.querySelector('img, [style*="background"]') && clean(c.innerText).length > 0);
+    if (kids.length >= 3 && kids.length > cards) cards = kids.length;
+  }
+
+  // 게시판: 날짜(2026.03.10 / 2026-03-10)가 붙은 행
+  const boardRows = [...document.querySelectorAll('tr, li')]
+    .filter((el) => !skip(el) && visible(el) && /\b20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\b/.test(el.textContent)).length;
+
+  const inputs = [...document.querySelectorAll('input, textarea, select')]
+    .filter((el) => !skip(el) && visible(el) && !/hidden|search|submit|button|checkbox|radio/i.test(el.type || '') && !/search|keyword|stx|sfl/i.test(el.name || '')).length;
+
+  const scripts = [...document.querySelectorAll('script[src]')].map((s) => s.src.toLowerCase()).join(' ');
+
+  return {
+    title: clean(document.title),
+    headings,
+    paragraphs,
+    hero: heroTitle ? { title: heroTitle.text, sub: heroSub ? heroSub.text : '' } : null,
+    features: {
+      years: years.length >= 3 ? years : [],
+      stats,
+      bigImages,
+      cards,
+      sliders: count('.swiper, .swiper-container, .slick-slider, .owl-carousel, .bx-wrapper'),
+      videos: document.querySelectorAll('video, iframe[src*="vimeo"], iframe[src*="youtube"], iframe[src*="youtu.be"]').length,
+      map: !!document.querySelector('iframe[src*="map"], #map, .map_wrap, .root_daum_roughmap, [id*="map" i] canvas') || /dapi\.kakao\.com|map\.naver|maps\.google|openapi\.map/.test(scripts),
+      formInputs: inputs,
+      tables: count('table'),
+      boardRows,
+      downloads: [...document.querySelectorAll('a[href]')].filter((a) => !skip(a) && (/\.(pdf|zip|pptx?|hwp)(\?|$)/i.test(a.href) || a.hasAttribute('download') || /다운로드|download/i.test(a.textContent))).length,
+      libs: ['gsap', 'scrolltrigger', 'swiper', 'slick', 'aos', 'fullpage', 'lenis', 'three']
+        .filter((k) => scripts.includes(k) || (k === 'aos' && document.querySelector('[data-aos]'))),
+    },
+  };
 }
 
 // ---------- Node 쪽 로직 ----------
@@ -299,7 +368,8 @@ function buildPageList(homeUrl, menu, maxPages) {
     const key = withoutHash(href);
     if (seen.has(key)) continue;
     seen.add(key);
-    pages.push({ name: item.name, url: href, subs: item.subs.map((s) => s.name).filter((n) => n !== item.name) });
+    const subLinks = item.subs.filter((s) => s.name !== item.name && isUsableHref(s.href, homeUrl) && sameSite(s.href, homeUrl) && withoutHash(s.href) !== key);
+    pages.push({ name: item.name, url: href, subs: item.subs.map((s) => s.name).filter((n) => n !== item.name), subLinks });
   }
   return pages;
 }
@@ -347,9 +417,23 @@ async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = () => {}
       onProgress(`[${i + 1}/${pageList.length}] ${p.name} 캡처 중`);
       try {
         if (!p.isHome) await openPage(page, p.url);
-        const info = await page.evaluate(extractPageInfoInPage);
         const shots = await capture(page, outDir, baseName);
-        pages.push({ ...p, ...info, screenshot: shots.first, screenshotFull: shots.full });
+        const info = await page.evaluate(extractPageInfoInPage); // 스크롤로 지연 로딩이 끝난 뒤 추출
+        const subPages = [];
+        // 원고에 쓸 정보가 많은 하위 페이지(연혁, 오시는길, 카탈로그 등)를 먼저 읽는다
+        const informative = (n) => (/연혁|history|오시는|location|map|문의|contact|카[달탈]로그|catalog|브로슈어|인증|특허/i.test(n) ? 0 : 1);
+        const subLinks = (p.subLinks || []).slice().sort((a, b) => informative(a.name) - informative(b.name));
+        for (const sub of subLinks.slice(0, MAX_SUBPAGES_PER_MENU)) {
+          onProgress(`  └ ${sub.name} 내용 확인 중`);
+          try {
+            await openPage(page, sub.href);
+            await revealWholePage(page);
+            subPages.push({ name: sub.name, url: sub.href, ...(await page.evaluate(extractPageInfoInPage)) });
+          } catch (err) {
+            subPages.push({ name: sub.name, url: sub.href, error: err.message.split('\n')[0] });
+          }
+        }
+        pages.push({ ...p, ...info, subPages, screenshot: shots.first, screenshotFull: shots.full });
       } catch (err) {
         pages.push({ ...p, error: err.message.split('\n')[0] });
       }
