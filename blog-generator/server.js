@@ -56,7 +56,45 @@ function resolveOutput(rel) {
   return full;
 }
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.png': 'image/png', '.txt': 'text/plain; charset=utf-8', '.json': 'application/json; charset=utf-8' };
+// 파일 확장자 → 브라우저에 알려 줄 "파일 종류"(Content-Type). 이게 틀리면 브라우저가 CSS 를 CSS 로 읽지 않습니다.
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+};
+
+// public/ 폴더 안의 "정적 파일"(index.html 이 불러 쓰는 CSS, 이미지, 글꼴)을 내려주기 위한 설정입니다.
+// 정적 파일 = 서버가 계산하지 않고 파일 그대로 보내 주는 파일.
+// 아래 확장자만 허용합니다. (.html, .json 등은 허용하지 않아 의도치 않은 파일 노출을 막습니다)
+const STATIC_EXT = new Set(['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', '.woff', '.woff2']);
+
+// 요청 주소(예: /index.css)를 public/ 안의 실제 파일 경로로 바꿉니다. 내보내면 안 되는 요청이면 null 을 돌려줍니다.
+//  - 허용 확장자가 아니면 null
+//  - ../ 등으로 public/ 폴더 밖으로 나가려는 시도면 null (resolveOutput 과 같은 방식의 경로 탈출 방지)
+function resolvePublic(pathname) {
+  let rel;
+  try {
+    rel = decodeURIComponent(pathname.slice(1)); // 맨 앞의 / 를 떼고, %2e 같은 표기를 원래 글자로 되돌림
+  } catch {
+    return null; // 잘못된 % 표기
+  }
+  if (!rel || rel.includes('\0')) return null; // 빈 주소, 널 문자(파일 경로를 속이는 데 쓰임) 거절
+  if (!STATIC_EXT.has(path.extname(rel).toLowerCase())) return null;
+  const full = path.resolve(PUBLIC_DIR, rel);
+  if (!full.startsWith(PUBLIC_DIR + path.sep)) return null;
+  return full;
+}
 
 function serveFile(res, file, extraHeaders = {}) {
   fs.readFile(file, (err, data) => {
@@ -123,6 +161,14 @@ const server = http.createServer(async (req, res) => {
       const file = resolveOutput(decodeURIComponent(pathname.slice('/output/'.length)));
       if (!file) return sendJson(res, 403, { error: '접근할 수 없는 경로입니다.' });
       return serveFile(res, file);
+    }
+    // 위 주소들이 아니면 public/ 폴더의 정적 파일인지 확인합니다.
+    // 예: index.html 의 <link href="index.css"> 때문에 브라우저가 보내는 GET /index.css
+    // 허용되지 않는 요청(resolvePublic 이 null)이면 아래 404 로 넘어갑니다. 파일이 없으면 serveFile 이 404 를 보냅니다.
+    if (req.method === 'GET') {
+      const file = resolvePublic(pathname);
+      // nosniff: 브라우저가 파일 내용을 보고 종류를 멋대로 추측하지 못하게 합니다.
+      if (file) return serveFile(res, file, { 'X-Content-Type-Options': 'nosniff' });
     }
     sendJson(res, 404, { error: 'Not found' });
   } catch (err) {
