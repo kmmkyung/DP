@@ -1,11 +1,255 @@
-<!--
-※ 상품진열 공통소스
--->
-<li class="productItem anchorBoxId_{$product_no}">
-  <div class="thumbnail">
-    <a href="{$link_product_detail}>
-      <img src="//ecimg.cafe24img.com/pg3448b60826623037/sysdesign2026/web/product/medium/20261008/0aa2ddd52cad681b9a85a58a45b8711c.jpg" alt="">
-      <img src="//ecimg.cafe24img.com/pg3448b60826623037/sysdesign2026/web/product/small/20261008/ab6dd38e1e26699d05d8c8a32828660d.jpg" alt="">
-    </a>
+<!-- @format -->
+
+<div
+  class="main_top_banner ez-align-left"
+  data-ez-module="top-banner"
+  data-ez-align="left"
+  data-ez-role="style.color"
+  data-ez-display="hidden"
+  data-ez="contents-1h9g171-1"
+  style="display: none">
+  <div class="top_banner_box_inner">
+    <div class="top_banner_text">
+      <!-- 최상단 배너 수정하는곳 -->
+      <a
+        data-ez-role="a"
+        href="#"
+        data-href="#"
+        target="_self"
+        style="color: rgb(0, 0, 0); font-weight: normal"
+        >첫 쇼핑을 지원하는 3,000원 할인 회원가입 쿠폰</a
+      >
+    </div>
+    <!-- //top_banner_text -->
+
+    <div class="top_banner_close" data-ez-role="close">
+      <input
+        type="checkbox"
+        name="chkbox"
+        id="top_banner_box_cloase"
+        value="1"
+        data-ez-role="disable-term" /><label
+        for="top_banner_box_cloase"
+        data-ez-role="disable-text"
+        >오늘 하루 보지 않기</label
+      >
+      <i aria-hidden="true" class="icon icoClose">닫기</i>
+    </div>
+    <!-- //top_banner_close -->
   </div>
-</li>
+  <!-- //top_banner_box_inner -->
+</div>
+<header
+  id="header"
+  class="layout01"
+  data-ez-layout="layout01"
+  data-ez="contents-0x2iz04-1">
+  <ez-prop data-version="1.0.0" type="layout">
+    <ez-var
+      data-prop="layout"
+      data-namespace="ez.layout.header.layout"
+      data-type="array">
+      <ez-item data-id="layout01" data-name="1단 기본형"></ez-item>
+      <ez-item data-id="layout04" data-name="1단 로고 우측형"></ez-item>
+      <ez-item data-id="layout03" data-name="2단 좌측형"></ez-item>
+      <ez-item data-id="layout02" data-name="2단 중앙형"></ez-item>
+      <ez-item
+        data-id="layout05"
+        data-name="2단 슬라이딩 메뉴 노출형"></ez-item>
+    </ez-var>
+  </ez-prop>
+  <div class="inner">
+    <div class="toparea display_pc_only">
+      <div class="toparea_shoppinginfo">
+        <div module="Layout_multishopList">
+          <button type="button" class="toggle">
+            {$current_language}
+            <i aria-hidden="true" class="icon icoArrowBottom"></i>
+          </button>
+          <ul module="Layout_multishopListitem">
+            <li class="{$selected_class}">
+              <a href="//{$shop_domain}/">{$locale_language}</a>
+            </li>
+            <li class="{$selected_class}">
+              <a href="//{$shop_domain}/">{$locale_language}</a>
+            </li>
+          </ul>
+        </div>
+        <div data-ez-group="shopping-info" data-ez-role="list">
+          <ul module="Layout_shoppingInfo">
+            <li class="{$use_mileage|display}">
+              <a href="/myshop/mileage/historyList.html"
+                >{$mileage_name} <strong>{$mileage}</strong></a
+              >
+            </li>
+            <li class="{$use_deposit|display}">
+              <a href="/myshop/deposits/historyList.html"
+                >{$deposit_name} <strong>{$deposit}</strong></a
+              >
+            </li>
+            <li class="{$use_coupon_cnt|display}">
+              <a href="/myshop/coupon/coupon.html"
+                >쿠폰 <strong>{$coupon_cnt}</strong></a
+              >
+            </li>
+            <li class="{$use_interest_prd|display}">
+              <a href="/myshop/wish_list.html"
+                >관심상품 <strong>{$interest_prd_cnt}</strong></a
+              >
+            </li>
+            <li class="{$use_like_product_cnt|display}">{$like_prd_tag}</li>
+            <li class="{$use_basket_cnt|display}">
+              <a href="/order/basket.html"
+                >장바구니
+                <strong
+                  >{$basket_cnt}<span class="{$use_basket_price|display}"
+                    >({$basket_price})</span
+                  ></strong
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- //toparea_shoppinginfo -->
+
+      <div
+        class="toparea_state"
+        data-ez-group="top-util-menu"
+        data-ez-role="list">
+        <a
+          data-ez-item="join"
+          module="Layout_statelogoff"
+          href="/member/agreement.html"
+          >회원가입</a
+        >
+        <a
+          data-ez-item="login"
+          module="Layout_statelogoff"
+          href="/member/login.html"
+          >로그인</a
+        >
+        <a
+          data-ez-item="modify"
+          module="Layout_stateLogon"
+          href="/member/modify.html"
+          >내정보수정</a
+        >
+        <a
+          data-ez-item="logout"
+          module="Layout_stateLogon"
+          href="{$action_logout}"
+          >로그아웃</a
+        >
+        <a data-ez-item="order" href="/myshop/order/list.html">주문조회</a>
+        <a
+          data-ez-item="mypage"
+          module="Layout_stateLogon"
+          href="/myshop/index.html"
+          >마이페이지</a
+        >
+        <a data-ez-item="recent" href="/product/recent_view_product.html"
+          >최근본상품</a
+        >
+        <div class="toparea_state_board">
+          <a data-ez-item="board" href="#none"
+            >고객센터<i aria-hidden="true" class="icon icoArrowBottom"></i
+          ></a>
+          <ul module="Layout_BoardInfo">
+            <li><a href="{$link_board_list}">{$board_name}</a></li>
+            <li><a href="{$link_board_list}">{$board_name}</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- //toparea_state -->
+    </div>
+    <!-- //toparea -->
+
+    <div class="top_nav_box" id="top_nav_box">
+      <div class="top_logo" module="Layout_LogoTop">
+        <a href="/"><img src="{$logo}" alt="{$mall_name}" /></a>
+      </div>
+      <!-- //top_logo -->
+
+      <div data-ez-module="menu-main/1" data-ez-mode="manual">
+        <div
+          class="xans-element- xans-layout xans-layout-category top_category">
+          <ul>
+            <li>
+              <a href="/category/Tables/42/">Tables</a>
+              <ul class="sub_cate01">
+                <li><a href="/category/Table-1/47/">Table 1</a></li>
+                <li><a href="/category/Table-2/48/">Table 2</a></li>
+              </ul>
+            </li>
+            <li><a href="/category/Bed-Frames/43/">Bed Frames</a></li>
+            <li><a href="/category/Sideboards/44/">Sideboards</a></li>
+            <li><a href="/category/Couches/45/">Couches</a></li>
+            <li><a href="/category/Furniture/46/">Furniture</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- //menu-main/1 -->
+
+      <ul class="top_mypage">
+        <li>
+          <a href="/myshop/index.html"><!--@import(/svg/icon-user.html)--></a>
+        </li>
+        <li>
+          <a href="/order/basket.html" module="Layout_orderBasketcount"
+            ><!--@import(/svg/icon-cart.html)--><span
+              class="count {$basket_count_display|display} {$basket_count_display_class}"
+              ><span class="{$basket_count_class}">{$basket_count}</span></span
+            ></a
+          >
+        </li>
+        <li class="top_search">
+          <a href="javascript:;" class="eSearch"
+            ><!--@import(/svg/icon-search.html)--></a
+          >
+        </li>
+        <li class="mo_nav">
+          <a href="javascript:;" class="eNavFold"
+            ><i aria-hidden="true" class="icon icoNav"></i
+          ></a>
+        </li>
+      </ul>
+      <!-- //top_mypage -->
+    </div>
+    <!-- //top_nav_box -->
+
+    <div module="Layout_SearchHeader">
+      <!--
+				$product_page=/product/detail.html
+				$category_page=/product/list.html
+			-->
+      <fieldset>
+        <legend>검색</legend>
+        <div class="wrap_search_box">
+          <div class="search_find_product">Find Product</div>
+          <div class="top_search_box">
+            <button type="button" class="btnClose">
+              <img src="/SkinImg/img/pc_search_close.svg" alt="닫기" />
+            </button>
+            {$form.keyword}<button type="button" class="btnDelete">삭제</button
+            ><button
+              type="button"
+              class="btnSearch"
+              onclick="
+                {
+                  $action_search_submit;
+                }
+              ">
+              <img src="/SkinImg/img/top_search.svg" alt="검색" />
+            </button>
+            <ul class="autoDrop" id="{$search_auto_id}"></ul>
+          </div>
+          <!-- //top_search_box -->
+        </div>
+      </fieldset>
+    </div>
+    <!-- //Layout_SearchHeader -->
+  </div>
+  <!-- //inner -->
+</header>
+<!--#ez="1/4"-->
