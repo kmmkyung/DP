@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/** @format */
-=======
 /* ─────────────────────────────────────────────
    [이 파일의 역할] 화면(index.html)의 모양(CSS)을 모아 둔 파일입니다.
    index.html 의 head 안 link 태그가 이 파일을 불러옵니다.
@@ -9,7 +6,6 @@
 
 /* 색상 변수 모음. 아래에서 var(--이름) 형태로 가져다 씁니다. 색을 바꾸려면 여기만 고치면 됩니다. */
 /* --brand: 주요 버튼 초록 / --mark: 【 】 강조 노랑 / --err: 오류 빨강 / --sub: 보조 글자색 / --line: 테두리색 */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 :root {
   --bg: #fff;
   --card: #fff;
@@ -21,17 +17,11 @@
   --mark: #fff3b0;
   --err: #d93025;
 }
-<<<<<<< HEAD
-* {
-  box-sizing: border-box;
-}
-=======
 /* 모든 요소에서 padding과 border를 width 안에 포함해 계산합니다. 크기 계산이 직관적이 됩니다. */
 * {
   box-sizing: border-box;
 }
 /* 기본 배경/글자색/글꼴. 글꼴은 왼쪽부터 차례로 시도하고, 컴퓨터에 없으면 다음 글꼴을 씁니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 body {
   margin: 0;
   background: var(--bg);
@@ -43,10 +33,7 @@ body {
     "Malgun Gothic",
     sans-serif;
 }
-<<<<<<< HEAD
-=======
 /* 바깥 틀: 최대 폭 1240px, margin: 0 auto 는 좌우 여백을 자동으로 맞춰 가운데 정렬합니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .wrap {
   max-width: 1240px;
   margin: 0 auto;
@@ -60,29 +47,20 @@ h1 {
   color: var(--sub);
   margin: 0 0 24px;
 }
-<<<<<<< HEAD
-=======
 /* 흰 배경 + 얇은 테두리 + 둥근 모서리 상자. 입력 영역, 원고 미리보기, 오른쪽 정보 패널에 공통으로 씁니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .card {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 20px;
 }
-<<<<<<< HEAD
-=======
 /* 입력창과 버튼을 가로로 나란히 배치(flex). 폭이 좁으면 줄바꿈(flex-wrap)됩니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 form {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
-<<<<<<< HEAD
-=======
 /* flex: 1 1 320px = 남는 공간을 채우되 최소 320px은 유지합니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 input[type="text"] {
   flex: 1 1 320px;
   padding: 12px 14px;
@@ -91,12 +69,8 @@ input[type="text"] {
   border-radius: 8px;
 }
 select,
-<<<<<<< HEAD
-button {
-=======
 button,
 a.btn {
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
   padding: 12px 14px;
   font-size: 15px;
   border-radius: 8px;
@@ -104,8 +78,6 @@ a.btn {
   background: #fff;
   cursor: pointer;
 }
-<<<<<<< HEAD
-=======
 /* a.btn: 링크(a 태그)를 버튼처럼 보이게 하는 클래스. 링크 안에 button 태그를 넣는 것은 HTML 규칙 위반이라, 링크 자체를 버튼 모양으로 꾸밉니다. */
 /* ButtonText 는 브라우저가 버튼 글자에 쓰는 기본 색 이름이라, 다른 버튼과 색이 같아집니다. */
 a.btn {
@@ -127,7 +99,6 @@ a.btn {
   border: 0;
 }
 /* 초록색 주요 버튼(원고 만들기). */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 button.primary {
   background: var(--brand);
   border-color: var(--brand);
@@ -137,22 +108,15 @@ button.primary {
 button.primary:hover {
   background: var(--brand-dark);
 }
-<<<<<<< HEAD
-=======
 /* 분석 중에는 버튼이 흐려지고 마우스 모양이 "기다림(wait)"으로 바뀝니다. disabled는 스크립트가 켜고 끕니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 button:disabled {
   opacity: 0.5;
   cursor: wait;
 }
-<<<<<<< HEAD
-.status {
-=======
 /* 입력 영역 아래 진행 상황 문구 자리. .error 클래스가 붙으면 빨간 글씨가 됩니다. */
 /* output 태그는 기본이 인라인(글자처럼 흐름)이라 margin-top 이 위아래로 먹지 않으므로, display: block 으로 블록처럼 만듭니다. */
 .status {
   display: block;
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
   margin-top: 12px;
   color: var(--sub);
   min-height: 1.6em;
@@ -160,10 +124,7 @@ button:disabled {
 .status.error {
   color: var(--err);
 }
-<<<<<<< HEAD
-=======
 /* 결과 영역. 처음엔 display: none 으로 숨겨져 있다가, 스크립트가 .show를 붙이면 2단 격자(왼쪽 원고 / 오른쪽 360px 정보 패널)로 나타납니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .result {
   display: none;
   grid-template-columns: minmax(0, 1fr) 360px;
@@ -174,19 +135,13 @@ button:disabled {
 .result.show {
   display: grid;
 }
-<<<<<<< HEAD
-=======
 /* 화면 폭이 960px 이하(좁은 창)이면 2단을 1단으로 바꿉니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 @media (max-width: 960px) {
   .result.show {
     grid-template-columns: 1fr;
   }
 }
-<<<<<<< HEAD
-=======
 /* 원고 구역의 머리말(header): 왼쪽에 버튼 목록(menu), 오른쪽 끝에 안내 문구(.todo)를 가로로 배치합니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .toolbar {
   display: flex;
   gap: 8px;
@@ -194,13 +149,6 @@ button:disabled {
   align-items: center;
   margin-bottom: 16px;
 }
-<<<<<<< HEAD
-.toolbar .todo {
-  margin-left: auto;
-  color: var(--sub);
-  font-size: 14px;
-}
-=======
 /* menu 태그의 기본 모양(목록 점, 왼쪽 들여쓰기, 위아래 여백)을 없애고 버튼을 가로로 나열합니다. */
 .toolbar menu {
   display: flex;
@@ -218,32 +166,22 @@ button:disabled {
   font-size: 14px;
 }
 /* 원고 미리보기 영역: 블로그 본문처럼 폭 720px, 가운데 정렬. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .post {
   max-width: 720px;
   margin: 0 auto;
 }
-<<<<<<< HEAD
-=======
 /* 원고 문단. white-space: pre-line 은 원고 안의 줄바꿈을 화면에서도 그대로 줄바꿈으로 보여 줍니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .post .t {
   white-space: pre-line;
   margin: 0 0 36px;
   text-align: center;
 }
-<<<<<<< HEAD
-=======
 /* 【 】 부분을 노란 형광펜처럼 표시합니다. 스크립트의 render()가 mark 태그로 감싸 줍니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .post .t mark {
   background: var(--mark);
   padding: 0 2px;
 }
-<<<<<<< HEAD
-=======
 /* 캡처 이미지 + 설명(figcaption) 한 세트. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .post figure {
   margin: 0 0 36px;
   text-align: center;
@@ -274,26 +212,16 @@ button:disabled {
   padding: 0 6px;
   font-size: 12px;
 }
-<<<<<<< HEAD
-aside .card + .card {
-  margin-top: 12px;
-}
-aside h3 {
-=======
 /* 오른쪽 패널의 카드 사이 간격: "카드 바로 뒤에 오는 카드"에만 위쪽 여백을 줍니다. */
 aside .card + .card {
   margin-top: 12px;
 }
 aside h4 {
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
   font-size: 14px;
   margin: 0 0 8px;
   color: var(--sub);
 }
-<<<<<<< HEAD
-=======
 /* 클릭하면 복사되는 작은 버튼(고객사명, 슬로건 후보). */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .chip {
   display: block;
   width: 100%;
@@ -306,20 +234,14 @@ aside h4 {
 .chip small {
   color: var(--sub);
 }
-<<<<<<< HEAD
-=======
 /* 포인트 컬러 견본 목록(ul). 기본 목록 모양(점, 들여쓰기)은 지웁니다. .swatch i 는 배경색을 직접 칠한 작은 네모입니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .swatches {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-<<<<<<< HEAD
-=======
   margin: 0;
   padding: 0;
   list-style: none;
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 }
 .swatch {
   display: flex;
@@ -343,10 +265,7 @@ ul.menu {
 ul.menu small {
   color: var(--sub);
 }
-<<<<<<< HEAD
-=======
 /* 페이지별 추출 문구를 접었다 펴는 목록(details / summary 태그). */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 details {
   font-size: 13px;
   border-top: 1px solid var(--line);
@@ -364,10 +283,7 @@ details p {
   color: var(--err);
   font-size: 13px;
 }
-<<<<<<< HEAD
-=======
 /* 화면 아래 중앙의 "복사했습니다" 알림. 평소엔 opacity: 0(투명), .show가 붙으면 보입니다. pointer-events: none 이라 클릭을 방해하지 않습니다. */
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 .toast {
   position: fixed;
   left: 50%;

@@ -6,20 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>블로그 원고 생성기</title>
-<<<<<<< HEAD
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>블로그 원고 생성기</h1>
-        <p class="desc">
-          제작한 홈페이지 주소를 넣으면 홍보 원고와 PC 화면 캡처를 만들어
-          드립니다.
-        </p>
-
-        <div class="card">
-          <form id="form">
-=======
     <!-- [이 파일의 역할] 기획자가 브라우저에서 보는 화면(입력창 + 결과 미리보기) 전체입니다. -->
     <!-- 구성: (1) index.css = 모양(CSS, 아래 link 태그로 불러옴), (2) body = 화면 뼈대(HTML), (3) 맨 아래 script = 동작(JavaScript). -->
     <!-- 서버(server.js)가 주소 / 로 접속한 사람에게 이 파일을, index.css 는 /index.css 요청에 내려줍니다. -->
@@ -36,8 +22,8 @@
         <header>
           <h1 id="h-title">블로그 원고 생성기</h1>
           <p class="desc">
-            제작한 홈페이지 주소를 넣으면 네이버 블로그 홍보 원고와 PC 화면
-            캡처를 만들어 드립니다.
+            제작한 홈페이지 주소를 넣으면 홍보 원고와 PC 화면 캡처를 만들어
+            드립니다.
           </p>
         </header>
 
@@ -49,50 +35,21 @@
           <form id="form">
             <!-- label: 입력칸의 이름표. placeholder 는 입력하면 사라지고 낭독기가 읽지 않으므로 label 을 대신할 수 없습니다. for 값이 입력칸 id 와 같아야 연결됩니다. -->
             <label for="url" class="sr-only">홈페이지 주소</label>
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
             <input
               type="text"
               id="url"
               placeholder="예) http://design.com"
               autocomplete="off"
               required />
-<<<<<<< HEAD
-=======
             <!-- 캡처할 페이지 수(메인 포함). 선택값이 서버로 전달되고, 서버가 1~15 범위로 제한합니다. -->
             <label for="maxPages" class="sr-only"
               >캡처할 페이지 수 (메인 포함)</label
             >
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
             <select id="maxPages" title="캡처할 페이지 수 (메인 포함)">
               <option value="5">페이지 5개</option>
               <option value="8" selected>페이지 8개</option>
               <option value="12">페이지 12개</option>
             </select>
-<<<<<<< HEAD
-            <button type="submit" class="primary" id="go">원고 만들기</button>
-          </form>
-          <div class="status" id="status"></div>
-        </div>
-
-        <section class="result" id="result">
-          <div class="card">
-            <div class="toolbar">
-              <button type="button" id="copyText">원고 텍스트 복사</button>
-              <a id="zipLink"
-                ><button type="button">
-                  이미지+원고 전체 다운로드(ZIP)
-                </button></a
-              >
-              <span class="todo" id="todo"></span>
-            </div>
-            <div class="post" id="post"></div>
-          </div>
-          <aside id="info"></aside>
-        </section>
-      </section>
-      <div class="toast" id="toast"></div>
-    </main>
-=======
             <!-- type submit 이므로 누르거나 입력창에서 Enter를 치면 form 제출 이벤트가 발생합니다. 처리는 맨 아래 script의 submit 부분입니다. -->
             <button type="submit" class="primary" id="go">원고 만들기</button>
           </form>
@@ -132,7 +89,6 @@
     </main>
     <!-- 복사 완료 알림. toast() 함수가 잠깐 보였다가 숨깁니다. status 와 같은 이유로 output 태그를 씁니다. -->
     <output class="toast" id="toast"></output>
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
 
     <script>
       // ─────────────────────────────────────────────
@@ -259,10 +215,7 @@
           })
           .join("");
 
-<<<<<<< HEAD
-=======
         // 【 】가 몇 곳 남았는지 세어서 안내합니다. (정규식: 【 로 시작해 】 로 끝나는 모든 부분)
->>>>>>> a2696c07590d09ab7ef99b9748d9c57eb5d9d374
         const todos = (manuscript.text.match(/【[^】]*】/g) || []).length;
         $("todo").textContent = todos
           ? `노란색 【 】 ${todos}곳을 직접 채워 주세요`
@@ -306,7 +259,7 @@
         // 맨 앞의 숨은 제목(h3)은 aside 의 이름(aria-labelledby)이 되고, 카드 제목(h4)과 단계(h1 → h2 → h3 → h4)가 이어지게 합니다.
         // 카드는 각각 제목이 있는 독립된 묶음이라 div 가 아니라 section 으로 만듭니다.
         $("info").innerHTML = `
-    <h3 class="sr-only" id="h-info">참고 정보</h4>
+    <h3 class="sr-only" id="h-info">참고 정보</h3>
     <section class="card"><h4>고객사명 (추정)</h4><button type="button" class="chip" data-copy="${esc(manuscript.clientName)}">${esc(manuscript.clientName)}</button>
       <small style="color:var(--sub)">틀리면 원고에서 직접 고쳐 주세요</small></section>
     <section class="card"><h4>슬로건 후보 (클릭하면 복사)</h4>${slogans}</section>
