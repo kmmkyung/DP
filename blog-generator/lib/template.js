@@ -22,18 +22,84 @@
 // 감지한 값(회사명, 문구, 연도, 수치 ...)을 정해진 문장 틀에 끼워 넣을 뿐입니다.
 // 그래서 문장 틀(CATEGORIES, featureSentence 등)을 바꾸는 것이 곧 글투를 바꾸는 일입니다.
 // ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
+// 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
+// 각 함수 위의 "쓰는 메소드:" 줄은 그 함수가 쓰는 메소드를 요약한 것이고, 자세한 설명은 아래에 있습니다.
+// 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
+//
+// ■ 문자열 (String) — 글자 값 뒤에 점을 찍어 쓰는 기능
+//   trim()  — 문자열 양 끝의 공백·줄바꿈을 지운 새 문자열을 돌려줍니다.
+//       예) "  a ".trim() → "a"
+//   split()  — 문자열을 구분자(글자나 정규식)에서 잘라 배열로 만듭니다.
+//       예) "a,b".split(",") → ["a", "b"]
+//   replace()  — 패턴(글자나 정규식)에 맞는 부분을 다른 글자로 바꾼 새 문자열을 돌려줍니다. 정규식 끝에 g 가 있으면 맞는 부분을 모두, 없으면 처음 하나만 바꿉니다. 원본은 그대로입니다.
+//       예) "a-b-c".replace(/-/g, "_") → "a_b_c"
+//   charCodeAt()  — 지정한 위치 글자의 유니코드 번호를 돌려줍니다. 한글은 "가"(44032)부터 순서대로 번호가 있어서 받침 유무 계산에 씁니다.
+//       예) "가".charCodeAt(0) → 44032
+//   match()  — 정규식과 맞는 부분을 찾아 돌려줍니다. 하나도 없으면 null 입니다. 정규식에 g 가 있으면 맞는 부분 전부가 배열로 나옵니다.
+//       예) "a1b22".match(/\d+/g) → ["1", "22"]
+//   indexOf()  — 찾는 값이 처음 나오는 위치(0부터)를 돌려주고, 없으면 -1 을 돌려줍니다. (문자열과 배열 모두에 있음)
+//       예) "abc".indexOf("c") → 2
+//   slice()  — 시작 위치부터 끝 위치 "앞"까지를 잘라낸 새 문자열/배열을 돌려줍니다. 원본은 바뀌지 않고, 끝을 생략하면 맨 끝까지 자릅니다.
+//       예) "abcdef".slice(1, 3) → "bc"
+//   includes()  — 문자열이 해당 글자를 포함하는지, 또는 배열에 해당 값이 들어 있는지 true/false 로 알려 줍니다.
+//       예) ["a", "b"].includes("b") → true
+//   test()  — 정규식이 문자열에 맞으면 true, 아니면 false 입니다. 맞는지 검사만 하고 맞는 부분을 꺼내지는 않습니다.
+//       예) /^https?:/.test("http://a") → true
+//
+// ■ 배열 (Array) — 목록 값 뒤에 점을 찍어 쓰는 기능
+//   map()  — 배열의 모든 항목에 함수를 적용하고, 그 결과들로 새 배열을 만듭니다. 원본은 바뀌지 않습니다.
+//       예) [1, 2].map(function (x) { return x * 2; }) → [2, 4]
+//   filter()  — 함수가 true 를 돌려주는 항목만 모아 새 배열을 만듭니다.
+//       예) [1, 2, 3].filter(function (x) { return x > 1; }) → [2, 3]
+//   join()  — 배열의 항목들을 구분자로 이어 붙여 하나의 문자열로 만듭니다.
+//       예) ["a", "b"].join(", ") → "a, b"
+//   sort()  — 배열을 정렬합니다. 새 배열을 만들지 않고 "원본 배열 자체"를 바꾸니 주의하세요. 비교 함수를 주지 않으면 값을 글자로 바꿔 비교합니다.
+//       예) [3, 1, 2].sort(function (a, b) { return a - b; }) → [1, 2, 3]
+//   push()  — 배열 맨 끝에 항목을 추가합니다. 원본 배열이 바뀝니다.
+//       예) list.push("a")
+//   find()  — 함수가 true 를 돌려주는 첫 번째 항목을 돌려줍니다. 없으면 undefined 입니다.
+//   findIndex()  — 함수가 true 를 돌려주는 첫 번째 항목의 위치(0부터)를 돌려줍니다. 없으면 -1 입니다.
+//   some()  — 조건에 맞는 항목이 하나라도 있으면 true 입니다.
+//   forEach()  — 각 항목마다 함수를 실행합니다. 값을 돌려주지는 않습니다.
+//   flatMap()  — 각 항목에 함수를 적용하고, 결과로 나온 배열들을 한 겹 풀어서 하나의 배열로 이어 붙입니다.
+//       예) [[1, 2], [3]].flatMap(function (x) { return x; }) → [1, 2, 3]
+//
+// ■ 숫자·날짜 (Math, Date)
+//   Math.max()  — 주어진 숫자들 중 가장 큰 값을 돌려줍니다.
+//       예) Math.max(1, 5) → 5
+//   Math.min()  — 주어진 숫자들 중 가장 작은 값을 돌려줍니다. Math.min(Math.max(값, 1), 15) 처럼 쓰면 값을 1~15 범위로 제한합니다.
+//       예) Math.min(20, 15) → 15
+//   getFullYear()  — 날짜에서 연도를 꺼냅니다.
+//
+// ■ Set · Map (중복 없는 모음 / 이름표→값 표)
+//   add()  — Set(중복 없는 모음)에 값을 넣습니다. 이미 있는 값이면 아무 일도 하지 않습니다.
+//   has()  — Set 에 값이, 또는 Map 에 키가 들어 있는지 true/false 로 알려 줍니다.
+//
+// ■ JSON · 값 바꾸기 (변환)
+//   parseInt()  — 글자를 정수로 읽습니다. 두 번째 값은 진법이고, 16 이면 16진수(예: 색상 코드)로 읽습니다.
+//       예) parseInt("ff", 16) → 255
+//
+// ■ 새로 만들기 (new)
+//   new Set  — 같은 값이 두 번 들어가지 않는 모음(Set)을 만듭니다.
+//   new Date  — 지금 시각(또는 지정한 날짜)을 다루는 값을 만듭니다.
+// ─────────────────────────────────────────────
+
 // 글을 쓰는 우리 회사 이름. 인사말과 마무리에 들어갑니다. 회사명이 바뀌면 여기만 고치세요.
 const COMPANY = '디자인픽셀';
 
 // ---------- 유틸 ----------
 
 // 빈 값을 빼고 ", " 로 이어 붙입니다.   ["기업", "", "IR"] → "기업, IR"
+// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), join(글자 하나로 이어 붙이기)
 function joinKo(list) {
   return list.filter(Boolean).join(', ');
 }
 
 // 받침 유무에 따라 조사 선택: josa('대혜건축', '은', '는') → '대혜건축은'
 // 마지막 글자가 한글이 아니면(영문/숫자) 판단할 수 없으므로 '은(는)'처럼 둘 다 표기
+// 쓰는 메소드: charCodeAt(글자의 번호(코드))
 function josa(word, withBatchim, without) {
   // 한글은 유니코드에서 "가"(0xAC00)부터 순서대로 배치되어 있어서, (글자 - 0xAC00) % 28 이 받침 번호가 됩니다. 0 이면 받침 없음.
   // code 가 0~11171 범위를 벗어나면 한글이 아니라는 뜻입니다. (영문·숫자로 끝나는 경우)
@@ -60,12 +126,14 @@ function makePicker() {
 //   (?<=[다요]\.)\s+             = "다." 또는 "요." 바로 뒤의 공백에서 자름
 //   (?<=[.!?])\s+(?=[가-힣A-Z]) = 마침표·느낌표·물음표 뒤 공백 중, 다음이 한글이나 대문자로 시작할 때 자름
 // 문단을 문장 단위로 쪼갠다 ("~다." 기준)
+// 쓰는 메소드: split(구분자로 잘라 배열로), map(각 항목을 바꿔 새 배열), filter(조건에 맞는 것만 골라 새 배열), trim(앞뒤 공백 지우기)
 function sentences(text) {
   return (text || '').split(/(?<=[다요]\.)\s+|(?<=[.!?])\s+(?=[가-힣A-Z])/).map(function (s) { return s.trim(); }).filter(Boolean);
 }
 
 // ‘인용문’ 뒤에 붙는 '(이)라는' 선택: 받침이 있으면 '이라는'
 // 받침 판단은 josa 와 같은 원리. 받침이 있으면 "이라는", 없으면 "라는". (한글이 아닌 글자로 끝나면 받침 없음으로 처리)
+// 쓰는 메소드: charCodeAt(글자의 번호(코드))
 function quoteRa(q) {
   const code = q.charCodeAt(q.length - 1) - 0xac00;
   const batchim = code >= 0 && code <= 11171 && code % 28 !== 0;
@@ -73,11 +141,13 @@ function quoteRa(q) {
 }
 
 // 문장 끝의 마침표/느낌표를 지웁니다. 인용문 안에 넣을 때 ‘...다.’라는 모양이 되는 것을 막으려고 씁니다.
+// 쓰는 메소드: replace(글자 바꾸기)
 function stripPeriod(s) {
   return s.replace(/[.。!]+$/, '');
 }
 
 // "#1a3c6e" → "네이비" 같은 대략적인 색 이름
+// 쓰는 메소드: parseInt(글자 → 정수), slice(일부만 잘라 새로 만들기), Math.max(큰 값), Math.min(작은 값)
 function colorName(hex) {
   const n = parseInt(hex.slice(1), 16);
   const r = ((n >> 16) & 255) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
@@ -106,6 +176,7 @@ function colorName(hex) {
 }
 
 // 회사명 추정: og:site_name > 로고 alt > <title>의 첫 부분
+// 쓰는 메소드: test(정규식에 맞는가), split(구분자로 잘라 배열로), trim(앞뒤 공백 지우기)
 function guessClientName(site) {
   if (site.siteName) return site.siteName;
   if (site.logoAlt && !/logo|로고/i.test(site.logoAlt)) return site.logoAlt;
@@ -234,6 +305,7 @@ const DEFAULT_CATEGORY = {
 };
 
 // 메뉴 이름에 맞는 성격을 찾습니다. find = 조건에 맞는 "첫 번째" 항목을 찾는 기능. 없으면 기본 틀을 씁니다.
+// 쓰는 메소드: find(조건에 맞는 첫 항목), test(정규식에 맞는가)
 function categorize(name) {
   return CATEGORIES.find(function (c) { return c.test.test(name); }) || DEFAULT_CATEGORY;
 }
@@ -242,6 +314,8 @@ function categorize(name) {
 
 // 메뉴 페이지 + 하위 페이지(정보만 수집) 전체에서 구성 요소를 모은다.
 // 어느 하위 페이지에서 발견됐는지(where)도 같이 기록해 "오시는길 페이지에는…"처럼 쓸 수 있게 한다.
+// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), new Date(날짜·시간 값), getFullYear(연도), test(정규식에 맞는가), join(글자 하나로 이어 붙이기), push(끝에
+//   추가 (원본이 바뀜))
 function collectFeatures(page) {
   // 이 메뉴 페이지 자신 + 하위 페이지들(오류난 것 제외)을 하나의 목록으로 만듭니다.
   // 자신은 name 을 "" 로 해서, 문장에 "기업 페이지에서는…"처럼 자기 이름을 붙이지 않게 합니다.
@@ -276,6 +350,7 @@ const FEATURE_PRIORITY = ['years', 'contact', 'stats', 'downloads', 'cards', 'bo
 // 요소 하나({ type, ... })를 문장 한 줄로 바꿉니다. 문장이 필요 없으면 빈 글자 "" 를 돌려줍니다.
 // pick = 같은 종류의 문장을 돌려 쓰는 도우미(makePicker).
 // at / atIn = "연혁 페이지에서는 / 연혁 페이지에는" 같은 앞부분. 요소가 하위 페이지에서 발견됐을 때만 붙습니다.
+// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), slice(일부만 잘라 새로 만들기), map(각 항목을 바꿔 새 배열), join(글자 하나로 이어 붙이기)
 function featureSentence(ft, client, pick) {
   const at = ft.where ? `${ft.where} 페이지에서는 ` : '';
   const atIn = ft.where ? `${ft.where} 페이지에는 ` : '';
@@ -330,6 +405,7 @@ function featureSentence(ft, client, pick) {
 
 // 페이지 본문에서 원고에 인용할 핵심 문장 1개 고르기
 // 숫자나 회사명이 들어간 25~90자 문장을 우선. 상단 카피/이미 쓴 문장은 제외.
+// 쓰는 메소드: flatMap(바꾼 뒤 한 겹 펼치기), map(각 항목을 바꿔 새 배열), filter(조건에 맞는 것만 골라 새 배열), has(들어 있는가), sort(정렬 (원본이 바뀜))
 function pickKeySentence(page, client, exclude) {
   // 후보 모으기: 페이지와 하위 페이지의 문단을 문장 단위로 쪼개고(sentences), 마침표를 떼고,
   // 25~90자이면서 이미 쓴 문장(exclude)이 아닌 것만 남깁니다.
@@ -340,6 +416,7 @@ function pickKeySentence(page, client, exclude) {
     .filter(function (s) { return s.length >= 25 && s.length <= 90 && !exclude.has(s); });
   // 점수: 회사명 포함 +3, 숫자 포함 +1, 한글 포함 +1(영문뿐이면 -5), "보고서/조사/따르면/전망"(시장 통계 인용) -2.
   // 점수가 높은 순으로 정렬해 1등 문장을 씁니다.
+  // 쓰는 메소드: includes(포함하고 있는가), test(정규식에 맞는가)
   function score(s) {
     return (s.includes(client) ? 3 : 0) + (/\d/.test(s) ? 1 : 0) + (/[가-힣]/.test(s) ? 1 : -5) - (/보고서|조사|따르면|전망/.test(s) ? 2 : 0);
   }
@@ -369,6 +446,9 @@ function heroSentence(page, pick) {
  * @param {object} site crawlSite() 결과
  * @returns {{clientName: string, blocks: Array<{type: 'text'|'image', text?: string, file?: string, caption?: string}>, text: string}}
  */
+// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), find(조건에 맞는 첫 항목), map(각 항목을 바꿔 새 배열), new Set(중복 없는 모음), flatMap(바꾼 뒤 한 겹 펼치기),
+//   join(글자 하나로 이어 붙이기), match(정규식에 맞는 부분 찾기), includes(포함하고 있는가), add(Set 에 넣기), slice(일부만 잘라 새로 만들기), has(들어 있는가),
+//   push(끝에 추가 (원본이 바뀜)), some(하나라도 맞는가), forEach(항목마다 실행) 등 3개 더 (자세한 설명은 파일 위쪽 "메소드 설명")
 function buildManuscript(site) {
   // ── 준비: 자주 쓰는 값들 ──
   // client = 회사명(추정), pick = 문장 돌려쓰기 도우미
@@ -388,7 +468,9 @@ function buildManuscript(site) {
   }).flatMap(function (p) { return p.paragraphs || []; });
 
   const blocks = [];
+  // 쓰는 메소드: push(끝에 추가 (원본이 바뀜))
   function text(t) { return blocks.push({ type: 'text', text: t }); }
+  // 쓰는 메소드: push(끝에 추가 (원본이 바뀜))
   function image(p) {
     return blocks.push({ type: 'image', file: p.screenshot, fullFile: p.screenshotFull, caption: p.isHome ? 'MAIN' : p.name });
   }

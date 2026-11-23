@@ -16,6 +16,120 @@
 // [이 파일이 만드는 데이터] crawlSite 가 돌려주는 값 = 결과 폴더의 site.json 과 같은 모양
 //   { url, title, siteName, description, menu[], sloganCandidates[], colors, fonts[], pages[...] }
 // ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
+// 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
+// 각 함수 위의 "쓰는 메소드:" 줄은 그 함수가 쓰는 메소드를 요약한 것이고, 자세한 설명은 아래에 있습니다.
+// 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
+//
+// ■ 문자열 (String) — 글자 값 뒤에 점을 찍어 쓰는 기능
+//   trim()  — 문자열 양 끝의 공백·줄바꿈을 지운 새 문자열을 돌려줍니다.
+//       예) "  a ".trim() → "a"
+//   split()  — 문자열을 구분자(글자나 정규식)에서 잘라 배열로 만듭니다.
+//       예) "a,b".split(",") → ["a", "b"]
+//   replace()  — 패턴(글자나 정규식)에 맞는 부분을 다른 글자로 바꾼 새 문자열을 돌려줍니다. 정규식 끝에 g 가 있으면 맞는 부분을 모두, 없으면 처음 하나만 바꿉니다. 원본은 그대로입니다.
+//       예) "a-b-c".replace(/-/g, "_") → "a_b_c"
+//   toLowerCase()  — 모든 글자를 소문자로 바꾼 새 문자열을 돌려줍니다.
+//       예) "ABC".toLowerCase() → "abc"
+//   padStart()  — 문자열이 정해진 길이가 될 때까지 앞쪽을 지정한 글자로 채웁니다.
+//       예) "5".padStart(2, "0") → "05"
+//   match()  — 정규식과 맞는 부분을 찾아 돌려줍니다. 하나도 없으면 null 입니다. 정규식에 g 가 있으면 맞는 부분 전부가 배열로 나옵니다.
+//       예) "a1b22".match(/\d+/g) → ["1", "22"]
+//   toString()  — URL 같은 값을 문자열로 바꿔 돌려줍니다.
+//       예) new URL("http://a.com").toString() → "http://a.com/"
+//   slice()  — 시작 위치부터 끝 위치 "앞"까지를 잘라낸 새 문자열/배열을 돌려줍니다. 원본은 바뀌지 않고, 끝을 생략하면 맨 끝까지 자릅니다.
+//       예) "abcdef".slice(1, 3) → "bc"
+//   includes()  — 문자열이 해당 글자를 포함하는지, 또는 배열에 해당 값이 들어 있는지 true/false 로 알려 줍니다.
+//       예) ["a", "b"].includes("b") → true
+//   test()  — 정규식이 문자열에 맞으면 true, 아니면 false 입니다. 맞는지 검사만 하고 맞는 부분을 꺼내지는 않습니다.
+//       예) /^https?:/.test("http://a") → true
+//
+// ■ 배열 (Array) — 목록 값 뒤에 점을 찍어 쓰는 기능
+//   map()  — 배열의 모든 항목에 함수를 적용하고, 그 결과들로 새 배열을 만듭니다. 원본은 바뀌지 않습니다.
+//       예) [1, 2].map(function (x) { return x * 2; }) → [2, 4]
+//   filter()  — 함수가 true 를 돌려주는 항목만 모아 새 배열을 만듭니다.
+//       예) [1, 2, 3].filter(function (x) { return x > 1; }) → [2, 3]
+//   join()  — 배열의 항목들을 구분자로 이어 붙여 하나의 문자열로 만듭니다.
+//       예) ["a", "b"].join(", ") → "a, b"
+//   sort()  — 배열을 정렬합니다. 새 배열을 만들지 않고 "원본 배열 자체"를 바꾸니 주의하세요. 비교 함수를 주지 않으면 값을 글자로 바꿔 비교합니다.
+//       예) [3, 1, 2].sort(function (a, b) { return a - b; }) → [1, 2, 3]
+//   push()  — 배열 맨 끝에 항목을 추가합니다. 원본 배열이 바뀝니다.
+//       예) list.push("a")
+//   find()  — 함수가 true 를 돌려주는 첫 번째 항목을 돌려줍니다. 없으면 undefined 입니다.
+//   some()  — 조건에 맞는 항목이 하나라도 있으면 true 입니다.
+//   every()  — 모든 항목이 조건에 맞으면 true 이고, 하나라도 안 맞으면 false 입니다.
+//   forEach()  — 각 항목마다 함수를 실행합니다. 값을 돌려주지는 않습니다.
+//
+// ■ 숫자·날짜 (Math, Date)
+//   Math.max()  — 주어진 숫자들 중 가장 큰 값을 돌려줍니다.
+//       예) Math.max(1, 5) → 5
+//   Math.min()  — 주어진 숫자들 중 가장 작은 값을 돌려줍니다. Math.min(Math.max(값, 1), 15) 처럼 쓰면 값을 1~15 범위로 제한합니다.
+//       예) Math.min(20, 15) → 15
+//   Math.abs()  — 부호를 뗀 값을 돌려줍니다.
+//       예) Math.abs(-3) → 3
+//   Math.round()  — 소수를 가장 가까운 정수로 반올림합니다.
+//       예) Math.round(2.6) → 3
+//
+// ■ Set · Map (중복 없는 모음 / 이름표→값 표)
+//   add()  — Set(중복 없는 모음)에 값을 넣습니다. 이미 있는 값이면 아무 일도 하지 않습니다.
+//   has()  — Set 에 값이, 또는 Map 에 키가 들어 있는지 true/false 로 알려 줍니다.
+//   get()  — Map(이름표→값 표)에서 키에 해당하는 값을 꺼냅니다. 없으면 undefined 입니다.
+//   set()  — Map 에 키와 값을 저장합니다. 같은 키가 이미 있으면 값을 덮어씁니다.
+//   entries()  — Map 안의 항목을 [키, 값] 쌍으로 하나씩 꺼낼 수 있는 목록으로 돌려줍니다.
+//
+// ■ JSON · 값 바꾸기 (변환)
+//   String()  — 값을 문자열로 바꿉니다.
+//       예) String(5) → "5"
+//   parseFloat()  — 글자에서 소수 숫자를 읽습니다. "15px" 처럼 뒤에 단위가 붙어 있어도 앞의 숫자만 읽습니다.
+//       예) parseFloat("15px") → 15
+//
+// ■ 파일·경로 (Node: fs, path)
+//   path.join()  — 경로 조각들을 운영체제에 맞는 구분자(/ 또는 \)로 이어 붙입니다.
+//       예) path.join("a", "b.txt") → "a/b.txt"
+//   fs.mkdirSync()  — 폴더를 만듭니다. { recursive: true } 를 주면 중간 폴더가 없어도 한 번에 만들고, 이미 있어도 오류가 나지 않습니다.
+//
+// ■ 화면 요소 다루기 (브라우저 DOM)
+//   document.querySelector()  — CSS 선택자("h1", ".card", "#url" 등)에 맞는 첫 번째 요소를 찾습니다. 없으면 null 입니다.
+//   document.querySelectorAll()  — CSS 선택자에 맞는 요소를 전부 찾아 목록으로 돌려줍니다.
+//   querySelector()  — 요소 "안쪽"에서 CSS 선택자에 맞는 첫 번째 요소를 찾습니다. 없으면 null 입니다.
+//   querySelectorAll()  — 요소 안쪽에서 선택자에 맞는 요소를 전부 찾아 목록으로 돌려줍니다.
+//   closest()  — 자기 자신부터 시작해 부모 방향으로 올라가며, 선택자에 맞는 첫 요소를 찾습니다. 없으면 null 입니다.
+//       예) el.closest("header, nav") — 머리말/내비 안에 있는 요소인지 검사
+//   matches()  — 요소가 해당 CSS 선택자에 맞으면 true 입니다.
+//   getBoundingClientRect()  — 요소가 화면에서 차지하는 위치(top, left)와 크기(width, height)를 돌려줍니다. 이 코드에서는 크기가 0 이면 "안 보이는 요소"로
+//       봅니다.
+//   getAttribute()  — 요소의 속성(href, alt 등) 값을 읽습니다. 없으면 null 입니다.
+//   hasAttribute()  — 요소에 해당 속성이 있는지 true/false 로 알려 줍니다.
+//   compareDocumentPosition()  — 두 요소가 문서에서 어떤 위치 관계인지 숫자(비트 값)로 알려 줍니다. DOCUMENT_POSITION_FOLLOWING 비트가 켜져 있으면 "뒤에
+//       있다"는 뜻입니다.
+//   style.setProperty()  — 요소에 CSS 값을 직접 지정합니다. 세 번째 값에 "important" 를 주면 다른 스타일보다 우선합니다.
+//       예) el.style.setProperty("display", "none", "important")
+//   scrollBy()  — 페이지를 현재 위치에서 지정한 만큼 스크롤합니다.
+//   scrollTo()  — 페이지를 지정한 좌표(예: 맨 위 0, 0)로 스크롤합니다.
+//   getComputedStyle()  — 여러 CSS 규칙이 합쳐져 "최종적으로 적용된" 스타일 값을 읽습니다. (읽기만 가능)
+//
+// ■ 브라우저 기본 기능 (시간, 서버 요청, 클립보드)
+//   setTimeout()  — 지정한 시간(밀리초) 뒤에 함수를 한 번 실행합니다.
+//
+// ■ 브라우저 조종 (Playwright)
+//   chromium.launch()  — 사람 눈에 보이지 않는 브라우저(크롬 계열)를 실행합니다. channel: "chrome" 이면 설치된 Chrome 을 씁니다.
+//   browser.newContext()  — 쿠키 등이 분리된 브라우저 프로필(context)을 만듭니다. 창 크기, 언어도 여기서 정합니다.
+//   context.newPage()  — 프로필 안에 새 탭(page)을 엽니다.
+//   page.goto()  — 탭에서 주소를 열고, 정해진 시점(load, networkidle 등)까지 기다립니다.
+//   page.evaluate()  — 넘겨 준 함수를 "열려 있는 사이트 페이지 안에서" 실행하고, 결과 데이터를 돌려받습니다.
+//   page.screenshot()  — 화면을 이미지 파일(PNG)로 저장합니다. fullPage 는 전체 페이지, clip 은 잘라낼 영역입니다.
+//   page.waitForTimeout()  — 지정한 시간(밀리초)만 기다립니다. Playwright 공식 문서는 시간 기다리기가 불안정해질 수 있어 운영 코드에서는 권장하지 않는다고 안내합니다. 여기서는
+//       애니메이션·영상이 끝나길 기다리려고 썼습니다.
+//   page.url()  — 탭이 지금 열고 있는 주소를 돌려줍니다. 다른 주소로 이동(리다이렉트)된 뒤의 최종 주소를 알 수 있습니다.
+//   browser.close()  — 브라우저를 닫습니다. 안 닫으면 보이지 않는 브라우저가 PC 에 계속 남습니다.
+//
+// ■ 새로 만들기 (new)
+//   new Set  — 같은 값이 두 번 들어가지 않는 모음(Set)을 만듭니다.
+//   new Map  — 키와 값을 짝지어 저장하는 표(Map)를 만듭니다.
+//   new Promise  — 시간이 걸리는 일의 결과를 나중에 돌려주기로 한 약속(Promise)을 만듭니다. await 로 기다릴 수 있습니다.
+//   new URL  — 주소 글자를 분석해 도메인(hostname), 경로(pathname) 등으로 나눠 줍니다. 형식이 틀리면 오류가 납니다.
+// ─────────────────────────────────────────────
+
 // fs: 파일/폴더 만들기, path: 경로 다루기, chromium: Playwright 가 조종하는 브라우저(크롬 계열)
 const fs = require('fs');
 const path = require('path');
@@ -37,12 +151,14 @@ const EXCLUDE_LINK = /login|logout|admin|sitemap|privacy|policy|개인정보|이
 
 // 주소 앞의 "www." 를 떼고 소문자로 맞춥니다.  WWW.Gosung.com → gosung.com
 // (www 가 있든 없든 같은 사이트로 보려는 용도)
+// 쓰는 메소드: replace(글자 바꾸기), toLowerCase(소문자로 바꾸기)
 function stripWww(host) {
   return host.replace(/^www\./i, '').toLowerCase();
 }
 
 // 두 주소가 "같은 사이트"인지 검사합니다.
 // 메뉴에 외부 링크(뉴스 기사, 유튜브)가 섞여 있어도 우리 사이트 안에서만 돌아다니기 위한 장치입니다. 주소 형식이 이상하면 false.
+// 쓰는 메소드: new URL(주소 분석)
 function sameSite(a, b) {
   try {
     return stripWww(new URL(a).hostname) === stripWww(new URL(b).hostname);
@@ -53,6 +169,7 @@ function sameSite(a, b) {
 
 // 주소 뒤의 "#..."(같은 페이지 안의 위치 표시)를 지웁니다.  /a#top → /a
 // 같은 페이지를 두 번 방문하지 않도록 주소를 비교할 때 씁니다.
+// 쓰는 메소드: new URL(주소 분석), toString(글자로 바꾸기)
 function withoutHash(u) {
   try {
     const url = new URL(u);
@@ -66,6 +183,7 @@ function withoutHash(u) {
 // 링크로 쓸 수 없는 href (#, javascript:, 현재 페이지 앵커)
 // 반환값 true = 방문해도 되는 링크.
 // javascript: / mailto: / tel: 링크와, 현재 페이지 안의 # 앵커 링크는 제외합니다.
+// 쓰는 메소드: test(정규식에 맞는가), includes(포함하고 있는가)
 function isUsableHref(href, currentUrl) {
   if (!href || /^(javascript|mailto|tel):/i.test(href)) return false;
   if (href.includes('#') && withoutHash(href) === withoutHash(currentUrl)) return false;
@@ -74,6 +192,7 @@ function isUsableHref(href, currentUrl) {
 
 // 메뉴 이름으로 파일 이름을 만듭니다. 파일 이름에 쓸 수 없는 글자(\ / : * ? " < > |)를 지우고,
 // 공백은 _ 로 바꾸고, 30자까지만 씁니다.  예) "AI Solution" → "AI_Solution"
+// 쓰는 메소드: String(글자로 바꾸기), replace(글자 바꾸기), slice(일부만 잘라 새로 만들기)
 function safeFileName(name) {
   const cleaned = String(name)
     .replace(/[\\/:*?"<>|]/g, '')
@@ -92,6 +211,8 @@ function safeFileName(name) {
 // ---------- 브라우저 안에서 실행되는 함수들 (page.evaluate) ----------
 
 // 레이어 팝업("오늘 하루 보지 않기" 등) 숨기기
+// 쓰는 메소드: document.querySelectorAll(선택자에 맞는 요소 모두), join(글자 하나로 이어 붙이기), style.setProperty(스타일 지정), trim(앞뒤 공백 지우기),
+//   test(정규식에 맞는가), getComputedStyle(실제 적용된 스타일), getBoundingClientRect(화면에서의 위치와 크기)
 function hidePopupsInPage() {
   // 1단계: 이름(아이디/클래스)이 팝업처럼 생긴 요소를 찾아 숨깁니다. 그누보드 팝업(#hd_pop) 등.
   // [id^="layer_pop"] = 아이디가 layer_pop 으로 시작 / [class*="layer_popup"] = 클래스에 layer_popup 이 포함
@@ -126,10 +247,13 @@ function hidePopupsInPage() {
 // 메인 페이지 한 장에서 사이트 전체 정보를 뽑아 한 덩어리 객체로 돌려줍니다.
 // 아래 작은 함수들을 조합: extractMenu / extractSloganCandidates / extractColors / extractFonts + 제목·설명
 // 홈 화면에서 사이트 전체 정보 추출
+// 쓰는 메소드: document.querySelector(선택자에 맞는 첫 요소), getAttribute(속성 값 읽기)
 function extractSiteInfoInPage() {
   // 글자 정리: 여러 공백/줄바꿈을 한 칸 공백으로 줄이고 앞뒤 공백을 지웁니다.
+  // 쓰는 메소드: replace(글자 바꾸기), trim(앞뒤 공백 지우기)
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   // <meta name="description" content="..."> 같은 정보를 읽는 도우미. name 또는 property(og:...)가 n 인 것을 찾아 content 값을 돌려줍니다.
+  // 쓰는 메소드: document.querySelector(선택자에 맞는 첫 요소), getAttribute(속성 값 읽기)
   function meta(n) {
     const el = document.querySelector(`meta[name="${n}"], meta[property="${n}"]`);
     return el ? clean(el.getAttribute('content')) : '';
@@ -138,6 +262,10 @@ function extractSiteInfoInPage() {
   // --- GNB 메뉴 ---
   // 헤더/내비 영역의 모든 목록(ul)을 후보로 모은 뒤 점수가 가장 높은 것을 고른다.
   // (처음 찾은 목록을 쓰면 .gnb 안의 언어 선택 KOR/ENG 같은 것을 메뉴로 오인할 수 있음)
+  // 쓰는 메소드: new Set(중복 없는 모음), document.querySelectorAll(선택자에 맞는 요소 모두), matches(이 요소가 선택자에 맞는가), add(Set 에 넣기),
+  //   querySelectorAll(안에서 요소 모두 찾기), forEach(항목마다 실행), sort(정렬 (원본이 바뀜)), compareDocumentPosition(두 요소의 앞뒤 위치 관계),
+  //   closest(가장 가까운 부모 찾기), filter(조건에 맞는 것만 골라 새 배열), querySelector(안에서 첫 요소 찾기), map(각 항목을 바꿔 새 배열), every(전부 맞는가),
+  //   test(정규식에 맞는가)
   function extractMenu() {
     // ① 후보 수집: 헤더/내비 영역 안의 모든 목록(ul)을 후보로 모읍니다. (Set = 중복 없는 모음)
     const roots = ['#gnb', '.gnb', '#gnb_wrap', '.gnb_wrap', '#nav', '.nav', '#menu', 'header nav', 'nav', '#header', 'header', '#hd', '.header'];
@@ -192,6 +320,9 @@ function extractSiteInfoInPage() {
   }
 
   // --- 첫 화면에서 글자가 가장 큰 문구 = 슬로건 후보 ---
+  // 쓰는 메소드: new Set(중복 없는 모음), document.querySelectorAll(선택자에 맞는 요소 모두), some(하나라도 맞는가), trim(앞뒤 공백 지우기), closest(가장
+  //   가까운 부모 찾기), getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일), has(들어 있는가), add(Set 에 넣기),
+  //   push(끝에 추가 (원본이 바뀜)), parseFloat(글자 → 소수), sort(정렬 (원본이 바뀜)), slice(일부만 잘라 새로 만들기)
   function extractSloganCandidates() {
     const vh = window.innerHeight;
     const seen = new Set();
@@ -216,8 +347,13 @@ function extractSiteInfoInPage() {
   }
 
   // --- 컬러: 채도가 있는 색 중 많이 쓰인 색 ---
+  // 쓰는 메소드: new Map(이름표→값 표), slice(일부만 잘라 새로 만들기), document.querySelectorAll(선택자에 맞는 요소 모두),
+  //   getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일), Math.min(작은 값), some(하나라도 맞는가), trim(앞뒤 공백
+  //   지우기), sort(정렬 (원본이 바뀜)), map(각 항목을 바꿔 새 배열), entries([키, 값] 쌍 목록)
   function extractColors() {
     // 색 변환 도우미 3개: toRgb("rgb(…)" 문자열 → 숫자 3개, 투명이면 null) / hsl(→ 채도·밝기) / hex(→ #135bec 형식)
+    // 쓰는 메소드: match(정규식에 맞는 부분 찾기), split(구분자로 잘라 배열로), filter(조건에 맞는 것만 골라 새 배열), map(각 항목을 바꿔 새 배열), slice(일부만 잘라 새로
+    //   만들기)
     function toRgb(s) {
       const m = (s || '').match(/rgba?\(([^)]+)\)/);
       if (!m) return null;
@@ -225,6 +361,7 @@ function extractSiteInfoInPage() {
       if (p.length > 3 && p[3] === 0) return null; // 투명
       return p.slice(0, 3);
     }
+    // 쓰는 메소드: Math.max(큰 값), Math.min(작은 값), Math.abs(절댓값)
     function hsl([r, g, b]) {
       r /= 255; g /= 255; b /= 255;
       const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -233,9 +370,11 @@ function extractSiteInfoInPage() {
       const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
       return { s, l };
     }
+    // 쓰는 메소드: map(각 항목을 바꿔 새 배열), join(글자 하나로 이어 붙이기), Math.round(반올림), toString(글자로 바꾸기), padStart(앞을 채워 자리수 맞추기)
     function hex(rgb) { return '#' + rgb.map(function (v) { return Math.round(v).toString(16).padStart(2, '0'); }).join(''); }
     // 색마다 점수를 쌓습니다. 배경색은 차지한 면적에 비례(최대 500점), 글자색은 고정 20점.
     const score = new Map();
+    // 쓰는 메소드: set(Map 에 저장), get(Map 에서 꺼내기)
     function add(rgb, w) {
       if (!rgb) return;
       const { s, l } = hsl(rgb);
@@ -264,7 +403,9 @@ function extractSiteInfoInPage() {
   }
 
   // 본문(body)과 첫 제목(h1~h3)의 첫 번째 글꼴 이름. serif / sans-serif 같은 일반 이름은 제외합니다.
+  // 쓰는 메소드: new Set(중복 없는 모음), filter(조건에 맞는 것만 골라 새 배열), document.querySelector(선택자에 맞는 첫 요소)
   function extractFonts() {
+    // 쓰는 메소드: getComputedStyle(실제 적용된 스타일), split(구분자로 잘라 배열로), replace(글자 바꾸기), trim(앞뒤 공백 지우기), test(정규식에 맞는가)
     function first(el) {
       if (!el) return '';
       const f = getComputedStyle(el).fontFamily.split(',')[0].replace(/["']/g, '').trim();
@@ -293,27 +434,37 @@ function extractSiteInfoInPage() {
 // 돌려주는 값: { title, headings[], paragraphs[], hero{ title, sub }, features{ years[], stats[], cards, boardRows, map, ... } }
 // 각 페이지의 제목/본문 문구 + 페이지 구성 요소(연혁, 수치, 지도, 폼, 슬라이드 등) 추출
 // 원고에서 "이 페이지에 실제로 무엇이 있는지"를 문장으로 만들기 위한 재료
+// 쓰는 메소드: slice(일부만 잘라 새로 만들기), filter(조건에 맞는 것만 골라 새 배열), map(각 항목을 바꿔 새 배열), document.querySelectorAll(선택자에 맞는 요소
+//   모두), parseFloat(글자 → 소수), getComputedStyle(실제 적용된 스타일), sort(정렬 (원본이 바뀜)), join(글자 하나로 이어 붙이기), match(정규식에 맞는 부분
+//   찾기), test(정규식에 맞는가), getBoundingClientRect(화면에서의 위치와 크기), querySelector(안에서 첫 요소 찾기), toLowerCase(소문자로 바꾸기),
+//   document.querySelector(선택자에 맞는 첫 요소) 등 2개 더 (자세한 설명은 파일 위쪽 "메소드 설명")
 function extractPageInfoInPage() {
+  // 쓰는 메소드: replace(글자 바꾸기), trim(앞뒤 공백 지우기)
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   // 머리말/내비/푸터 등 "페이지 본문이 아닌" 영역. skip() 이 true 인 요소는 본문에서 제외합니다.
   const LAYOUT = 'header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft, .allMenu';
+  // 쓰는 메소드: closest(가장 가까운 부모 찾기)
   function skip(el) { return el.closest(LAYOUT); }
   // 실제로 화면에 보이는 요소인가 (크기가 있고 숨김 처리되지 않음)
+  // 쓰는 메소드: getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일)
   function visible(el) {
     const r = el.getBoundingClientRect();
     const cs = getComputedStyle(el);
     return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none';
   }
   // 중복 제거 (Set)
+  // 쓰는 메소드: new Set(중복 없는 모음)
   function uniq(arr) { return [...new Set(arr)]; }
   // 요소가 "자기 몫의 글자"를 min 자 이상 가졌는가.
   // (글자가 자식 요소 안에만 있으면 false → 같은 글이 부모와 자식에서 중복으로 잡히는 것을 막습니다)
+  // 쓰는 메소드: some(하나라도 맞는가), trim(앞뒤 공백 지우기)
   function ownText(el, min) {
     return [...el.childNodes].some(function (n) {
       return n.nodeType === 3 && n.textContent.trim().length >= min;
     });
   }
   // 페이지 맨 위에서부터의 거리 (스크롤 위치와 무관한 절대 위치)
+  // 쓰는 메소드: getBoundingClientRect(화면에서의 위치와 크기)
   function absTop(el) { return el.getBoundingClientRect().top + window.scrollY; }
 
   // 제목(h1~h4): 보이는 것만, 2~80자, 최대 12개
@@ -358,6 +509,7 @@ function extractPageInfoInPage() {
     .filter(function (t) { return t.length <= 60 && /\d[\d,.]*\s?(조|억|만|천)?\s?(원|달러|%|년|개국|건|명|개사|배|대)/.test(t); })).slice(0, 5);
 
   // 선택자(sel)에 해당하는, 본문 영역에서 보이는 요소의 개수
+  // 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), document.querySelectorAll(선택자에 맞는 요소 모두)
   function count(sel) {
     return [...document.querySelectorAll(sel)].filter(function (el) { return !skip(el) && visible(el); }).length;
   }
@@ -429,6 +581,8 @@ function extractPageInfoInPage() {
 //      채팅 위젯처럼 계속 통신하는 사이트는 시간 초과가 나므로, 그때는 load(기본 로딩 완료) 기준으로 다시 시도합니다.
 //   2) 메인 비주얼 애니메이션이 끝나도록 1.5초 더 기다림 (배경 영상이 있으면 3.5초 추가)
 //   3) 팝업 숨기기
+// 쓰는 메소드: page.goto(주소 열기), test(정규식에 맞는가), page.waitForTimeout(정해진 시간 기다리기), page.evaluate(열린 페이지 안에서 함수 실행),
+//   document.querySelector(선택자에 맞는 첫 요소)
 async function openPage(page, url) {
   try {
     await page.goto(url, { waitUntil: 'networkidle', timeout: NAV_TIMEOUT });
@@ -447,6 +601,8 @@ async function openPage(page, url) {
 }
 
 // 스크롤을 끝까지 한 번 내려서 지연 로딩 이미지/스크롤 애니메이션을 모두 띄운 뒤 맨 위로
+// 쓰는 메소드: page.evaluate(열린 페이지 안에서 함수 실행), scrollBy(지금 위치에서 이동), new Promise(나중에 결과가 나오는 약속), setTimeout(일정 시간 뒤 한 번
+//   실행), scrollTo(지정한 위치로 이동), page.waitForTimeout(정해진 시간 기다리기)
 async function revealWholePage(page) {
   await page.evaluate(async function () {
     // 화면 높이의 80%씩 아래로 내려가며 150ms 씩 쉽니다. 끝에 닿으면 멈추고(최대 40번), 마지막에 맨 위로 돌아옵니다.
@@ -465,6 +621,7 @@ async function revealWholePage(page) {
 // 스크린샷을 2장 찍어 파일로 저장하고 파일 이름을 돌려줍니다.
 //   - 첫 화면(예: 01_MAIN.png): 스크롤하기 "전"의 현재 화면 1920x1080. 사람이 처음 본 모습 그대로.
 //   - 전체 페이지(예: 01_MAIN_full.png): 끝까지 스크롤해 숨은 내용을 띄운 뒤 위에서 아래까지. clip 으로 최대 15000px 까지만.
+// 쓰는 메소드: page.screenshot(화면 캡처), path.join(경로 이어 붙이기), page.evaluate(열린 페이지 안에서 함수 실행), Math.min(작은 값)
 async function capture(page, outDir, baseName) {
   const first = `${baseName}.png`;
   await page.screenshot({ path: path.join(outDir, first) });
@@ -485,6 +642,8 @@ async function capture(page, outDir, baseName) {
 //   제외 이름(로그인 등) 건너뜀 → 방문 주소 결정 → 같은 사이트가 아니거나 이미 넣은 주소면 건너뜀 → maxPages 에 닿으면 중단
 // 돌려주는 값: [{ name, url, subs[], subLinks[], isHome }]
 // GNB 결과를 "방문할 페이지 목록"으로 정리
+// 쓰는 메소드: new Set(중복 없는 모음), test(정규식에 맞는가), map(각 항목을 바꿔 새 배열), find(조건에 맞는 첫 항목), has(들어 있는가), add(Set 에 넣기),
+//   filter(조건에 맞는 것만 골라 새 배열), push(끝에 추가 (원본이 바뀜))
 function buildPageList(homeUrl, menu, maxPages) {
   const pages = [{ name: 'MAIN', url: homeUrl, subs: [], isHome: true }];
   // 이미 목록에 넣은 주소 기록 (같은 페이지를 두 번 방문하지 않기 위함)
@@ -517,6 +676,7 @@ function buildPageList(homeUrl, menu, maxPages) {
 // (Playwright 문서 browsers.md "Media codecs" 참고). Chrome이 없으면 번들 Chromium 사용.
 // 반환값: Playwright 브라우저 객체. 크롬이 설치되어 있으면 channel: "chrome" 으로 실행하고,
 // 없으면 오류가 나므로 catch 에서 내장 Chromium 으로 대체합니다.
+// 쓰는 메소드: chromium.launch(브라우저 실행)
 async function launchBrowser(onProgress) {
   try {
     const browser = await chromium.launch({ channel: 'chrome' });
@@ -537,6 +697,9 @@ async function launchBrowser(onProgress) {
  * @param {string} outDir 스크린샷 저장 폴더
  * @param {{maxPages?: number, onProgress?: (msg: string) => void}} options
  */
+// 쓰는 메소드: fs.mkdirSync(폴더 만들기), browser.newContext(독립된 프로필 만들기), context.newPage(새 탭 열기), page.url(현재 주소),
+//   page.evaluate(열린 페이지 안에서 함수 실행), String(글자로 바꾸기), padStart(앞을 채워 자리수 맞추기), slice(일부만 잘라 새로 만들기), sort(정렬 (원본이
+//   바뀜)), push(끝에 추가 (원본이 바뀜)), split(구분자로 잘라 배열로), browser.close(브라우저 닫기)
 async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = function () {} } = {}) {
   // 결과 폴더 만들기 (recursive: 중간 폴더가 없어도 한 번에 생성, 이미 있어도 오류 없음)
   fs.mkdirSync(outDir, { recursive: true });
@@ -574,6 +737,7 @@ async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = function
         const info = await page.evaluate(extractPageInfoInPage); // 스크롤로 지연 로딩이 끝난 뒤 추출
         const subPages = [];
         // 원고에 쓸 정보가 많은 하위 페이지(연혁, 오시는길, 카탈로그 등)를 먼저 읽는다
+        // 쓰는 메소드: test(정규식에 맞는가)
         function informative(n) { return /연혁|history|오시는|location|map|문의|contact|카[달탈]로그|catalog|브로슈어|인증|특허/i.test(n) ? 0 : 1; }
         const subLinks = (p.subLinks || []).slice().sort(function (a, b) { return informative(a.name) - informative(b.name); });
         for (const sub of subLinks.slice(0, MAX_SUBPAGES_PER_MENU)) {
