@@ -1,4 +1,6 @@
-'use strict';
+/** @format */
+
+"use strict";
 
 // 기획자용 로컬 웹 서버
 // 실행: npm start → 브라우저에서 http://localhost:3000
@@ -128,14 +130,14 @@
 //   fs            : 파일 읽기/쓰기
 //   path          : 파일 경로를 안전하게 다루기 (Windows 와 Mac 의 경로 구분자 차이를 알아서 처리)
 //   child_process : 다른 프로그램 실행 (여기서는 브라우저 자동 열기에만 사용)
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const { exec } = require('child_process');
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const {exec} = require("child_process");
 // 우리가 만든 파일들: 사이트 분석(crawl), 원고 작성(template), ZIP 만들기(zip)
-const { crawlSite } = require('./lib/crawl');
-const { buildManuscript } = require('./lib/template');
-const { createZip } = require('./lib/zip');
+const {crawlSite} = require("./lib/crawl");
+const {buildManuscript} = require("./lib/template");
+const {createZip} = require("./lib/zip");
 
 // 서버가 열리는 포트(번호표). 환경 변수 PORT 가 있으면 그 값, 없으면 3000.
 // 다른 프로그램이 3000번을 쓰고 있다면 다른 번호로 실행할 수 있습니다. 예) Mac: PORT=3001 node server.js
@@ -143,9 +145,9 @@ const { createZip } = require('./lib/zip');
 // 쓰는 메소드: Number(숫자로 바꾸기)
 const PORT = Number(process.env.PORT) || 3000;
 // 쓰는 메소드: path.join(경로 이어 붙이기)
-const OUTPUT_DIR = path.join(__dirname, 'output');
+const OUTPUT_DIR = path.join(__dirname, "output");
 // 쓰는 메소드: path.join(경로 이어 붙이기)
-const PUBLIC_DIR = path.join(__dirname, 'public');
+const PUBLIC_DIR = path.join(__dirname, "public");
 
 // 지금 분석 중인지 표시하는 깃발. true 이면 새 요청을 거절합니다.
 // (브라우저를 동시에 여러 개 띄우면 PC 가 느려지고 결과가 섞이기 때문)
@@ -156,7 +158,7 @@ let running = false; // 브라우저를 여러 개 띄우지 않도록 한 번�
 //   body  : 화면에 돌려줄 내용(객체). JSON.stringify 로 글자로 바꿔서 보냅니다.
 // 쓰는 메소드: res.writeHead(응답 머리말 쓰기), res.end(응답 보내고 끝내기), JSON.stringify(객체 → JSON 글자)
 function sendJson(res, status, body) {
-  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.writeHead(status, {"Content-Type": "application/json; charset=utf-8"});
   res.end(JSON.stringify(body));
 }
 
@@ -167,13 +169,15 @@ function sendJson(res, status, body) {
 // 쓰는 메소드: new Promise(나중에 결과가 나오는 약속), req.on(요청 이벤트 듣기), req.destroy(연결 끊기)
 function readBody(req) {
   return new Promise(function (resolve, reject) {
-    let data = '';
-    req.on('data', function (chunk) {
+    let data = "";
+    req.on("data", function (chunk) {
       data += chunk;
       if (data.length > 1e5) req.destroy();
     });
-    req.on('end', function () { return resolve(data); });
-    req.on('error', reject);
+    req.on("end", function () {
+      return resolve(data);
+    });
+    req.on("error", reject);
   });
 }
 
@@ -182,8 +186,8 @@ function readBody(req) {
 //   - new URL() 로 주소 형식을 검사: 이상한 주소면 여기서 오류가 나고, 부른 쪽(handleGenerate)이 400 으로 알려 줍니다.
 // 쓰는 메소드: String(글자로 바꾸기), trim(앞뒤 공백 지우기), new Error(오류 만들기), test(정규식에 맞는가), new URL(주소 분석), toString(글자로 바꾸기)
 function normalizeUrl(input) {
-  let s = String(input || '').trim();
-  if (!s) throw new Error('URL을 입력해 주세요.');
+  let s = String(input || "").trim();
+  if (!s) throw new Error("URL을 입력해 주세요.");
   if (!/^https?:\/\//i.test(s)) s = `http://${s}`;
   const u = new URL(s); // 형식이 틀리면 여기서 에러
   return u.toString();
@@ -196,9 +200,11 @@ function normalizeUrl(input) {
 function jobId(url) {
   const d = new Date();
   // 쓰는 메소드: String(글자로 바꾸기), padStart(앞을 채워 자리수 맞추기)
-  function pad(n) { return String(n).padStart(2, '0'); }
+  function pad(n) {
+    return String(n).padStart(2, "0");
+  }
   const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-  return `${stamp}_${new URL(url).hostname.replace(/[^a-z0-9.-]/gi, '')}`;
+  return `${stamp}_${new URL(url).hostname.replace(/[^a-z0-9.-]/gi, "")}`;
 }
 
 // [보안] 요청 주소로 파일을 내보낼 때 "../" 로 위쪽 폴더(예: server.js)를 읽어 가는 것을 막는 함수입니다.
@@ -213,27 +219,39 @@ function resolveOutput(rel) {
 
 // 파일 확장자 → 브라우저에 알려 줄 "파일 종류"(Content-Type). 이게 틀리면 브라우저가 CSS 를 CSS 로 읽지 않습니다.
 const MIME = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.txt': 'text/plain; charset=utf-8',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.gif': 'image/gif',
-  '.webp': 'image/webp',
-  '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".gif": "image/gif",
+  ".webp": "image/webp",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
 };
 
 // public/ 폴더 안의 "정적 파일"(index.html 이 불러 쓰는 CSS, 이미지, 글꼴)을 내려주기 위한 설정입니다.
 // 정적 파일 = 서버가 계산하지 않고 파일 그대로 보내 주는 파일.
 // 아래 확장자만 허용합니다. (.html, .json 등은 허용하지 않아 의도치 않은 파일 노출을 막습니다)
 // 쓰는 메소드: new Set(중복 없는 모음)
-const STATIC_EXT = new Set(['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', '.woff', '.woff2']);
+const STATIC_EXT = new Set([
+  ".css",
+  ".js",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".svg",
+  ".ico",
+  ".woff",
+  ".woff2",
+]);
 
 // 요청 주소(예: /index.css)를 public/ 안의 실제 파일 경로로 바꿉니다. 내보내면 안 되는 요청이면 null 을 돌려줍니다.
 //  - 허용 확장자가 아니면 null
@@ -247,7 +265,7 @@ function resolvePublic(pathname) {
   } catch {
     return null; // 잘못된 % 표기
   }
-  if (!rel || rel.includes('\0')) return null; // 빈 주소, 널 문자(파일 경로를 속이는 데 쓰임) 거절
+  if (!rel || rel.includes("\0")) return null; // 빈 주소, 널 문자(파일 경로를 속이는 데 쓰임) 거절
   if (!STATIC_EXT.has(path.extname(rel).toLowerCase())) return null;
   const full = path.resolve(PUBLIC_DIR, rel);
   if (!full.startsWith(PUBLIC_DIR + path.sep)) return null;
@@ -261,8 +279,11 @@ function resolvePublic(pathname) {
 // 쓰는 메소드: fs.readFile(파일 읽기 (기다리지 않음)), res.writeHead(응답 머리말 쓰기), path.extname(확장자 꺼내기), res.end(응답 보내고 끝내기)
 function serveFile(res, file, extraHeaders = {}) {
   fs.readFile(file, function (err, data) {
-    if (err) return sendJson(res, 404, { error: '파일을 찾을 수 없습니다.' });
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', ...extraHeaders });
+    if (err) return sendJson(res, 404, {error: "파일을 찾을 수 없습니다."});
+    res.writeHead(200, {
+      "Content-Type": MIME[path.extname(file)] || "application/octet-stream",
+      ...extraHeaders,
+    });
     res.end(data);
   });
 }
@@ -274,17 +295,20 @@ function serveFile(res, file, extraHeaders = {}) {
 //   split(구분자로 잘라 배열로)
 async function handleGenerate(req, res) {
   // ① 이미 다른 분석이 진행 중이면 거절(409)합니다.
-  if (running) return sendJson(res, 409, { error: '다른 사이트를 분석 중입니다. 끝난 뒤 다시 시도해 주세요.' });
+  if (running)
+    return sendJson(res, 409, {
+      error: "다른 사이트를 분석 중입니다. 끝난 뒤 다시 시도해 주세요.",
+    });
   // ② 입력 검사: 화면이 보낸 데이터를 읽고 URL 을 정리합니다. 잘못되면 400(잘못된 요청)으로 이유를 알려 줍니다.
   let url;
   let maxPages;
   try {
-    const body = JSON.parse((await readBody(req)) || '{}');
+    const body = JSON.parse((await readBody(req)) || "{}");
     url = normalizeUrl(body.url);
     // 페이지 수는 1~15 로 제한합니다. (Number(...) || 8 : 숫자가 아니면 기본값 8)
     maxPages = Math.min(Math.max(Number(body.maxPages) || 8, 1), 15);
   } catch (err) {
-    return sendJson(res, 400, { error: err.message });
+    return sendJson(res, 400, {error: err.message});
   }
 
   // 여기부터 "분석 중". 아래 finally 에서 반드시 해제합니다.
@@ -294,22 +318,33 @@ async function handleGenerate(req, res) {
   try {
     // ③ 사이트를 열어 분석하고 캡처합니다. 1~2분 걸릴 수 있어 await 로 기다립니다.
     // onProgress: 진행 상황을 이 서버를 켠 창(터미널)에 출력
-    const site = await crawlSite(url, dir, { maxPages, onProgress: function (m) { return console.log(m); } });
+    const site = await crawlSite(url, dir, {
+      maxPages,
+      onProgress: function (m) {
+        return console.log(m);
+      },
+    });
     // ④ 분석 결과로 원고를 만듭니다. (AI 를 쓰지 않는 템플릿 치환 방식이라 외부 호출이 없습니다)
     const manuscript = buildManuscript(site);
     // ⑤ 결과 저장: 원고.txt(복사용 평문), site.json(분석 데이터 원본: 나중에 원고만 다시 쓰거나 확인할 때 사용)
-    fs.writeFileSync(path.join(dir, '원고.txt'), manuscript.text, 'utf8');
-    fs.writeFileSync(path.join(dir, 'site.json'), JSON.stringify(site, null, 2), 'utf8');
+    fs.writeFileSync(path.join(dir, "원고.txt"), manuscript.text, "utf8");
+    fs.writeFileSync(
+      path.join(dir, "site.json"),
+      JSON.stringify(site, null, 2),
+      "utf8",
+    );
     console.log(`완료: output/${id}`);
     // ⑥ 화면에 결과를 돌려줍니다. 화면의 render 함수가 이걸 받아 미리보기를 그립니다.
-    sendJson(res, 200, { id, site, manuscript });
-  // 분석 중 어떤 오류든(접속 실패, 시간 초과 등) 여기로 옵니다.
-  // 터미널에는 자세한 오류를 남기고, 화면에는 첫 줄만 알려 줍니다.
+    sendJson(res, 200, {id, site, manuscript});
+    // 분석 중 어떤 오류든(접속 실패, 시간 초과 등) 여기로 옵니다.
+    // 터미널에는 자세한 오류를 남기고, 화면에는 첫 줄만 알려 줍니다.
   } catch (err) {
     console.error(err);
-    sendJson(res, 500, { error: `사이트를 분석하지 못했습니다: ${err.message.split('\n')[0]}` });
-  // 성공이든 실패든 마지막에 항상 실행: "분석 중" 표시를 풀어서 다음 요청을 받을 수 있게 합니다.
-  // (이걸 빼먹으면 한 번 오류가 난 뒤 서버가 계속 "분석 중"으로 막힙니다)
+    sendJson(res, 500, {
+      error: `사이트를 분석하지 못했습니다: ${err.message.split("\n")[0]}`,
+    });
+    // 성공이든 실패든 마지막에 항상 실행: "분석 중" 표시를 풀어서 다음 요청을 받을 수 있게 합니다.
+    // (이걸 빼먹으면 한 번 오류가 난 뒤 서버가 계속 "분석 중"으로 막힙니다)
   } finally {
     running = false;
   }
@@ -324,16 +359,22 @@ async function handleGenerate(req, res) {
 //   encodeURIComponent(주소에 넣을 수 있게 변환), res.end(응답 보내고 끝내기)
 function handleZip(res, id) {
   const dir = resolveOutput(id);
-  if (!dir || !fs.existsSync(dir)) return sendJson(res, 404, { error: '결과를 찾을 수 없습니다.' });
-  const files = fs.readdirSync(dir)
-    .filter(function (f) { return /\.(png|txt)$/.test(f); })
+  if (!dir || !fs.existsSync(dir))
+    return sendJson(res, 404, {error: "결과를 찾을 수 없습니다."});
+  const files = fs
+    .readdirSync(dir)
+    .filter(function (f) {
+      return /\.(png|txt)$/.test(f);
+    })
     .sort()
-    .map(function (f) { return { name: f, data: fs.readFileSync(path.join(dir, f)) }; });
+    .map(function (f) {
+      return {name: f, data: fs.readFileSync(path.join(dir, f))};
+    });
   const zip = createZip(files);
   res.writeHead(200, {
-    'Content-Type': 'application/zip',
-    'Content-Disposition': `attachment; filename*=UTF-8''${encodeURIComponent(id)}.zip`,
-    'Content-Length': zip.length,
+    "Content-Type": "application/zip",
+    "Content-Disposition": `attachment; filename*=UTF-8''${encodeURIComponent(id)}.zip`,
+    "Content-Length": zip.length,
   });
   res.end(zip);
 }
@@ -344,32 +385,39 @@ function handleZip(res, id) {
 // 쓰는 메소드: http.createServer(웹 서버 만들기), new URL(주소 분석), path.join(경로 이어 붙이기), match(정규식에 맞는 부분 찾기),
 //   decodeURIComponent(%표기를 원래 글자로), startsWith(~로 시작하는가), slice(일부만 잘라 새로 만들기), console.error(오류를 터미널에 출력)
 const server = http.createServer(async function (req, res) {
-  const { pathname } = new URL(req.url, 'http://localhost');
+  const {pathname} = new URL(req.url, "http://localhost");
   try {
-    if (req.method === 'GET' && pathname === '/') return serveFile(res, path.join(PUBLIC_DIR, 'index.html'));
-    if (req.method === 'POST' && pathname === '/api/generate') return await handleGenerate(req, res);
+    if (req.method === "GET" && pathname === "/")
+      return serveFile(res, path.join(PUBLIC_DIR, "index.html"));
+    if (req.method === "POST" && pathname === "/api/generate")
+      return await handleGenerate(req, res);
     // /zip/20261103-100344_gosungeng.co.kr 처럼 /zip/ 뒤에 이름이 오는 주소인지 검사하는 정규식
     const zipMatch = pathname.match(/^\/zip\/([^/]+)$/);
-    if (req.method === 'GET' && zipMatch) return handleZip(res, decodeURIComponent(zipMatch[1]));
+    if (req.method === "GET" && zipMatch)
+      return handleZip(res, decodeURIComponent(zipMatch[1]));
     // 결과 폴더의 파일(캡처 이미지, 원고)을 내보냅니다. resolveOutput 이 폴더 밖 접근을 막고, 막히면 403(금지)을 보냅니다.
-    if (req.method === 'GET' && pathname.startsWith('/output/')) {
-      const file = resolveOutput(decodeURIComponent(pathname.slice('/output/'.length)));
-      if (!file) return sendJson(res, 403, { error: '접근할 수 없는 경로입니다.' });
+    if (req.method === "GET" && pathname.startsWith("/output/")) {
+      const file = resolveOutput(
+        decodeURIComponent(pathname.slice("/output/".length)),
+      );
+      if (!file)
+        return sendJson(res, 403, {error: "접근할 수 없는 경로입니다."});
       return serveFile(res, file);
     }
     // 위 주소들이 아니면 public/ 폴더의 정적 파일인지 확인합니다.
     // 예: index.html 의 <link href="index.css"> 때문에 브라우저가 보내는 GET /index.css
     // 허용되지 않는 요청(resolvePublic 이 null)이면 아래 404 로 넘어갑니다. 파일이 없으면 serveFile 이 404 를 보냅니다.
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
       const file = resolvePublic(pathname);
       // nosniff: 브라우저가 파일 내용을 보고 종류를 멋대로 추측하지 못하게 합니다.
-      if (file) return serveFile(res, file, { 'X-Content-Type-Options': 'nosniff' });
+      if (file)
+        return serveFile(res, file, {"X-Content-Type-Options": "nosniff"});
     }
-    sendJson(res, 404, { error: 'Not found' });
-  // 위 처리 중 예상 못 한 오류가 나도 서버가 꺼지지 않도록 여기서 받아서 500 으로 응답합니다.
+    sendJson(res, 404, {error: "Not found"});
+    // 위 처리 중 예상 못 한 오류가 나도 서버가 꺼지지 않도록 여기서 받아서 500 으로 응답합니다.
   } catch (err) {
     console.error(err);
-    sendJson(res, 500, { error: err.message });
+    sendJson(res, 500, {error: err.message});
   }
 });
 
@@ -379,11 +427,16 @@ const server = http.createServer(async function (req, res) {
 // 쓰는 메소드: server.listen(서버 켜기 (포트 열기)), console.log(터미널에 출력), includes(포함하고 있는가), exec(다른 프로그램 실행)
 server.listen(PORT, function () {
   console.log(`블로그 원고 생성기 실행 중 → http://localhost:${PORT}`);
-  console.log('종료하려면 이 창에서 Ctrl + C');
+  console.log("종료하려면 이 창에서 Ctrl + C");
   // 실행 파일(start-windows.bat / start-mac.command)에서 --open 으로 실행하면 브라우저를 자동으로 연다
-  if (process.argv.includes('--open')) {
+  if (process.argv.includes("--open")) {
     const url = `http://localhost:${PORT}`;
-    const cmd = process.platform === 'win32' ? `start "" "${url}"` : process.platform === 'darwin' ? `open "${url}"` : `xdg-open "${url}"`;
+    const cmd =
+      process.platform === "win32"
+        ? `start "" "${url}"`
+        : process.platform === "darwin"
+          ? `open "${url}"`
+          : `xdg-open "${url}"`;
     exec(cmd);
   }
 });
