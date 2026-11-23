@@ -11,8 +11,8 @@
 // 숫자는 "리틀 엔디언"(낮은 자리부터 저장)으로 씁니다. writeUInt16LE / writeUInt32LE 의 LE 가 그 뜻입니다.
 //
 // CRC32 = "데이터가 깨지지 않았는지 확인하는 검증 번호". 계산을 빠르게 하려고 256칸짜리 계산표(CRC_TABLE)를 미리 만들어 둡니다.
-// 아래 (() => { ... })() 는 "즉시 실행 함수": 한 번 실행해서 표를 만들고 결과만 CRC_TABLE 에 담습니다.
-const CRC_TABLE = (() => {
+// 아래 (function () { ... })() 는 "즉시 실행 함수": 한 번 실행해서 표를 만들고 결과만 CRC_TABLE 에 담습니다.
+const CRC_TABLE = (function () {
   const t = new Uint32Array(256);
   for (let n = 0; n < 256; n++) {
     let c = n;
@@ -98,7 +98,7 @@ function createZip(files) {
 
   // 끝 표시(22바이트): 파일이 몇 개인지(8, 10), 목차의 크기(12), 목차 시작 위치(16)를 적습니다.
   // ZIP 프로그램은 파일 맨 끝에서 이 표시를 먼저 찾고, 거기서 목차 → 각 파일 순서로 읽어 갑니다.
-  const centralSize = centrals.reduce((s, b) => s + b.length, 0);
+  const centralSize = centrals.reduce(function (s, b) { return s + b.length; }, 0);
   const end = Buffer.alloc(22);
   end.writeUInt32LE(0x06054b50, 0);
   end.writeUInt16LE(files.length, 8);

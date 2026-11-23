@@ -97,23 +97,24 @@
       // 이 코드는 서버가 아니라 "기획자의 브라우저 안"에서 실행됩니다. (서버 쪽 코드는 server.js)
       // ─────────────────────────────────────────────
       // $('url') 처럼 id로 요소를 찾는 줄임말 함수입니다. (document.getElementById)
-      const $ = (id) => document.getElementById(id);
+      function $(id) {
+        return document.getElementById(id);
+      }
       // 글자를 안전하게 바꾸는 함수(HTML 이스케이프). & < > " ' 를 &amp; &lt; 같은 표시로 바꿉니다.
       // 외부 사이트에서 가져온 글에 <script> 같은 코드가 들어 있어도 "그냥 글자"로 보이게 하려는 것입니다.
       // 외부에서 온 글을 innerHTML에 넣기 전에는 반드시 거쳐야 합니다.
       // (s ?? '' : s가 비어 있으면(null/undefined) 빈 글자로 대신 씁니다)
-      const esc = (s) =>
-        String(s ?? "").replace(
-          /[&<>"']/g,
-          (c) =>
-            ({
-              "&": "&amp;",
-              "<": "&lt;",
-              ">": "&gt;",
-              '"': "&quot;",
-              "'": "&#39;",
-            })[c],
-        );
+      function esc(s) {
+        return String(s ?? "").replace(/[&<>"']/g, function (c) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[c];
+        });
+      }
       // 가장 최근에 받은 분석 결과를 저장해 둡니다. ("원고 텍스트 복사" 버튼이 사용)
       let current = null;
 
@@ -123,7 +124,9 @@
         const t = $("toast");
         t.textContent = msg;
         t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 1500);
+        setTimeout(function () {
+          return t.classList.remove("show");
+        }, 1500);
       }
 
       // 글자를 클립보드에 복사합니다.
@@ -145,7 +148,7 @@
       }
 
       // [원고 만들기] 제출 처리. async = 이 함수 안에서 await(끝날 때까지 기다리기)를 쓸 수 있다는 표시입니다.
-      $("form").addEventListener("submit", async (e) => {
+      $("form").addEventListener("submit", async function (e) {
         // 폼의 기본 동작(페이지 새로고침)을 막습니다. 새로고침되면 화면이 초기화되므로 꼭 필요합니다.
         e.preventDefault();
         const status = $("status");
@@ -157,7 +160,7 @@
         // 경과 시간 표시용: 시작 시각을 기억해 두고, 1초마다 현재 시각과의 차이를 보여 줍니다.
         const started = Date.now();
         // 1초마다 "(N초)"를 갱신합니다. 오래 걸려도 멈춘 게 아니라는 걸 알려 줍니다. 끝나면 clearInterval로 멈춥니다.
-        const timer = setInterval(() => {
+        const timer = setInterval(function () {
           status.textContent = `사이트를 열고 페이지별로 캡처하는 중입니다… (${Math.round((Date.now() - started) / 1000)}초)`;
         }, 1000);
         try {
@@ -192,8 +195,9 @@
       //   id = 결과 폴더 이름 / site = 사이트 분석 데이터 / manuscript = 원고(blocks: 화면용 블록, text: 복사용 평문)
       function render({id, site, manuscript}) {
         // 결과 폴더 안 파일의 주소를 만듭니다. encodeURIComponent 는 한글/공백이 있어도 주소로 안전하게 바꿔 줍니다.
-        const img = (f) =>
-          `/output/${encodeURIComponent(id)}/${encodeURIComponent(f)}`;
+        function img(f) {
+          return `/output/${encodeURIComponent(id)}/${encodeURIComponent(f)}`;
+        }
         // 이미지 번호 세기용 (이미지 1, 이미지 2 ...)
         let n = 0;
         // [왼쪽] 원고 미리보기: 원고 블록을 하나씩 HTML로 바꿔 이어 붙입니다.
@@ -201,7 +205,7 @@
         //  - 글 블록: esc()로 안전하게 바꾼 "뒤에" 【 】 부분만 노란 mark로 감쌉니다. (순서가 바뀌면 안 됩니다)
         //  - loading="lazy": 화면에 가까워질 때 이미지를 불러와서 처음 표시가 빨라집니다.
         $("post").innerHTML = manuscript.blocks
-          .map((b) => {
+          .map(function (b) {
             if (b.type === "image") {
               n++;
               return `<figure>
@@ -211,7 +215,12 @@
           · <a href="${img(b.fullFile)}" target="_blank" rel="noopener">전체 페이지 보기</a></figcaption>
       </figure>`;
             }
-            return `<p class="t">${esc(b.text).replace(/【[^】]*】/g, (m) => `<mark>${m}</mark>`)}</p>`;
+            return `<p class="t">${esc(b.text).replace(
+              /【[^】]*】/g,
+              function (m) {
+                return `<mark>${m}</mark>`;
+              },
+            )}</p>`;
           })
           .join("");
 
@@ -226,33 +235,39 @@
         // 슬로건 후보: 클릭하면 복사되도록 data-copy 속성에 글을 넣어 둡니다. (글자 크기도 함께 표시)
         const slogans =
           site.sloganCandidates
-            .map(
-              (s) =>
-                `<button type="button" class="chip" data-copy="${esc(s.text)}">${esc(s.text)} <small>(${s.fontSize}px)</small></button>`,
-            )
+            .map(function (s) {
+              return `<button type="button" class="chip" data-copy="${esc(s.text)}">${esc(s.text)} <small>(${s.fontSize}px)</small></button>`;
+            })
             .join("") || '<p class="err">찾지 못했습니다</p>';
         // 포인트 컬러 견본: 색 네모 + 색 코드
         const colors = site.colors.accents
-          .map(
-            (c) =>
-              `<li class="swatch"><i style="background:${esc(c)}"></i>${esc(c)}</li>`,
-          )
+          .map(function (c) {
+            return `<li class="swatch"><i style="background:${esc(c)}"></i>${esc(c)}</li>`;
+          })
           .join("");
         // 메뉴 구성 목록(MAIN 제외). 캡처에 실패한 페이지는 빨간 오류 문구를 함께 보여 줍니다.
         const menu = site.pages
-          .filter((p) => !p.isHome)
-          .map(
-            (p) =>
-              `<li>${esc(p.name)}${p.subs.length ? ` <small>(${esc(p.subs.join(", "))})</small>` : ""}${p.error ? ` <span class="err">캡처 실패: ${esc(p.error)}</span>` : ""}</li>`,
-          )
+          .filter(function (p) {
+            return !p.isHome;
+          })
+          .map(function (p) {
+            return `<li>${esc(p.name)}${p.subs.length ? ` <small>(${esc(p.subs.join(", "))})</small>` : ""}${p.error ? ` <span class="err">캡처 실패: ${esc(p.error)}</span>` : ""}</li>`;
+          })
           .join("");
         // 페이지별로 추출한 제목/문구를 접었다 펴는 목록으로 만듭니다. (기획자가 원고를 다듬을 때 참고)
         const pageTexts = site.pages
-          .filter((p) => !p.error)
-          .map(
-            (p) =>
-              `<details><summary>${esc(p.name)}</summary>${[...p.headings, ...p.paragraphs].map((t) => `<p>${esc(t)}</p>`).join("") || "<p>추출된 문구 없음</p>"}</details>`,
-          )
+          .filter(function (p) {
+            return !p.error;
+          })
+          .map(function (p) {
+            return `<details><summary>${esc(p.name)}</summary>${
+              [...p.headings, ...p.paragraphs]
+                .map(function (t) {
+                  return `<p>${esc(t)}</p>`;
+                })
+                .join("") || "<p>추출된 문구 없음</p>"
+            }</details>`;
+          })
           .join("");
 
         // 위 조각들을 카드로 묶어 오른쪽 패널에 채웁니다.
@@ -273,13 +288,12 @@
       }
 
       // "원고 텍스트 복사" 버튼: 결과가 있을 때만(current &&) 원고 전체를 복사합니다.
-      $("copyText").addEventListener(
-        "click",
-        () => current && copy(current.manuscript.text),
-      );
+      $("copyText").addEventListener("click", function () {
+        return current && copy(current.manuscript.text);
+      });
       // 오른쪽 패널 클릭 처리(이벤트 위임): 클릭된 곳이 data-copy 를 가진 버튼(또는 그 안쪽)이면 그 글을 복사합니다.
       // 버튼마다 따로 이벤트를 달지 않고 패널 하나에만 달아도 동작합니다. (패널 내용은 render()가 매번 새로 그리기 때문)
-      $("info").addEventListener("click", (e) => {
+      $("info").addEventListener("click", function (e) {
         const b = e.target.closest("[data-copy]");
         if (b) copy(b.dataset.copy);
       });

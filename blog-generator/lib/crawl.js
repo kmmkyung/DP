@@ -128,12 +128,12 @@ function hidePopupsInPage() {
 // 홈 화면에서 사이트 전체 정보 추출
 function extractSiteInfoInPage() {
   // 글자 정리: 여러 공백/줄바꿈을 한 칸 공백으로 줄이고 앞뒤 공백을 지웁니다.
-  const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+  function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   // <meta name="description" content="..."> 같은 정보를 읽는 도우미. name 또는 property(og:...)가 n 인 것을 찾아 content 값을 돌려줍니다.
-  const meta = (n) => {
+  function meta(n) {
     const el = document.querySelector(`meta[name="${n}"], meta[property="${n}"]`);
     return el ? clean(el.getAttribute('content')) : '';
-  };
+  }
 
   // --- GNB 메뉴 ---
   // 헤더/내비 영역의 모든 목록(ul)을 후보로 모은 뒤 점수가 가장 높은 것을 고른다.
@@ -147,7 +147,7 @@ function extractSiteInfoInPage() {
     for (const sel of roots) {
       for (const root of document.querySelectorAll(sel)) {
         if (root.matches('ul')) candidates.add(root);
-        root.querySelectorAll('ul').forEach((ul) => candidates.add(ul));
+        root.querySelectorAll('ul').forEach(function (ul) { return candidates.add(ul); });
       }
     }
     // ② 점수 매기기: 점수 = 항목 수 + (하위 메뉴가 있는 항목 수 x 3). 점수가 가장 높은 목록이 진짜 메뉴(GNB)일 가능성이 큽니다.
@@ -155,16 +155,18 @@ function extractSiteInfoInPage() {
     let best = null;
     let bestScore = 0;
     // 문서에 나온 순서(위쪽 먼저)로 정렬합니다.
-    const ordered = [...candidates].sort((x, y) => (x.compareDocumentPosition(y) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+    const ordered = [...candidates].sort(function (x, y) {
+      return x.compareDocumentPosition(y) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+    });
     for (const ul of ordered) {
       // 클래스/아이디에 lang 이 들어간 영역(언어 선택)은 제외
       if (ul.closest('[class*="lang" i], [id*="lang" i]')) continue;
-      const lis = [...ul.children].filter((li) => li.tagName === 'LI' && li.querySelector('a'));
+      const lis = [...ul.children].filter(function (li) { return li.tagName === 'LI' && li.querySelector('a'); });
       if (lis.length < 2) continue;
-      const names = lis.map((li) => clean((li.querySelector('a') || li).textContent));
-      if (names.every((n) => LANG.test(n))) continue; // 언어 선택 목록
+      const names = lis.map(function (li) { return clean((li.querySelector('a') || li).textContent); });
+      if (names.every(function (n) { return LANG.test(n); })) continue; // 언어 선택 목록
       // 하위 메뉴(ul)를 가진 li가 있으면 GNB일 가능성이 높다
-      const nested = lis.filter((li) => li.querySelector('ul')).length;
+      const nested = lis.filter(function (li) { return li.querySelector('ul'); }).length;
       const score = lis.length + nested * 3;
       if (score > bestScore) { // 동점이면 문서에서 먼저 나온(=헤더 쪽) 목록 유지
         best = lis;
@@ -173,16 +175,20 @@ function extractSiteInfoInPage() {
     }
     // ③ 못 찾았으면 빈 목록. 이 경우 메인 화면만 캡처합니다.
     if (!best) return [];
-    return best.map((li) => {
+    return best.map(function (li) {
       const links = [...li.querySelectorAll('a')];
       // 항목의 대표 링크(1차 메뉴)와 나머지 링크(하위 메뉴)를 나눕니다.
       const top = li.querySelector(':scope > a, :scope > * > a') || links[0];
       return {
         name: clean(top.textContent),
         href: top.href,
-        subs: links.filter((a) => a !== top).map((a) => ({ name: clean(a.textContent), href: a.href })).filter((s) => s.name),
+        subs: links.filter(function (a) { return a !== top; }).map(function (a) {
+          return { name: clean(a.textContent), href: a.href };
+        }).filter(function (s) {
+          return s.name;
+        }),
       };
-    }).filter((i) => i.name);
+    }).filter(function (i) { return i.name; });
   }
 
   // --- 첫 화면에서 글자가 가장 큰 문구 = 슬로건 후보 ---
@@ -192,7 +198,7 @@ function extractSiteInfoInPage() {
     const list = [];
     for (const el of document.querySelectorAll('h1, h2, h3, h4, p, strong, em, span, div, dt, dd, li')) {
       // 자기가 직접 가진 글자가 있는 요소만 (글자가 자식 요소 안에만 있는 껍데기는 제외)
-      const hasOwnText = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1);
+      const hasOwnText = [...el.childNodes].some(function (n) { return n.nodeType === 3 && n.textContent.trim().length > 1; });
       if (!hasOwnText) continue;
       if (el.closest('header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft')) continue;
       const r = el.getBoundingClientRect();
@@ -206,38 +212,38 @@ function extractSiteInfoInPage() {
       list.push({ text: t, fontSize: parseFloat(cs.fontSize) || 0 });
     }
     // 글자 크기가 큰 순서로 정렬해 상위 5개. "가장 크게 쓴 글 = 슬로건일 가능성이 높다"는 가정입니다.
-    return list.sort((a, b) => b.fontSize - a.fontSize).slice(0, 5);
+    return list.sort(function (a, b) { return b.fontSize - a.fontSize; }).slice(0, 5);
   }
 
   // --- 컬러: 채도가 있는 색 중 많이 쓰인 색 ---
   function extractColors() {
     // 색 변환 도우미 3개: toRgb("rgb(…)" 문자열 → 숫자 3개, 투명이면 null) / hsl(→ 채도·밝기) / hex(→ #135bec 형식)
-    const toRgb = (s) => {
+    function toRgb(s) {
       const m = (s || '').match(/rgba?\(([^)]+)\)/);
       if (!m) return null;
       const p = m[1].split(/[\s,/]+/).filter(Boolean).map(Number);
       if (p.length > 3 && p[3] === 0) return null; // 투명
       return p.slice(0, 3);
-    };
-    const hsl = ([r, g, b]) => {
+    }
+    function hsl([r, g, b]) {
       r /= 255; g /= 255; b /= 255;
       const max = Math.max(r, g, b), min = Math.min(r, g, b);
       const l = (max + min) / 2;
       const d = max - min;
       const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
       return { s, l };
-    };
-    const hex = (rgb) => '#' + rgb.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
+    }
+    function hex(rgb) { return '#' + rgb.map(function (v) { return Math.round(v).toString(16).padStart(2, '0'); }).join(''); }
     // 색마다 점수를 쌓습니다. 배경색은 차지한 면적에 비례(최대 500점), 글자색은 고정 20점.
     const score = new Map();
-    const add = (rgb, w) => {
+    function add(rgb, w) {
       if (!rgb) return;
       const { s, l } = hsl(rgb);
       if (s < 0.2 || l < 0.12 || l > 0.92) return; // 흰/검/회색 제외
       const k = hex(rgb);
       if (k === '#0000ee' || k === '#551a8b') return; // 브라우저 기본 링크색(스타일 미지정)
       score.set(k, (score.get(k) || 0) + w);
-    };
+    }
     // 화면의 모든 요소(최대 5000개)를 훑으며 배경색/글자색 점수를 쌓습니다.
     const els = [...document.querySelectorAll('body *')].slice(0, 5000);
     for (const el of els) {
@@ -245,10 +251,12 @@ function extractSiteInfoInPage() {
       if (r.width < 1 || r.height < 1) continue;
       const cs = getComputedStyle(el);
       add(toRgb(cs.backgroundColor), Math.min(r.width * r.height, 500000) / 1000);
-      if ([...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) add(toRgb(cs.color), 20);
+      if ([...el.childNodes].some(function (n) { return n.nodeType === 3 && n.textContent.trim(); })) add(toRgb(cs.color), 20);
     }
     // 점수가 높은 3개 = 포인트 컬러 후보
-    const accents = [...score.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => k);
+    const accents = [...score.entries()].sort(function (a, b) {
+      return b[1] - a[1];
+    }).slice(0, 3).map(function ([k]) { return k; });
 
     // 바탕색과 그 밝기(0 어두움 ~ 1 밝음). 원고에서 "화이트/다크 바탕"을 정할 때 씁니다.
     const bodyBg = toRgb(getComputedStyle(document.body).backgroundColor) || toRgb(getComputedStyle(document.documentElement).backgroundColor) || [255, 255, 255];
@@ -257,11 +265,11 @@ function extractSiteInfoInPage() {
 
   // 본문(body)과 첫 제목(h1~h3)의 첫 번째 글꼴 이름. serif / sans-serif 같은 일반 이름은 제외합니다.
   function extractFonts() {
-    const first = (el) => {
+    function first(el) {
       if (!el) return '';
       const f = getComputedStyle(el).fontFamily.split(',')[0].replace(/["']/g, '').trim();
       return /^(serif|sans-serif|monospace|system-ui|-apple-system|inherit)$/i.test(f) ? '' : f;
-    };
+    }
     const set = new Set([first(document.body), first(document.querySelector('h1, h2, h3'))].filter(Boolean));
     return [...set];
   }
@@ -286,85 +294,103 @@ function extractSiteInfoInPage() {
 // 각 페이지의 제목/본문 문구 + 페이지 구성 요소(연혁, 수치, 지도, 폼, 슬라이드 등) 추출
 // 원고에서 "이 페이지에 실제로 무엇이 있는지"를 문장으로 만들기 위한 재료
 function extractPageInfoInPage() {
-  const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+  function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   // 머리말/내비/푸터 등 "페이지 본문이 아닌" 영역. skip() 이 true 인 요소는 본문에서 제외합니다.
   const LAYOUT = 'header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft, .allMenu';
-  const skip = (el) => el.closest(LAYOUT);
+  function skip(el) { return el.closest(LAYOUT); }
   // 실제로 화면에 보이는 요소인가 (크기가 있고 숨김 처리되지 않음)
-  const visible = (el) => {
+  function visible(el) {
     const r = el.getBoundingClientRect();
     const cs = getComputedStyle(el);
     return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none';
-  };
+  }
   // 중복 제거 (Set)
-  const uniq = (arr) => [...new Set(arr)];
+  function uniq(arr) { return [...new Set(arr)]; }
   // 요소가 "자기 몫의 글자"를 min 자 이상 가졌는가.
   // (글자가 자식 요소 안에만 있으면 false → 같은 글이 부모와 자식에서 중복으로 잡히는 것을 막습니다)
-  const ownText = (el, min) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length >= min);
+  function ownText(el, min) {
+    return [...el.childNodes].some(function (n) {
+      return n.nodeType === 3 && n.textContent.trim().length >= min;
+    });
+  }
   // 페이지 맨 위에서부터의 거리 (스크롤 위치와 무관한 절대 위치)
-  const absTop = (el) => el.getBoundingClientRect().top + window.scrollY;
+  function absTop(el) { return el.getBoundingClientRect().top + window.scrollY; }
 
   // 제목(h1~h4): 보이는 것만, 2~80자, 최대 12개
   const headings = uniq([...document.querySelectorAll('h1, h2, h3, h4')]
-    .filter((el) => !skip(el) && visible(el))
-    .map((el) => clean(el.innerText))
-    .filter((t) => t.length >= 2 && t.length <= 80)).slice(0, 12);
+    .filter(function (el) { return !skip(el) && visible(el); })
+    .map(function (el) { return clean(el.innerText); })
+    .filter(function (t) { return t.length >= 2 && t.length <= 80; })).slice(0, 12);
   // 본문 문단: 자기 글자가 20자 이상인 요소, 20~300자, 최대 12개
   const paragraphs = uniq([...document.querySelectorAll('p, dd, li, div, span')]
-    .filter((el) => ownText(el, 20) && !skip(el) && visible(el))
-    .map((el) => clean(el.innerText))
-    .filter((t) => t.length >= 20 && t.length <= 300)).slice(0, 12);
+    .filter(function (el) { return ownText(el, 20) && !skip(el) && visible(el); })
+    .map(function (el) { return clean(el.innerText); })
+    .filter(function (t) { return t.length >= 20 && t.length <= 300; })).slice(0, 12);
 
   // 상단 비주얼: 페이지 맨 위(900px 안)에서 글자가 가장 큰 문구 + 그 다음 문구
   const topTexts = [...document.querySelectorAll('h1, h2, h3, p, strong, span, div')]
-    .filter((el) => ownText(el, 2) && !skip(el) && visible(el) && absTop(el) < 900)
-    .map((el) => ({ text: clean(el.innerText), size: parseFloat(getComputedStyle(el).fontSize) || 0, top: absTop(el) }))
-    .filter((x) => x.text.length >= 2 && x.text.length <= 100);
-  const heroTitle = topTexts.slice().sort((a, b) => b.size - a.size)[0];
+    .filter(function (el) { return ownText(el, 2) && !skip(el) && visible(el) && absTop(el) < 900; })
+    .map(function (el) {
+      return { text: clean(el.innerText), size: parseFloat(getComputedStyle(el).fontSize) || 0, top: absTop(el) };
+    })
+    .filter(function (x) { return x.text.length >= 2 && x.text.length <= 100; });
+  const heroTitle = topTexts.slice().sort(function (a, b) { return b.size - a.size; })[0];
   const heroSub = heroTitle && topTexts
-    .filter((x) => x.top > heroTitle.top && x.text !== heroTitle.text && x.text.length >= 8 && x.size >= 15)
-    .sort((a, b) => a.top - b.top)[0];
+    .filter(function (x) { return x.top > heroTitle.top && x.text !== heroTitle.text && x.text.length >= 8 && x.size >= 15; })
+    .sort(function (a, b) { return a.top - b.top; })[0];
 
   // 본문 전체 글자를 한 덩어리로 (연도 검색용)
   const bodyText = clean([...document.querySelectorAll('body *')]
-    .filter((el) => !skip(el) && ownText(el, 1))
-    .map((el) => el.innerText).join(' '));
+    .filter(function (el) { return !skip(el) && ownText(el, 1); })
+    .map(function (el) { return el.innerText; }).join(' '));
 
   // 연혁: 본문에 등장하는 연도(1950~2039)
   // 정규식: 1950~2039 연도(19[5-9]\d | 20[0-3]\d) 뒤에 "년 . - ~ 공백"이 오거나 끝인 것.
   // 서로 다른 연도가 3개 이상일 때만 "연혁이 있다"고 봅니다. (아래 features.years)
-  const years = uniq((bodyText.match(/\b(19[5-9]\d|20[0-3]\d)(?=\s*[년.\-~]|\s|$)/g) || []).map(Number)).sort((a, b) => a - b);
+  const years = uniq((bodyText.match(/\b(19[5-9]\d|20[0-3]\d)(?=\s*[년.\-~]|\s|$)/g) || []).map(Number)).sort(function (a, b) {
+    return a - b;
+  });
 
   // 수치: "200억 원", "36억", "32.4%", "20년" 같은 표현이 들어간 짧은 문구
   const stats = uniq([...document.querySelectorAll('p, li, dd, dt, strong, span, em, h3, h4, div')]
-    .filter((el) => ownText(el, 2) && !skip(el) && visible(el))
-    .map((el) => clean(el.innerText))
-    .filter((t) => t.length <= 60 && /\d[\d,.]*\s?(조|억|만|천)?\s?(원|달러|%|년|개국|건|명|개사|배|대)/.test(t))).slice(0, 5);
+    .filter(function (el) { return ownText(el, 2) && !skip(el) && visible(el); })
+    .map(function (el) { return clean(el.innerText); })
+    .filter(function (t) { return t.length <= 60 && /\d[\d,.]*\s?(조|억|만|천)?\s?(원|달러|%|년|개국|건|명|개사|배|대)/.test(t); })).slice(0, 5);
 
   // 선택자(sel)에 해당하는, 본문 영역에서 보이는 요소의 개수
-  const count = (sel) => [...document.querySelectorAll(sel)].filter((el) => !skip(el) && visible(el)).length;
+  function count(sel) {
+    return [...document.querySelectorAll(sel)].filter(function (el) { return !skip(el) && visible(el); }).length;
+  }
   // 폭 300px 이상인 이미지 개수 (큰 사진이 많은 페이지인지 판단)
-  const bigImages = [...document.querySelectorAll('img')].filter((img) => !skip(img) && img.getBoundingClientRect().width >= 300).length;
+  const bigImages = [...document.querySelectorAll('img')].filter(function (img) {
+    return !skip(img) && img.getBoundingClientRect().width >= 300;
+  }).length;
 
   // 카드형 목록: 이미지를 가진 형제 요소가 3개 이상 반복되는 목록
   let cards = 0;
   for (const list of document.querySelectorAll('ul, ol, div')) {
     if (skip(list)) continue;
-    const kids = [...list.children].filter((c) => visible(c) && c.querySelector('img, [style*="background"]') && clean(c.innerText).length > 0);
+    const kids = [...list.children].filter(function (c) {
+      return visible(c) && c.querySelector('img, [style*="background"]') && clean(c.innerText).length > 0;
+    });
     if (kids.length >= 3 && kids.length > cards) cards = kids.length;
   }
 
   // 게시판: 날짜(2026.03.10 / 2026-03-10)가 붙은 행
   const boardRows = [...document.querySelectorAll('tr, li')]
-    .filter((el) => !skip(el) && visible(el) && /\b20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\b/.test(el.textContent)).length;
+    .filter(function (el) {
+      return !skip(el) && visible(el) && /\b20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\b/.test(el.textContent);
+    }).length;
 
   // 입력칸 수 (숨김·검색·버튼·체크박스·라디오는 제외). template.js 에서 3개 이상이면 "문의 폼"으로 봅니다.
   const inputs = [...document.querySelectorAll('input, textarea, select')]
-    .filter((el) => !skip(el) && visible(el) && !/hidden|search|submit|button|checkbox|radio/i.test(el.type || '') && !/search|keyword|stx|sfl/i.test(el.name || '')).length;
+    .filter(function (el) {
+      return !skip(el) && visible(el) && !/hidden|search|submit|button|checkbox|radio/i.test(el.type || '') && !/search|keyword|stx|sfl/i.test(el.name || '');
+    }).length;
 
   // 이 페이지가 불러오는 외부 스크립트 주소들을 한 줄 글자로 (gsap, swiper 같은 라이브러리 이름 찾기용).
   // 파일 하나로 합쳐 둔 사이트는 못 찾는 한계가 있습니다.
-  const scripts = [...document.querySelectorAll('script[src]')].map((s) => s.src.toLowerCase()).join(' ');
+  const scripts = [...document.querySelectorAll('script[src]')].map(function (s) { return s.src.toLowerCase(); }).join(' ');
 
   return {
     title: clean(document.title),
@@ -385,9 +411,11 @@ function extractPageInfoInPage() {
       formInputs: inputs,
       tables: count('table'),
       boardRows,
-      downloads: [...document.querySelectorAll('a[href]')].filter((a) => !skip(a) && (/\.(pdf|zip|pptx?|hwp)(\?|$)/i.test(a.href) || a.hasAttribute('download') || /다운로드|download/i.test(a.textContent))).length,
+      downloads: [...document.querySelectorAll('a[href]')].filter(function (a) {
+        return !skip(a) && (/\.(pdf|zip|pptx?|hwp)(\?|$)/i.test(a.href) || a.hasAttribute('download') || /다운로드|download/i.test(a.textContent));
+      }).length,
       libs: ['gsap', 'scrolltrigger', 'swiper', 'slick', 'aos', 'fullpage', 'lenis', 'three']
-        .filter((k) => scripts.includes(k) || (k === 'aos' && document.querySelector('[data-aos]'))),
+        .filter(function (k) { return scripts.includes(k) || (k === 'aos' && document.querySelector('[data-aos]')); }),
     },
   };
 }
@@ -411,20 +439,22 @@ async function openPage(page, url) {
   }
   await page.waitForTimeout(1500); // 메인 비주얼 애니메이션 대기
   // 배경 동영상(video, Vimeo/YouTube iframe)이 있으면 첫 프레임이 뜰 때까지 조금 더 기다린다
-  const hasVideo = await page.evaluate(() => !!document.querySelector('video, iframe[src*="vimeo"], iframe[src*="youtube"]'));
+  const hasVideo = await page.evaluate(function () {
+    return !!document.querySelector('video, iframe[src*="vimeo"], iframe[src*="youtube"]');
+  });
   if (hasVideo) await page.waitForTimeout(3500);
   await page.evaluate(hidePopupsInPage);
 }
 
 // 스크롤을 끝까지 한 번 내려서 지연 로딩 이미지/스크롤 애니메이션을 모두 띄운 뒤 맨 위로
 async function revealWholePage(page) {
-  await page.evaluate(async () => {
+  await page.evaluate(async function () {
     // 화면 높이의 80%씩 아래로 내려가며 150ms 씩 쉽니다. 끝에 닿으면 멈추고(최대 40번), 마지막에 맨 위로 돌아옵니다.
     // 스크롤해야 나타나는 이미지와 애니메이션을 미리 띄워서 전체 캡처에 빈 곳이 없게 하려는 것입니다. (무한 스크롤 페이지는 40번에서 멈춤)
     const step = window.innerHeight * 0.8;
     for (let i = 0; i < 40; i++) {
       window.scrollBy(0, step);
-      await new Promise((r) => setTimeout(r, 150));
+      await new Promise(function (r) { return setTimeout(r, 150); });
       if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) break;
     }
     window.scrollTo(0, 0);
@@ -441,7 +471,7 @@ async function capture(page, outDir, baseName) {
 
   // 지연 로딩 이미지가 뜨도록 스크롤한 뒤, 전체 높이를 잽니다.
   await revealWholePage(page);
-  const height = await page.evaluate(() => document.documentElement.scrollHeight);
+  const height = await page.evaluate(function () { return document.documentElement.scrollHeight; });
   const full = `${baseName}_full.png`;
   await page.screenshot({
     path: path.join(outDir, full),
@@ -463,15 +493,21 @@ function buildPageList(homeUrl, menu, maxPages) {
     if (pages.length >= maxPages) break;
     if (EXCLUDE_LINK.test(item.name)) continue;
     // 1차 메뉴 링크가 '#'이면 첫 번째 하위 메뉴 링크로 대신 들어간다
-    const candidates = [item.href, ...item.subs.map((s) => s.href)];
-    const href = candidates.find((h) => isUsableHref(h, homeUrl) && sameSite(h, homeUrl) && !EXCLUDE_LINK.test(h));
+    const candidates = [item.href, ...item.subs.map(function (s) { return s.href; })];
+    const href = candidates.find(function (h) {
+      return isUsableHref(h, homeUrl) && sameSite(h, homeUrl) && !EXCLUDE_LINK.test(h);
+    });
     if (!href) continue;
     const key = withoutHash(href);
     if (seen.has(key)) continue;
     seen.add(key);
     // 하위 메뉴 중 방문 가능한 것(같은 사이트, 대표 주소와 다른 것). 나중에 캡처 없이 내용만 읽습니다.
-    const subLinks = item.subs.filter((s) => s.name !== item.name && isUsableHref(s.href, homeUrl) && sameSite(s.href, homeUrl) && withoutHash(s.href) !== key);
-    pages.push({ name: item.name, url: href, subs: item.subs.map((s) => s.name).filter((n) => n !== item.name), subLinks });
+    const subLinks = item.subs.filter(function (s) {
+      return s.name !== item.name && isUsableHref(s.href, homeUrl) && sameSite(s.href, homeUrl) && withoutHash(s.href) !== key;
+    });
+    pages.push({ name: item.name, url: href, subs: item.subs.map(function (s) { return s.name; }).filter(function (n) {
+      return n !== item.name;
+    }), subLinks });
   }
   return pages;
 }
@@ -501,7 +537,7 @@ async function launchBrowser(onProgress) {
  * @param {string} outDir 스크린샷 저장 폴더
  * @param {{maxPages?: number, onProgress?: (msg: string) => void}} options
  */
-async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = () => {} } = {}) {
+async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = function () {} } = {}) {
   // 결과 폴더 만들기 (recursive: 중간 폴더가 없어도 한 번에 생성, 이미 있어도 오류 없음)
   fs.mkdirSync(outDir, { recursive: true });
   const browser = await launchBrowser(onProgress);
@@ -538,8 +574,8 @@ async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = () => {}
         const info = await page.evaluate(extractPageInfoInPage); // 스크롤로 지연 로딩이 끝난 뒤 추출
         const subPages = [];
         // 원고에 쓸 정보가 많은 하위 페이지(연혁, 오시는길, 카탈로그 등)를 먼저 읽는다
-        const informative = (n) => (/연혁|history|오시는|location|map|문의|contact|카[달탈]로그|catalog|브로슈어|인증|특허/i.test(n) ? 0 : 1);
-        const subLinks = (p.subLinks || []).slice().sort((a, b) => informative(a.name) - informative(b.name));
+        function informative(n) { return /연혁|history|오시는|location|map|문의|contact|카[달탈]로그|catalog|브로슈어|인증|특허/i.test(n) ? 0 : 1; }
+        const subLinks = (p.subLinks || []).slice().sort(function (a, b) { return informative(a.name) - informative(b.name); });
         for (const sub of subLinks.slice(0, MAX_SUBPAGES_PER_MENU)) {
           onProgress(`  └ ${sub.name} 내용 확인 중`);
           try {

@@ -60,13 +60,13 @@ function sendJson(res, status, body) {
 // 100KB(1e5)를 넘으면 연결을 끊어서, 누군가 거대한 데이터를 보내 서버를 괴롭히는 것을 막습니다.
 // Promise = "나중에 결과가 나오는 약속". 호출하는 쪽에서 await 로 기다릴 수 있습니다.
 function readBody(req) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     let data = '';
-    req.on('data', (chunk) => {
+    req.on('data', function (chunk) {
       data += chunk;
       if (data.length > 1e5) req.destroy();
     });
-    req.on('end', () => resolve(data));
+    req.on('end', function () { return resolve(data); });
     req.on('error', reject);
   });
 }
@@ -86,7 +86,7 @@ function normalizeUrl(input) {
 // pad: 숫자를 두 자리로 맞춤 (5 → "05"). 도메인에서 폴더 이름에 쓸 수 없는 글자는 지웁니다.
 function jobId(url) {
   const d = new Date();
-  const pad = (n) => String(n).padStart(2, '0');
+  function pad(n) { return String(n).padStart(2, '0'); }
   const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
   return `${stamp}_${new URL(url).hostname.replace(/[^a-z0-9.-]/gi, '')}`;
 }
@@ -145,7 +145,7 @@ function resolvePublic(pathname) {
 //   - 읽기 실패(파일 없음 등)면 404 JSON 을 보냄
 //   - extraHeaders: 필요할 때 추가로 붙이는 응답 머리말 (정적 파일의 nosniff 등)
 function serveFile(res, file, extraHeaders = {}) {
-  fs.readFile(file, (err, data) => {
+  fs.readFile(file, function (err, data) {
     if (err) return sendJson(res, 404, { error: '파일을 찾을 수 없습니다.' });
     res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', ...extraHeaders });
     res.end(data);
@@ -176,7 +176,7 @@ async function handleGenerate(req, res) {
   try {
     // ③ 사이트를 열어 분석하고 캡처합니다. 1~2분 걸릴 수 있어 await 로 기다립니다.
     // onProgress: 진행 상황을 이 서버를 켠 창(터미널)에 출력
-    const site = await crawlSite(url, dir, { maxPages, onProgress: (m) => console.log(m) });
+    const site = await crawlSite(url, dir, { maxPages, onProgress: function (m) { return console.log(m); } });
     // ④ 분석 결과로 원고를 만듭니다. (AI 를 쓰지 않는 템플릿 치환 방식이라 외부 호출이 없습니다)
     const manuscript = buildManuscript(site);
     // ⑤ 결과 저장: 원고.txt(복사용 평문), site.json(분석 데이터 원본: 나중에 원고만 다시 쓰거나 확인할 때 사용)
@@ -205,9 +205,9 @@ function handleZip(res, id) {
   const dir = resolveOutput(id);
   if (!dir || !fs.existsSync(dir)) return sendJson(res, 404, { error: '결과를 찾을 수 없습니다.' });
   const files = fs.readdirSync(dir)
-    .filter((f) => /\.(png|txt)$/.test(f))
+    .filter(function (f) { return /\.(png|txt)$/.test(f); })
     .sort()
-    .map((f) => ({ name: f, data: fs.readFileSync(path.join(dir, f)) }));
+    .map(function (f) { return { name: f, data: fs.readFileSync(path.join(dir, f)) }; });
   const zip = createZip(files);
   res.writeHead(200, {
     'Content-Type': 'application/zip',
@@ -220,7 +220,7 @@ function handleZip(res, id) {
 // 요청 분배기: 요청이 올 때마다 실행되어 "주소(pathname)와 방식(GET/POST)"을 보고 담당 함수에 연결합니다.
 //   new URL(req.url, "http://localhost"): 요청 주소에서 "?..." 부분을 뺀 경로(pathname)만 뽑는 데 사용
 // 위에서부터 순서대로 검사하고, 처음 맞는 것에서 return 으로 끝냅니다. 어디에도 안 맞으면 마지막에 404.
-const server = http.createServer(async (req, res) => {
+const server = http.createServer(async function (req, res) {
   const { pathname } = new URL(req.url, 'http://localhost');
   try {
     if (req.method === 'GET' && pathname === '/') return serveFile(res, path.join(PUBLIC_DIR, 'index.html'));
@@ -253,7 +253,7 @@ const server = http.createServer(async (req, res) => {
 // 서버를 켭니다. 켜지면 안쪽 함수가 한 번 실행됩니다.
 // [주의: 보안] 주소(host)를 지정하지 않아서 같은 네트워크의 다른 PC 에서도 접속할 수 있습니다.
 // 자기 PC 에서만 쓰게 하려면 server.listen(PORT, "127.0.0.1", ...) 처럼 주소를 지정해야 합니다. (아직 적용 전)
-server.listen(PORT, () => {
+server.listen(PORT, function () {
   console.log(`블로그 원고 생성기 실행 중 → http://localhost:${PORT}`);
   console.log('종료하려면 이 창에서 Ctrl + C');
   // 실행 파일(start-windows.bat / start-mac.command)에서 --open 으로 실행하면 브라우저를 자동으로 연다
