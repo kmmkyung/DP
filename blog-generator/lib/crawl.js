@@ -19,7 +19,6 @@
 // ─────────────────────────────────────────────
 // [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
 // 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
-// 각 함수 위의 "쓰는 메소드:" 줄은 그 함수가 쓰는 메소드를 요약한 것이고, 자세한 설명은 아래에 있습니다.
 // 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
 //
 // ■ 문자열 (String) — 글자 값 뒤에 점을 찍어 쓰는 기능
@@ -135,30 +134,21 @@ const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 
-// 설정값 모음
-//   VIEWPORT              : 브라우저 창 크기(PC 화면 기준 1920x1080). 캡처 이미지의 크기가 됩니다.
-//   FULLPAGE_MAX_HEIGHT   : "전체 페이지" 캡처의 최대 높이. 너무 긴 페이지는 위에서부터 이 높이까지만 찍습니다.
-//   NAV_TIMEOUT           : 페이지 하나를 여는 데 기다려 줄 최대 시간 (30초, 단위 ms)
-//   MAX_SUBPAGES_PER_MENU : 메뉴 하나당 "캡처 없이 내용만 읽어 올" 하위 페이지 최대 개수
 const VIEWPORT = { width: 1920, height: 1080 };
-const FULLPAGE_MAX_HEIGHT = 15000; // 너무 긴 페이지는 위에서부터 이 높이까지만 캡처
+const FULLPAGE_MAX_HEIGHT = 15000;
 const NAV_TIMEOUT = 30000;
-const MAX_SUBPAGES_PER_MENU = 4; // 메뉴당 캡처 없이 내용만 읽어 올 하위 페이지 수
+const MAX_SUBPAGES_PER_MENU = 4;
 
-// 메뉴 중 원고에 넣을 필요가 없는 링크
-// 정규식: 아래 단어 중 하나라도 메뉴 이름(또는 주소)에 들어 있으면 제외합니다. i = 대소문자 구분 안 함
 const EXCLUDE_LINK = /login|logout|admin|sitemap|privacy|policy|개인정보|이용약관|로그인|로그아웃|회원가입|사이트맵/i;
 
 // 주소 앞의 "www." 를 떼고 소문자로 맞춥니다.  WWW.Gosung.com → gosung.com
 // (www 가 있든 없든 같은 사이트로 보려는 용도)
-// 쓰는 메소드: replace(글자 바꾸기), toLowerCase(소문자로 바꾸기)
 function stripWww(host) {
   return host.replace(/^www\./i, '').toLowerCase();
 }
 
 // 두 주소가 "같은 사이트"인지 검사합니다.
 // 메뉴에 외부 링크(뉴스 기사, 유튜브)가 섞여 있어도 우리 사이트 안에서만 돌아다니기 위한 장치입니다. 주소 형식이 이상하면 false.
-// 쓰는 메소드: new URL(주소 분석)
 function sameSite(a, b) {
   try {
     return stripWww(new URL(a).hostname) === stripWww(new URL(b).hostname);
@@ -169,7 +159,6 @@ function sameSite(a, b) {
 
 // 주소 뒤의 "#..."(같은 페이지 안의 위치 표시)를 지웁니다.  /a#top → /a
 // 같은 페이지를 두 번 방문하지 않도록 주소를 비교할 때 씁니다.
-// 쓰는 메소드: new URL(주소 분석), toString(글자로 바꾸기)
 function withoutHash(u) {
   try {
     const url = new URL(u);
@@ -183,7 +172,6 @@ function withoutHash(u) {
 // 링크로 쓸 수 없는 href (#, javascript:, 현재 페이지 앵커)
 // 반환값 true = 방문해도 되는 링크.
 // javascript: / mailto: / tel: 링크와, 현재 페이지 안의 # 앵커 링크는 제외합니다.
-// 쓰는 메소드: test(정규식에 맞는가), includes(포함하고 있는가)
 function isUsableHref(href, currentUrl) {
   if (!href || /^(javascript|mailto|tel):/i.test(href)) return false;
   if (href.includes('#') && withoutHash(href) === withoutHash(currentUrl)) return false;
@@ -192,7 +180,6 @@ function isUsableHref(href, currentUrl) {
 
 // 메뉴 이름으로 파일 이름을 만듭니다. 파일 이름에 쓸 수 없는 글자(\ / : * ? " < > |)를 지우고,
 // 공백은 _ 로 바꾸고, 30자까지만 씁니다.  예) "AI Solution" → "AI_Solution"
-// 쓰는 메소드: String(글자로 바꾸기), replace(글자 바꾸기), slice(일부만 잘라 새로 만들기)
 function safeFileName(name) {
   const cleaned = String(name)
     .replace(/[\\/:*?"<>|]/g, '')
@@ -211,20 +198,13 @@ function safeFileName(name) {
 // ---------- 브라우저 안에서 실행되는 함수들 (page.evaluate) ----------
 
 // 레이어 팝업("오늘 하루 보지 않기" 등) 숨기기
-// 쓰는 메소드: document.querySelectorAll(선택자에 맞는 요소 모두), join(글자 하나로 이어 붙이기), style.setProperty(스타일 지정), trim(앞뒤 공백 지우기),
-//   test(정규식에 맞는가), getComputedStyle(실제 적용된 스타일), getBoundingClientRect(화면에서의 위치와 크기)
 function hidePopupsInPage() {
-  // 1단계: 이름(아이디/클래스)이 팝업처럼 생긴 요소를 찾아 숨깁니다. 그누보드 팝업(#hd_pop) 등.
-  // [id^="layer_pop"] = 아이디가 layer_pop 으로 시작 / [class*="layer_popup"] = 클래스에 layer_popup 이 포함
   const SELECTORS = ['#hd_pop', '.hd_pops', '[id^="layer_pop"]', '[class*="layer_popup"]', '[class*="layerPopup"]', '[class*="main_popup"]'];
   let hidden = 0;
   for (const el of document.querySelectorAll(SELECTORS.join(','))) {
-    // display: none = 화면에서 완전히 제거(캡처에 안 찍힘). important 는 사이트의 다른 스타일보다 우선시키는 표시
     el.style.setProperty('display', 'none', 'important');
     hidden++;
   }
-  // 2단계: "오늘 하루 보지 않기" 같은 문구가 있는 요소를 찾고, 부모 쪽으로 올라가며(최대 12단계)
-  // 화면에 고정된 큰 상자(fixed/absolute, 폭 200px 이상)를 찾아 숨깁니다. 이름으로는 못 찾는 팝업을 잡기 위한 방법입니다.
   const KEYWORDS = /오늘\s*하루|하루\s*동안|다시\s*보지|24시간\s*동안/;
   for (const el of document.querySelectorAll('label, a, button, span, p, div')) {
     const t = (el.textContent || '').trim();
@@ -247,13 +227,10 @@ function hidePopupsInPage() {
 // 메인 페이지 한 장에서 사이트 전체 정보를 뽑아 한 덩어리 객체로 돌려줍니다.
 // 아래 작은 함수들을 조합: extractMenu / extractSloganCandidates / extractColors / extractFonts + 제목·설명
 // 홈 화면에서 사이트 전체 정보 추출
-// 쓰는 메소드: document.querySelector(선택자에 맞는 첫 요소), getAttribute(속성 값 읽기)
 function extractSiteInfoInPage() {
   // 글자 정리: 여러 공백/줄바꿈을 한 칸 공백으로 줄이고 앞뒤 공백을 지웁니다.
-  // 쓰는 메소드: replace(글자 바꾸기), trim(앞뒤 공백 지우기)
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   // <meta name="description" content="..."> 같은 정보를 읽는 도우미. name 또는 property(og:...)가 n 인 것을 찾아 content 값을 돌려줍니다.
-  // 쓰는 메소드: document.querySelector(선택자에 맞는 첫 요소), getAttribute(속성 값 읽기)
   function meta(n) {
     const el = document.querySelector(`meta[name="${n}"], meta[property="${n}"]`);
     return el ? clean(el.getAttribute('content')) : '';
@@ -262,14 +239,8 @@ function extractSiteInfoInPage() {
   // --- GNB 메뉴 ---
   // 헤더/내비 영역의 모든 목록(ul)을 후보로 모은 뒤 점수가 가장 높은 것을 고른다.
   // (처음 찾은 목록을 쓰면 .gnb 안의 언어 선택 KOR/ENG 같은 것을 메뉴로 오인할 수 있음)
-  // 쓰는 메소드: new Set(중복 없는 모음), document.querySelectorAll(선택자에 맞는 요소 모두), matches(이 요소가 선택자에 맞는가), add(Set 에 넣기),
-  //   querySelectorAll(안에서 요소 모두 찾기), forEach(항목마다 실행), sort(정렬 (원본이 바뀜)), compareDocumentPosition(두 요소의 앞뒤 위치 관계),
-  //   closest(가장 가까운 부모 찾기), filter(조건에 맞는 것만 골라 새 배열), querySelector(안에서 첫 요소 찾기), map(각 항목을 바꿔 새 배열), every(전부 맞는가),
-  //   test(정규식에 맞는가)
   function extractMenu() {
-    // ① 후보 수집: 헤더/내비 영역 안의 모든 목록(ul)을 후보로 모읍니다. (Set = 중복 없는 모음)
     const roots = ['#gnb', '.gnb', '#gnb_wrap', '.gnb_wrap', '#nav', '.nav', '#menu', 'header nav', 'nav', '#header', 'header', '#hd', '.header'];
-    // 언어 선택(KOR/ENG 등)은 메뉴가 아니므로 걸러 내기 위한 패턴
     const LANG = /^(kor?|kr|eng?|en|chn?|cn|jpn?|jp|한국어|english|中文|日本語)$/i;
     const candidates = new Set();
     for (const sel of roots) {
@@ -278,34 +249,27 @@ function extractSiteInfoInPage() {
         root.querySelectorAll('ul').forEach(function (ul) { return candidates.add(ul); });
       }
     }
-    // ② 점수 매기기: 점수 = 항목 수 + (하위 메뉴가 있는 항목 수 x 3). 점수가 가장 높은 목록이 진짜 메뉴(GNB)일 가능성이 큽니다.
-    // 동점이면 문서에서 먼저 나온(위쪽) 목록을 유지합니다.
     let best = null;
     let bestScore = 0;
-    // 문서에 나온 순서(위쪽 먼저)로 정렬합니다.
     const ordered = [...candidates].sort(function (x, y) {
       return x.compareDocumentPosition(y) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
     });
     for (const ul of ordered) {
-      // 클래스/아이디에 lang 이 들어간 영역(언어 선택)은 제외
       if (ul.closest('[class*="lang" i], [id*="lang" i]')) continue;
       const lis = [...ul.children].filter(function (li) { return li.tagName === 'LI' && li.querySelector('a'); });
       if (lis.length < 2) continue;
       const names = lis.map(function (li) { return clean((li.querySelector('a') || li).textContent); });
-      if (names.every(function (n) { return LANG.test(n); })) continue; // 언어 선택 목록
-      // 하위 메뉴(ul)를 가진 li가 있으면 GNB일 가능성이 높다
+      if (names.every(function (n) { return LANG.test(n); })) continue;
       const nested = lis.filter(function (li) { return li.querySelector('ul'); }).length;
       const score = lis.length + nested * 3;
-      if (score > bestScore) { // 동점이면 문서에서 먼저 나온(=헤더 쪽) 목록 유지
+      if (score > bestScore) {
         best = lis;
         bestScore = score;
       }
     }
-    // ③ 못 찾았으면 빈 목록. 이 경우 메인 화면만 캡처합니다.
     if (!best) return [];
     return best.map(function (li) {
       const links = [...li.querySelectorAll('a')];
-      // 항목의 대표 링크(1차 메뉴)와 나머지 링크(하위 메뉴)를 나눕니다.
       const top = li.querySelector(':scope > a, :scope > * > a') || links[0];
       return {
         name: clean(top.textContent),
@@ -320,20 +284,15 @@ function extractSiteInfoInPage() {
   }
 
   // --- 첫 화면에서 글자가 가장 큰 문구 = 슬로건 후보 ---
-  // 쓰는 메소드: new Set(중복 없는 모음), document.querySelectorAll(선택자에 맞는 요소 모두), some(하나라도 맞는가), trim(앞뒤 공백 지우기), closest(가장
-  //   가까운 부모 찾기), getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일), has(들어 있는가), add(Set 에 넣기),
-  //   push(끝에 추가 (원본이 바뀜)), parseFloat(글자 → 소수), sort(정렬 (원본이 바뀜)), slice(일부만 잘라 새로 만들기)
   function extractSloganCandidates() {
     const vh = window.innerHeight;
     const seen = new Set();
     const list = [];
     for (const el of document.querySelectorAll('h1, h2, h3, h4, p, strong, em, span, div, dt, dd, li')) {
-      // 자기가 직접 가진 글자가 있는 요소만 (글자가 자식 요소 안에만 있는 껍데기는 제외)
       const hasOwnText = [...el.childNodes].some(function (n) { return n.nodeType === 3 && n.textContent.trim().length > 1; });
       if (!hasOwnText) continue;
       if (el.closest('header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft')) continue;
       const r = el.getBoundingClientRect();
-      // 첫 화면(스크롤 전, 화면 높이 vh 안)에 실제로 보이는 것만
       if (r.width < 1 || r.height < 1 || r.top > vh || r.bottom < 0) continue;
       const cs = getComputedStyle(el);
       if (cs.visibility === 'hidden' || cs.display === 'none') continue;
@@ -342,26 +301,19 @@ function extractSiteInfoInPage() {
       seen.add(t);
       list.push({ text: t, fontSize: parseFloat(cs.fontSize) || 0 });
     }
-    // 글자 크기가 큰 순서로 정렬해 상위 5개. "가장 크게 쓴 글 = 슬로건일 가능성이 높다"는 가정입니다.
     return list.sort(function (a, b) { return b.fontSize - a.fontSize; }).slice(0, 5);
   }
 
   // --- 컬러: 채도가 있는 색 중 많이 쓰인 색 ---
-  // 쓰는 메소드: new Map(이름표→값 표), slice(일부만 잘라 새로 만들기), document.querySelectorAll(선택자에 맞는 요소 모두),
-  //   getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일), Math.min(작은 값), some(하나라도 맞는가), trim(앞뒤 공백
-  //   지우기), sort(정렬 (원본이 바뀜)), map(각 항목을 바꿔 새 배열), entries([키, 값] 쌍 목록)
   function extractColors() {
     // 색 변환 도우미 3개: toRgb("rgb(…)" 문자열 → 숫자 3개, 투명이면 null) / hsl(→ 채도·밝기) / hex(→ #135bec 형식)
-    // 쓰는 메소드: match(정규식에 맞는 부분 찾기), split(구분자로 잘라 배열로), filter(조건에 맞는 것만 골라 새 배열), map(각 항목을 바꿔 새 배열), slice(일부만 잘라 새로
-    //   만들기)
     function toRgb(s) {
       const m = (s || '').match(/rgba?\(([^)]+)\)/);
       if (!m) return null;
       const p = m[1].split(/[\s,/]+/).filter(Boolean).map(Number);
-      if (p.length > 3 && p[3] === 0) return null; // 투명
+      if (p.length > 3 && p[3] === 0) return null;
       return p.slice(0, 3);
     }
-    // 쓰는 메소드: Math.max(큰 값), Math.min(작은 값), Math.abs(절댓값)
     function hsl([r, g, b]) {
       r /= 255; g /= 255; b /= 255;
       const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -370,20 +322,16 @@ function extractSiteInfoInPage() {
       const s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
       return { s, l };
     }
-    // 쓰는 메소드: map(각 항목을 바꿔 새 배열), join(글자 하나로 이어 붙이기), Math.round(반올림), toString(글자로 바꾸기), padStart(앞을 채워 자리수 맞추기)
     function hex(rgb) { return '#' + rgb.map(function (v) { return Math.round(v).toString(16).padStart(2, '0'); }).join(''); }
-    // 색마다 점수를 쌓습니다. 배경색은 차지한 면적에 비례(최대 500점), 글자색은 고정 20점.
     const score = new Map();
-    // 쓰는 메소드: set(Map 에 저장), get(Map 에서 꺼내기)
     function add(rgb, w) {
       if (!rgb) return;
       const { s, l } = hsl(rgb);
-      if (s < 0.2 || l < 0.12 || l > 0.92) return; // 흰/검/회색 제외
+      if (s < 0.2 || l < 0.12 || l > 0.92) return;
       const k = hex(rgb);
-      if (k === '#0000ee' || k === '#551a8b') return; // 브라우저 기본 링크색(스타일 미지정)
+      if (k === '#0000ee' || k === '#551a8b') return;
       score.set(k, (score.get(k) || 0) + w);
     }
-    // 화면의 모든 요소(최대 5000개)를 훑으며 배경색/글자색 점수를 쌓습니다.
     const els = [...document.querySelectorAll('body *')].slice(0, 5000);
     for (const el of els) {
       const r = el.getBoundingClientRect();
@@ -392,20 +340,16 @@ function extractSiteInfoInPage() {
       add(toRgb(cs.backgroundColor), Math.min(r.width * r.height, 500000) / 1000);
       if ([...el.childNodes].some(function (n) { return n.nodeType === 3 && n.textContent.trim(); })) add(toRgb(cs.color), 20);
     }
-    // 점수가 높은 3개 = 포인트 컬러 후보
     const accents = [...score.entries()].sort(function (a, b) {
       return b[1] - a[1];
     }).slice(0, 3).map(function ([k]) { return k; });
 
-    // 바탕색과 그 밝기(0 어두움 ~ 1 밝음). 원고에서 "화이트/다크 바탕"을 정할 때 씁니다.
     const bodyBg = toRgb(getComputedStyle(document.body).backgroundColor) || toRgb(getComputedStyle(document.documentElement).backgroundColor) || [255, 255, 255];
     return { accents, background: hex(bodyBg), backgroundLightness: hsl(bodyBg).l };
   }
 
   // 본문(body)과 첫 제목(h1~h3)의 첫 번째 글꼴 이름. serif / sans-serif 같은 일반 이름은 제외합니다.
-  // 쓰는 메소드: new Set(중복 없는 모음), filter(조건에 맞는 것만 골라 새 배열), document.querySelector(선택자에 맞는 첫 요소)
   function extractFonts() {
-    // 쓰는 메소드: getComputedStyle(실제 적용된 스타일), split(구분자로 잘라 배열로), replace(글자 바꾸기), trim(앞뒤 공백 지우기), test(정규식에 맞는가)
     function first(el) {
       if (!el) return '';
       const f = getComputedStyle(el).fontFamily.split(',')[0].replace(/["']/g, '').trim();
@@ -415,7 +359,6 @@ function extractSiteInfoInPage() {
     return [...set];
   }
 
-  // 마지막: 위 결과들을 한 덩어리로 묶어 돌려줍니다. (siteName: og:site_name 메타 값, logoAlt: 로고 이미지의 대체 글)
   const title = clean(document.title);
   const logoImg = document.querySelector('header img[alt], #header img[alt], .logo img[alt], h1 img[alt]');
   return {
@@ -434,51 +377,37 @@ function extractSiteInfoInPage() {
 // 돌려주는 값: { title, headings[], paragraphs[], hero{ title, sub }, features{ years[], stats[], cards, boardRows, map, ... } }
 // 각 페이지의 제목/본문 문구 + 페이지 구성 요소(연혁, 수치, 지도, 폼, 슬라이드 등) 추출
 // 원고에서 "이 페이지에 실제로 무엇이 있는지"를 문장으로 만들기 위한 재료
-// 쓰는 메소드: slice(일부만 잘라 새로 만들기), filter(조건에 맞는 것만 골라 새 배열), map(각 항목을 바꿔 새 배열), document.querySelectorAll(선택자에 맞는 요소
-//   모두), parseFloat(글자 → 소수), getComputedStyle(실제 적용된 스타일), sort(정렬 (원본이 바뀜)), join(글자 하나로 이어 붙이기), match(정규식에 맞는 부분
-//   찾기), test(정규식에 맞는가), getBoundingClientRect(화면에서의 위치와 크기), querySelector(안에서 첫 요소 찾기), toLowerCase(소문자로 바꾸기),
-//   document.querySelector(선택자에 맞는 첫 요소) 등 2개 더 (자세한 설명은 파일 위쪽 "메소드 설명")
 function extractPageInfoInPage() {
-  // 쓰는 메소드: replace(글자 바꾸기), trim(앞뒤 공백 지우기)
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
-  // 머리말/내비/푸터 등 "페이지 본문이 아닌" 영역. skip() 이 true 인 요소는 본문에서 제외합니다.
   const LAYOUT = 'header, nav, footer, #header, #hd, #gnb, .gnb, #footer, #ft, .allMenu';
-  // 쓰는 메소드: closest(가장 가까운 부모 찾기)
   function skip(el) { return el.closest(LAYOUT); }
   // 실제로 화면에 보이는 요소인가 (크기가 있고 숨김 처리되지 않음)
-  // 쓰는 메소드: getBoundingClientRect(화면에서의 위치와 크기), getComputedStyle(실제 적용된 스타일)
   function visible(el) {
     const r = el.getBoundingClientRect();
     const cs = getComputedStyle(el);
     return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none';
   }
   // 중복 제거 (Set)
-  // 쓰는 메소드: new Set(중복 없는 모음)
   function uniq(arr) { return [...new Set(arr)]; }
   // 요소가 "자기 몫의 글자"를 min 자 이상 가졌는가.
   // (글자가 자식 요소 안에만 있으면 false → 같은 글이 부모와 자식에서 중복으로 잡히는 것을 막습니다)
-  // 쓰는 메소드: some(하나라도 맞는가), trim(앞뒤 공백 지우기)
   function ownText(el, min) {
     return [...el.childNodes].some(function (n) {
       return n.nodeType === 3 && n.textContent.trim().length >= min;
     });
   }
   // 페이지 맨 위에서부터의 거리 (스크롤 위치와 무관한 절대 위치)
-  // 쓰는 메소드: getBoundingClientRect(화면에서의 위치와 크기)
   function absTop(el) { return el.getBoundingClientRect().top + window.scrollY; }
 
-  // 제목(h1~h4): 보이는 것만, 2~80자, 최대 12개
   const headings = uniq([...document.querySelectorAll('h1, h2, h3, h4')]
     .filter(function (el) { return !skip(el) && visible(el); })
     .map(function (el) { return clean(el.innerText); })
     .filter(function (t) { return t.length >= 2 && t.length <= 80; })).slice(0, 12);
-  // 본문 문단: 자기 글자가 20자 이상인 요소, 20~300자, 최대 12개
   const paragraphs = uniq([...document.querySelectorAll('p, dd, li, div, span')]
     .filter(function (el) { return ownText(el, 20) && !skip(el) && visible(el); })
     .map(function (el) { return clean(el.innerText); })
     .filter(function (t) { return t.length >= 20 && t.length <= 300; })).slice(0, 12);
 
-  // 상단 비주얼: 페이지 맨 위(900px 안)에서 글자가 가장 큰 문구 + 그 다음 문구
   const topTexts = [...document.querySelectorAll('h1, h2, h3, p, strong, span, div')]
     .filter(function (el) { return ownText(el, 2) && !skip(el) && visible(el) && absTop(el) < 900; })
     .map(function (el) {
@@ -490,35 +419,27 @@ function extractPageInfoInPage() {
     .filter(function (x) { return x.top > heroTitle.top && x.text !== heroTitle.text && x.text.length >= 8 && x.size >= 15; })
     .sort(function (a, b) { return a.top - b.top; })[0];
 
-  // 본문 전체 글자를 한 덩어리로 (연도 검색용)
   const bodyText = clean([...document.querySelectorAll('body *')]
     .filter(function (el) { return !skip(el) && ownText(el, 1); })
     .map(function (el) { return el.innerText; }).join(' '));
 
-  // 연혁: 본문에 등장하는 연도(1950~2039)
-  // 정규식: 1950~2039 연도(19[5-9]\d | 20[0-3]\d) 뒤에 "년 . - ~ 공백"이 오거나 끝인 것.
-  // 서로 다른 연도가 3개 이상일 때만 "연혁이 있다"고 봅니다. (아래 features.years)
   const years = uniq((bodyText.match(/\b(19[5-9]\d|20[0-3]\d)(?=\s*[년.\-~]|\s|$)/g) || []).map(Number)).sort(function (a, b) {
     return a - b;
   });
 
-  // 수치: "200억 원", "36억", "32.4%", "20년" 같은 표현이 들어간 짧은 문구
   const stats = uniq([...document.querySelectorAll('p, li, dd, dt, strong, span, em, h3, h4, div')]
     .filter(function (el) { return ownText(el, 2) && !skip(el) && visible(el); })
     .map(function (el) { return clean(el.innerText); })
     .filter(function (t) { return t.length <= 60 && /\d[\d,.]*\s?(조|억|만|천)?\s?(원|달러|%|년|개국|건|명|개사|배|대)/.test(t); })).slice(0, 5);
 
   // 선택자(sel)에 해당하는, 본문 영역에서 보이는 요소의 개수
-  // 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), document.querySelectorAll(선택자에 맞는 요소 모두)
   function count(sel) {
     return [...document.querySelectorAll(sel)].filter(function (el) { return !skip(el) && visible(el); }).length;
   }
-  // 폭 300px 이상인 이미지 개수 (큰 사진이 많은 페이지인지 판단)
   const bigImages = [...document.querySelectorAll('img')].filter(function (img) {
     return !skip(img) && img.getBoundingClientRect().width >= 300;
   }).length;
 
-  // 카드형 목록: 이미지를 가진 형제 요소가 3개 이상 반복되는 목록
   let cards = 0;
   for (const list of document.querySelectorAll('ul, ol, div')) {
     if (skip(list)) continue;
@@ -528,13 +449,11 @@ function extractPageInfoInPage() {
     if (kids.length >= 3 && kids.length > cards) cards = kids.length;
   }
 
-  // 게시판: 날짜(2026.03.10 / 2026-03-10)가 붙은 행
   const boardRows = [...document.querySelectorAll('tr, li')]
     .filter(function (el) {
       return !skip(el) && visible(el) && /\b20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\b/.test(el.textContent);
     }).length;
 
-  // 입력칸 수 (숨김·검색·버튼·체크박스·라디오는 제외). template.js 에서 3개 이상이면 "문의 폼"으로 봅니다.
   const inputs = [...document.querySelectorAll('input, textarea, select')]
     .filter(function (el) {
       return !skip(el) && visible(el) && !/hidden|search|submit|button|checkbox|radio/i.test(el.type || '') && !/search|keyword|stx|sfl/i.test(el.name || '');
@@ -549,9 +468,6 @@ function extractPageInfoInPage() {
     headings,
     paragraphs,
     hero: heroTitle ? { title: heroTitle.text, sub: heroSub ? heroSub.text : '' } : null,
-    // features = "이 페이지에 무엇이 있는지" 요약. template.js 의 collectFeatures 가 이 값을 읽어 문장을 만듭니다.
-    //   years: 연도 목록(3개 이상일 때만) / stats: 수치 문구 / bigImages / cards / sliders / videos / map / formInputs
-    //   tables(표 개수: 현재 원고에서는 쓰이지 않음) / boardRows / downloads / libs(감지한 라이브러리 이름)
     features: {
       years: years.length >= 3 ? years : [],
       stats,
@@ -581,18 +497,14 @@ function extractPageInfoInPage() {
 //      채팅 위젯처럼 계속 통신하는 사이트는 시간 초과가 나므로, 그때는 load(기본 로딩 완료) 기준으로 다시 시도합니다.
 //   2) 메인 비주얼 애니메이션이 끝나도록 1.5초 더 기다림 (배경 영상이 있으면 3.5초 추가)
 //   3) 팝업 숨기기
-// 쓰는 메소드: page.goto(주소 열기), test(정규식에 맞는가), page.waitForTimeout(정해진 시간 기다리기), page.evaluate(열린 페이지 안에서 함수 실행),
-//   document.querySelector(선택자에 맞는 첫 요소)
 async function openPage(page, url) {
   try {
     await page.goto(url, { waitUntil: 'networkidle', timeout: NAV_TIMEOUT });
   } catch (err) {
-    // networkidle이 안 오는 사이트(채팅위젯, 무한 폴링 등)는 load 기준으로 재시도
     if (!/Timeout/i.test(err.message)) throw err;
     await page.goto(url, { waitUntil: 'load', timeout: NAV_TIMEOUT });
   }
-  await page.waitForTimeout(1500); // 메인 비주얼 애니메이션 대기
-  // 배경 동영상(video, Vimeo/YouTube iframe)이 있으면 첫 프레임이 뜰 때까지 조금 더 기다린다
+  await page.waitForTimeout(1500);
   const hasVideo = await page.evaluate(function () {
     return !!document.querySelector('video, iframe[src*="vimeo"], iframe[src*="youtube"]');
   });
@@ -601,12 +513,8 @@ async function openPage(page, url) {
 }
 
 // 스크롤을 끝까지 한 번 내려서 지연 로딩 이미지/스크롤 애니메이션을 모두 띄운 뒤 맨 위로
-// 쓰는 메소드: page.evaluate(열린 페이지 안에서 함수 실행), scrollBy(지금 위치에서 이동), new Promise(나중에 결과가 나오는 약속), setTimeout(일정 시간 뒤 한 번
-//   실행), scrollTo(지정한 위치로 이동), page.waitForTimeout(정해진 시간 기다리기)
 async function revealWholePage(page) {
   await page.evaluate(async function () {
-    // 화면 높이의 80%씩 아래로 내려가며 150ms 씩 쉽니다. 끝에 닿으면 멈추고(최대 40번), 마지막에 맨 위로 돌아옵니다.
-    // 스크롤해야 나타나는 이미지와 애니메이션을 미리 띄워서 전체 캡처에 빈 곳이 없게 하려는 것입니다. (무한 스크롤 페이지는 40번에서 멈춤)
     const step = window.innerHeight * 0.8;
     for (let i = 0; i < 40; i++) {
       window.scrollBy(0, step);
@@ -621,12 +529,10 @@ async function revealWholePage(page) {
 // 스크린샷을 2장 찍어 파일로 저장하고 파일 이름을 돌려줍니다.
 //   - 첫 화면(예: 01_MAIN.png): 스크롤하기 "전"의 현재 화면 1920x1080. 사람이 처음 본 모습 그대로.
 //   - 전체 페이지(예: 01_MAIN_full.png): 끝까지 스크롤해 숨은 내용을 띄운 뒤 위에서 아래까지. clip 으로 최대 15000px 까지만.
-// 쓰는 메소드: page.screenshot(화면 캡처), path.join(경로 이어 붙이기), page.evaluate(열린 페이지 안에서 함수 실행), Math.min(작은 값)
 async function capture(page, outDir, baseName) {
   const first = `${baseName}.png`;
   await page.screenshot({ path: path.join(outDir, first) });
 
-  // 지연 로딩 이미지가 뜨도록 스크롤한 뒤, 전체 높이를 잽니다.
   await revealWholePage(page);
   const height = await page.evaluate(function () { return document.documentElement.scrollHeight; });
   const full = `${baseName}_full.png`;
@@ -642,16 +548,12 @@ async function capture(page, outDir, baseName) {
 //   제외 이름(로그인 등) 건너뜀 → 방문 주소 결정 → 같은 사이트가 아니거나 이미 넣은 주소면 건너뜀 → maxPages 에 닿으면 중단
 // 돌려주는 값: [{ name, url, subs[], subLinks[], isHome }]
 // GNB 결과를 "방문할 페이지 목록"으로 정리
-// 쓰는 메소드: new Set(중복 없는 모음), test(정규식에 맞는가), map(각 항목을 바꿔 새 배열), find(조건에 맞는 첫 항목), has(들어 있는가), add(Set 에 넣기),
-//   filter(조건에 맞는 것만 골라 새 배열), push(끝에 추가 (원본이 바뀜))
 function buildPageList(homeUrl, menu, maxPages) {
   const pages = [{ name: 'MAIN', url: homeUrl, subs: [], isHome: true }];
-  // 이미 목록에 넣은 주소 기록 (같은 페이지를 두 번 방문하지 않기 위함)
   const seen = new Set([withoutHash(homeUrl)]);
   for (const item of menu) {
     if (pages.length >= maxPages) break;
     if (EXCLUDE_LINK.test(item.name)) continue;
-    // 1차 메뉴 링크가 '#'이면 첫 번째 하위 메뉴 링크로 대신 들어간다
     const candidates = [item.href, ...item.subs.map(function (s) { return s.href; })];
     const href = candidates.find(function (h) {
       return isUsableHref(h, homeUrl) && sameSite(h, homeUrl) && !EXCLUDE_LINK.test(h);
@@ -660,7 +562,6 @@ function buildPageList(homeUrl, menu, maxPages) {
     const key = withoutHash(href);
     if (seen.has(key)) continue;
     seen.add(key);
-    // 하위 메뉴 중 방문 가능한 것(같은 사이트, 대표 주소와 다른 것). 나중에 캡처 없이 내용만 읽습니다.
     const subLinks = item.subs.filter(function (s) {
       return s.name !== item.name && isUsableHref(s.href, homeUrl) && sameSite(s.href, homeUrl) && withoutHash(s.href) !== key;
     });
@@ -676,7 +577,6 @@ function buildPageList(homeUrl, menu, maxPages) {
 // (Playwright 문서 browsers.md "Media codecs" 참고). Chrome이 없으면 번들 Chromium 사용.
 // 반환값: Playwright 브라우저 객체. 크롬이 설치되어 있으면 channel: "chrome" 으로 실행하고,
 // 없으면 오류가 나므로 catch 에서 내장 Chromium 으로 대체합니다.
-// 쓰는 메소드: chromium.launch(브라우저 실행)
 async function launchBrowser(onProgress) {
   try {
     const browser = await chromium.launch({ channel: 'chrome' });
@@ -697,47 +597,34 @@ async function launchBrowser(onProgress) {
  * @param {string} outDir 스크린샷 저장 폴더
  * @param {{maxPages?: number, onProgress?: (msg: string) => void}} options
  */
-// 쓰는 메소드: fs.mkdirSync(폴더 만들기), browser.newContext(독립된 프로필 만들기), context.newPage(새 탭 열기), page.url(현재 주소),
-//   page.evaluate(열린 페이지 안에서 함수 실행), String(글자로 바꾸기), padStart(앞을 채워 자리수 맞추기), slice(일부만 잘라 새로 만들기), sort(정렬 (원본이
-//   바뀜)), push(끝에 추가 (원본이 바뀜)), split(구분자로 잘라 배열로), browser.close(브라우저 닫기)
 async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = function () {} } = {}) {
-  // 결과 폴더 만들기 (recursive: 중간 폴더가 없어도 한 번에 생성, 이미 있어도 오류 없음)
   fs.mkdirSync(outDir, { recursive: true });
   const browser = await launchBrowser(onProgress);
   try {
-    // context = 브라우저 안의 독립된 "프로필"(쿠키 등이 분리됨). 창 크기와 언어(한국어)를 정합니다.
-    // ignoreHTTPSErrors: 인증서가 만료된 고객사 사이트도 열 수 있게 합니다.
     const context = await browser.newContext({
       viewport: VIEWPORT,
       locale: 'ko-KR',
-      ignoreHTTPSErrors: true, // 인증서가 만료된 고객사 사이트도 열 수 있게
+      ignoreHTTPSErrors: true,
     });
-    // page = 탭 하나. 아래에서 이 탭 하나로 모든 페이지를 차례로 엽니다.
     const page = await context.newPage();
 
     onProgress(`메인 페이지 여는 중: ${startUrl}`);
     await openPage(page, startUrl);
-    const homeUrl = page.url(); // 리다이렉트 후 최종 주소
-    // ② 메인에서 사이트 전체 정보(메뉴, 슬로건 후보, 컬러, 서체 등)를 뽑습니다. (브라우저 안에서 실행되는 함수)
+    const homeUrl = page.url();
     const site = await page.evaluate(extractSiteInfoInPage);
-    // ③ 메뉴를 "방문할 페이지 목록"으로 바꿉니다.
     const pageList = buildPageList(homeUrl, site.menu, maxPages);
 
-    // ④ 페이지마다 결과를 쌓아 두는 배열
     const pages = [];
     for (let i = 0; i < pageList.length; i++) {
       const p = pageList[i];
-      // 이미지 파일 이름의 앞부분.  예) 02_회사소개 → 02_회사소개.png, 02_회사소개_full.png
       const baseName = `${String(i + 1).padStart(2, '0')}_${safeFileName(p.name)}`;
       onProgress(`[${i + 1}/${pageList.length}] ${p.name} 캡처 중`);
       try {
-        // 메인은 이미 열려 있으므로 다시 열지 않습니다.
         if (!p.isHome) await openPage(page, p.url);
         const shots = await capture(page, outDir, baseName);
-        const info = await page.evaluate(extractPageInfoInPage); // 스크롤로 지연 로딩이 끝난 뒤 추출
+        const info = await page.evaluate(extractPageInfoInPage);
         const subPages = [];
         // 원고에 쓸 정보가 많은 하위 페이지(연혁, 오시는길, 카탈로그 등)를 먼저 읽는다
-        // 쓰는 메소드: test(정규식에 맞는가)
         function informative(n) { return /연혁|history|오시는|location|map|문의|contact|카[달탈]로그|catalog|브로슈어|인증|특허/i.test(n) ? 0 : 1; }
         const subLinks = (p.subLinks || []).slice().sort(function (a, b) { return informative(a.name) - informative(b.name); });
         for (const sub of subLinks.slice(0, MAX_SUBPAGES_PER_MENU)) {
@@ -750,15 +637,12 @@ async function crawlSite(startUrl, outDir, { maxPages = 8, onProgress = function
             subPages.push({ name: sub.name, url: sub.href, error: err.message.split('\n')[0] });
           }
         }
-        // 한 페이지 분량의 결과: 메뉴 정보 + 추출 정보 + 하위 페이지 정보 + 캡처 파일 이름
         pages.push({ ...p, ...info, subPages, screenshot: shots.first, screenshotFull: shots.full });
       } catch (err) {
-        // 이 페이지만 실패해도 전체를 멈추지 않고, 오류를 기록한 뒤 다음 페이지로 넘어갑니다.
         pages.push({ ...p, error: err.message.split('\n')[0] });
       }
     }
 
-    // 최종 결과: 최종 주소 + 사이트 정보 + 페이지별 정보. (결과 폴더의 site.json 과 같은 내용)
     return { url: homeUrl, ...site, pages };
   } finally {
     // 성공이든 실패든 브라우저는 반드시 닫습니다. (안 닫으면 보이지 않는 브라우저가 PC 에 계속 남습니다)

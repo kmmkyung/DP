@@ -7,7 +7,6 @@
 // ─────────────────────────────────────────────
 // [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
 // 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
-// 각 함수 위의 "쓰는 메소드:" 줄은 그 함수가 쓰는 메소드를 요약한 것이고, 자세한 설명은 아래에 있습니다.
 // 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
 //
 // ■ 배열 (Array) — 목록 값 뒤에 점을 찍어 쓰는 기능
@@ -49,7 +48,6 @@
 //
 // CRC32 = "데이터가 깨지지 않았는지 확인하는 검증 번호". 계산을 빠르게 하려고 256칸짜리 계산표(CRC_TABLE)를 미리 만들어 둡니다.
 // 아래 (function () { ... })() 는 "즉시 실행 함수": 한 번 실행해서 표를 만들고 결과만 CRC_TABLE 에 담습니다.
-// 쓰는 메소드: new Uint32Array(32비트 숫자 배열)
 const CRC_TABLE = (function () {
   const t = new Uint32Array(256);
   for (let n = 0; n < 256; n++) {
@@ -71,8 +69,6 @@ function crc32(buf) {
 // 현재 시각을 ZIP 이 쓰는 "DOS 형식" 16비트 숫자 두 개로 바꿉니다.
 //   시간 = 시(5비트) 분(6비트) 초÷2(5비트) / 날짜 = (연도-1980)(7비트) 월(4비트) 일(5비트) 를 비트 단위로 이어 붙인 것
 //   (<< 는 왼쪽으로 밀기, | 는 합치기)
-// 쓰는 메소드: getHours(시), getMinutes(분), Math.floor(내림), getSeconds(초), getFullYear(연도), getMonth(월 (0부터 시작!)),
-//   getDate(일)
 function dosDateTime(d) {
   const time = (d.getHours() << 11) | (d.getMinutes() << 5) | Math.floor(d.getSeconds() / 2);
   const date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
@@ -85,13 +81,9 @@ function dosDateTime(d) {
  * @param {Array<{name: string, data: Buffer}>} files
  * @returns {Buffer}
  */
-// 쓰는 메소드: new Date(날짜·시간 값), Buffer.from(글자를 바이트로), Buffer.alloc(빈 바이트 덩어리 만들기), writeUInt32LE(32비트 숫자 기록),
-//   writeUInt16LE(16비트 숫자 기록), push(끝에 추가 (원본이 바뀜)), reduce(하나의 값으로 합치기), Buffer.concat(바이트 덩어리 이어 붙이기)
 function createZip(files) {
   const { time, date } = dosDateTime(new Date());
-  const FLAG_UTF8 = 0x0800; // 파일명이 UTF-8임을 표시 (한글 파일명 깨짐 방지)
-  // locals: 파일 부분(머리말 + 이름 + 내용)을 모으는 곳 / centrals: 맨 뒤 목차를 모으는 곳
-  // offset: 지금까지 쓴 바이트 수 (목차가 "각 파일이 몇 번째 바이트에서 시작하는지"를 기억하는 데 씁니다)
+  const FLAG_UTF8 = 0x0800;
   const locals = [];
   const centrals = [];
   let offset = 0;
@@ -100,14 +92,11 @@ function createZip(files) {
     const name = Buffer.from(f.name, 'utf8');
     const crc = crc32(f.data);
 
-    // 파일 머리말(30바이트) 칸 배치 — 숫자는 시작 위치(바이트)
-    //   0: 시그니처 PK\x03\x04 (파일 머리말이라는 표식)   4: 필요한 버전   6: 플래그(UTF-8 이름)   8: 압축 방식(0 = 무압축)
-    //   10: 시간   12: 날짜   14: 검증번호(CRC32)   18: 압축 후 크기   22: 원래 크기(무압축이라 같음)   26: 이름 길이   28: 추가 정보 길이(0)
     const local = Buffer.alloc(30);
     local.writeUInt32LE(0x04034b50, 0);
-    local.writeUInt16LE(20, 4); // version needed
+    local.writeUInt16LE(20, 4);
     local.writeUInt16LE(FLAG_UTF8, 6);
-    local.writeUInt16LE(0, 8); // method: store
+    local.writeUInt16LE(0, 8);
     local.writeUInt16LE(time, 10);
     local.writeUInt16LE(date, 12);
     local.writeUInt32LE(crc, 14);
@@ -117,13 +106,10 @@ function createZip(files) {
     local.writeUInt16LE(0, 28);
     locals.push(local, name, f.data);
 
-    // 목차 항목(46바이트): 머리말과 비슷하지만 앞부분에 "만든 버전"이 더 있고(4),
-    // 42번째 칸에 "이 파일의 머리말이 ZIP 안에서 몇 번째 바이트에서 시작하는지(offset)"를 적습니다.
-    // ZIP 프로그램은 이 목차를 보고 원하는 파일로 바로 이동합니다.
     const central = Buffer.alloc(46);
     central.writeUInt32LE(0x02014b50, 0);
-    central.writeUInt16LE(20, 4); // version made by
-    central.writeUInt16LE(20, 6); // version needed
+    central.writeUInt16LE(20, 4);
+    central.writeUInt16LE(20, 6);
     central.writeUInt16LE(FLAG_UTF8, 8);
     central.writeUInt16LE(0, 10);
     central.writeUInt16LE(time, 12);
@@ -138,8 +124,6 @@ function createZip(files) {
     offset += local.length + name.length + f.data.length;
   }
 
-  // 끝 표시(22바이트): 파일이 몇 개인지(8, 10), 목차의 크기(12), 목차 시작 위치(16)를 적습니다.
-  // ZIP 프로그램은 파일 맨 끝에서 이 표시를 먼저 찾고, 거기서 목차 → 각 파일 순서로 읽어 갑니다.
   const centralSize = centrals.reduce(function (s, b) { return s + b.length; }, 0);
   const end = Buffer.alloc(22);
   end.writeUInt32LE(0x06054b50, 0);
@@ -148,7 +132,6 @@ function createZip(files) {
   end.writeUInt32LE(centralSize, 12);
   end.writeUInt32LE(offset, 16);
 
-  // 파일 부분들 + 목차 + 끝 표시를 순서대로 이어 붙여 ZIP 을 완성합니다.
   return Buffer.concat([...locals, ...centrals, end]);
 }
 

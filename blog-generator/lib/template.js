@@ -25,7 +25,6 @@
 // ─────────────────────────────────────────────
 // [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
 // 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
-// 각 함수 위의 "쓰는 메소드:" 줄은 그 함수가 쓰는 메소드를 요약한 것이고, 자세한 설명은 아래에 있습니다.
 // 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
 //
 // ■ 문자열 (String) — 글자 값 뒤에 점을 찍어 쓰는 기능
@@ -92,30 +91,23 @@ const COMPANY = '디자인픽셀';
 // ---------- 유틸 ----------
 
 // 빈 값을 빼고 ", " 로 이어 붙입니다.   ["기업", "", "IR"] → "기업, IR"
-// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), join(글자 하나로 이어 붙이기)
 function joinKo(list) {
   return list.filter(Boolean).join(', ');
 }
 
 // 받침 유무에 따라 조사 선택: josa('대혜건축', '은', '는') → '대혜건축은'
 // 마지막 글자가 한글이 아니면(영문/숫자) 판단할 수 없으므로 '은(는)'처럼 둘 다 표기
-// 쓰는 메소드: charCodeAt(글자의 번호(코드))
 function josa(word, withBatchim, without) {
-  // 한글은 유니코드에서 "가"(0xAC00)부터 순서대로 배치되어 있어서, (글자 - 0xAC00) % 28 이 받침 번호가 됩니다. 0 이면 받침 없음.
-  // code 가 0~11171 범위를 벗어나면 한글이 아니라는 뜻입니다. (영문·숫자로 끝나는 경우)
   const code = word.charCodeAt(word.length - 1) - 0xac00;
   if (code < 0 || code > 11171) return withBatchim === '으로' ? `${word}(으)로` : `${word}${withBatchim}(${without})`;
-  // jong = 받침 번호 (0 = 받침 없음, 8 = ㄹ받침)
   const jong = code % 28;
-  if (withBatchim === '으로') return word + (jong === 0 || jong === 8 ? '로' : '으로'); // ㄹ받침은 '로'
+  if (withBatchim === '으로') return word + (jong === 0 || jong === 8 ? '로' : '으로');
   return word + (jong ? withBatchim : without);
 }
 
 // 같은 자리(slot)에 쓰는 문장 후보를 돌아가며 사용 → 페이지마다 표현이 달라진다
 function makePicker() {
-  // used[slot] = 그 자리(slot)에서 몇 번째 후보를 쓸 차례인지. 호출할 때마다 1씩 늘려 후보 목록을 돌려 씁니다. (% = 나머지 연산)
   const used = {};
-  // 사용 예) pick("hero", [문장A, 문장B]) → 처음엔 A, 두 번째엔 B, 세 번째엔 다시 A ...
   return function (slot, list) {
     used[slot] = (used[slot] === undefined ? -1 : used[slot]) + 1;
     return list[used[slot] % list.length];
@@ -126,14 +118,12 @@ function makePicker() {
 //   (?<=[다요]\.)\s+             = "다." 또는 "요." 바로 뒤의 공백에서 자름
 //   (?<=[.!?])\s+(?=[가-힣A-Z]) = 마침표·느낌표·물음표 뒤 공백 중, 다음이 한글이나 대문자로 시작할 때 자름
 // 문단을 문장 단위로 쪼갠다 ("~다." 기준)
-// 쓰는 메소드: split(구분자로 잘라 배열로), map(각 항목을 바꿔 새 배열), filter(조건에 맞는 것만 골라 새 배열), trim(앞뒤 공백 지우기)
 function sentences(text) {
   return (text || '').split(/(?<=[다요]\.)\s+|(?<=[.!?])\s+(?=[가-힣A-Z])/).map(function (s) { return s.trim(); }).filter(Boolean);
 }
 
 // ‘인용문’ 뒤에 붙는 '(이)라는' 선택: 받침이 있으면 '이라는'
 // 받침 판단은 josa 와 같은 원리. 받침이 있으면 "이라는", 없으면 "라는". (한글이 아닌 글자로 끝나면 받침 없음으로 처리)
-// 쓰는 메소드: charCodeAt(글자의 번호(코드))
 function quoteRa(q) {
   const code = q.charCodeAt(q.length - 1) - 0xac00;
   const batchim = code >= 0 && code <= 11171 && code % 28 !== 0;
@@ -141,21 +131,17 @@ function quoteRa(q) {
 }
 
 // 문장 끝의 마침표/느낌표를 지웁니다. 인용문 안에 넣을 때 ‘...다.’라는 모양이 되는 것을 막으려고 씁니다.
-// 쓰는 메소드: replace(글자 바꾸기)
 function stripPeriod(s) {
   return s.replace(/[.。!]+$/, '');
 }
 
 // "#1a3c6e" → "네이비" 같은 대략적인 색 이름
-// 쓰는 메소드: parseInt(글자 → 정수), slice(일부만 잘라 새로 만들기), Math.max(큰 값), Math.min(작은 값)
 function colorName(hex) {
   const n = parseInt(hex.slice(1), 16);
   const r = ((n >> 16) & 255) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
   const l = (max + min) / 2;
   const d = max - min;
-  // h = 색상 각도(0~360). 빨강 0 → 노랑 60 → 초록 120 → 청록 180 → 파랑 240 → 보라 300 → 다시 빨강 360.
-  // max/min 으로 어느 색 성분이 가장 센지 보고 각도를 계산합니다. l = 밝기(0 어두움 ~ 1 밝음)
   let h = 0;
   if (d) {
     if (max === r) h = ((g - b) / d) % 6;
@@ -163,7 +149,6 @@ function colorName(hex) {
     else h = (r - g) / d + 4;
     h = (h * 60 + 360) % 360;
   }
-  // 각도 구간별로 이름을 붙입니다. 정확한 색 이름이 아니라 "대략적인 느낌"입니다. (어두운 주황은 브라운, 어두운 파랑은 네이비)
   if (h >= 15 && h < 45 && l < 0.4) return '브라운';
   if (h < 15 || h >= 340) return '레드';
   if (h < 45) return '오렌지';
@@ -176,11 +161,9 @@ function colorName(hex) {
 }
 
 // 회사명 추정: og:site_name > 로고 alt > <title>의 첫 부분
-// 쓰는 메소드: test(정규식에 맞는가), split(구분자로 잘라 배열로), trim(앞뒤 공백 지우기)
 function guessClientName(site) {
   if (site.siteName) return site.siteName;
   if (site.logoAlt && !/logo|로고/i.test(site.logoAlt)) return site.logoAlt;
-  // 페이지 제목이 "고성엔지니어링 | 메인" 같은 모양이면, 구분자(| - :) 앞부분만 회사명으로 씁니다.
   const fromTitle = (site.title || '').split(/\s[|\-–:]\s|\s?\|\s?/)[0].trim();
   return fromTitle || '【고객사명】';
 }
@@ -305,7 +288,6 @@ const DEFAULT_CATEGORY = {
 };
 
 // 메뉴 이름에 맞는 성격을 찾습니다. find = 조건에 맞는 "첫 번째" 항목을 찾는 기능. 없으면 기본 틀을 씁니다.
-// 쓰는 메소드: find(조건에 맞는 첫 항목), test(정규식에 맞는가)
 function categorize(name) {
   return CATEGORIES.find(function (c) { return c.test.test(name); }) || DEFAULT_CATEGORY;
 }
@@ -314,24 +296,16 @@ function categorize(name) {
 
 // 메뉴 페이지 + 하위 페이지(정보만 수집) 전체에서 구성 요소를 모은다.
 // 어느 하위 페이지에서 발견됐는지(where)도 같이 기록해 "오시는길 페이지에는…"처럼 쓸 수 있게 한다.
-// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), new Date(날짜·시간 값), getFullYear(연도), test(정규식에 맞는가), join(글자 하나로 이어 붙이기), push(끝에
-//   추가 (원본이 바뀜))
 function collectFeatures(page) {
-  // 이 메뉴 페이지 자신 + 하위 페이지들(오류난 것 제외)을 하나의 목록으로 만듭니다.
-  // 자신은 name 을 "" 로 해서, 문장에 "기업 페이지에서는…"처럼 자기 이름을 붙이지 않게 합니다.
   const sources = [{ ...page, name: '' }, ...(page.subPages || []).filter(function (s) { return !s.error; })];
   const found = [];
-  // 올해: 아직 오지 않은 미래 연도(예: 2027년 IPO 계획)는 연혁에서 뺍니다.
   const thisYear = new Date().getFullYear();
   for (const src of sources) {
     const f = src.features || {};
     const where = src.name;
-    // 연도가 많아도 통계 자료일 수 있으므로, 연혁 페이지로 보이는 곳에서만 연혁으로 인정
     const isHistory = /연혁|history|발자취|걸어온/i.test([src.name || page.name, ...(src.headings || [])].join(' '));
     const years = (f.years || []).filter(function (y) { return y <= thisYear; });
     if (isHistory && years.length >= 3) found.push({ type: 'years', where, years });
-    // 아래부터: 감지된 요소를 { type, where(어느 페이지에서), ...정보 } 형태로 모읍니다.
-    // 조건의 숫자(3개 이상 등)는 "우연히 걸린 것"을 걸러내기 위한 기준입니다.
     if (f.stats && f.stats.length) found.push({ type: 'stats', where, stats: f.stats });
     if (f.map || f.formInputs >= 3) found.push({ type: 'contact', where, map: f.map, form: f.formInputs >= 3 });
     if (f.downloads) found.push({ type: 'downloads', where });
@@ -339,18 +313,16 @@ function collectFeatures(page) {
     if (f.cards >= 3) found.push({ type: 'cards', where, cards: f.cards });
     if (f.videos) found.push({ type: 'video', where });
     if (f.sliders) found.push({ type: 'slider', where });
-    if (f.bigImages >= 4 && !(f.cards >= 3)) found.push({ type: 'images', where, count: f.bigImages }); // 카드 목록이 있으면 중복 설명이라 생략
+    if (f.bigImages >= 4 && !(f.cards >= 3)) found.push({ type: 'images', where, count: f.bigImages });
   }
   return found;
 }
 
-// 한 페이지에 요소가 많을 때 어떤 것을 먼저 문장으로 쓸지의 우선순위 (앞쪽이 우선). 페이지당 최대 2개만 씁니다.
 const FEATURE_PRIORITY = ['years', 'contact', 'stats', 'downloads', 'cards', 'board', 'video', 'slider', 'images'];
 
 // 요소 하나({ type, ... })를 문장 한 줄로 바꿉니다. 문장이 필요 없으면 빈 글자 "" 를 돌려줍니다.
 // pick = 같은 종류의 문장을 돌려 쓰는 도우미(makePicker).
 // at / atIn = "연혁 페이지에서는 / 연혁 페이지에는" 같은 앞부분. 요소가 하위 페이지에서 발견됐을 때만 붙습니다.
-// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), slice(일부만 잘라 새로 만들기), map(각 항목을 바꿔 새 배열), join(글자 하나로 이어 붙이기)
 function featureSentence(ft, client, pick) {
   const at = ft.where ? `${ft.where} 페이지에서는 ` : '';
   const atIn = ft.where ? `${ft.where} 페이지에는 ` : '';
@@ -367,7 +339,6 @@ function featureSentence(ft, client, pick) {
       const quotes = ft.stats.filter(function (s) { return s.length <= 30; }).slice(0, 2).map(function (s) { return `‘${s}’`; });
       if (!quotes.length) return '';
       return pick('stats', [
-        // 숫자가 회사 실적인지 시장 통계인지는 알 수 없으므로 '성과'라고 단정하지 않는다
         `${at}${quotes.join(', ')}처럼 핵심 수치를 눈에 띄게 강조해 내용의 설득력을 높였습니다.`,
         `${quotes.join(', ')} 같은 구체적인 숫자를 강조해 정보가 한눈에 들어오도록 했습니다.`,
       ]);
@@ -405,10 +376,7 @@ function featureSentence(ft, client, pick) {
 
 // 페이지 본문에서 원고에 인용할 핵심 문장 1개 고르기
 // 숫자나 회사명이 들어간 25~90자 문장을 우선. 상단 카피/이미 쓴 문장은 제외.
-// 쓰는 메소드: flatMap(바꾼 뒤 한 겹 펼치기), map(각 항목을 바꿔 새 배열), filter(조건에 맞는 것만 골라 새 배열), has(들어 있는가), sort(정렬 (원본이 바뀜))
 function pickKeySentence(page, client, exclude) {
-  // 후보 모으기: 페이지와 하위 페이지의 문단을 문장 단위로 쪼개고(sentences), 마침표를 떼고,
-  // 25~90자이면서 이미 쓴 문장(exclude)이 아닌 것만 남깁니다.
   const pool = [page, ...(page.subPages || [])]
     .flatMap(function (p) { return p.paragraphs || []; })
     .flatMap(sentences)
@@ -416,7 +384,6 @@ function pickKeySentence(page, client, exclude) {
     .filter(function (s) { return s.length >= 25 && s.length <= 90 && !exclude.has(s); });
   // 점수: 회사명 포함 +3, 숫자 포함 +1, 한글 포함 +1(영문뿐이면 -5), "보고서/조사/따르면/전망"(시장 통계 인용) -2.
   // 점수가 높은 순으로 정렬해 1등 문장을 씁니다.
-  // 쓰는 메소드: includes(포함하고 있는가), test(정규식에 맞는가)
   function score(s) {
     return (s.includes(client) ? 3 : 0) + (/\d/.test(s) ? 1 : 0) + (/[가-힣]/.test(s) ? 1 : -5) - (/보고서|조사|따르면|전망/.test(s) ? 2 : 0);
   }
@@ -446,46 +413,32 @@ function heroSentence(page, pick) {
  * @param {object} site crawlSite() 결과
  * @returns {{clientName: string, blocks: Array<{type: 'text'|'image', text?: string, file?: string, caption?: string}>, text: string}}
  */
-// 쓰는 메소드: filter(조건에 맞는 것만 골라 새 배열), find(조건에 맞는 첫 항목), map(각 항목을 바꿔 새 배열), new Set(중복 없는 모음), flatMap(바꾼 뒤 한 겹 펼치기),
-//   join(글자 하나로 이어 붙이기), match(정규식에 맞는 부분 찾기), includes(포함하고 있는가), add(Set 에 넣기), slice(일부만 잘라 새로 만들기), has(들어 있는가),
-//   push(끝에 추가 (원본이 바뀜)), some(하나라도 맞는가), forEach(항목마다 실행) 등 3개 더 (자세한 설명은 파일 위쪽 "메소드 설명")
 function buildManuscript(site) {
-  // ── 준비: 자주 쓰는 값들 ──
-  // client = 회사명(추정), pick = 문장 돌려쓰기 도우미
   const client = guessClientName(site);
   const pick = makePicker();
   const slogan = site.sloganCandidates[0] ? site.sloganCandidates[0].text : '【메인 슬로건】';
-  // okPages = 캡처에 성공한 페이지만 / home = 메인 / subPages = 메인을 뺀 페이지들 / menuNames = 메뉴 이름 목록(실패한 페이지 포함)
   const okPages = site.pages.filter(function (p) { return !p.error; });
   const home = okPages.find(function (p) { return p.isHome; });
   const subPages = okPages.filter(function (p) { return !p.isHome; });
   const menuNames = site.pages.filter(function (p) { return !p.isHome; }).map(function (p) { return p.name; });
-  // 이미 원고에 쓴 문장 기록장: 같은 문장이 슬로건·소개·본문 인용에 중복으로 나오지 않게 합니다.
   const usedSentences = new Set(site.sloganCandidates.map(function (s) { return stripPeriod(s.text); }));
-  // 모든 페이지(하위 페이지 포함)의 문단을 한곳에 모읍니다. 설립연도처럼 사이트 어딘가에 흩어진 정보를 찾을 때 씁니다.
   const allParagraphs = okPages.flatMap(function (p) {
     return [p, ...(p.subPages || [])];
   }).flatMap(function (p) { return p.paragraphs || []; });
 
   const blocks = [];
-  // 쓰는 메소드: push(끝에 추가 (원본이 바뀜))
   function text(t) { return blocks.push({ type: 'text', text: t }); }
-  // 쓰는 메소드: push(끝에 추가 (원본이 바뀜))
   function image(p) {
     return blocks.push({ type: 'image', file: p.screenshot, fullFile: p.screenshotFull, caption: p.isHome ? 'MAIN' : p.name });
   }
 
-  // 1. 인사 + 고객사 소개
   text(`안녕하세요!!\n기업 맞춤형 웹사이트 제작 전문 업체 ${COMPANY}입니다!`);
   text(`${client}\n${site.url}\n${slogan}`);
 
-  // 제작 의도: 사이트에서 설립연도를 찾으면 예시로 보여 준다 (기획자가 최종 확정)
-  // 정규식: "2005년 설립 / 창립 / 창업" 모양을 찾아 연도(괄호 1번)만 꺼냅니다.
   const founded = allParagraphs.join(' ').match(/((?:19|20)\d{2})년\s*(?:에\s*)?(?:설립|창립|창업)/);
   const strengthHint = founded ? `${founded[1]}년 설립 이후 쌓아온 기술력과 신뢰` : '40년 이상의 역사와 전문성';
   text(`기업 홈페이지는 브랜드의 첫인상을 결정하는 중요한 공간입니다.\n이번 ${client} 프로젝트는 【핵심 강점: 예) ${strengthHint}】을 효과적으로 전달하면서,\n【강조 포인트: 예) 프로젝트 중심의 브랜드 이미지】를 구축하는 데 중점을 두고 제작했습니다.`);
 
-  // 2. 프로젝트 소개 — meta description이 회사명과 같거나 너무 짧으면 메인 본문의 소개 문장 사용
   const usefulDesc = site.description && site.description !== client && site.description.length >= 15 ? site.description : '';
   const homeIntro = home ? (home.paragraphs || []).find(function (t) { return t.length >= 30 && t.includes(client); }) : '';
   const description = usefulDesc || homeIntro;
@@ -495,7 +448,6 @@ function buildManuscript(site) {
     : `${josa(client, '은', '는')} 【업종/주요 사업을 1~2줄로 입력】 기업입니다.\n홈페이지 역시 ${client}의 전문성과 강점을 효과적으로 보여줄 수 있도록 기획했습니다.`;
   text(`👉 프로젝트 소개\n\n${intro}`);
 
-  // 3. 메인 디자인 컨셉 — 컬러/서체 + 메인 섹션 구성 + 인터랙션
   const tone = site.colors.backgroundLightness >= 0.5 ? '화이트' : '다크';
   const accent = site.colors.accents[0];
   const conceptLines = [
@@ -506,11 +458,9 @@ function buildManuscript(site) {
     const heroTexts = new Set([...site.sloganCandidates.map(function (s) {
       return s.text;
     }), home.hero && home.hero.title].filter(Boolean));
-    // 메인의 소제목들(슬로건·상단 문구는 제외, 30자 이하, 최대 5개)을 "섹션 순서"로 보여 줍니다.
     const sections = (home.headings || []).filter(function (h) { return !heroTexts.has(h) && h.length <= 30; }).slice(0, 5);
     if (sections.length >= 2) conceptLines.push(`메인 페이지는 ‘${sections.join(' → ')}’ 순서의 섹션으로 구성해, 스크롤 한 번에 기업의 핵심 정보를 훑어볼 수 있습니다.`);
     const f = home.features || {};
-    // 감지한 영상/스크롤 애니메이션 라이브러리로 인터랙션 문장을 더합니다. (풀페이지 > 스크롤 효과 순으로 한 가지만)
     const libs = f.libs || [];
     if (f.videos) conceptLines.push('메인 비주얼에는 영상을 사용해 역동적인 첫인상을 주었습니다.');
     if (libs.includes('fullpage')) conceptLines.push('한 화면씩 넘어가는 풀페이지 스크롤로 각 섹션에 집중할 수 있도록 했습니다.');
@@ -526,9 +476,8 @@ function buildManuscript(site) {
   function uxSection() {
     return text(`⚙️ 사용자 경험(UX)을 위한 설계\n\n메뉴는 ${josa(joinKo(menuNames), '으로', '로')} 구성해\n기업 소개부터 주요 정보까지 자연스럽게 탐색할 수 있도록 설계했습니다.\n복잡한 구조를 줄이고 필요한 정보에 빠르게 접근할 수 있도록 사용자 편의성을 높였습니다.`);
   }
-  // UX 문단을 넣을 위치: 페이지 문단이 3개 이상이면 2번째 뒤, 아니면 마지막 뒤.
   const uxAfter = subPages.length >= 3 ? 2 : subPages.length;
-  const featureUse = {}; // 같은 구성 요소 문장이 원고 전체에서 너무 반복되지 않도록 (유형별 최대 2회)
+  const featureUse = {};
   subPages.forEach(function (p, i) {
     const cat = categorize(p.name);
     const subs = joinKo(p.subs.slice(0, 4));
@@ -537,7 +486,7 @@ function buildManuscript(site) {
 
     const hero = heroSentence(p, pick);
     if (hero) lines.push(hero);
-    if (p.hero && p.hero.sub) usedSentences.add(stripPeriod(p.hero.sub)); // 상단 카피와 같은 문장을 본문 인용으로 또 쓰지 않도록
+    if (p.hero && p.hero.sub) usedSentences.add(stripPeriod(p.hero.sub));
 
     const key = pickKeySentence(p, client, usedSentences);
     if (key) {
@@ -545,12 +494,10 @@ function buildManuscript(site) {
       lines.push(pick('key', [`본문에서는 ${quoteRa(key)} 내용을 중심으로 소개합니다.`, `${quoteRa(key)} 메시지를 핵심 내용으로 담았습니다.`]));
     }
 
-    // 구성 요소 문장 고르기: 우선순위 순으로 정렬 → 같은 종류는 1개만 → 원고 전체에서 이미 2번 쓴 종류는 제외
     const features = collectFeatures(p)
       .sort(function (a, b) { return FEATURE_PRIORITY.indexOf(a.type) - FEATURE_PRIORITY.indexOf(b.type); })
-      .filter(function (ft, idx, arr) { return arr.findIndex(function (x) { return x.type === ft.type; }) === idx; }) // 유형당 1개
+      .filter(function (ft, idx, arr) { return arr.findIndex(function (x) { return x.type === ft.type; }) === idx; })
       .filter(function (ft) { return (featureUse[ft.type] || 0) < 2; });
-    // 최대 2개까지만 문장으로 추가합니다.
     let added = 0;
     for (const ft of features) {
       if (added >= 2) break;
@@ -568,20 +515,16 @@ function buildManuscript(site) {
   });
   if (!subPages.length && menuNames.length) uxSection();
 
-  // 5. 마무리
   text(`👉 프로젝트를 마무리하며\n\n이번 프로젝트는 화려한 기능보다 브랜드의 가치를 효과적으로 전달하는 데 집중했습니다.\n앞으로도 기업의 특성을 반영한 맞춤형 홈페이지를 제작하여\n기업과 브랜드의 경쟁력을 높일 수 있는 웹사이트를 만들어가겠습니다.`);
   text(`앞으로도 ${josa(COMPANY, '은', '는')} 고객사의 니즈를 정확히 파악하고, 이를 충족시킬 수 있는 결과물을 만들어내기 위해 최선을 다하겠습니다!!`);
   text(`기업의 가치와 비전을 효과적으로 전달할 수 있는 홈페이지 제작과 관련하여\n궁금한 사항이나 도움이 필요하신 경우 언제든지 문의해주시기 바랍니다.\n\n감사합니다!`);
 
-  // 복사용 평문: 이미지 자리에는 [이미지 n] 표시
   let n = 0;
   const plain = blocks.map(function (b) {
     return b.type === 'image' ? `[이미지 ${++n}] ${b.file}  (캡션: ${b.caption})` : b.text;
   }).join('\n\n\n');
 
-  // blocks = 화면 미리보기용(이미지 포함) / text = 복사·저장용 평문(이미지 자리는 [이미지 n] 표시) / clientName = 오른쪽 패널의 회사명
   return { clientName: client, blocks, text: plain };
 }
 
-// 다른 파일이 가져다 쓸 수 있게 내보내는 함수들. server.js 는 buildManuscript 만 씁니다.
 module.exports = { buildManuscript, categorize, colorName, guessClientName, josa, sentences, COMPANY };
