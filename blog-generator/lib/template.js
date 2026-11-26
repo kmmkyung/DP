@@ -11,10 +11,86 @@
 //   5) 마무리 문장
 // 【 】로 표시된 부분은 기계가 알 수 없는 내용이므로 기획자가 직접 채운다.
 
+// ─────────────────────────────────────────────
+// [읽는 순서 추천]
+//   1) 맨 아래 buildManuscript() — 원고가 1→5 단계로 조립되는 순서 그대로 읽기 (여기부터!)
+//   2) CATEGORIES — 메뉴 이름별 문장 틀   3) 위쪽의 도우미 함수들
+// 입력: crawlSite 가 만든 site 데이터 (결과 폴더의 site.json 과 같은 모양)
+// 출력: { clientName, blocks[], text }
+//
+// [꼭 알아 둘 점] 이 파일은 "새 문장을 지어내지" 않습니다.
+// 감지한 값(회사명, 문구, 연도, 수치 ...)을 정해진 문장 틀에 끼워 넣을 뿐입니다.
+// 그래서 문장 틀(CATEGORIES, featureSentence 등)을 바꾸는 것이 곧 글투를 바꾸는 일입니다.
+// ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// [이 파일에서 쓰는 메소드(기본 제공 기능) 설명]
+// 메소드 = 값 뒤에 점(.)을 찍어 부르는 기능입니다.   예) "abc".trim()   (값.기능이름())
+// 설명은 MDN(JavaScript / Web API), Node.js, Playwright 공식 문서로 대조한 내용입니다.
+//
+// ■ 문자열 (String) — 글자 값 뒤에 점을 찍어 쓰는 기능
+//   trim()  — 문자열 양 끝의 공백·줄바꿈을 지운 새 문자열을 돌려줍니다.
+//       예) "  a ".trim() → "a"
+//   split()  — 문자열을 구분자(글자나 정규식)에서 잘라 배열로 만듭니다.
+//       예) "a,b".split(",") → ["a", "b"]
+//   replace()  — 패턴(글자나 정규식)에 맞는 부분을 다른 글자로 바꾼 새 문자열을 돌려줍니다. 정규식 끝에 g 가 있으면 맞는 부분을 모두, 없으면 처음 하나만 바꿉니다. 원본은 그대로입니다.
+//       예) "a-b-c".replace(/-/g, "_") → "a_b_c"
+//   charCodeAt()  — 지정한 위치 글자의 유니코드 번호를 돌려줍니다. 한글은 "가"(44032)부터 순서대로 번호가 있어서 받침 유무 계산에 씁니다.
+//       예) "가".charCodeAt(0) → 44032
+//   match()  — 정규식과 맞는 부분을 찾아 돌려줍니다. 하나도 없으면 null 입니다. 정규식에 g 가 있으면 맞는 부분 전부가 배열로 나옵니다.
+//       예) "a1b22".match(/\d+/g) → ["1", "22"]
+//   indexOf()  — 찾는 값이 처음 나오는 위치(0부터)를 돌려주고, 없으면 -1 을 돌려줍니다. (문자열과 배열 모두에 있음)
+//       예) "abc".indexOf("c") → 2
+//   slice()  — 시작 위치부터 끝 위치 "앞"까지를 잘라낸 새 문자열/배열을 돌려줍니다. 원본은 바뀌지 않고, 끝을 생략하면 맨 끝까지 자릅니다.
+//       예) "abcdef".slice(1, 3) → "bc"
+//   includes()  — 문자열이 해당 글자를 포함하는지, 또는 배열에 해당 값이 들어 있는지 true/false 로 알려 줍니다.
+//       예) ["a", "b"].includes("b") → true
+//   test()  — 정규식이 문자열에 맞으면 true, 아니면 false 입니다. 맞는지 검사만 하고 맞는 부분을 꺼내지는 않습니다.
+//       예) /^https?:/.test("http://a") → true
+//
+// ■ 배열 (Array) — 목록 값 뒤에 점을 찍어 쓰는 기능
+//   map()  — 배열의 모든 항목에 함수를 적용하고, 그 결과들로 새 배열을 만듭니다. 원본은 바뀌지 않습니다.
+//       예) [1, 2].map(function (x) { return x * 2; }) → [2, 4]
+//   filter()  — 함수가 true 를 돌려주는 항목만 모아 새 배열을 만듭니다.
+//       예) [1, 2, 3].filter(function (x) { return x > 1; }) → [2, 3]
+//   join()  — 배열의 항목들을 구분자로 이어 붙여 하나의 문자열로 만듭니다.
+//       예) ["a", "b"].join(", ") → "a, b"
+//   sort()  — 배열을 정렬합니다. 새 배열을 만들지 않고 "원본 배열 자체"를 바꾸니 주의하세요. 비교 함수를 주지 않으면 값을 글자로 바꿔 비교합니다.
+//       예) [3, 1, 2].sort(function (a, b) { return a - b; }) → [1, 2, 3]
+//   push()  — 배열 맨 끝에 항목을 추가합니다. 원본 배열이 바뀝니다.
+//       예) list.push("a")
+//   find()  — 함수가 true 를 돌려주는 첫 번째 항목을 돌려줍니다. 없으면 undefined 입니다.
+//   findIndex()  — 함수가 true 를 돌려주는 첫 번째 항목의 위치(0부터)를 돌려줍니다. 없으면 -1 입니다.
+//   some()  — 조건에 맞는 항목이 하나라도 있으면 true 입니다.
+//   forEach()  — 각 항목마다 함수를 실행합니다. 값을 돌려주지는 않습니다.
+//   flatMap()  — 각 항목에 함수를 적용하고, 결과로 나온 배열들을 한 겹 풀어서 하나의 배열로 이어 붙입니다.
+//       예) [[1, 2], [3]].flatMap(function (x) { return x; }) → [1, 2, 3]
+//
+// ■ 숫자·날짜 (Math, Date)
+//   Math.max()  — 주어진 숫자들 중 가장 큰 값을 돌려줍니다.
+//       예) Math.max(1, 5) → 5
+//   Math.min()  — 주어진 숫자들 중 가장 작은 값을 돌려줍니다. Math.min(Math.max(값, 1), 15) 처럼 쓰면 값을 1~15 범위로 제한합니다.
+//       예) Math.min(20, 15) → 15
+//   getFullYear()  — 날짜에서 연도를 꺼냅니다.
+//
+// ■ Set · Map (중복 없는 모음 / 이름표→값 표)
+//   add()  — Set(중복 없는 모음)에 값을 넣습니다. 이미 있는 값이면 아무 일도 하지 않습니다.
+//   has()  — Set 에 값이, 또는 Map 에 키가 들어 있는지 true/false 로 알려 줍니다.
+//
+// ■ JSON · 값 바꾸기 (변환)
+//   parseInt()  — 글자를 정수로 읽습니다. 두 번째 값은 진법이고, 16 이면 16진수(예: 색상 코드)로 읽습니다.
+//       예) parseInt("ff", 16) → 255
+//
+// ■ 새로 만들기 (new)
+//   new Set  — 같은 값이 두 번 들어가지 않는 모음(Set)을 만듭니다.
+//   new Date  — 지금 시각(또는 지정한 날짜)을 다루는 값을 만듭니다.
+// ─────────────────────────────────────────────
+
+// 글을 쓰는 우리 회사 이름. 인사말과 마무리에 들어갑니다. 회사명이 바뀌면 여기만 고치세요.
 const COMPANY = '디자인픽셀';
 
 // ---------- 유틸 ----------
 
+// 빈 값을 빼고 ", " 로 이어 붙입니다.   ["기업", "", "IR"] → "기업, IR"
 function joinKo(list) {
   return list.filter(Boolean).join(', ');
 }
@@ -25,31 +101,36 @@ function josa(word, withBatchim, without) {
   const code = word.charCodeAt(word.length - 1) - 0xac00;
   if (code < 0 || code > 11171) return withBatchim === '으로' ? `${word}(으)로` : `${word}${withBatchim}(${without})`;
   const jong = code % 28;
-  if (withBatchim === '으로') return word + (jong === 0 || jong === 8 ? '로' : '으로'); // ㄹ받침은 '로'
+  if (withBatchim === '으로') return word + (jong === 0 || jong === 8 ? '로' : '으로');
   return word + (jong ? withBatchim : without);
 }
 
 // 같은 자리(slot)에 쓰는 문장 후보를 돌아가며 사용 → 페이지마다 표현이 달라진다
 function makePicker() {
   const used = {};
-  return (slot, list) => {
+  return function (slot, list) {
     used[slot] = (used[slot] === undefined ? -1 : used[slot]) + 1;
     return list[used[slot] % list.length];
   };
 }
 
+// 긴 문단에서 "한 문장씩" 고르기 위한 도우미입니다. 정규식 설명:
+//   (?<=[다요]\.)\s+             = "다." 또는 "요." 바로 뒤의 공백에서 자름
+//   (?<=[.!?])\s+(?=[가-힣A-Z]) = 마침표·느낌표·물음표 뒤 공백 중, 다음이 한글이나 대문자로 시작할 때 자름
 // 문단을 문장 단위로 쪼갠다 ("~다." 기준)
 function sentences(text) {
-  return (text || '').split(/(?<=[다요]\.)\s+|(?<=[.!?])\s+(?=[가-힣A-Z])/).map((s) => s.trim()).filter(Boolean);
+  return (text || '').split(/(?<=[다요]\.)\s+|(?<=[.!?])\s+(?=[가-힣A-Z])/).map(function (s) { return s.trim(); }).filter(Boolean);
 }
 
 // ‘인용문’ 뒤에 붙는 '(이)라는' 선택: 받침이 있으면 '이라는'
+// 받침 판단은 josa 와 같은 원리. 받침이 있으면 "이라는", 없으면 "라는". (한글이 아닌 글자로 끝나면 받침 없음으로 처리)
 function quoteRa(q) {
   const code = q.charCodeAt(q.length - 1) - 0xac00;
   const batchim = code >= 0 && code <= 11171 && code % 28 !== 0;
   return `‘${q}’${batchim ? '이라는' : '라는'}`;
 }
 
+// 문장 끝의 마침표/느낌표를 지웁니다. 인용문 안에 넣을 때 ‘...다.’라는 모양이 되는 것을 막으려고 씁니다.
 function stripPeriod(s) {
   return s.replace(/[.。!]+$/, '');
 }
@@ -90,114 +171,125 @@ function guessClientName(site) {
 // ---------- 메뉴 성격 분류 ----------
 // 위에서부터 먼저 맞는 것을 사용. intro/outro는 여러 표현 중 돌아가며 사용.
 // subs: 하위 메뉴 이름 목록 문자열 (없으면 '')
+// 각 항목(메뉴 성격)의 구성:
+//   key   : 이름표 (문장 돌려쓰기 자리를 구분하는 데 사용)
+//   test  : 메뉴 이름이 이 성격인지 검사하는 정규식 (i = 대소문자 무시)
+//   emoji : 소제목 앞에 붙일 이모지
+//   title : 소제목 문장 틀.  (c = 고객사명, n = 메뉴 이름)
+//   intro : 문단 첫 문장 후보들. 같은 성격의 메뉴가 여러 개면 후보를 돌아가며 써서 반복을 줄입니다.  (c, n, subs = 하위 메뉴 이름들)
+//   outro : 문단 마지막 문장 후보들
+// ★ 순서가 중요합니다: 위에서부터 검사해서 "처음 맞는" 항목을 씁니다.
+//   예) "회사소개"는 portfolio, product 에는 안 걸리고 about 에 걸립니다. 새 성격을 추가할 때는 어느 줄에 넣을지 신중히 정하세요.
 const CATEGORIES = [
   {
     key: 'portfolio',
     test: /project|portfolio|works|case|gallery|실적|포트폴리오|사례|갤러리|시공/i,
     emoji: '🗂️',
-    title: (c, n) => `${c}의 경쟁력을 보여주는 ${n} 페이지`,
+    title: function (c, n) { return `${c}의 경쟁력을 보여주는 ${n} 페이지`; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 결과물을 모아 보여주는 포트폴리오 페이지입니다.`,
-      (c, n, subs) => `${n} 페이지는 ${c}의 실제 수행 사례로 신뢰를 전달하는 공간입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}${c}의 결과물을 모아 보여주는 포트폴리오 페이지입니다.`; },
+      function (c, n, subs) { return `${n} 페이지는 ${c}의 실제 수행 사례로 신뢰를 전달하는 공간입니다.`; },
     ],
     outro: [
-      (c) => `결과물을 먼저 보여주는 구성으로 ${c}의 경쟁력을 강조했습니다.`,
-      () => '방문자가 원하는 사례를 쉽게 찾아볼 수 있도록 탐색 동선을 단순하게 정리했습니다.',
+      function (c) { return `결과물을 먼저 보여주는 구성으로 ${c}의 경쟁력을 강조했습니다.`; },
+      function () { return '방문자가 원하는 사례를 쉽게 찾아볼 수 있도록 탐색 동선을 단순하게 정리했습니다.'; },
     ],
   },
   {
     key: 'product',
     test: /product|shop|item|제품|상품/i,
     emoji: '🛍️',
-    title: (c, n) => `제품의 특징이 잘 드러나는 ${n} 페이지`,
+    title: function (c, n) { return `제품의 특징이 잘 드러나는 ${n} 페이지`; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 제품을 소개하는 페이지입니다.`,
-      (c, n) => `${n} 페이지는 ${c}의 제품 라인업을 한곳에 정리한 공간입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}${c}의 제품을 소개하는 페이지입니다.`; },
+      function (c, n) { return `${n} 페이지는 ${c}의 제품 라인업을 한곳에 정리한 공간입니다.`; },
     ],
     outro: [
-      () => '제품 정보를 정돈된 레이아웃으로 배치해 비교와 탐색이 쉽도록 구성했습니다.',
+      function () { return '제품 정보를 정돈된 레이아웃으로 배치해 비교와 탐색이 쉽도록 구성했습니다.'; },
     ],
   },
   {
     key: 'about',
     test: /about|company|greeting|ceo|history|vision|회사|기업|소개|인사말|연혁|비전|철학/i,
     emoji: '📌',
-    title: () => '아이덴티티와 기업의 방향성을 살린 콘텐츠 구성',
+    title: function () { return '아이덴티티와 기업의 방향성을 살린 콘텐츠 구성'; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs}까지 ` : ''}${josa(c, '을', '를')} 깊이 있게 소개하는 페이지입니다.`,
-      (c, n) => `${n} 페이지는 ${c}의 정체성과 방향성을 전달하는 공간입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs}까지 ` : ''}${josa(c, '을', '를')} 깊이 있게 소개하는 페이지입니다.`; },
+      function (c, n) { return `${n} 페이지는 ${c}의 정체성과 방향성을 전달하는 공간입니다.`; },
     ],
     outro: [
-      (c) => `방문자가 ${c}의 브랜드를 직관적으로 이해할 수 있도록 구성했습니다.`,
-      () => '기업의 신뢰도를 자연스럽게 전달할 수 있도록 정보의 흐름을 설계했습니다.',
+      function (c) { return `방문자가 ${c}의 브랜드를 직관적으로 이해할 수 있도록 구성했습니다.`; },
+      function () { return '기업의 신뢰도를 자연스럽게 전달할 수 있도록 정보의 흐름을 설계했습니다.'; },
     ],
   },
   {
     key: 'business',
     test: /business|service|solution|tec|technology|r&d|automation|robot|사업|서비스|솔루션|분야|기술|연구|자동화|제어|로봇/i,
     emoji: '💡',
-    title: (c, n) => `${n} 중심의 콘텐츠 구성`,
+    title: function (c, n) { return `${n} 중심의 콘텐츠 구성`; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 핵심 사업을 소개하는 페이지입니다.`,
-      (c, n) => `${n} 페이지는 ${c}의 기술력과 전문성을 보여주는 공간입니다.`,
-      (c, n) => `${josa(n, '은', '는')} ${c}의 또 다른 핵심 사업 영역입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}${c}의 핵심 사업을 소개하는 페이지입니다.`; },
+      function (c, n) { return `${n} 페이지는 ${c}의 기술력과 전문성을 보여주는 공간입니다.`; },
+      function (c, n) { return `${josa(n, '은', '는')} ${c}의 또 다른 핵심 사업 영역입니다.`; },
     ],
     outro: [
-      () => '설명은 간결하게, 이미지는 크게 배치해 전문성이 직관적으로 전달되도록 설계했습니다.',
-      () => '어려운 기술 내용도 쉽게 읽히도록 정보를 단계적으로 배치했습니다.',
-      () => '고객이 필요한 정보를 빠르게 찾을 수 있도록 내용을 항목별로 정리했습니다.',
+      function () { return '설명은 간결하게, 이미지는 크게 배치해 전문성이 직관적으로 전달되도록 설계했습니다.'; },
+      function () { return '어려운 기술 내용도 쉽게 읽히도록 정보를 단계적으로 배치했습니다.'; },
+      function () { return '고객이 필요한 정보를 빠르게 찾을 수 있도록 내용을 항목별로 정리했습니다.'; },
     ],
   },
   {
     key: 'recruit',
     test: /career|recruit|join|채용|인재/i,
     emoji: '🤝',
-    title: () => '함께할 인재를 위한 채용 페이지',
+    title: function () { return '함께할 인재를 위한 채용 페이지'; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}채용 정보를 한곳에 모은 페이지입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}채용 정보를 한곳에 모은 페이지입니다.`; },
     ],
     outro: [
-      () => '지원자가 필요한 정보를 쉽게 확인할 수 있도록 구성했습니다.',
+      function () { return '지원자가 필요한 정보를 쉽게 확인할 수 있도록 구성했습니다.'; },
     ],
   },
   {
     key: 'contact',
     test: /contact|inquiry|location|map|문의|오시는|견적|상담/i,
     emoji: '📞',
-    title: () => '고객과의 접점을 높인 문의 페이지',
+    title: function () { return '고객과의 접점을 높인 문의 페이지'; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}고객이 ${c}에 쉽게 연락할 수 있도록 만든 페이지입니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}고객이 ${c}에 쉽게 연락할 수 있도록 만든 페이지입니다.`; },
     ],
     outro: [
-      () => '방문자가 망설임 없이 상담을 요청할 수 있도록 문의 동선을 단순하게 구성했습니다.',
+      function () { return '방문자가 망설임 없이 상담을 요청할 수 있도록 문의 동선을 단순하게 구성했습니다.'; },
     ],
   },
   {
     key: 'news',
     test: /\bpr\b|\bir\b|news|notice|board|media|press|community|공지|소식|홍보|게시판|고객센터|커뮤니티|투자/i,
     emoji: '📰',
-    title: (c, n) => `${c}의 소식을 전하는 ${n} 페이지`,
+    title: function (c, n) { return `${c}의 소식을 전하는 ${n} 페이지`; },
     intro: [
-      (c, n, subs) => `${subs ? `${subs} 등 ` : ''}${c}의 새로운 소식을 전하는 페이지입니다.`,
-      (c, n, subs) => `${n} 페이지에서는 ${subs ? `${subs} 등 ` : ''}${c}의 대외 소식을 확인할 수 있습니다.`,
+      function (c, n, subs) { return `${subs ? `${subs} 등 ` : ''}${c}의 새로운 소식을 전하는 페이지입니다.`; },
+      function (c, n, subs) { return `${n} 페이지에서는 ${subs ? `${subs} 등 ` : ''}${c}의 대외 소식을 확인할 수 있습니다.`; },
     ],
     outro: [
-      () => '꾸준히 업데이트되는 소식으로 기업의 활동성을 보여줄 수 있도록 했습니다.',
-      () => '알리고 싶은 소식을 빠르게 전할 수 있는 창구가 되도록 구성했습니다.',
+      function () { return '꾸준히 업데이트되는 소식으로 기업의 활동성을 보여줄 수 있도록 했습니다.'; },
+      function () { return '알리고 싶은 소식을 빠르게 전할 수 있는 창구가 되도록 구성했습니다.'; },
     ],
   },
 ];
 
+// 어느 성격에도 안 맞는 메뉴에 쓰는 기본 틀. 마지막 문장에 【 】를 넣어 기획자가 직접 채우게 합니다.
 const DEFAULT_CATEGORY = {
   key: 'default',
   emoji: '📄',
-  title: (c, n) => `${n} 페이지 구성`,
-  intro: [(c, n, subs) => `${subs ? `${subs} 등으로 구성된 ` : ''}${n} 페이지입니다.`],
-  outro: [() => '【이 페이지의 특징을 1줄로 보충 입력 (선택)】'],
+  title: function (c, n) { return `${n} 페이지 구성`; },
+  intro: [function (c, n, subs) { return `${subs ? `${subs} 등으로 구성된 ` : ''}${n} 페이지입니다.`; }],
+  outro: [function () { return '【이 페이지의 특징을 1줄로 보충 입력 (선택)】'; }],
 };
 
+// 메뉴 이름에 맞는 성격을 찾습니다. find = 조건에 맞는 "첫 번째" 항목을 찾는 기능. 없으면 기본 틀을 씁니다.
 function categorize(name) {
-  return CATEGORIES.find((c) => c.test.test(name)) || DEFAULT_CATEGORY;
+  return CATEGORIES.find(function (c) { return c.test.test(name); }) || DEFAULT_CATEGORY;
 }
 
 // ---------- 페이지 분석 결과 → 문장 ----------
@@ -205,15 +297,14 @@ function categorize(name) {
 // 메뉴 페이지 + 하위 페이지(정보만 수집) 전체에서 구성 요소를 모은다.
 // 어느 하위 페이지에서 발견됐는지(where)도 같이 기록해 "오시는길 페이지에는…"처럼 쓸 수 있게 한다.
 function collectFeatures(page) {
-  const sources = [{ ...page, name: '' }, ...(page.subPages || []).filter((s) => !s.error)];
+  const sources = [{ ...page, name: '' }, ...(page.subPages || []).filter(function (s) { return !s.error; })];
   const found = [];
   const thisYear = new Date().getFullYear();
   for (const src of sources) {
     const f = src.features || {};
     const where = src.name;
-    // 연도가 많아도 통계 자료일 수 있으므로, 연혁 페이지로 보이는 곳에서만 연혁으로 인정
     const isHistory = /연혁|history|발자취|걸어온/i.test([src.name || page.name, ...(src.headings || [])].join(' '));
-    const years = (f.years || []).filter((y) => y <= thisYear);
+    const years = (f.years || []).filter(function (y) { return y <= thisYear; });
     if (isHistory && years.length >= 3) found.push({ type: 'years', where, years });
     if (f.stats && f.stats.length) found.push({ type: 'stats', where, stats: f.stats });
     if (f.map || f.formInputs >= 3) found.push({ type: 'contact', where, map: f.map, form: f.formInputs >= 3 });
@@ -222,13 +313,16 @@ function collectFeatures(page) {
     if (f.cards >= 3) found.push({ type: 'cards', where, cards: f.cards });
     if (f.videos) found.push({ type: 'video', where });
     if (f.sliders) found.push({ type: 'slider', where });
-    if (f.bigImages >= 4 && !(f.cards >= 3)) found.push({ type: 'images', where, count: f.bigImages }); // 카드 목록이 있으면 중복 설명이라 생략
+    if (f.bigImages >= 4 && !(f.cards >= 3)) found.push({ type: 'images', where, count: f.bigImages });
   }
   return found;
 }
 
 const FEATURE_PRIORITY = ['years', 'contact', 'stats', 'downloads', 'cards', 'board', 'video', 'slider', 'images'];
 
+// 요소 하나({ type, ... })를 문장 한 줄로 바꿉니다. 문장이 필요 없으면 빈 글자 "" 를 돌려줍니다.
+// pick = 같은 종류의 문장을 돌려 쓰는 도우미(makePicker).
+// at / atIn = "연혁 페이지에서는 / 연혁 페이지에는" 같은 앞부분. 요소가 하위 페이지에서 발견됐을 때만 붙습니다.
 function featureSentence(ft, client, pick) {
   const at = ft.where ? `${ft.where} 페이지에서는 ` : '';
   const atIn = ft.where ? `${ft.where} 페이지에는 ` : '';
@@ -242,10 +336,9 @@ function featureSentence(ft, client, pick) {
       ]);
     }
     case 'stats': {
-      const quotes = ft.stats.filter((s) => s.length <= 30).slice(0, 2).map((s) => `‘${s}’`);
+      const quotes = ft.stats.filter(function (s) { return s.length <= 30; }).slice(0, 2).map(function (s) { return `‘${s}’`; });
       if (!quotes.length) return '';
       return pick('stats', [
-        // 숫자가 회사 실적인지 시장 통계인지는 알 수 없으므로 '성과'라고 단정하지 않는다
         `${at}${quotes.join(', ')}처럼 핵심 수치를 눈에 띄게 강조해 내용의 설득력을 높였습니다.`,
         `${quotes.join(', ')} 같은 구체적인 숫자를 강조해 정보가 한눈에 들어오도록 했습니다.`,
       ]);
@@ -285,14 +378,20 @@ function featureSentence(ft, client, pick) {
 // 숫자나 회사명이 들어간 25~90자 문장을 우선. 상단 카피/이미 쓴 문장은 제외.
 function pickKeySentence(page, client, exclude) {
   const pool = [page, ...(page.subPages || [])]
-    .flatMap((p) => p.paragraphs || [])
+    .flatMap(function (p) { return p.paragraphs || []; })
     .flatMap(sentences)
     .map(stripPeriod)
-    .filter((s) => s.length >= 25 && s.length <= 90 && !exclude.has(s));
-  const score = (s) => (s.includes(client) ? 3 : 0) + (/\d/.test(s) ? 1 : 0) + (/[가-힣]/.test(s) ? 1 : -5) - (/보고서|조사|따르면|전망/.test(s) ? 2 : 0);
-  return pool.sort((a, b) => score(b) - score(a))[0] || '';
+    .filter(function (s) { return s.length >= 25 && s.length <= 90 && !exclude.has(s); });
+  // 점수: 회사명 포함 +3, 숫자 포함 +1, 한글 포함 +1(영문뿐이면 -5), "보고서/조사/따르면/전망"(시장 통계 인용) -2.
+  // 점수가 높은 순으로 정렬해 1등 문장을 씁니다.
+  function score(s) {
+    return (s.includes(client) ? 3 : 0) + (/\d/.test(s) ? 1 : 0) + (/[가-힣]/.test(s) ? 1 : -5) - (/보고서|조사|따르면|전망/.test(s) ? 2 : 0);
+  }
+  return pool.sort(function (a, b) { return score(b) - score(a); })[0] || '';
 }
 
+// 페이지 상단 카피(hero.sub)로 "상단 비주얼에는 ‘…’라는 카피를…" 문장을 만듭니다.
+// 카피가 없거나 8~60자가 아니면 문장을 만들지 않고 "" 를 돌려줍니다.
 function heroSentence(page, pick) {
   const h = page.hero;
   if (!h) return '';
@@ -306,6 +405,10 @@ function heroSentence(page, pick) {
 
 // ---------- 원고 조립 ----------
 
+// ★ 이 파일의 핵심. 위에서 아래로 읽으면 원고의 순서와 같습니다.
+//   1. 인사 + 고객사 소개   2. 프로젝트 소개   3. 메인 디자인 컨셉   4. 페이지별 문단(+ UX 문단)   5. 마무리
+// blocks 의 각 항목: { type: "text", text } 또는 { type: "image", file, fullFile, caption }  → 화면(render)이 그대로 그립니다.
+// text(...) 는 글 블록을, image(...) 는 이미지 블록을 blocks 에 추가하는 도우미입니다.
 /**
  * @param {object} site crawlSite() 결과
  * @returns {{clientName: string, blocks: Array<{type: 'text'|'image', text?: string, file?: string, caption?: string}>, text: string}}
@@ -314,29 +417,30 @@ function buildManuscript(site) {
   const client = guessClientName(site);
   const pick = makePicker();
   const slogan = site.sloganCandidates[0] ? site.sloganCandidates[0].text : '【메인 슬로건】';
-  const okPages = site.pages.filter((p) => !p.error);
-  const home = okPages.find((p) => p.isHome);
-  const subPages = okPages.filter((p) => !p.isHome);
-  const menuNames = site.pages.filter((p) => !p.isHome).map((p) => p.name);
-  const usedSentences = new Set(site.sloganCandidates.map((s) => stripPeriod(s.text)));
-  const allParagraphs = okPages.flatMap((p) => [p, ...(p.subPages || [])]).flatMap((p) => p.paragraphs || []);
+  const okPages = site.pages.filter(function (p) { return !p.error; });
+  const home = okPages.find(function (p) { return p.isHome; });
+  const subPages = okPages.filter(function (p) { return !p.isHome; });
+  const menuNames = site.pages.filter(function (p) { return !p.isHome; }).map(function (p) { return p.name; });
+  const usedSentences = new Set(site.sloganCandidates.map(function (s) { return stripPeriod(s.text); }));
+  const allParagraphs = okPages.flatMap(function (p) {
+    return [p, ...(p.subPages || [])];
+  }).flatMap(function (p) { return p.paragraphs || []; });
 
   const blocks = [];
-  const text = (t) => blocks.push({ type: 'text', text: t });
-  const image = (p) => blocks.push({ type: 'image', file: p.screenshot, fullFile: p.screenshotFull, caption: p.isHome ? 'MAIN' : p.name });
+  function text(t) { return blocks.push({ type: 'text', text: t }); }
+  function image(p) {
+    return blocks.push({ type: 'image', file: p.screenshot, fullFile: p.screenshotFull, caption: p.isHome ? 'MAIN' : p.name });
+  }
 
-  // 1. 인사 + 고객사 소개
   text(`안녕하세요!!\n기업 맞춤형 웹사이트 제작 전문 업체 ${COMPANY}입니다!`);
   text(`${client}\n${site.url}\n${slogan}`);
 
-  // 제작 의도: 사이트에서 설립연도를 찾으면 예시로 보여 준다 (기획자가 최종 확정)
   const founded = allParagraphs.join(' ').match(/((?:19|20)\d{2})년\s*(?:에\s*)?(?:설립|창립|창업)/);
   const strengthHint = founded ? `${founded[1]}년 설립 이후 쌓아온 기술력과 신뢰` : '40년 이상의 역사와 전문성';
   text(`기업 홈페이지는 브랜드의 첫인상을 결정하는 중요한 공간입니다.\n이번 ${client} 프로젝트는 【핵심 강점: 예) ${strengthHint}】을 효과적으로 전달하면서,\n【강조 포인트: 예) 프로젝트 중심의 브랜드 이미지】를 구축하는 데 중점을 두고 제작했습니다.`);
 
-  // 2. 프로젝트 소개 — meta description이 회사명과 같거나 너무 짧으면 메인 본문의 소개 문장 사용
   const usefulDesc = site.description && site.description !== client && site.description.length >= 15 ? site.description : '';
-  const homeIntro = home ? (home.paragraphs || []).find((t) => t.length >= 30 && t.includes(client)) : '';
+  const homeIntro = home ? (home.paragraphs || []).find(function (t) { return t.length >= 30 && t.includes(client); }) : '';
   const description = usefulDesc || homeIntro;
   if (description) usedSentences.add(stripPeriod(description));
   const intro = description
@@ -344,7 +448,6 @@ function buildManuscript(site) {
     : `${josa(client, '은', '는')} 【업종/주요 사업을 1~2줄로 입력】 기업입니다.\n홈페이지 역시 ${client}의 전문성과 강점을 효과적으로 보여줄 수 있도록 기획했습니다.`;
   text(`👉 프로젝트 소개\n\n${intro}`);
 
-  // 3. 메인 디자인 컨셉 — 컬러/서체 + 메인 섹션 구성 + 인터랙션
   const tone = site.colors.backgroundLightness >= 0.5 ? '화이트' : '다크';
   const accent = site.colors.accents[0];
   const conceptLines = [
@@ -352,30 +455,38 @@ function buildManuscript(site) {
     `${site.fonts.length ? `${joinKo(site.fonts)} 서체로` : '깔끔한 타이포그래피로'} 가독성과 통일감을 높였습니다.`,
   ];
   if (home) {
-    const heroTexts = new Set([...site.sloganCandidates.map((s) => s.text), home.hero && home.hero.title].filter(Boolean));
-    const sections = (home.headings || []).filter((h) => !heroTexts.has(h) && h.length <= 30).slice(0, 5);
+    const heroTexts = new Set([...site.sloganCandidates.map(function (s) {
+      return s.text;
+    }), home.hero && home.hero.title].filter(Boolean));
+    const sections = (home.headings || []).filter(function (h) { return !heroTexts.has(h) && h.length <= 30; }).slice(0, 5);
     if (sections.length >= 2) conceptLines.push(`메인 페이지는 ‘${sections.join(' → ')}’ 순서의 섹션으로 구성해, 스크롤 한 번에 기업의 핵심 정보를 훑어볼 수 있습니다.`);
     const f = home.features || {};
     const libs = f.libs || [];
     if (f.videos) conceptLines.push('메인 비주얼에는 영상을 사용해 역동적인 첫인상을 주었습니다.');
     if (libs.includes('fullpage')) conceptLines.push('한 화면씩 넘어가는 풀페이지 스크롤로 각 섹션에 집중할 수 있도록 했습니다.');
-    else if (libs.some((l) => ['gsap', 'scrolltrigger', 'aos', 'lenis'].includes(l))) conceptLines.push('스크롤에 맞춰 콘텐츠가 자연스럽게 나타나는 인터랙션을 적용해 몰입감을 높였습니다.');
+    else if (libs.some(function (l) {
+      return ['gsap', 'scrolltrigger', 'aos', 'lenis'].includes(l);
+    })) conceptLines.push('스크롤에 맞춰 콘텐츠가 자연스럽게 나타나는 인터랙션을 적용해 몰입감을 높였습니다.');
     image(home);
   }
   text(`✨ 메인 디자인 컨셉\n\n${conceptLines.join('\n')}`);
 
   // 4. 페이지별 섹션 + 중간에 UX(메뉴 구조) 섹션
-  const uxSection = () => text(`⚙️ 사용자 경험(UX)을 위한 설계\n\n메뉴는 ${josa(joinKo(menuNames), '으로', '로')} 구성해\n기업 소개부터 주요 정보까지 자연스럽게 탐색할 수 있도록 설계했습니다.\n복잡한 구조를 줄이고 필요한 정보에 빠르게 접근할 수 있도록 사용자 편의성을 높였습니다.`);
+  // UX(메뉴 구성) 문단을 만드는 함수. 메뉴 이름들을 "A, B, C로" 이어서 보여 줍니다.
+  function uxSection() {
+    return text(`⚙️ 사용자 경험(UX)을 위한 설계\n\n메뉴는 ${josa(joinKo(menuNames), '으로', '로')} 구성해\n기업 소개부터 주요 정보까지 자연스럽게 탐색할 수 있도록 설계했습니다.\n복잡한 구조를 줄이고 필요한 정보에 빠르게 접근할 수 있도록 사용자 편의성을 높였습니다.`);
+  }
   const uxAfter = subPages.length >= 3 ? 2 : subPages.length;
-  const featureUse = {}; // 같은 구성 요소 문장이 원고 전체에서 너무 반복되지 않도록 (유형별 최대 2회)
-  subPages.forEach((p, i) => {
+  const featureUse = {};
+  subPages.forEach(function (p, i) {
     const cat = categorize(p.name);
     const subs = joinKo(p.subs.slice(0, 4));
+    // 이 페이지 문단의 줄들을 순서대로 쌓습니다: 도입 → 상단 카피 → 본문 핵심 문장 → 구성 요소(최대 2개) → 마무리
     const lines = [pick(`${cat.key}-intro`, cat.intro)(client, p.name, subs)];
 
     const hero = heroSentence(p, pick);
     if (hero) lines.push(hero);
-    if (p.hero && p.hero.sub) usedSentences.add(stripPeriod(p.hero.sub)); // 상단 카피와 같은 문장을 본문 인용으로 또 쓰지 않도록
+    if (p.hero && p.hero.sub) usedSentences.add(stripPeriod(p.hero.sub));
 
     const key = pickKeySentence(p, client, usedSentences);
     if (key) {
@@ -384,9 +495,9 @@ function buildManuscript(site) {
     }
 
     const features = collectFeatures(p)
-      .sort((a, b) => FEATURE_PRIORITY.indexOf(a.type) - FEATURE_PRIORITY.indexOf(b.type))
-      .filter((ft, idx, arr) => arr.findIndex((x) => x.type === ft.type) === idx) // 유형당 1개
-      .filter((ft) => (featureUse[ft.type] || 0) < 2);
+      .sort(function (a, b) { return FEATURE_PRIORITY.indexOf(a.type) - FEATURE_PRIORITY.indexOf(b.type); })
+      .filter(function (ft, idx, arr) { return arr.findIndex(function (x) { return x.type === ft.type; }) === idx; })
+      .filter(function (ft) { return (featureUse[ft.type] || 0) < 2; });
     let added = 0;
     for (const ft of features) {
       if (added >= 2) break;
@@ -404,14 +515,14 @@ function buildManuscript(site) {
   });
   if (!subPages.length && menuNames.length) uxSection();
 
-  // 5. 마무리
   text(`👉 프로젝트를 마무리하며\n\n이번 프로젝트는 화려한 기능보다 브랜드의 가치를 효과적으로 전달하는 데 집중했습니다.\n앞으로도 기업의 특성을 반영한 맞춤형 홈페이지를 제작하여\n기업과 브랜드의 경쟁력을 높일 수 있는 웹사이트를 만들어가겠습니다.`);
   text(`앞으로도 ${josa(COMPANY, '은', '는')} 고객사의 니즈를 정확히 파악하고, 이를 충족시킬 수 있는 결과물을 만들어내기 위해 최선을 다하겠습니다!!`);
   text(`기업의 가치와 비전을 효과적으로 전달할 수 있는 홈페이지 제작과 관련하여\n궁금한 사항이나 도움이 필요하신 경우 언제든지 문의해주시기 바랍니다.\n\n감사합니다!`);
 
-  // 복사용 평문: 이미지 자리에는 [이미지 n] 표시
   let n = 0;
-  const plain = blocks.map((b) => (b.type === 'image' ? `[이미지 ${++n}] ${b.file}  (캡션: ${b.caption})` : b.text)).join('\n\n\n');
+  const plain = blocks.map(function (b) {
+    return b.type === 'image' ? `[이미지 ${++n}] ${b.file}  (캡션: ${b.caption})` : b.text;
+  }).join('\n\n\n');
 
   return { clientName: client, blocks, text: plain };
 }

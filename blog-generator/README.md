@@ -62,7 +62,9 @@ blog-generator/
 │  ├─ crawl.js          # Playwright로 사이트 열기 → 메뉴/슬로건/컬러/서체 추출 → 스크린샷
 │  ├─ template.js       # 추출 정보 → 블로그 원고 (템플릿 치환). 문장/카테고리 수정은 여기서
 │  └─ zip.js            # 의존성 없는 ZIP 생성 (무압축, UTF-8 파일명)
-├─ public/index.html    # 기획자 화면
+├─ public/
+│  ├─ index.html        # 기획자 화면 (뼈대 HTML + 동작 JavaScript)
+│  └─ index.css         # 화면 모양(CSS). index.html 의 link 태그가 불러옴. server.js 가 public/ 의 CSS·이미지를 내려줌
 ├─ start-windows.bat / start-mac.command
 └─ output/              # 결과물 (git 제외)
 ```
