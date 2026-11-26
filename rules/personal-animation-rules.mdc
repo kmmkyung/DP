@@ -1,0 +1,120 @@
+---
+description: 개인 모션 규칙 — 기본값, 방식 선택, 패턴 사전, 플러그인(GSAP·Lenis·Swiper), 섹션별 추천, 시그니처 모션
+globs: ["www/css/**/*.css", "www/js/**/*.js"]
+alwaysApply: false
+---
+
+# 개인 모션 규칙
+
+팀 규칙 frontend-style 3-6·3-7항이 우선한다. 요청에 값이 없으면 이 파일 기본값을 쓴다.
+
+## 1. 기본값
+
+- 변수 (root.css에 없으면 추가)
+  - `--ease-soft: cubic-bezier(0.22, 0.6, 0.35, 1)` → 기본
+  - `--ease-glide: cubic-bezier(0.25, 1, 0.5, 1)` → 텍스트 리빌·큰 이동
+- duration: 일반 1s / 텍스트 줄 1.2s / 큰 비주얼 2s / 호버 0.4s
+- 간격: duration × 0.3 기준 (텍스트 줄 0.4s, 카드 0.15s, 글자 0.04s)
+- `--delay`는 초 단위로 쓰고 transition-delay에 바로 넣는다 (`calc(초 * 초)` 금지)
+- transform·opacity만 애니메이션한다 (width·height·top 금지, 필요하면 scale로)
+
+## 2. 방식 선택
+
+- 시간으로 한 번 재생 → CSS `.ani` / `.in-view`
+- 쪼개기·클래스 토글 → JS는 거들기만, 움직임은 CSS
+- 스크롤에 묶임(scrub·pin)·3단계 이상 순서 → GSAP. 이 요소엔 `.ani`를 붙이지 않는다
+
+## 3. 패턴 사전
+
+| 이름 | 정의 |
+|---|---|
+| fade-up | opacity 0 · translateY(30px) → 0, 1s ease-soft |
+| 마스크 리빌 | 줄마다 `.mask` span(overflow hidden), translateY(100%) → 0, 1.2s ease-glide, 줄 간격 0.4s, 디센더 잘림 방지(padding-bottom 0.1em / margin-bottom -0.1em). 큰 제목·슬로건(1~3줄)에만, 줄글은 fade-up |
+| 순차 등장 | 섹션에 `.ani` 하나, 제목 → 본문 → 버튼 0 / 0.4s / 0.6s |
+| stagger | 아이템 fade-up, 0.15s 간격, 한 줄 단위로 delay를 0부터 다시 |
+| 글자 등장 | JS로 글자 span 분리, opacity 0 · translateY(40%) → 0, 0.8s, 글자당 0.04s, aria-label에 원문 |
+| 이미지 리빌 | 부모 clip-path inset(100% 0 0 0) → inset(0) + img scale(1.15) → 1, 1.2s ease-glide |
+| 라인 | scaleX(0) → 1, origin left, 1.4s ease-glide |
+| 카운트 | GSAP, data-count까지 2s power2.out, 진입 시 1회, 천 단위 콤마 |
+| 패럴랙스 | GSAP, scrub true(Lenis와 이중 스무딩 방지), ease none, img height 120% · yPercent -16.7 → 0, 813px 이상만 |
+| pin | GSAP pin + scrub 1.5, 모바일은 pin 없이 세로 나열, invalidateOnRefresh |
+| 마키 | 콘텐츠 2벌 복제, translateX(0) → -50%, linear infinite, 호버 시 정지 |
+| 호버 | 이미지 scale 1.05 0.6s, 텍스트·아이콘 0.4s, ease-soft |
+
+## 4. 작업 방식
+
+- 요청에 파일·선택자가 있으면 그 범위만 읽고 수정한다. 다른 파일을 탐색하지 않는다
+- 응답은 바뀐 코드만 보여주고, 설명은 필요할 때 한두 줄로
+- 값이 애매하면 기본값으로 진행하고 마지막에 한 줄로 알린다
+- 버벅임 수정 요청은 원인(속성·중복·will-change)을 먼저 보고하고, 수정은 확인 후 진행한다
+
+## 5. 플러그인
+
+### Lenis
+- common.js에서 이미 생성·GSAP ticker 연동됨 (`window.lenis`). 페이지에서 `new Lenis` 다시 만들지 않는다
+- 내부 스크롤 영역은 `.inner-scroll` 클래스 (Lenis 제외)
+- 모달·메뉴 열고 닫을 때 `lockScroll()` / `unlockScroll()` 사용. `lenis.stop()` 직접 호출 금지
+- 앵커 이동은 `window.lenis.scrollTo(target, { offset: -헤더높이 })`. `scrollIntoView`·`window.scrollTo` 금지
+
+### GSAP / ScrollTrigger
+- Lenis 동기화는 common.js가 처리 → `scrollerProxy` 쓰지 않는다
+- 반응형은 `gsap.matchMedia()`, 기준 `(min-width: 813px)` / `(max-width: 812px)`
+- scrub에는 `ease: 'none'`
+- 이미지 로드로 높이가 바뀌면 imagesloaded 후 `ScrollTrigger.refresh()`
+- 기본 start `"top 80%"`, `markers`는 작업 끝나면 제거
+- 페이지 전용 코드는 해당 php 하단 `<script>`
+
+### Swiper (14.x)
+- 전환 속도 `speed: 1000`, 곡선은 CSS로 통일: `.swiper-wrapper { transition-timing-function: var(--ease-soft); }`
+- `.ani`는 swiper 컨테이너에만, 슬라이드에는 붙이지 않는다. 슬라이드 텍스트는 `slideChangeTransitionStart`에서 재등장
+- autoplay는 `pauseOnMouseEnter: true`, loop는 슬라이드 개수가 충분한지 확인
+- 슬라이드 이미지는 팀 규칙 5-4 비율 클래스
+
+### Observer (.ani)
+- threshold 0.4라서 화면 높이의 2.5배 넘는 요소는 `.in-view`가 안 붙는다 → 큰 섹션 전체 말고 내부 블록에 `.ani`
+
+## 6. 섹션별 추천 (요청에 모션 지정이 없을 때)
+
+- 원칙: 한 화면에 주인공 모션 1개, 나머지는 fade-up. 같은 종류 요소(모든 섹션 제목 등)는 같은 모션
+- 강도: 위(비주얼)일수록 화려하게, 아래(정보·게시판)일수록 차분하게
+- "제안"을 요청하면 코드 없이 요소별 표로 차분 / 보통 / 화려 3안, 패턴 사전 안에서만
+
+| 섹션 성격 | 추천 |
+|---|---|
+| 메인 비주얼·인트로 | 인트로 시퀀스, 마스크 리빌 |
+| 소개 문구·슬로건 | 마스크 리빌 → 본문 fade-up (순차 등장) |
+| 큰 이미지 | 이미지 리빌, 패럴랙스 |
+| 숫자·성과 | 카운트 + stagger |
+| 카드·목록 | stagger |
+| 연혁·프로세스 | 라인 + stagger, 단계가 많으면 pin |
+| 파트너·로고 | 마키 |
+| CTA·문의 | 배경색 전환, 버튼 호버 |
+| 게시판·폼 | 모션 없음 또는 fade-up만 |
+
+## 7. 시그니처 모션
+
+"시그니처", "새 모션", "다른 모션" 요청 시 아래를 따른다.
+
+### 원칙
+- 프로젝트마다 1개, 주인공 섹션(보통 메인 비주얼 또는 소개)에만 쓴다. 나머지 섹션은 패턴 사전에서 고른다
+- 패턴 사전(3항)과 시그니처 이력(아래)에 있는 효과는 제안하지 않는다
+- 기본값(1항)의 easing·duration 톤은 유지한다. 효과만 새롭게
+
+### 조합 축 (하나씩 골라 조합)
+- 무엇이: 전체 / 줄 / 단어 / 글자 / 이미지 안쪽 / 마스크 / 배경 / 띠(여러 조각) / 숫자 자릿수
+- 어떻게: 이동 / 스케일 / skew·회전 / clip-path 모양(원·대각선·블라인드) / blur / 채도 / 자간
+- 언제: 진입 1회 / scrub / 호버·커서 / 슬라이드 전환 / 클릭
+- 관계: 단독 / 앞 요소가 끝나며 다음 시작 / 이미지가 열리며 텍스트 등장 / 섹션 간 이어짐
+
+### 제안 형식
+- 5개, 서로 다른 축 조합. 코드는 작성하지 않는다
+- 표: 효과 / 조합 / 적용 요소 / 방식(CSS·GSAP·JS) / 난이도(하·중·상) / 모바일 처리
+- 요청에 톤이 없으면 차분·고급 기준
+
+### 선택 후
+- 패턴 사전 형식(한 줄 정의)으로 값을 먼저 보여주고, 확인 후 코드 작성
+- 해당 css 파일 ani 블록 상단에 주석으로 기록: `/* signature: {효과} — {섹션} */`
+- 성능: transform·opacity·clip-path 위주. blur는 큰 요소에 쓰지 않는다. 모바일은 단순화하거나 끈다
+
+### 시그니처 이력
+<!-- 쓴 것을 추가 — 다음 제안에서 제외 -->
